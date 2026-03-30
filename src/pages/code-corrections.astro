@@ -1,3 +1,121 @@
 ---
-return Astro.redirect('/electrical-repairs', 301);
+import TTELayout from '~/layouts/TTELayout.astro';
+
+const jsonLd = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Electrical Code Corrections',
+    description:
+      'Professional electrical code correction services in West Michigan. We identify and resolve NEC code violations to bring your electrical system up to current standards.',
+    provider: { '@id': 'https://toptier-electrical.com/#electrician' },
+    areaServed: { '@type': 'State', name: 'Michigan' },
+    serviceType: 'Electrical Code Correction',
+    url: 'https://toptier-electrical.com/code-corrections',
+  }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://toptier-electrical.com/services' },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Code Corrections',
+        item: 'https://toptier-electrical.com/code-corrections',
+      },
+    ],
+  }),
+];
 ---
+
+<TTELayout
+  title="Electrical Code Corrections | West Michigan Electrician"
+  description="Professional electrical code corrections in West Michigan. We identify NEC violations, explain your options, and bring your system up to current standards."
+  canonical="https://toptier-electrical.com/code-corrections"
+  jsonLd={jsonLd}
+>
+  <main id="main-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/services">Services</a></li>
+        <li aria-current="page">Code Corrections</li>
+      </ol>
+    </nav>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Electrical Code Corrections</h1>
+        <p>We identify violations, explain what's required, and bring your system up to current NEC standards.</p>
+        <a href="/booking" class="btn-primary">Schedule Assessment</a>
+      </div>
+    </section>
+    <div class="trust-strip">
+      <div class="container">
+        <div class="trust-badges">
+          <span class="badge">&#10004; Licensed &amp; Insured</span>
+          <span class="badge">MI License #6220430</span>
+          <span class="badge">&#128274; Workmanship Guarantee</span>
+          <span class="badge">Owner-Operated</span>
+        </div>
+      </div>
+    </div>
+    <section class="service-detail">
+      <div class="container">
+        <p>
+          Electrical code violations aren't just a paperwork problem — they're a safety risk. Whether you've received a
+          failed inspection, are preparing to sell your home, or suspect aging wiring may not meet current standards, we
+          can assess and correct the issues correctly.
+        </p>
+        <h2>Common Code Issues We Correct</h2>
+        <ul>
+          <li>Missing or improperly placed GFCI and AFCI protection</li>
+          <li>Ungrounded outlets and two-prong receptacles</li>
+          <li>Undersized or overloaded electrical panels</li>
+          <li>Double-tapped breakers and improper wiring methods</li>
+          <li>Missing junction box covers and exposed wiring</li>
+          <li>Outdated aluminum branch circuit wiring concerns</li>
+          <li>Improper panel clearance and labeling violations</li>
+        </ul>
+        <h2>What You Can Expect</h2>
+        <ul>
+          <li>Thorough assessment of existing conditions</li>
+          <li>Clear explanation of each violation and why it matters</li>
+          <li>Options and scope confirmed before any work begins</li>
+          <li>Code-correct corrections with clean, finished results</li>
+          <li>Permit coordination when required</li>
+        </ul>
+        <h2>How We Work</h2>
+        <ol>
+          <li>Assess — Systematically identify violations and safety concerns.</li>
+          <li>Explain — Walk you through what was found and what's required.</li>
+          <li>Correct — Complete the corrections to current NEC standards.</li>
+          <li>Verify — Test and confirm before calling the job done.</li>
+        </ol>
+        <h2>FAQ</h2>
+        <p>
+          <strong>Do I need a permit for code corrections?</strong><br />It depends on the scope. We'll clarify permit
+          requirements upfront and handle coordination when needed.
+        </p>
+        <p>
+          <strong>Can you help after a failed inspection?</strong><br />Yes. We work with homeowners and contractors to
+          resolve failed inspection items and get the work signed off correctly.
+        </p>
+        <p>
+          <strong>Will you explain the cost before starting?</strong><br />Always. We confirm scope and pricing before
+          any correction work begins.
+        </p>
+      </div>
+    </section>
+    <section class="cta-section">
+      <h2>Need Code Corrections?</h2>
+      <p>
+        Call <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a> or email <a
+          href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
+        > to schedule an assessment.
+      </p>
+      <a href="/booking" class="btn-primary">Request Scheduling</a>
+    </section>
+  </main>
+</TTELayout>
