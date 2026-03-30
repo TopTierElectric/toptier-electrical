@@ -1,12 +1,3 @@
 name = "toptier-electrical"
 compatibility_date = "2025-03-30"
 pages_build_output_dir = "./dist"
-
-# Cloudflare Pages static site — no Workers needed.
-# Build command and output directory are configured here for
-# Cloudflare Pages direct deploy via `npx wrangler pages deploy`.
-# When connected via Git integration, Cloudflare auto-detects Astro
-# and uses `npm run build` with output dir `dist`.
-
-[assets]
-directory = "./dist"
