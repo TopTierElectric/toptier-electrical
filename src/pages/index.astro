@@ -1,0 +1,295 @@
+---
+import TTELayout from '~/layouts/TTELayout.astro';
+
+const localBusinessLd = `{
+  "@context": "https://schema.org",
+  "@type": "Electrician",
+  "@id": "https://toptier-electrical.com/#electrician",
+  "name": "Top Tier Electrical",
+  "url": "https://toptier-electrical.com/",
+  "telephone": "+1-616-334-7159",
+  "email": "info@toptier-electrical.com",
+  "description": "Licensed & insured electrician serving West Michigan. Panel upgrades, EV chargers, lighting, and reliable troubleshooting.",
+  "image": "https://toptier-electrical.com/images/logos/TopTierElectrical_Primary_FlatGold_512.png",
+  "logo": "https://toptier-electrical.com/images/logos/TopTierElectrical_Primary_FlatGold_512.png",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Holland",
+    "addressRegion": "MI",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 42.7876,
+    "longitude": -86.1089
+  },
+  "areaServed": [
+    {"@type": "City", "name": "Holland", "containedInPlace": {"@type": "State", "name": "Michigan"}},
+    {"@type": "City", "name": "Grand Rapids", "containedInPlace": {"@type": "State", "name": "Michigan"}},
+    {"@type": "City", "name": "Byron Center", "containedInPlace": {"@type": "State", "name": "Michigan"}},
+    {"@type": "City", "name": "Zeeland", "containedInPlace": {"@type": "State", "name": "Michigan"}},
+    {"@type": "City", "name": "Saugatuck", "containedInPlace": {"@type": "State", "name": "Michigan"}},
+    {"@type": "City", "name": "Hudsonville", "containedInPlace": {"@type": "State", "name": "Michigan"}},
+    {"@type": "City", "name": "Allegan", "containedInPlace": {"@type": "State", "name": "Michigan"}},
+    {"@type": "City", "name": "Ada", "containedInPlace": {"@type": "State", "name": "Michigan"}}
+  ],
+  "sameAs": ["https://www.facebook.com/profile.php?id=61573826170938"],
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens": "08:00","closes": "18:00"},
+    {"@type": "OpeningHoursSpecification","dayOfWeek": ["Saturday"],"opens": "09:00","closes": "13:00"}
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Electrical Services",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Panel Upgrades"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "EV Charger Installation"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Lighting & Fixtures"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Electrical Repairs"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Generator Installation"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Energy Solutions"}}
+    ]
+  }
+}`;
+
+const websiteLd = `{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Top Tier Electrical",
+  "url": "https://toptier-electrical.com/"
+}`;
+
+const faqLd = `{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "Do you handle both residential and light commercial work?","acceptedAnswer": {"@type": "Answer","text": "Yes. We support homes and small business spaces across West Michigan with service work and planned upgrades."}},
+    {"@type": "Question","name": "Can you help if I'm not sure what's causing the problem?","acceptedAnswer": {"@type": "Answer","text": "Absolutely. We start with troubleshooting, explain what we find, and outline the safest fix options."}},
+    {"@type": "Question","name": "Do you install customer-supplied fixtures or EV chargers?","acceptedAnswer": {"@type": "Answer","text": "Yes, as long as the equipment is compatible with your electrical system and installed per manufacturer guidance."}},
+    {"@type": "Question","name": "What areas do you serve?","acceptedAnswer": {"@type": "Answer","text": "We serve West Michigan, including Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Hudsonville, and Allegan. See full service areas at https://toptier-electrical.com/service-areas."}}
+  ]
+}`;
+---
+
+<TTELayout
+  title="Electrician in West Michigan | Top Tier Electrical"
+  description="Licensed & insured electrician serving West Michigan. Panel upgrades, EV chargers, lighting, and reliable troubleshooting. Get a clear estimate—call (616) 334-7159."
+  canonical="https://toptier-electrical.com/"
+  ogImage="https://toptier-electrical.com/assets/images/hero.jpg"
+  jsonLd={[localBusinessLd, websiteLd, faqLd]}
+>
+  <main id="main-content">
+    <section class="hero">
+      <div class="container hero-layout">
+        <div class="hero-text">
+          <div class="hero-label">Serving West Michigan</div>
+          <h1>Clean Electrical Work.<br />Clear Communication.</h1>
+          <p class="hero-sub">
+            I focus on scope clarity, clean installs, and realistic timelines so you can make confident decisions about
+            your electrical project.
+          </p>
+          <div class="hero-cta">
+            <a href="/booking" class="btn btn-primary" data-cta="hero-request-scheduling">Request Scheduling</a>
+            <a href="tel:+16163347159" class="btn btn-ghost">Call / Text (616)&nbsp;334&#8209;7159</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <picture class="hero-picture">
+            <img
+              src="/images/gallery/Residential%20Panel.webp"
+              alt="Clean residential electrical panel installation by Top Tier Electrical"
+              width="800"
+              height="600"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
+        </div>
+      </div>
+    </section>
+    <!-- Trust Strip -->
+    <div class="trust-strip">
+      <div class="container">
+        <div class="trust-badges">
+          <span class="badge">&#10004; Licensed &amp; Insured</span>
+          <span class="badge">MI License #6220430</span>
+          <span class="badge">&#128274; Code-aware workmanship</span>
+          <span class="badge">&#127968; Owner-operated</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="container" id="services">
+      <h2>Services</h2>
+      <div class="service-cards">
+        <a href="/panel-upgrades" class="service-card">
+          <h3>Panel Upgrades</h3>
+          <p>Safe, reliable service for modern electrical needs.</p>
+        </a>
+        <a href="/ev-chargers" class="service-card">
+          <h3>EV Charger Installation</h3>
+          <p>Dedicated 240V circuits for Level 2 home charging.</p>
+        </a>
+        <a href="/lighting" class="service-card">
+          <h3>Lighting &amp; Fixtures</h3>
+          <p>Interior and exterior lighting with clean finish work.</p>
+        </a>
+        <a href="/electrical-repairs" class="service-card">
+          <h3>Electrical Repairs</h3>
+          <p>Troubleshooting and repair of outlets, circuits, and panels.</p>
+        </a>
+        <a href="/generators" class="service-card">
+          <h3>Generator Installation</h3>
+          <p>Backup power with transfer switches and load planning.</p>
+        </a>
+        <a href="/energy-solutions" class="service-card">
+          <h3>Energy Solutions</h3>
+          <p>Efficiency upgrades and smart energy management.</p>
+        </a>
+      </div>
+      <p style="text-align:center; margin-top: 1.5rem;">
+        <a href="/services" class="btn btn-primary">View All Services</a>
+      </p>
+    </section>
+
+    <section class="container gallery-section" id="gallery">
+      <h2>Our Work</h2>
+      <div class="gallery-grid">
+        <figure>
+          <img
+            src="/images/gallery/Control%20Cabinet.webp"
+            alt="Commercial control cabinet installation"
+            loading="lazy"
+            decoding="async"
+            width="400"
+            height="300"
+          />
+        </figure>
+        <figure>
+          <img
+            src="/images/gallery/Residential%20Panel.webp"
+            alt="Residential panel upgrade"
+            loading="lazy"
+            decoding="async"
+            width="400"
+            height="300"
+          />
+        </figure>
+        <figure>
+          <img
+            src="/images/gallery/backup%20Generator.webp"
+            alt="Backup generator installation"
+            loading="lazy"
+            decoding="async"
+            width="400"
+            height="300"
+          />
+        </figure>
+        <figure>
+          <img
+            src="/images/gallery/LED%20HandRail.webp"
+            alt="LED handrail lighting installation"
+            loading="lazy"
+            decoding="async"
+            width="400"
+            height="300"
+          />
+        </figure>
+        <figure>
+          <img
+            src="/images/gallery/Interior%20LED%20lighitng.webp"
+            alt="Interior LED lighting upgrade"
+            loading="lazy"
+            decoding="async"
+            width="400"
+            height="300"
+          />
+        </figure>
+        <figure>
+          <img
+            src="/images/gallery/Multi%20panel%20Assembly.webp"
+            alt="Multi-panel assembly installation"
+            loading="lazy"
+            decoding="async"
+            width="400"
+            height="300"
+          />
+        </figure>
+      </div>
+      <p style="text-align:center; margin-top: 1.5rem;">
+        <a href="/gallery" class="btn btn-primary">View Full Gallery</a>
+      </p>
+    </section>
+
+    <section class="container trust-section" id="about">
+      <h2>Why Top Tier Electrical</h2>
+      <div class="trust-grid">
+        <article class="trust-item">
+          <h3>Scope Clarity</h3>
+          <p>Clear planning before work begins, so there are no surprises.</p>
+        </article>
+        <article class="trust-item">
+          <h3>Owner-Operated</h3>
+          <p>Direct communication with the electrician on every job.</p>
+        </article>
+        <article class="trust-item">
+          <h3>Code-Correct</h3>
+          <p>Licensed work that meets Michigan code and passes inspection.</p>
+        </article>
+        <article class="trust-item">
+          <h3>Future-Ready</h3>
+          <p>We plan for your EV charger, generator, or addition before roughing in.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" id="areas">
+      <h2>Service Areas</h2>
+      <p>
+        We serve West Michigan including Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Hudsonville, Allegan,
+        and Ada. <a href="/service-areas">See all service areas</a>.
+      </p>
+    </section>
+
+    <section class="container" id="faq">
+      <h2>Common Questions</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Do you handle both residential and light commercial work?</summary>
+          <p>
+            Yes. We support homes and small business spaces across West Michigan with service work and planned upgrades.
+          </p>
+        </details>
+        <details>
+          <summary>Can you help if I'm not sure what's causing the problem?</summary>
+          <p>Absolutely. We start with troubleshooting, explain what we find, and outline the safest fix options.</p>
+        </details>
+        <details>
+          <summary>Do you install customer-supplied fixtures or EV chargers?</summary>
+          <p>
+            Yes, as long as the equipment is compatible with your electrical system and installed per manufacturer
+            guidance.
+          </p>
+        </details>
+        <details>
+          <summary>What areas do you serve?</summary>
+          <p>
+            We serve West Michigan, including Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Hudsonville, and
+            Allegan. See full service areas at <a href="/service-areas">toptier-electrical.com/service-areas</a>.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>Ready to Get Started?</h2>
+      <p>
+        Call <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a> or email <a
+          href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
+        > to confirm scope and scheduling.
+      </p>
+      <a href="/booking" class="btn-primary">Request Scheduling</a>
+    </section>
+  </main>
+</TTELayout>

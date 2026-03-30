@@ -1,0 +1,181 @@
+---
+import TTELayout from '~/layouts/TTELayout.astro';
+
+const jsonLd = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Electrician',
+    name: 'Top Tier Electrical',
+    url: 'https://toptier-electrical.com',
+    telephone: '+16163347159',
+    address: {
+      '@type': 'PostalAddress',
+      addressRegion: 'MI',
+      addressCountry: 'US',
+    },
+    areaServed: 'West Michigan',
+    hasMap: 'https://toptier-electrical.com/service-areas',
+  }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Electrical Panel Upgrade',
+    provider: {
+      '@type': 'Electrician',
+      name: 'Top Tier Electrical',
+    },
+    areaServed: 'West Michigan',
+    description: 'Code-compliant electrical panel upgrades and service upgrades in West Michigan.',
+  }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Will my power be off during a panel upgrade?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Usually, yes—there is typically a planned outage window while the panel work is completed.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need a full service upgrade?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Not always. We verify capacity and recommend the simplest code-compliant option that fits your goals.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can you make room for future projects?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes—planning for EV charging, generator readiness, and remodel loads is part of a good upgrade.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Will you label every circuit?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Clear labeling helps you and future service calls understand what each breaker controls.',
+        },
+      },
+    ],
+  }),
+];
+---
+
+<TTELayout
+  title="Electrical Panel Upgrade & Service Upgrade | West Michigan Electrician"
+  description="Clean, code-compliant electrical panel upgrades and service upgrades in West Michigan. Clear scope, tidy installs, and reliable long-term results."
+  canonical="https://toptier-electrical.com/panel-upgrades"
+  ogImage="https://toptier-electrical.com/assets/images/projects/control-cabinet.jpg"
+  jsonLd={jsonLd}
+>
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Electrical Panel Upgrades &amp; Service Upgrades</h1>
+        <p>Clean, code-compliant electrical panel work with clear scope and tidy installs.</p>
+        <a href="/booking" class="btn-primary">Schedule a Walkthrough</a>
+      </div>
+    </section>
+    <section class="container">
+      <section class="card" style="margin-top: 16px">
+        <h3 style="margin-top: 0">Explore by audience</h3>
+        <p class="muted" style="margin: 0">
+          <a href="/residential-electrician-allegan-mi">Residential electrician hub</a> •
+          <a href="/commercial-electrician-allegan-mi">Commercial electrician hub</a>
+        </p>
+      </section>
+    </section>
+    <div class="trust-strip">
+      <div class="container">
+        <div class="trust-badges">
+          <span class="badge">&#10004; Licensed &amp; Insured</span>
+          <span class="badge">MI License #6220430</span>
+          <span class="badge">&#128274; Workmanship Guarantee</span>
+          <span class="badge">Owner-Operated</span>
+          <span class="badge">Clean, Respectful Jobsite Habits</span>
+        </div>
+      </div>
+    </div>
+    <section class="service-detail">
+      <div class="container">
+        <p>
+          A clean, code-compliant electrical panel is the foundation of a reliable home. If your system is out of space,
+          showing wear, or struggling with modern loads, a panel upgrade is often the most practical next step.
+        </p>
+        <div class="proof-chips">
+          <span>Permit-ready installs</span>
+          <span>Labelled breaker layout</span>
+          <span>Inspection walkthrough</span>
+        </div>
+        <h2>When a Panel Upgrade Makes Sense</h2>
+        <ul>
+          <li>Breakers trip during normal use, or lights flicker under load</li>
+          <li>You're out of breaker spaces (or planning EV charging, HVAC upgrades, a hot tub, or an addition)</li>
+          <li>The panel shows corrosion, heat damage, or loose/unsafe conditions</li>
+          <li>You want a modern, clearly labeled layout that's easy to live with long-term</li>
+        </ul>
+        <h2>What's Included (So the Scope Is Clear)</h2>
+        <ul>
+          <li>Walkthrough of current loads + your future plans</li>
+          <li>Panel assessment (capacity, condition, circuit layout)</li>
+          <li>Permit/inspection coordination when required</li>
+          <li>Clean panel replacement and circuit organization</li>
+          <li>Clear labeling so circuits make sense later</li>
+          <li>Final verification and walkthrough at handoff</li>
+        </ul>
+        <h2>Pricing Factors</h2>
+        <ul>
+          <li>Existing panel condition and amperage size</li>
+          <li>Service mast updates or meter base changes</li>
+          <li>Need for load calculations and future capacity</li>
+          <li>Permit and utility coordination requirements</li>
+        </ul>
+        <h2>How We Work</h2>
+        <ol>
+          <li>Walkthrough — We review what you have and what you're adding.</li>
+          <li>Plan — Clear scope, load approach, and sequencing.</li>
+          <li>Execute — Tidy workmanship, organized routing, professional finish.</li>
+          <li>Verify — Function check, labeling, and a clean handoff.</li>
+        </ol>
+        <h2>FAQ</h2>
+        <p>
+          <strong>Will my power be off?</strong><br />Usually, yes—there is typically a planned outage window while the
+          panel work is completed.
+        </p>
+        <p>
+          <strong>Do I need a full service upgrade?</strong><br />Not always. We verify capacity and recommend the
+          simplest code-compliant option that fits your goals.
+        </p>
+        <p>
+          <strong>Can you make room for future projects?</strong><br />Yes—planning for EV charging, generator
+          readiness, and remodel loads is part of a good upgrade.
+        </p>
+        <p>
+          <strong>Will you label every circuit?</strong><br />Yes. Clear labeling helps you and future service calls
+          understand what each breaker controls.
+        </p>
+        <h2>Next Step</h2>
+        <p>
+          If you want a West Michigan electrician who plans first and finishes clean, schedule a walkthrough. You'll get
+          a clear scope and a quote you can trust—without pressure.
+        </p>
+      </div>
+    </section>
+    <section class="cta-section">
+      <h2>Ready for an Upgrade?</h2>
+      <p>
+        Call <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a> or email <a
+          href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
+        > to confirm scope and scheduling.
+      </p>
+      <a href="/booking" class="btn-primary">Request Scheduling</a>
+    </section>
+  </main>
+</TTELayout>

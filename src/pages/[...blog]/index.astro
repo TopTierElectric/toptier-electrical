@@ -1,0 +1,51 @@
+---
+import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+import TTELayout from '~/layouts/TTELayout.astro';
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { getStaticPathsBlogPost } from '~/utils/blog';
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+  return await getStaticPathsBlogPost();
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { post } = Astro.props as Props;
+
+const url = getCanonical(getPermalink(post.permalink, 'post'));
+---
+
+<TTELayout
+  title={`${post.title} | Top Tier Electrical`}
+  description={post.excerpt || ''}
+  canonical={String(url)}
+  ogType="article"
+>
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>{post.title}</h1>
+        {post.excerpt && <p>{post.excerpt}</p>}
+      </div>
+    </section>
+    <article class="blog-post">
+      <div class="container">
+        {post.Content ? <post.Content /> : <Fragment set:html={post.content || ''} />}
+        <div style="margin-top: 2rem;">
+          <a href="/blog" class="btn-secondary">← Back to Blog</a>
+        </div>
+      </div>
+    </article>
+    <section class="cta-section">
+      <h2>Need Electrical Service?</h2>
+      <p>
+        Call us at <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a> or email <a
+          href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
+        > to confirm scope and scheduling.
+      </p>
+      <a href="/booking" class="btn-primary">Request Scheduling</a>
+    </section>
+  </main>
+</TTELayout>

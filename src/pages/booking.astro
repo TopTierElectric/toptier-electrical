@@ -1,0 +1,102 @@
+---
+import TTELayout from '~/layouts/TTELayout.astro';
+---
+
+<TTELayout
+  title="Book Electrical Service | Top Tier Electrical"
+  description="Schedule electrical service in West Michigan. Choose a service, preferred date, and time, and we'll confirm the scope and next steps."
+  canonical="https://toptier-electrical.com/booking"
+>
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Schedule Your Service</h1>
+        <p>Submit a request—I'll confirm scope and timing within 1 business day.</p>
+        <a href="tel:+16163347159" class="btn-secondary">Or Call Now</a>
+      </div>
+    </section>
+    <div class="trust-strip">
+      <div class="container">
+        <div class="trust-badges">
+          <span class="badge">&#10004; Licensed &amp; Insured</span>
+          <span class="badge">&#128295; Code-aware workmanship</span>
+          <span class="badge">&#128274; Clean, careful installations</span>
+          <span class="badge">&#127968; Local West Michigan team</span>
+        </div>
+      </div>
+    </div>
+    <section class="contact-page">
+      <div class="container">
+        <h2>Book an Appointment</h2>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>What Happens Next</h3>
+            <ol class="next-steps">
+              <li>We review your details and confirm the best time.</li>
+              <li>You receive a clear scope and scheduling options.</li>
+              <li>We arrive on schedule and walk you through the completed work.</li>
+            </ol>
+            <p class="response-note"><strong>Response time:</strong> within 1 business day.</p>
+            <p>If you're unsure which service you need or have questions about booking, call or text us anytime.</p>
+            <p><strong>Phone:</strong> <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a></p>
+            <p><strong>Text:</strong> <a href="sms:+16163347159">(616)&nbsp;334&#8209;7159</a></p>
+            <p><strong>Email:</strong> <a href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a></p>
+          </div>
+          <div class="contact-form">
+            <h3>Service Booking Form</h3>
+            <form name="booking" method="POST" action="https://formspree.io/f/mkovbvgj">
+              <input type="hidden" name="_subject" value="New booking request from Top Tier Electrical" />
+              <input type="hidden" name="_next" value="https://toptier-electrical.com/thank-you" />
+              <input type="hidden" name="form_name" value="Booking form" />
+              <input
+                class="form-honeypot"
+                type="text"
+                name="_gotcha"
+                aria-label="Leave this field blank"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+              />
+              <label for="book-name">Name</label>
+              <input type="text" id="book-name" name="name" required autocomplete="name" />
+              <label for="book-email">Email</label>
+              <input type="email" id="book-email" name="email" required autocomplete="email" />
+              <label for="book-phone">Phone</label>
+              <input type="tel" id="book-phone" name="phone" required autocomplete="tel" />
+              <label for="book-service">Service</label>
+              <select id="book-service" name="service" required>
+                <option value="" disabled selected>Select a service</option>
+                <option value="Panel Upgrade">Panel Upgrade</option>
+                <option value="EV Charger Installation">EV Charger Installation</option>
+                <option value="Lighting & Fixtures">Lighting &amp; Fixtures</option>
+                <option value="Electrical Repairs & Troubleshooting">Electrical Repairs &amp; Troubleshooting</option>
+                <option value="Generator Installation">Generator Installation</option>
+                <option value="Energy Solutions">Energy Solutions</option>
+                <option value="Energy Consulting">Energy Consulting</option>
+                <option value="Emergency Service">Emergency Service</option>
+              </select>
+              <label for="book-date">Preferred Date</label>
+              <input type="date" id="book-date" name="date" required autocomplete="off" />
+              <label for="book-time">Preferred Time</label>
+              <input type="time" id="book-time" name="time" required autocomplete="off" />
+              <label for="book-notes">Additional Notes</label>
+              <textarea id="book-notes" name="notes" placeholder="Describe your project or any special requirements"
+              ></textarea>
+              <button type="submit" data-cta="booking-schedule-service">Request Scheduling</button>
+              <p class="form-confirmation">
+                After submitting, we'll confirm details and send next steps by phone or email.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cta-section">
+      <h2>Need Help Right Away?</h2>
+      <p>
+        For urgent electrical issues, call <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a> to confirm next steps.
+      </p>
+      <a href="tel:+16163347159" class="btn-primary">Call Now</a>
+    </section>
+  </main>
+</TTELayout>

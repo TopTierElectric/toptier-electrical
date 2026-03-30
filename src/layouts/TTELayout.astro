@@ -1,0 +1,197 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogType?: string;
+  robots?: string;
+  jsonLd?: string | string[];
+}
+
+const {
+  title,
+  description = 'Licensed & insured electrician serving West Michigan. Panel upgrades, EV chargers, lighting, and reliable troubleshooting. Get a clear estimate—call (616)\u00a0334\u2011\u20097159.',
+  canonical,
+  ogTitle,
+  ogDescription,
+  ogImage = 'https://toptier-electrical.com/assets/images/hero.jpg',
+  ogType = 'website',
+  robots = 'index, follow',
+  jsonLd,
+} = Astro.props;
+
+const canonicalUrl = canonical || `https://toptier-electrical.com${Astro.url.pathname}`;
+const resolvedOgTitle = ogTitle || title;
+const resolvedOgDescription = ogDescription || description;
+
+const jsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-FTQKB78PLE"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        // eslint-disable-next-line prefer-rest-params
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-FTQKB78PLE');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content={robots} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Top Tier Electrical" />
+    <!-- Open Graph -->
+    <meta property="og:title" content={resolvedOgTitle} />
+    <meta property="og:description" content={resolvedOgDescription} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Top Tier Electrical" />
+    <meta property="og:locale" content="en_US" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={resolvedOgTitle} />
+    <meta name="twitter:description" content={resolvedOgDescription} />
+    <meta name="twitter:image" content={ogImage} />
+    <!-- Geo -->
+    <meta name="geo.region" content="US-MI" />
+    <meta name="geo.placename" content="West Michigan" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={canonicalUrl} />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    </noscript>
+    <!-- TTE Styles -->
+    <link rel="stylesheet" href="/css/design-tokens.css" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="icon" type="image/png" href="/images/logos/TopTierElectrical_Primary_FlatGold_512.png" />
+    <!-- JSON-LD Structured Data -->
+    {jsonLdScripts.map((ld) => <script type="application/ld+json" is:inline set:html={ld} />)}
+    <!-- Cloudflare Insights -->
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token":"f3a4c2b1d9e54a6b8c1f7e2d3a4b5c6d"}'></script>
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="/" aria-label="Top Tier Electrical home">
+          <picture>
+            <source srcset="/images/logos/TopTierElectrical_Primary_FlatGold_512.png" type="image/png" />
+            <img
+              src="/images/logos/TopTierElectrical_Primary_FlatGold_512.png"
+              alt="Top Tier Electrical logo"
+              width="200"
+              height="64"
+              decoding="async"
+            />
+          </picture>
+        </a>
+        <button
+          type="button"
+          class="menu-toggle"
+          aria-label="Toggle navigation"
+          aria-controls="main-nav"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav id="main-nav" aria-label="Main navigation">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/residential">Residential</a></li>
+            <li><a href="/commercial">Commercial</a></li>
+            <li><a href="/service-areas">Service&nbsp;Areas</a></li>
+            <li><a href="/gallery">Our&nbsp;Work</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+          <div class="nav-cta">
+            <a href="tel:+16163347159" class="btn btn-ghost">Call / Text (616)&nbsp;334&#8209;7159</a>
+            <a href="/booking" class="btn btn-primary">Request Scheduling</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <slot />
+
+    <div class="sticky-bar">
+      <a href="tel:+16163347159">Call / Text</a>
+      <a href="/booking" class="btn">Request Scheduling</a>
+    </div>
+
+    <!-- Pre-footer -->
+    <section class="pre-footer">
+      <div class="container">
+        <div class="pre-footer-content">
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="/services">Services</a></li>
+              <li><a href="/booking">Request Scheduling</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <p><a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a></p>
+            <p><a href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a></p>
+            <p>Mon–Fri 8am–6pm · Sat 9am–1pm</p>
+          </div>
+          <div class="footer-col">
+            <h4>Service Areas</h4>
+            <p>Holland • Grand Rapids • Byron Center<br />Zeeland • Saugatuck • Hudsonville • Allegan</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-logo">
+        <picture>
+          <source srcset="/images/logos/TopTierElectrical_Primary_FlatGold_512.png" type="image/png" />
+          <img
+            src="/images/logos/TopTierElectrical_Primary_FlatGold_512.png"
+            alt="Top Tier Electrical logo"
+            width="200"
+            height="64"
+            decoding="async"
+          />
+        </picture>
+      </div>
+      <p>MI License #6220430</p>
+      <p>&copy; {new Date().getFullYear()} Top Tier Electrical. All rights reserved.</p>
+    </footer>
+
+    <script src="/script.js" is:inline></script>
+  </body>
+</html>
