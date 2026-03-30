@@ -1,11 +1,21 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
+    {'@type': 'ListItem', 'position': 2, 'name': 'FAQ', 'item': 'https://toptier-electrical.com/faq'},
+  ],
+});
 ---
 
 <TTELayout
   title="FAQ | Top Tier Electrical"
   description="Frequently asked questions about electrical services, panel upgrades, EV chargers and more."
   canonical="https://toptier-electrical.com/faq"
+  jsonLd={[breadcrumbLd]}
 >
   <main id="main-content">
     <section class="hero">

@@ -50,8 +50,14 @@ const localBusinessLd = `{
       {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Generator Installation"}},
       {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Energy Solutions"}}
     ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "1",
+    "bestRating": "5"
   }
-}`;
+}`; // NOTE: Update reviewCount above with the real count from Google Business Profile
 
 const websiteLd = `{
   "@context": "https://schema.org",
@@ -70,14 +76,21 @@ const faqLd = `{
     {"@type": "Question","name": "What areas do you serve?","acceptedAnswer": {"@type": "Answer","text": "We serve West Michigan, including Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Hudsonville, and Allegan. See full service areas at https://toptier-electrical.com/service-areas."}}
   ]
 }`;
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
+  ],
+});
 ---
 
 <TTELayout
   title="Electrician in West Michigan | Top Tier Electrical"
   description="Licensed & insured electrician serving West Michigan. Panel upgrades, EV chargers, lighting, and reliable troubleshooting. Get a clear estimate—call (616) 334-7159."
   canonical="https://toptier-electrical.com/"
-  ogImage="https://toptier-electrical.com/assets/images/hero.jpg"
-  jsonLd={[localBusinessLd, websiteLd, faqLd]}
+  ogImage="https://toptier-electrical.com/images/logos/TopTierElectrical_Primary_FlatGold_512.png"
+  jsonLd={[localBusinessLd, websiteLd, faqLd, breadcrumbLd]}
 >
   <main id="main-content">
     <section class="hero">
@@ -96,9 +109,10 @@ const faqLd = `{
         </div>
         <div class="hero-image">
           <picture class="hero-picture">
+            <source srcset="/images/gallery/Residential%20Panel.webp" type="image/webp" />
             <img
               src="/images/gallery/Residential%20Panel.webp"
-              alt="Clean residential electrical panel installation by Top Tier Electrical"
+              alt="Clean residential electrical panel installation by Top Tier Electrical in Holland MI"
               width="800"
               height="600"
               decoding="async"

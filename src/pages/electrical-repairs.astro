@@ -1,11 +1,34 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+
+const jsonLd = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Electrical Repairs & Troubleshooting',
+    description: 'Professional electrical repairs and troubleshooting in West Michigan. We diagnose the root cause and explain the fix before starting work.',
+    provider: { '@id': 'https://toptier-electrical.com/#electrician' },
+    areaServed: { '@type': 'State', 'name': 'Michigan' },
+    serviceType: 'Electrical Repair',
+    url: 'https://toptier-electrical.com/electrical-repairs',
+  }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
+      {'@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://toptier-electrical.com/services'},
+      {'@type': 'ListItem', 'position': 3, 'name': 'Electrical Repairs', 'item': 'https://toptier-electrical.com/electrical-repairs'},
+    ],
+  }),
+];
 ---
 
 <TTELayout
   title="Electrical Repairs & Troubleshooting | West Michigan Electrician"
   description="Professional electrical repairs and troubleshooting in West Michigan. We diagnose the root cause and explain the fix before starting work."
   canonical="https://toptier-electrical.com/electrical-repairs"
+  jsonLd={jsonLd}
 >
   <main id="main-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">

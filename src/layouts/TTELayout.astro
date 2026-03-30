@@ -1,4 +1,6 @@
 ---
+import '@fontsource-variable/inter';
+
 export interface Props {
   title: string;
   description?: string;
@@ -17,7 +19,7 @@ const {
   canonical,
   ogTitle,
   ogDescription,
-  ogImage = 'https://toptier-electrical.com/assets/images/hero.jpg',
+  ogImage = 'https://toptier-electrical.com/images/logos/TopTierElectrical_Primary_FlatGold_512.png',
   ogType = 'website',
   robots = 'index, follow',
   jsonLd,
@@ -33,19 +35,9 @@ const jsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-FTQKB78PLE"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        // eslint-disable-next-line prefer-rest-params
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-FTQKB78PLE');
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1a1a2e" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="robots" content={robots} />
     <title>{title}</title>
@@ -69,25 +61,45 @@ const jsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <meta name="geo.placename" content="West Michigan" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="en" href={canonicalUrl} />
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    </noscript>
-    <!-- TTE Styles -->
+    <!-- TODO: Consolidate design-tokens.css, styles.css, and components.css into a single
+         bundled stylesheet to reduce render-blocking requests. Consider using Astro's
+         built-in CSS bundling via component imports instead of public/ link tags. -->
     <link rel="stylesheet" href="/css/design-tokens.css" />
     <link rel="stylesheet" href="/styles.css" />
     <link rel="stylesheet" href="/css/components.css" />
-    <link rel="icon" type="image/png" href="/images/logos/TopTierElectrical_Primary_FlatGold_512.png" />
+    <link rel="icon" href="/images/logos/TopTierElectrical_Primary_FlatGold_512.png" sizes="any" />
+    <link rel="apple-touch-icon" href="/images/logos/TopTierElectrical_Primary_FlatGold_512.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <!-- JSON-LD Structured Data -->
     {jsonLdScripts.map((ld) => <script type="application/ld+json" is:inline set:html={ld} />)}
+    <script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "SiteNavigationElement",
+  "name": ["Home", "Services", "Residential", "Commercial", "Service Areas", "Our Work", "About", "Contact"],
+  "url": [
+    "https://toptier-electrical.com/",
+    "https://toptier-electrical.com/services",
+    "https://toptier-electrical.com/residential",
+    "https://toptier-electrical.com/commercial",
+    "https://toptier-electrical.com/service-areas",
+    "https://toptier-electrical.com/gallery",
+    "https://toptier-electrical.com/about",
+    "https://toptier-electrical.com/contact"
+  ]
+}
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-FTQKB78PLE"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        // eslint-disable-next-line prefer-rest-params
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-FTQKB78PLE');
+    </script>
     <!-- Cloudflare Insights -->
     <script
       is:inline
@@ -170,7 +182,15 @@ const jsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
           </div>
           <div class="footer-col">
             <h4>Service Areas</h4>
-            <p>Holland • Grand Rapids • Byron Center<br />Zeeland • Saugatuck • Hudsonville • Allegan</p>
+            <ul>
+              <li><a href="/electrician-holland">Holland, MI</a></li>
+              <li><a href="/electrician-grand-rapids">Grand Rapids, MI</a></li>
+              <li><a href="/electrician-zeeland">Zeeland, MI</a></li>
+              <li><a href="/electrician-hudsonville">Hudsonville, MI</a></li>
+              <li><a href="/electrician-allegan">Allegan, MI</a></li>
+              <li><a href="/electrician-ada">Ada, MI</a></li>
+              <li><a href="/service-areas">All Areas →</a></li>
+            </ul>
           </div>
         </div>
       </div>

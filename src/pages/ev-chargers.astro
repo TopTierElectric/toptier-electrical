@@ -1,11 +1,34 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+
+const jsonLd = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'EV Charger Installation',
+    description: 'Level 2 EV charger installs with capacity checks, clean wiring, and permit coordination for West Michigan homes and businesses.',
+    provider: { '@id': 'https://toptier-electrical.com/#electrician' },
+    areaServed: { '@type': 'State', 'name': 'Michigan' },
+    serviceType: 'EV Charging Station Installation',
+    url: 'https://toptier-electrical.com/ev-chargers',
+  }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
+      {'@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://toptier-electrical.com/services'},
+      {'@type': 'ListItem', 'position': 3, 'name': 'EV Charger Installation', 'item': 'https://toptier-electrical.com/ev-chargers'},
+    ],
+  }),
+];
 ---
 
 <TTELayout
   title="EV Charger Installation | West Michigan Electrician"
   description="Level 2 EV charger installs with capacity checks, clean wiring, and permit coordination. Safe, code-compliant charging for your home or business."
   canonical="https://toptier-electrical.com/ev-chargers"
+  jsonLd={jsonLd}
 >
   <main id="main-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
