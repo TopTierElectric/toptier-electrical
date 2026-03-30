@@ -44,6 +44,8 @@ export const footerData = {
         { text: 'Hudsonville, MI', href: getPermalink('/electrician-hudsonville') },
         { text: 'Allegan, MI', href: getPermalink('/electrician-allegan') },
         { text: 'Ada, MI', href: getPermalink('/electrician-ada') },
+        { text: 'Grand Haven, MI', href: getPermalink('/electrician-grand-haven') },
+        { text: 'Muskegon, MI', href: getPermalink('/electrician-muskegon') },
         { text: 'All Areas →', href: getPermalink('/service-areas') },
       ],
     },

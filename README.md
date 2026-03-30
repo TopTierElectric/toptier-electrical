@@ -16,7 +16,7 @@ Licensed & insured electrician serving West Michigan. Built with Astro + Tailwin
 - **Service pages** — showcasing electrical services offered in West Michigan
 - **Blog / articles** — tips, project highlights, and industry updates
 - **SEO-optimized** — meta tags, OpenGraph, Twitter cards, sitemap
-- **Google Analytics** — integrated via `G-FTQKB78PLE`
+- **Google Analytics** — integrated for visitor insights
 - **Sitemap & RSS feed** — auto-generated for search engines and subscribers
 - **Responsive & dark mode** — adapts to any device or user preference
 - **Image optimization** — sharp-powered image processing via Astro
@@ -51,11 +51,20 @@ npm run fix          # Auto-fix lint/format issues
 
 ## 🚢 Deployment
 
-| Platform              | Config file                         | Status    |
-| --------------------- | ----------------------------------- | --------- |
-| **Netlify** (primary) | `netlify.toml`                      | ✅ Active |
-| **Vercel**            | `vercel.json`                       | ✅ Ready  |
-| **Docker**            | `Dockerfile` + `docker-compose.yml` | ✅ Ready  |
+| Platform                         | Config file                         | Status    |
+| -------------------------------- | ----------------------------------- | --------- |
+| **Cloudflare Pages** (primary)   | `wrangler.toml`                     | ✅ Active |
+| **Netlify**                      | `netlify.toml`                      | ✅ Ready  |
+| **Vercel**                       | `vercel.json`                       | ✅ Ready  |
+| **Docker**                       | `Dockerfile` + `docker-compose.yml` | ✅ Ready  |
+
+Deploy to Cloudflare Pages via Wrangler:
+
+```bash
+npm run build
+npm run deploy          # production
+npm run deploy:preview  # preview branch
+```
 
 ---
 
