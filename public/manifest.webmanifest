@@ -1,0 +1,15 @@
+{
+  "name": "Top Tier Electrical",
+  "short_name": "Top Tier",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a1a2e",
+  "icons": [
+    {
+      "src": "/images/logos/TopTierElectrical_Primary_FlatGold_512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

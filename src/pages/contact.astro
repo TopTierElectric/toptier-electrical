@@ -1,11 +1,21 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
+    {'@type': 'ListItem', 'position': 2, 'name': 'Contact', 'item': 'https://toptier-electrical.com/contact'},
+  ],
+});
 ---
 
 <TTELayout
   title="Contact Top Tier Electrical | West Michigan Electrician"
   description="Call or email Top Tier Electrical for service in West Michigan. Share project details or request scheduling to confirm next steps."
   canonical="https://toptier-electrical.com/contact"
+  jsonLd={[breadcrumbLd]}
 >
   <main id="main-content">
     <section class="hero">

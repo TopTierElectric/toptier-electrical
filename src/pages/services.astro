@@ -1,11 +1,21 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
+    {'@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://toptier-electrical.com/services'},
+  ],
+});
 ---
 
 <TTELayout
   title="Electrical Services | Top Tier Electrical West Michigan"
   description="Comprehensive electrical services for homes and businesses in West Michigan. Panel upgrades, EV chargers, lighting, generators, repairs, and more."
   canonical="https://toptier-electrical.com/services"
+  jsonLd={[breadcrumbLd]}
 >
   <main id="main-content">
     <section class="hero">

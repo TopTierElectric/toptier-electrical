@@ -1,11 +1,34 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+
+const jsonLd = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Lighting & Fixtures Installation',
+    description: 'Thoughtful lighting layouts, dimmers, smart controls, and clean installs for West Michigan homes and commercial spaces.',
+    provider: { '@id': 'https://toptier-electrical.com/#electrician' },
+    areaServed: { '@type': 'State', 'name': 'Michigan' },
+    serviceType: 'Lighting Installation',
+    url: 'https://toptier-electrical.com/lighting',
+  }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
+      {'@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://toptier-electrical.com/services'},
+      {'@type': 'ListItem', 'position': 3, 'name': 'Lighting & Fixtures', 'item': 'https://toptier-electrical.com/lighting'},
+    ],
+  }),
+];
 ---
 
 <TTELayout
   title="Lighting Installation & Fixtures | Custom Home Electrician"
   description="Thoughtful lighting layouts, dimmers, smart controls, and clean installs. Premium finish work for West Michigan homes and select commercial spaces."
   canonical="https://toptier-electrical.com/lighting"
+  jsonLd={jsonLd}
 >
   <main id="main-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">

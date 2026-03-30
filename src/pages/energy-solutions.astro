@@ -1,11 +1,34 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+
+const jsonLd = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Energy Solutions & Efficiency Upgrades',
+    description: 'Practical energy upgrades—LED, controls, and load planning—to improve comfort and reduce waste in West Michigan homes.',
+    provider: { '@id': 'https://toptier-electrical.com/#electrician' },
+    areaServed: { '@type': 'State', 'name': 'Michigan' },
+    serviceType: 'Energy Efficiency Consulting',
+    url: 'https://toptier-electrical.com/energy-solutions',
+  }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
+      {'@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://toptier-electrical.com/services'},
+      {'@type': 'ListItem', 'position': 3, 'name': 'Energy Solutions', 'item': 'https://toptier-electrical.com/energy-solutions'},
+    ],
+  }),
+];
 ---
 
 <TTELayout
   title="Energy Solutions | West Michigan Electrician"
   description="Practical energy upgrades—LED, controls, and load planning—to improve comfort and reduce waste without overcomplicating your home."
   canonical="https://toptier-electrical.com/energy-solutions"
+  jsonLd={jsonLd}
 >
   <main id="main-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">

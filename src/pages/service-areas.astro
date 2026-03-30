@@ -1,11 +1,21 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
+    {'@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': 'https://toptier-electrical.com/service-areas'},
+  ],
+});
 ---
 
 <TTELayout
   title="Service Areas | Top Tier Electrical West Michigan"
   description="Top Tier Electrical serves Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Hudsonville, Allegan, and Ada in West Michigan."
   canonical="https://toptier-electrical.com/service-areas"
+  jsonLd={[breadcrumbLd]}
 >
   <main id="main-content">
     <section class="hero">

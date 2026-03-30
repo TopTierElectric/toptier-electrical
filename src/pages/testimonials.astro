@@ -1,11 +1,21 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
+    {'@type': 'ListItem', 'position': 2, 'name': 'Testimonials', 'item': 'https://toptier-electrical.com/testimonials'},
+  ],
+});
 ---
 
 <TTELayout
   title="Professional Standards | Top Tier Electrical"
   description="Top Tier Electrical professional standards: clear scope, options explained, owner-operated communication, and clean code-correct execution."
   canonical="https://toptier-electrical.com/testimonials"
+  jsonLd={[breadcrumbLd]}
 >
   <main>
     <section class="container" style="padding: 3rem 1rem 1rem">
