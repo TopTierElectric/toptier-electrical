@@ -7,3 +7,6 @@ pages_build_output_dir = "./dist"
 # Cloudflare Pages direct deploy via `npx wrangler pages deploy`.
 # When connected via Git integration, Cloudflare auto-detects Astro
 # and uses `npm run build` with output dir `dist`.
+
+[assets]
+directory = "./dist"
