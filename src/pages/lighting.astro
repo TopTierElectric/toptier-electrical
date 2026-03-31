@@ -6,19 +6,25 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: 'Lighting & Fixtures Installation',
-    description: 'Thoughtful lighting layouts, dimmers, smart controls, and clean installs for West Michigan homes and commercial spaces.',
+    description:
+      'Thoughtful lighting layouts, dimmers, smart controls, and clean installs for West Michigan homes and commercial spaces.',
     provider: { '@id': 'https://toptier-electrical.com/#electrician' },
-    areaServed: { '@type': 'State', 'name': 'Michigan' },
+    areaServed: { '@type': 'State', name: 'Michigan' },
     serviceType: 'Lighting Installation',
     url: 'https://toptier-electrical.com/lighting',
   }),
   JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    'itemListElement': [
-      {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
-      {'@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://toptier-electrical.com/services'},
-      {'@type': 'ListItem', 'position': 3, 'name': 'Lighting & Fixtures', 'item': 'https://toptier-electrical.com/lighting'},
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://toptier-electrical.com/services' },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Lighting & Fixtures',
+        item: 'https://toptier-electrical.com/lighting',
+      },
     ],
   }),
 ];
@@ -42,7 +48,7 @@ const jsonLd = [
       <div class="hero-content">
         <h1>Lighting &amp; Fixtures</h1>
         <p>Thoughtful, code-compliant lighting that looks clean and works the way it should.</p>
-        <a href="/booking" class="btn-primary">Schedule Consultation</a>
+        <a href="/booking" class="btn btn-primary">Schedule Consultation</a>
       </div>
     </section>
     <div class="trust-strip">
@@ -123,7 +129,7 @@ const jsonLd = [
           href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
         > to discuss your lighting project.
       </p>
-      <a href="/booking" class="btn-primary">Schedule Consultation</a>
+      <a href="/booking" class="btn btn-primary">Schedule Consultation</a>
     </section>
   </main>
 </TTELayout>

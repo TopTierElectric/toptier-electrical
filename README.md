@@ -8,6 +8,8 @@ Licensed & insured electrician serving West Michigan. Built with Astro + Tailwin
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
 ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=netlify&logoColor=white)
+[![CI](https://github.com/TopTierElectric/toptier-electrical/actions/workflows/ci.yml/badge.svg)](https://github.com/TopTierElectric/toptier-electrical/actions/workflows/ci.yml)
+[![Uptime Monitor](https://github.com/TopTierElectric/toptier-electrical/actions/workflows/uptime.yml/badge.svg)](https://github.com/TopTierElectric/toptier-electrical/actions/workflows/uptime.yml)
 
 ---
 
@@ -51,12 +53,12 @@ npm run fix          # Auto-fix lint/format issues
 
 ## 🚢 Deployment
 
-| Platform                         | Config file                         | Status    |
-| -------------------------------- | ----------------------------------- | --------- |
-| **Cloudflare Pages** (primary)   | `wrangler.toml`                     | ✅ Active |
-| **Netlify**                      | `netlify.toml`                      | ✅ Ready  |
-| **Vercel**                       | `vercel.json`                       | ✅ Ready  |
-| **Docker**                       | `Dockerfile` + `docker-compose.yml` | ✅ Ready  |
+| Platform                       | Config file                         | Status    |
+| ------------------------------ | ----------------------------------- | --------- |
+| **Cloudflare Pages** (primary) | `wrangler.toml`                     | ✅ Active |
+| **Netlify**                    | `netlify.toml`                      | ✅ Ready  |
+| **Vercel**                     | `vercel.json`                       | ✅ Ready  |
+| **Docker**                     | `Dockerfile` + `docker-compose.yml` | ✅ Ready  |
 
 Deploy to Cloudflare Pages via Wrangler:
 

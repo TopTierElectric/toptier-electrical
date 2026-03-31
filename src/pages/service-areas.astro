@@ -4,9 +4,9 @@ import TTELayout from '~/layouts/TTELayout.astro';
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  'itemListElement': [
-    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
-    {'@type': 'ListItem', 'position': 2, 'name': 'Service Areas', 'item': 'https://toptier-electrical.com/service-areas'},
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Service Areas', item: 'https://toptier-electrical.com/service-areas' },
   ],
 });
 ---
@@ -22,7 +22,7 @@ const breadcrumbLd = JSON.stringify({
       <div class="hero-content">
         <h1>Service Areas</h1>
         <p>Serving West Michigan homeowners and businesses across the region.</p>
-        <a href="/contact" class="btn-primary">Check Your Area</a>
+        <a href="/contact" class="btn btn-primary">Check Your Area</a>
       </div>
     </section>
     <div class="trust-strip">
@@ -34,7 +34,7 @@ const breadcrumbLd = JSON.stringify({
         </div>
       </div>
     </div>
-    <section class="container" style="padding: 3rem 1rem;">
+    <section class="container" class="section-pad">
       <h2>Cities We Serve</h2>
       <div class="service-cards">
         <div class="service-card">
@@ -66,7 +66,7 @@ const breadcrumbLd = JSON.stringify({
           <h3><a href="/electrician-ada">Ada, MI</a></h3><p>Residential and commercial electrical services in Ada.</p>
         </div>
       </div>
-      <h2 style="margin-top: 2rem;">Full Coverage Area</h2>
+      <h2 class="mt-8">Full Coverage Area</h2>
       <p>
         We serve <strong>Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Hudsonville, Allegan, Ada</strong>,
         and surrounding West Michigan communities.
@@ -84,7 +84,7 @@ const breadcrumbLd = JSON.stringify({
           href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
         > to confirm service availability.
       </p>
-      <a href="/booking" class="btn-primary">Request Scheduling</a>
+      <a href="/booking" class="btn btn-primary">Request Scheduling</a>
     </section>
   </main>
 </TTELayout>

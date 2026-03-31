@@ -1,0 +1,17 @@
+name: Uptime Monitor
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check production home page
+        run: |
+          curl --fail --silent --show-error --max-time 20 https://toptier-electrical.com/ > /dev/null
+      - name: Check contact page
+        run: |
+          curl --fail --silent --show-error --max-time 20 https://toptier-electrical.com/contact > /dev/null

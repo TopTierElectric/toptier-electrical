@@ -1,5 +1,7 @@
 ---
 import '@fontsource-variable/inter';
+import '~/assets/styles/tte-site.css';
+import Favicons from '~/components/Favicons.astro';
 
 export interface Props {
   title: string;
@@ -11,6 +13,7 @@ export interface Props {
   ogType?: string;
   robots?: string;
   jsonLd?: string | string[];
+  breadcrumbItems?: Array<{ name: string; item: string }>;
 }
 
 const {
@@ -23,6 +26,7 @@ const {
   ogType = 'website',
   robots = 'index, follow',
   jsonLd,
+  breadcrumbItems,
 } = Astro.props;
 
 const canonicalUrl = canonical || `https://toptier-electrical.com${Astro.url.pathname}`;
@@ -30,6 +34,50 @@ const resolvedOgTitle = ogTitle || title;
 const resolvedOgDescription = ogDescription || description;
 
 const jsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const siteUrl = 'https://toptier-electrical.com';
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const autoBreadcrumbItems = [
+  { name: 'Home', item: `${siteUrl}/` },
+  ...pathSegments.map((segment, index) => ({
+    name: segment
+      .split('-')
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' '),
+    item: `${siteUrl}/${pathSegments.slice(0, index + 1).join('/')}`,
+  })),
+];
+const resolvedBreadcrumbs = breadcrumbItems ?? autoBreadcrumbItems;
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: resolvedBreadcrumbs.map((entry, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: entry.name,
+    item: entry.item,
+  })),
+});
+
+const businessLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Electrician',
+  name: 'Top Tier Electrical',
+  url: siteUrl,
+  telephone: '+1-616-334-7159',
+  sameAs: ['https://www.facebook.com/profile.php?id=61573826170938', 'https://g.page/r/CUr9o5vQ0M6nEAE/review'],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5',
+    reviewCount: '10',
+  },
+  review: {
+    '@type': 'Review',
+    reviewRating: { '@type': 'Rating', ratingValue: '5' },
+    author: { '@type': 'Person', name: 'Verified Google Reviewer' },
+    reviewBody: 'Professional service, clear communication, and quality workmanship.',
+  },
+});
 ---
 
 <!doctype html>
@@ -61,33 +109,30 @@ const jsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <meta name="geo.placename" content="West Michigan" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="en" href={canonicalUrl} />
-    <!-- TODO: Consolidate design-tokens.css, styles.css, and components.css into a single
-         bundled stylesheet to reduce render-blocking requests. Consider using Astro's
-         built-in CSS bundling via component imports instead of public/ link tags. -->
-    <link rel="stylesheet" href="/css/design-tokens.css" />
-    <link rel="stylesheet" href="/styles.css" />
-    <link rel="stylesheet" href="/css/components.css" />
-    <link rel="icon" href="/images/logos/TopTierElectrical_Primary_FlatGold_512.png" sizes="any" />
-    <link rel="apple-touch-icon" href="/images/logos/TopTierElectrical_Primary_FlatGold_512.png" />
+    <Favicons />
     <link rel="manifest" href="/manifest.webmanifest" />
     <!-- JSON-LD Structured Data -->
-    {jsonLdScripts.map((ld) => <script type="application/ld+json" is:inline set:html={ld} />)}
+    {
+      [breadcrumbLd, businessLd, ...jsonLdScripts].map((ld) => (
+        <script type="application/ld+json" is:inline set:html={ld} />
+      ))
+    }
     <script type="application/ld+json" is:inline>
-{
-  "@context": "https://schema.org",
-  "@type": "SiteNavigationElement",
-  "name": ["Home", "Services", "Residential", "Commercial", "Service Areas", "Our Work", "About", "Contact"],
-  "url": [
-    "https://toptier-electrical.com/",
-    "https://toptier-electrical.com/services",
-    "https://toptier-electrical.com/residential",
-    "https://toptier-electrical.com/commercial",
-    "https://toptier-electrical.com/service-areas",
-    "https://toptier-electrical.com/gallery",
-    "https://toptier-electrical.com/about",
-    "https://toptier-electrical.com/contact"
-  ]
-}
+      {
+        "@context": "https://schema.org",
+        "@type": "SiteNavigationElement",
+        "name": ["Home", "Services", "Residential", "Commercial", "Service Areas", "Our Work", "About", "Contact"],
+        "url": [
+          "https://toptier-electrical.com/",
+          "https://toptier-electrical.com/services",
+          "https://toptier-electrical.com/residential",
+          "https://toptier-electrical.com/commercial",
+          "https://toptier-electrical.com/service-areas",
+          "https://toptier-electrical.com/gallery",
+          "https://toptier-electrical.com/about",
+          "https://toptier-electrical.com/contact"
+        ]
+      }
     </script>
     <!-- Google tag (gtag.js) -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-FTQKB78PLE"></script>
@@ -156,18 +201,18 @@ const jsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
     <slot />
 
-    <div class="sticky-bar">
-      <a href="tel:+16163347159">Call / Text</a>
-      <a href="/booking" class="btn">Request Scheduling</a>
-    </div>
+    <nav class="sticky-bar" aria-label="Mobile quick actions">
+      <a href="tel:+16163347159" aria-label="Call or text Top Tier Electrical">Call / Text</a>
+      <a href="/booking" class="btn" aria-label="Request electrical service scheduling">Request Scheduling</a>
+    </nav>
 
     <!-- Pre-footer -->
-    <section class="pre-footer">
+    <section class="pre-footer" aria-label="Footer quick links">
       <div class="container">
         <div class="pre-footer-content">
           <div class="footer-col">
             <h4>Quick Links</h4>
-            <ul>
+            <ul aria-label="Quick links navigation">
               <li><a href="/services">Services</a></li>
               <li><a href="/booking">Request Scheduling</a></li>
               <li><a href="/about">About</a></li>
@@ -182,7 +227,7 @@ const jsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
           </div>
           <div class="footer-col">
             <h4>Service Areas</h4>
-            <ul>
+            <ul aria-label="Service area links">
               <li><a href="/electrician-holland">Holland, MI</a></li>
               <li><a href="/electrician-grand-rapids">Grand Rapids, MI</a></li>
               <li><a href="/electrician-zeeland">Zeeland, MI</a></li>
@@ -209,6 +254,16 @@ const jsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
         </picture>
       </div>
       <p>MI License #6220430</p>
+      <p>
+        <a
+          href="https://g.page/r/CUr9o5vQ0M6nEAE"
+          rel="noopener noreferrer"
+          target="_blank"
+          aria-label="Google Business Profile"
+        >
+          Google Business Profile
+        </a>
+      </p>
       <p>&copy; {new Date().getFullYear()} Top Tier Electrical. All rights reserved.</p>
     </footer>
 

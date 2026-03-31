@@ -6,19 +6,25 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: 'Energy Solutions & Efficiency Upgrades',
-    description: 'Practical energy upgrades—LED, controls, and load planning—to improve comfort and reduce waste in West Michigan homes.',
+    description:
+      'Practical energy upgrades—LED, controls, and load planning—to improve comfort and reduce waste in West Michigan homes.',
     provider: { '@id': 'https://toptier-electrical.com/#electrician' },
-    areaServed: { '@type': 'State', 'name': 'Michigan' },
+    areaServed: { '@type': 'State', name: 'Michigan' },
     serviceType: 'Energy Efficiency Consulting',
     url: 'https://toptier-electrical.com/energy-solutions',
   }),
   JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    'itemListElement': [
-      {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
-      {'@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://toptier-electrical.com/services'},
-      {'@type': 'ListItem', 'position': 3, 'name': 'Energy Solutions', 'item': 'https://toptier-electrical.com/energy-solutions'},
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://toptier-electrical.com/services' },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Energy Solutions',
+        item: 'https://toptier-electrical.com/energy-solutions',
+      },
     ],
   }),
 ];
@@ -42,7 +48,7 @@ const jsonLd = [
       <div class="hero-content">
         <h1>Energy Solutions</h1>
         <p>Practical upgrades that reduce waste, improve comfort, and keep your home ready for modern loads.</p>
-        <a href="/booking" class="btn-primary">Schedule a Walkthrough</a>
+        <a href="/booking" class="btn btn-primary">Schedule a Walkthrough</a>
       </div>
     </section>
     <div class="trust-strip">
@@ -124,7 +130,7 @@ const jsonLd = [
           href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
         > to discuss energy-focused improvements.
       </p>
-      <a href="/booking" class="btn-primary">Schedule a Walkthrough</a>
+      <a href="/booking" class="btn btn-primary">Schedule a Walkthrough</a>
     </section>
   </main>
 </TTELayout>

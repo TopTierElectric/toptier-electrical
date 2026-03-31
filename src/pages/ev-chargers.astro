@@ -6,19 +6,25 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: 'EV Charger Installation',
-    description: 'Level 2 EV charger installs with capacity checks, clean wiring, and permit coordination for West Michigan homes and businesses.',
+    description:
+      'Level 2 EV charger installs with capacity checks, clean wiring, and permit coordination for West Michigan homes and businesses.',
     provider: { '@id': 'https://toptier-electrical.com/#electrician' },
-    areaServed: { '@type': 'State', 'name': 'Michigan' },
+    areaServed: { '@type': 'State', name: 'Michigan' },
     serviceType: 'EV Charging Station Installation',
     url: 'https://toptier-electrical.com/ev-chargers',
   }),
   JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    'itemListElement': [
-      {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
-      {'@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://toptier-electrical.com/services'},
-      {'@type': 'ListItem', 'position': 3, 'name': 'EV Charger Installation', 'item': 'https://toptier-electrical.com/ev-chargers'},
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://toptier-electrical.com/services' },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'EV Charger Installation',
+        item: 'https://toptier-electrical.com/ev-chargers',
+      },
     ],
   }),
 ];
@@ -42,13 +48,13 @@ const jsonLd = [
       <div class="hero-content">
         <h1>EV Charger Installation</h1>
         <p>Safe, code-compliant EV charger installation for homes and businesses across West Michigan.</p>
-        <a href="/booking" class="btn-primary">Schedule Installation</a>
+        <a href="/booking" class="btn btn-primary">Schedule Installation</a>
       </div>
     </section>
     <section class="container">
-      <section class="card" style="margin-top: 16px">
-        <h3 style="margin-top: 0">Explore by audience</h3>
-        <p class="muted" style="margin: 0">
+      <section class="card" class="mt-4">
+        <h3 class="mt-0">Explore by audience</h3>
+        <p class="muted" class="m-0">
           <a href="/residential-electrician-allegan-mi">Residential electrician hub</a> •
           <a href="/commercial-electrician-allegan-mi">Commercial electrician hub</a>
         </p>
@@ -139,7 +145,7 @@ const jsonLd = [
           href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
         > to discuss your EV charging needs.
       </p>
-      <a href="/booking" class="btn-primary">Schedule Installation</a>
+      <a href="/booking" class="btn btn-primary">Schedule Installation</a>
     </section>
   </main>
 </TTELayout>
