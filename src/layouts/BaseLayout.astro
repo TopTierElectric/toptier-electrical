@@ -1,10 +1,13 @@
 ---
+import '@fontsource-variable/inter';
+import '~/assets/styles/tte-site.css';
+
 export interface Props {
   title?: string;
   description?: string;
 }
 
-const { title = 'Base Layout', description = 'A base layout for Astrowind projects' } = Astro.props;
+const { title = 'Top Tier Electrical', description = 'Licensed electrician serving West Michigan.' } = Astro.props;
 ---
 
 <!doctype html>
@@ -13,19 +16,10 @@ const { title = 'Base Layout', description = 'A base layout for Astrowind projec
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="author" content="TopTierElectric" />
-    <link rel="stylesheet" href="/styles.css" />
+    <meta name="author" content="Top Tier Electrical" />
     <title>{title}</title>
   </head>
   <body>
-    <header>
-      <h1>Welcome to the Base Layout</h1>
-    </header>
-    <main>
-      <slot />
-    </main>
-    <footer>
-      <p>&copy; 2026 TopTierElectric. All rights reserved.</p>
-    </footer>
+    <slot />
   </body>
 </html>

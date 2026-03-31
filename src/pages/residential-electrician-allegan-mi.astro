@@ -1,73 +1,47 @@
 ---
-import TTELayout from '~/layouts/TTELayout.astro';
+import LocationAudiencePage from '~/components/pages/LocationAudiencePage.astro';
+
+const services = [
+  {
+    href: '/panel-upgrades',
+    title: 'Panel Upgrades',
+    description: 'Service upgrades and panel replacements for modern home needs.',
+  },
+  {
+    href: '/ev-chargers',
+    title: 'EV Charger Installation',
+    description: 'Level 2 charging circuits for home EV chargers.',
+  },
+  {
+    href: '/lighting',
+    title: 'Lighting & Fixtures',
+    description: 'Interior and exterior lighting upgrades.',
+  },
+  {
+    href: '/electrical-repairs',
+    title: 'Electrical Repairs',
+    description: 'Troubleshooting and repair of outlets, circuits, and panels.',
+  },
+  {
+    href: '/generators',
+    title: 'Generators',
+    description: 'Backup generator installation and transfer switches.',
+  },
+  {
+    href: '/energy-solutions',
+    title: 'Energy Solutions',
+    description: 'LED upgrades, load planning, and efficiency improvements.',
+  },
+];
 ---
 
-<TTELayout
-  title="Residential Electrician Allegan MI | Top Tier Electrical"
-  description="Residential electrical services in Allegan County, MI. Panel upgrades, EV chargers, lighting, and repairs for homes."
-  canonical="https://toptier-electrical.com/residential-electrician-allegan-mi"
->
-  <main id="main-content">
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Residential Electrician — Allegan, MI</h1>
-        <p>Electrical service for homes in Allegan County and West Michigan.</p>
-        <a href="/booking" class="btn btn-primary">Request Scheduling</a>
-      </div>
-    </section>
-    <div class="trust-strip">
-      <div class="container">
-        <div class="trust-badges">
-          <span class="badge">&#10004; Licensed &amp; Insured</span>
-          <span class="badge">MI License #6220430</span>
-          <span class="badge">&#127968; Owner-Operated</span>
-        </div>
-      </div>
-    </div>
-    <section class="hub-shell">
-      <div class="container">
-        <h2>Residential Electrical Services in Allegan County</h2>
-        <p>
-          We serve homeowners in Allegan, Fennville, Saugatuck, Douglas, and surrounding Allegan County communities.
-        </p>
-        <div class="service-summary">
-          <article>
-            <h3><a href="/panel-upgrades">Panel Upgrades</a></h3><p>
-              Service upgrades and panel replacements for modern home needs.
-            </p>
-          </article>
-          <article>
-            <h3><a href="/ev-chargers">EV Charger Installation</a></h3><p>
-              Level 2 charging circuits for home EV chargers.
-            </p>
-          </article>
-          <article>
-            <h3><a href="/lighting">Lighting &amp; Fixtures</a></h3><p>Interior and exterior lighting upgrades.</p>
-          </article>
-          <article>
-            <h3><a href="/electrical-repairs">Electrical Repairs</a></h3><p>
-              Troubleshooting and repair of outlets, circuits, and panels.
-            </p>
-          </article>
-          <article>
-            <h3><a href="/generators">Generators</a></h3><p>Backup generator installation and transfer switches.</p>
-          </article>
-          <article>
-            <h3><a href="/energy-solutions">Energy Solutions</a></h3><p>
-              LED upgrades, load planning, and efficiency improvements.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-    <section class="cta-section">
-      <h2>Confirm Your Project Scope</h2>
-      <p>
-        Call <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a> or email <a
-          href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
-        > to confirm scope and scheduling.
-      </p>
-      <a href="/booking" class="btn btn-primary">Request Scheduling</a>
-    </section>
-  </main>
-</TTELayout>
+<LocationAudiencePage
+  audienceLabel="Residential"
+  canonicalSlug="residential-electrician-allegan-mi"
+  county="Allegan County, MI"
+  leadSentence="Electrical service for homes in Allegan County and West Michigan."
+  badgeLabel="🏠 Owner-Operated"
+  projectCtaHeading="Confirm Your Project Scope"
+  projectCtaCopy="We serve homeowners in Allegan, Fennville, Saugatuck, Douglas, and surrounding Allegan County communities."
+  {services}
+/>

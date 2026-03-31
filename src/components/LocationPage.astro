@@ -3,7 +3,6 @@ import TTELayout from '~/layouts/TTELayout.astro';
 
 export interface Props {
   city: string;
-  citySlug: string;
   county?: string;
   title: string;
   description: string;
@@ -11,15 +10,7 @@ export interface Props {
   coverageParagraph?: string;
 }
 
-const {
-  city,
-  citySlug,
-  county,
-  title,
-  description,
-  canonical,
-  coverageParagraph,
-} = Astro.props;
+const { city, county, title, description, canonical, coverageParagraph } = Astro.props;
 
 const displayLocation = county ? `${city} County, MI` : `${city}, MI`;
 const coverageText =
