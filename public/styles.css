@@ -2148,20 +2148,6 @@ header nav a:hover {
   background: var(--light-bg);
 }
 
-/* Skip Link */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: var(--primary);
-  color: white;
-  padding: 8px;
-  z-index: 9999;
-}
-.skip-link:focus {
-  top: 0;
-}
-
 /* Utility: padding for mobile sticky bar */
 @media (max-width: 767px) {
   main {
