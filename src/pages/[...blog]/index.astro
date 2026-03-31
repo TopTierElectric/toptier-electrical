@@ -33,7 +33,7 @@ const url = getCanonical(getPermalink(post.permalink, 'post'));
     <article class="blog-post">
       <div class="container">
         {post.Content ? <post.Content /> : <Fragment set:html={post.content || ''} />}
-        <div style="margin-top: 2rem;">
+        <div class="mt-8">
           <a href="/blog" class="btn-secondary">← Back to Blog</a>
         </div>
       </div>

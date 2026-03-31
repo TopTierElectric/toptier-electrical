@@ -1,11 +1,22 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
+    {'@type': 'ListItem', 'position': 2, 'name': 'Commercial', 'item': 'https://toptier-electrical.com/commercial'},
+    {'@type': 'ListItem', 'position': 3, 'name': 'Commercial LED Lighting Retrofit', 'item': 'https://toptier-electrical.com/commercial-led-lighting-retrofit'},
+  ],
+});
 ---
 
 <TTELayout
   title="Commercial LED Lighting Retrofit | Top Tier Electrical"
   description="Commercial LED lighting retrofit services in West Michigan. Reduce energy costs and improve lighting quality with professional LED retrofits."
   canonical="https://toptier-electrical.com/commercial-led-lighting-retrofit"
+  jsonLd={[breadcrumbLd]}
 >
   <main id="main-content">
     <section class="hero">
@@ -24,7 +35,7 @@ import TTELayout from '~/layouts/TTELayout.astro';
         </div>
       </div>
     </div>
-    <section class="container" style="padding: 3rem 1rem;">
+    <section class="container" class="py-12 px-4">
       <h2>Commercial LED Retrofit Benefits</h2>
       <p>
         LED lighting upgrades deliver better light quality, lower energy consumption, and reduced maintenance costs for

@@ -54,7 +54,14 @@ const breadcrumbLd = JSON.stringify({
           </div>
           <div class="contact-form">
             <h3>Service Booking Form</h3>
-            <form name="booking" method="POST" action="https://formspree.io/f/mkovbvgj">
+            <form
+              id="booking-form"
+              name="booking"
+              method="POST"
+              action="https://formspree.io/f/mkovbvgj"
+              novalidate
+            >
+              <div id="booking-status" role="status" aria-live="polite" class="form-status" hidden></div>
               <input type="hidden" name="_subject" value="New booking request from Top Tier Electrical" />
               <input type="hidden" name="_next" value="https://toptier-electrical.com/thank-you" />
               <input type="hidden" name="form_name" value="Booking form" />
@@ -67,14 +74,51 @@ const breadcrumbLd = JSON.stringify({
                 autocomplete="off"
                 aria-hidden="true"
               />
-              <label for="book-name">Name</label>
-              <input type="text" id="book-name" name="name" required autocomplete="name" />
-              <label for="book-email">Email</label>
-              <input type="email" id="book-email" name="email" required autocomplete="email" />
-              <label for="book-phone">Phone</label>
-              <input type="tel" id="book-phone" name="phone" required autocomplete="tel" />
-              <label for="book-service">Service</label>
-              <select id="book-service" name="service" required>
+              <label for="book-name">Name <span aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="book-name"
+                name="name"
+                required
+                autocomplete="name"
+                aria-required="true"
+                aria-describedby="book-name-error"
+              />
+              <span id="book-name-error" class="form-field-error" role="alert" hidden>Please enter your name.</span>
+              <label for="book-email">Email <span aria-hidden="true">*</span></label>
+              <input
+                type="email"
+                id="book-email"
+                name="email"
+                required
+                autocomplete="email"
+                aria-required="true"
+                aria-describedby="book-email-error"
+              />
+              <span id="book-email-error" class="form-field-error" role="alert" hidden
+                >Please enter a valid email address.</span
+              >
+              <label for="book-phone">Phone <span aria-hidden="true">*</span></label>
+              <input
+                type="tel"
+                id="book-phone"
+                name="phone"
+                required
+                autocomplete="tel"
+                aria-required="true"
+                aria-describedby="book-phone-error"
+              />
+              <span id="book-phone-error" class="form-field-error" role="alert" hidden
+                >Please enter your phone number.</span
+              >
+              <label for="book-service">Service <span aria-hidden="true">*</span></label>
+              <select
+                id="book-service"
+                name="service"
+                required
+                aria-required="true"
+                aria-describedby="book-service-error"
+              >
                 <option value="" disabled selected>Select a service</option>
                 <option value="Panel Upgrade">Panel Upgrade</option>
                 <option value="EV Charger Installation">EV Charger Installation</option>
@@ -85,18 +129,125 @@ const breadcrumbLd = JSON.stringify({
                 <option value="Energy Consulting">Energy Consulting</option>
                 <option value="Emergency Service">Emergency Service</option>
               </select>
-              <label for="book-date">Preferred Date</label>
-              <input type="date" id="book-date" name="date" required autocomplete="off" />
-              <label for="book-time">Preferred Time</label>
-              <input type="time" id="book-time" name="time" required autocomplete="off" />
+              <span id="book-service-error" class="form-field-error" role="alert" hidden>Please select a service.</span>
+              <label for="book-date">Preferred Date <span aria-hidden="true">*</span></label>
+              <input
+                type="date"
+                id="book-date"
+                name="date"
+                required
+                autocomplete="off"
+                aria-required="true"
+                aria-describedby="book-date-error"
+              />
+              <span id="book-date-error" class="form-field-error" role="alert" hidden>Please select a preferred date.</span>
+              <label for="book-time">Preferred Time <span aria-hidden="true">*</span></label>
+              <input
+                type="time"
+                id="book-time"
+                name="time"
+                required
+                autocomplete="off"
+                aria-required="true"
+                aria-describedby="book-time-error"
+              />
+              <span id="book-time-error" class="form-field-error" role="alert" hidden>Please select a preferred time.</span>
               <label for="book-notes">Additional Notes</label>
               <textarea id="book-notes" name="notes" placeholder="Describe your project or any special requirements"
               ></textarea>
-              <button type="submit" data-cta="booking-schedule-service">Request Scheduling</button>
+              <button type="submit" id="booking-submit" data-cta="booking-schedule-service">Request Scheduling</button>
               <p class="form-confirmation">
                 After submitting, we'll confirm details and send next steps by phone or email.
               </p>
             </form>
+            <style>
+              .form-status {
+                padding: 0.75rem 1rem;
+                border-radius: 6px;
+                margin-bottom: 1rem;
+                font-weight: 500;
+              }
+              .form-status.success {
+                background: #dcfce7;
+                color: #15803d;
+                border: 1px solid #86efac;
+              }
+              .form-status.error {
+                background: #fee2e2;
+                color: #b91c1c;
+                border: 1px solid #fca5a5;
+              }
+              .form-field-error {
+                color: #b91c1c;
+                font-size: 0.875rem;
+                display: block;
+                margin-top: -0.5rem;
+                margin-bottom: 0.5rem;
+              }
+              button[disabled] {
+                opacity: 0.6;
+                cursor: not-allowed;
+              }
+            </style>
+            <script is:inline>
+              (function () {
+                var form = document.getElementById('booking-form');
+                var submitBtn = document.getElementById('booking-submit');
+                var statusEl = document.getElementById('booking-status');
+                if (!form) return;
+
+                function showFieldError(inputId, show) {
+                  var errEl = document.getElementById(inputId + '-error');
+                  if (!errEl) return;
+                  errEl.hidden = !show;
+                  var input = document.getElementById(inputId);
+                  if (input) input.setAttribute('aria-invalid', show ? 'true' : 'false');
+                }
+
+                function validateField(input) {
+                  return input.checkValidity();
+                }
+
+                var fields = ['book-name', 'book-email', 'book-phone', 'book-service', 'book-date', 'book-time'];
+                fields.forEach(function (id) {
+                  var el = document.getElementById(id);
+                  if (!el) return;
+                  el.addEventListener('blur', function () {
+                    showFieldError(id, !validateField(el));
+                  });
+                  el.addEventListener('input', function () {
+                    if (el.getAttribute('aria-invalid') === 'true') {
+                      showFieldError(id, !validateField(el));
+                    }
+                  });
+                });
+
+                form.addEventListener('submit', function (e) {
+                  var valid = true;
+                  fields.forEach(function (id) {
+                    var el = document.getElementById(id);
+                    if (!el) return;
+                    var fieldValid = validateField(el);
+                    showFieldError(id, !fieldValid);
+                    if (!fieldValid) valid = false;
+                  });
+
+                  if (!valid) {
+                    e.preventDefault();
+                    statusEl.textContent = 'Please fix the errors above before submitting.';
+                    statusEl.className = 'form-status error';
+                    statusEl.hidden = false;
+                    var firstErr = form.querySelector('[aria-invalid="true"]');
+                    if (firstErr) firstErr.focus();
+                    return;
+                  }
+
+                  submitBtn.disabled = true;
+                  submitBtn.textContent = 'Sending…';
+                  statusEl.hidden = true;
+                });
+              })();
+            </script>
           </div>
         </div>
       </div>

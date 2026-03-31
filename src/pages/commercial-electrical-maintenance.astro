@@ -1,11 +1,22 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
+    {'@type': 'ListItem', 'position': 2, 'name': 'Commercial', 'item': 'https://toptier-electrical.com/commercial'},
+    {'@type': 'ListItem', 'position': 3, 'name': 'Commercial Electrical Maintenance', 'item': 'https://toptier-electrical.com/commercial-electrical-maintenance'},
+  ],
+});
 ---
 
 <TTELayout
   title="Commercial Electrical Maintenance | Top Tier Electrical"
   description="Commercial electrical maintenance services in West Michigan. Panel inspections, code corrections, and reliability upgrades for businesses."
   canonical="https://toptier-electrical.com/commercial-electrical-maintenance"
+  jsonLd={[breadcrumbLd]}
 >
   <main id="main-content">
     <section class="hero">
@@ -24,7 +35,7 @@ import TTELayout from '~/layouts/TTELayout.astro';
         </div>
       </div>
     </div>
-    <section class="container" style="padding: 3rem 1rem;">
+    <section class="container" class="py-12 px-4">
       <h2>Commercial Electrical Maintenance Services</h2>
       <p>
         Regular maintenance prevents unexpected failures and keeps your facility operating safely and efficiently. We

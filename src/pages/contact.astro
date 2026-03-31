@@ -57,7 +57,8 @@ const breadcrumbLd = JSON.stringify({
             <p>
               If you'd like to pick a specific date and time, please use our <a href="/booking">online booking form</a>.
             </p>
-            <form name="contact" method="POST" action="https://formspree.io/f/mkovbvgj">
+            <form id="contact-form" name="contact" method="POST" action="https://formspree.io/f/mkovbvgj" novalidate>
+              <div id="contact-status" role="status" aria-live="polite" class="form-status" hidden></div>
               <input type="hidden" name="_subject" value="New contact request from Top Tier Electrical" />
               <input type="hidden" name="_next" value="https://toptier-electrical.com/thank-you" />
               <input type="hidden" name="form_name" value="Contact form" />
@@ -70,16 +71,142 @@ const breadcrumbLd = JSON.stringify({
                 autocomplete="off"
                 aria-hidden="true"
               />
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" required autocomplete="name" />
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required autocomplete="email" />
-              <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone" required autocomplete="tel" />
-              <label for="message">Message</label>
-              <textarea id="message" name="message" required autocomplete="off"></textarea>
-              <button type="submit" data-cta="contact-request-quote">Request a Quote</button>
+              <label for="name">Name <span aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                autocomplete="name"
+                aria-required="true"
+                aria-describedby="name-error"
+              />
+              <span id="name-error" class="form-field-error" role="alert" hidden>Please enter your name.</span>
+              <label for="email">Email <span aria-hidden="true">*</span></label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                autocomplete="email"
+                aria-required="true"
+                aria-describedby="email-error"
+              />
+              <span id="email-error" class="form-field-error" role="alert" hidden
+                >Please enter a valid email address.</span
+              >
+              <label for="phone">Phone <span aria-hidden="true">*</span></label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                autocomplete="tel"
+                aria-required="true"
+                aria-describedby="phone-error"
+              />
+              <span id="phone-error" class="form-field-error" role="alert" hidden
+                >Please enter your phone number.</span
+              >
+              <label for="message">Message <span aria-hidden="true">*</span></label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                autocomplete="off"
+                aria-required="true"
+                aria-describedby="message-error"></textarea>
+              <span id="message-error" class="form-field-error" role="alert" hidden>Please enter a message.</span>
+              <button type="submit" id="contact-submit" data-cta="contact-request-quote">Request a Quote</button>
             </form>
+            <style>
+              .form-status {
+                padding: 0.75rem 1rem;
+                border-radius: 6px;
+                margin-bottom: 1rem;
+                font-weight: 500;
+              }
+              .form-status.success {
+                background: #dcfce7;
+                color: #15803d;
+                border: 1px solid #86efac;
+              }
+              .form-status.error {
+                background: #fee2e2;
+                color: #b91c1c;
+                border: 1px solid #fca5a5;
+              }
+              .form-field-error {
+                color: #b91c1c;
+                font-size: 0.875rem;
+                display: block;
+                margin-top: -0.5rem;
+                margin-bottom: 0.5rem;
+              }
+              button[disabled] {
+                opacity: 0.6;
+                cursor: not-allowed;
+              }
+            </style>
+            <script is:inline>
+              (function () {
+                var form = document.getElementById('contact-form');
+                var submitBtn = document.getElementById('contact-submit');
+                var statusEl = document.getElementById('contact-status');
+                if (!form) return;
+
+                function showFieldError(inputId, show) {
+                  var errEl = document.getElementById(inputId + '-error');
+                  if (!errEl) return;
+                  errEl.hidden = !show;
+                  var input = document.getElementById(inputId);
+                  if (input) input.setAttribute('aria-invalid', show ? 'true' : 'false');
+                }
+
+                function validateField(input) {
+                  return input.checkValidity();
+                }
+
+                var fields = ['name', 'email', 'phone', 'message'];
+                fields.forEach(function (id) {
+                  var el = document.getElementById(id);
+                  if (!el) return;
+                  el.addEventListener('blur', function () {
+                    showFieldError(id, !validateField(el));
+                  });
+                  el.addEventListener('input', function () {
+                    if (el.getAttribute('aria-invalid') === 'true') {
+                      showFieldError(id, !validateField(el));
+                    }
+                  });
+                });
+
+                form.addEventListener('submit', function (e) {
+                  var valid = true;
+                  fields.forEach(function (id) {
+                    var el = document.getElementById(id);
+                    if (!el) return;
+                    var fieldValid = validateField(el);
+                    showFieldError(id, !fieldValid);
+                    if (!fieldValid) valid = false;
+                  });
+
+                  if (!valid) {
+                    e.preventDefault();
+                    statusEl.textContent = 'Please fix the errors above before submitting.';
+                    statusEl.className = 'form-status error';
+                    statusEl.hidden = false;
+                    var firstErr = form.querySelector('[aria-invalid="true"]');
+                    if (firstErr) firstErr.focus();
+                    return;
+                  }
+
+                  submitBtn.disabled = true;
+                  submitBtn.textContent = 'Sending…';
+                  statusEl.hidden = true;
+                });
+              })();
+            </script>
           </div>
         </div>
       </div>

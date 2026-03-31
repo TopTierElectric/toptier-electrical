@@ -1,0 +1,21 @@
+name: Site Uptime Check
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  uptime:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check site is reachable
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 https://toptier-electrical.com)
+          echo "HTTP status: $STATUS"
+          if [ "$STATUS" -lt 200 ] || [ "$STATUS" -ge 400 ]; then
+            echo "::error::Site returned HTTP $STATUS — toptier-electrical.com may be down."
+            exit 1
+          fi
+          echo "Site is up (HTTP $STATUS)."

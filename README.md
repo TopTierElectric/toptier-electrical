@@ -8,6 +8,7 @@ Licensed & insured electrician serving West Michigan. Built with Astro + Tailwin
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
 ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=netlify&logoColor=white)
+![Site Uptime](https://github.com/TopTierElectric/toptier-electrical/actions/workflows/uptime.yml/badge.svg)
 
 ---
 
