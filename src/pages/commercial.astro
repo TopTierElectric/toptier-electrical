@@ -4,9 +4,9 @@ import TTELayout from '~/layouts/TTELayout.astro';
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  'itemListElement': [
-    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
-    {'@type': 'ListItem', 'position': 2, 'name': 'Commercial', 'item': 'https://toptier-electrical.com/commercial'},
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Commercial', item: 'https://toptier-electrical.com/commercial' },
   ],
 });
 ---
@@ -22,7 +22,7 @@ const breadcrumbLd = JSON.stringify({
       <div class="hero-content">
         <h1>Commercial Electrical Services</h1>
         <p>Electrical service work for businesses across West Michigan.</p>
-        <a href="/booking" class="btn-primary">Request Scheduling</a>
+        <a href="/booking" class="btn btn-primary">Request Scheduling</a>
       </div>
     </section>
     <div class="trust-strip">
@@ -65,7 +65,7 @@ const breadcrumbLd = JSON.stringify({
           href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
         > to confirm scope and scheduling.
       </p>
-      <a href="/booking" class="btn-primary">Request Scheduling</a>
+      <a href="/booking" class="btn btn-primary">Request Scheduling</a>
     </section>
   </main>
 </TTELayout>

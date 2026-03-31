@@ -1,21 +1,17 @@
-name: Site Uptime Check
+name: Uptime Monitor
 
 on:
   schedule:
-    # Run every 6 hours
-    - cron: '0 */6 * * *'
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 jobs:
-  uptime:
+  ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Check site is reachable
+      - name: Check production home page
         run: |
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 https://toptier-electrical.com)
-          echo "HTTP status: $STATUS"
-          if [ "$STATUS" -lt 200 ] || [ "$STATUS" -ge 400 ]; then
-            echo "::error::Site returned HTTP $STATUS — toptier-electrical.com may be down."
-            exit 1
-          fi
-          echo "Site is up (HTTP $STATUS)."
+          curl --fail --silent --show-error --max-time 20 https://toptier-electrical.com/ > /dev/null
+      - name: Check contact page
+        run: |
+          curl --fail --silent --show-error --max-time 20 https://toptier-electrical.com/contact > /dev/null

@@ -30,6 +30,8 @@ const businessData = {
     businessType: 'Electrician',
     license: 'MI License #6220430',
     website: 'https://toptier-electrical.com',
+    sameAs: ['https://www.facebook.com/profile.php?id=61573826170938', 'https://g.page/r/CUr9o5vQ0M6nEAE/review'],
+    googleBusinessProfile: 'https://g.page/r/CUr9o5vQ0M6nEAE',
   },
 };
 

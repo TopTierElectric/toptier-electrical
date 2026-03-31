@@ -82,9 +82,7 @@ const faqLd = `{
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  'itemListElement': [
-    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
-  ],
+  itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' }],
 });
 ---
 
@@ -112,14 +110,21 @@ const breadcrumbLd = JSON.stringify({
         </div>
         <div class="hero-image">
           <picture class="hero-picture">
+            <source
+              srcset="/images/gallery/Residential%20Panel.webp 800w, /images/gallery/Residential%20Panel.webp 1200w"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              type="image/webp"
+            />
             <source srcset="/images/gallery/Residential%20Panel.webp" type="image/webp" />
             <img
               src="/images/gallery/Residential%20Panel.webp"
               alt="Clean residential electrical panel installation by Top Tier Electrical in Holland MI"
               width="800"
               height="600"
+              loading="eager"
               decoding="async"
               fetchpriority="high"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </picture>
         </div>
@@ -306,7 +311,7 @@ const breadcrumbLd = JSON.stringify({
           href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
         > to confirm scope and scheduling.
       </p>
-      <a href="/booking" class="btn-primary">Request Scheduling</a>
+      <a href="/booking" class="btn btn-primary">Request Scheduling</a>
     </section>
   </main>
 </TTELayout>

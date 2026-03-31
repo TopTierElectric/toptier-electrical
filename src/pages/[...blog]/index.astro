@@ -34,7 +34,7 @@ const url = getCanonical(getPermalink(post.permalink, 'post'));
       <div class="container">
         {post.Content ? <post.Content /> : <Fragment set:html={post.content || ''} />}
         <div class="mt-8">
-          <a href="/blog" class="btn-secondary">← Back to Blog</a>
+          <a href="/blog" class="btn btn-secondary">← Back to Blog</a>
         </div>
       </div>
     </article>
@@ -45,7 +45,7 @@ const url = getCanonical(getPermalink(post.permalink, 'post'));
           href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
         > to confirm scope and scheduling.
       </p>
-      <a href="/booking" class="btn-primary">Request Scheduling</a>
+      <a href="/booking" class="btn btn-primary">Request Scheduling</a>
     </section>
   </main>
 </TTELayout>

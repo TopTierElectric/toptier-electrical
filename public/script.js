@@ -136,4 +136,42 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+
+  document.querySelectorAll('form[data-enhanced-form]').forEach(function (form) {
+    const submitButton = form.querySelector('button[type="submit"]');
+    const status = form.querySelector('[data-form-status]');
+
+    function setStatus(message, state) {
+      if (!status) return;
+      status.textContent = message;
+      status.setAttribute('data-state', state);
+    }
+
+    form.addEventListener('submit', function (event) {
+      const requiredFields = form.querySelectorAll('[required]');
+      let invalidField = null;
+      requiredFields.forEach(function (field) {
+        if (!field.value && !invalidField) invalidField = field;
+      });
+
+      if (invalidField) {
+        event.preventDefault();
+        setStatus('Please complete all required fields before submitting.', 'error');
+        invalidField.focus();
+        return;
+      }
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.setAttribute('aria-busy', 'true');
+        submitButton.textContent = 'Submitting...';
+      }
+      setStatus("Submitting your request. We'll follow up shortly.", 'success');
+    });
+
+    form.addEventListener('invalid', function (event) {
+      event.preventDefault();
+      setStatus('Please fix highlighted fields and try again.', 'error');
+    });
+  });
 });

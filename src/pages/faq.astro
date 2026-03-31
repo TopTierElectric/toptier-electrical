@@ -4,9 +4,9 @@ import TTELayout from '~/layouts/TTELayout.astro';
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  'itemListElement': [
-    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
-    {'@type': 'ListItem', 'position': 2, 'name': 'FAQ', 'item': 'https://toptier-electrical.com/faq'},
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
+    { '@type': 'ListItem', position: 2, name: 'FAQ', item: 'https://toptier-electrical.com/faq' },
   ],
 });
 ---
@@ -22,7 +22,7 @@ const breadcrumbLd = JSON.stringify({
       <div class="hero-content">
         <h1>Frequently Asked Questions</h1>
         <p>Find answers to common questions about our services and electrical systems.</p>
-        <a href="/contact" class="btn-primary">Ask a Question</a>
+        <a href="/contact" class="btn btn-primary">Ask a Question</a>
       </div>
     </section>
     <div class="trust-strip">
@@ -42,7 +42,7 @@ const breadcrumbLd = JSON.stringify({
           href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
         > for personalized assistance.
       </p>
-      <a href="/booking" class="btn-primary">Request Scheduling</a>
+      <a href="/booking" class="btn btn-primary">Request Scheduling</a>
     </section>
     <section class="info-section">
       <div class="container">

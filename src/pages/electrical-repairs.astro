@@ -6,19 +6,25 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: 'Electrical Repairs & Troubleshooting',
-    description: 'Professional electrical repairs and troubleshooting in West Michigan. We diagnose the root cause and explain the fix before starting work.',
+    description:
+      'Professional electrical repairs and troubleshooting in West Michigan. We diagnose the root cause and explain the fix before starting work.',
     provider: { '@id': 'https://toptier-electrical.com/#electrician' },
-    areaServed: { '@type': 'State', 'name': 'Michigan' },
+    areaServed: { '@type': 'State', name: 'Michigan' },
     serviceType: 'Electrical Repair',
     url: 'https://toptier-electrical.com/electrical-repairs',
   }),
   JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    'itemListElement': [
-      {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
-      {'@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://toptier-electrical.com/services'},
-      {'@type': 'ListItem', 'position': 3, 'name': 'Electrical Repairs', 'item': 'https://toptier-electrical.com/electrical-repairs'},
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://toptier-electrical.com/services' },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Electrical Repairs',
+        item: 'https://toptier-electrical.com/electrical-repairs',
+      },
     ],
   }),
 ];
@@ -42,7 +48,7 @@ const jsonLd = [
       <div class="hero-content">
         <h1>Electrical Repairs &amp; Troubleshooting</h1>
         <p>We diagnose the root cause, explain the fix, and get it done right.</p>
-        <a href="/booking" class="btn-primary">Schedule Repair</a>
+        <a href="/booking" class="btn btn-primary">Schedule Repair</a>
       </div>
     </section>
     <div class="trust-strip">
@@ -102,7 +108,7 @@ const jsonLd = [
           href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
         > to schedule service.
       </p>
-      <a href="/booking" class="btn-primary">Request Scheduling</a>
+      <a href="/booking" class="btn btn-primary">Request Scheduling</a>
     </section>
   </main>
 </TTELayout>
