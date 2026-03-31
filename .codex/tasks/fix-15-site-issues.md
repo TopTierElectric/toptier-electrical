@@ -4,6 +4,7 @@ Mission:
 Implement, verify, and finalize all 15 site improvement issues below. Do not stop after making code edits. Continue operating in a verification/fix loop until there are zero known repo errors across the project’s own validation surface and no unresolved regressions introduced by your changes.
 
 Non-negotiable operating rules:
+
 1. Work autonomously. Do not ask for confirmation unless a destructive or unrecoverable action is required.
 2. Do not stop at partial completion. Keep iterating until the exit criteria are met or you can prove a blocker with evidence.
 3. Prefer minimal, production-grade edits over broad churn.
@@ -15,6 +16,7 @@ Non-negotiable operating rules:
 9. Before declaring success, achieve two consecutive clean full-suite verification passes after the final code edits.
 
 Primary objectives to complete:
+
 1. Consolidate CSS into Astro's build pipeline
 2. Optimize image delivery (hero, favicon, responsive)
 3. Remove !important overrides and unify button styles
@@ -33,6 +35,7 @@ Primary objectives to complete:
 
 Execution strategy:
 Phase 1 — Codebase discovery and verification map
+
 - Inspect package manager files, package.json, Astro config, TS/JS config, lint config, formatter config, content collections, layouts, shared components, CI/workflows, and any scripts under tools/, scripts/, or package.json.
 - Determine the canonical validation commands from the repo itself.
 - Build a verification map in memory with:
@@ -52,6 +55,7 @@ Create a concise internal checklist that maps each objective to concrete files, 
 
 Phase 3 — Implement all 15 improvements
 Technical expectations:
+
 - Consolidate stylesheet loading into Astro’s pipeline where appropriate and remove unnecessary render-blocking CSS patterns.
 - Improve image handling for hero imagery, favicon handling, and responsive delivery with correct sizing and loading behavior.
 - Remove unnecessary !important usage and normalize button styling through shared patterns/tokens/components.
@@ -69,6 +73,7 @@ Technical expectations:
 - Add deployment status badge and uptime monitoring integration in a way that fits the repo and deployment model cleanly.
 
 Architecture and quality constraints:
+
 - Do not create parallel layout systems. Consolidate around a single clear layout direction.
 - Do not degrade Lighthouse, SEO, accessibility, or performance behavior on existing key pages.
 - Do not break canonical URLs, sitemap behavior, robots behavior, metadata inheritance, or structured data validity.
@@ -78,17 +83,20 @@ Architecture and quality constraints:
 
 Phase 4 — Continuous verification loop
 After every material batch of edits:
+
 1. Run the fastest relevant targeted checks for the affected surface.
 2. Fix every failure before moving on.
 3. Re-run the targeted checks until clean.
 
 After a major milestone and again at the end:
+
 1. Run the full verification suite discovered from the repo.
 2. Fix every error, warning that indicates a likely defect, broken build, type issue, lint issue, schema issue, accessibility issue, or script failure.
 3. Re-run the full suite.
 4. Continue looping until two consecutive full-suite passes are clean.
 
 Verification policy:
+
 - Treat non-zero exits as failures.
 - Treat broken imports, failing builds, hydration issues, Astro content errors, type errors, lint errors, invalid schema output, broken internal links, accessibility regressions, and workflow/config validation failures as blockers.
 - If a command is flaky or external, rerun it at least twice before downgrading it from blocker status.
@@ -96,12 +104,14 @@ Verification policy:
 - Do not declare success while known failures remain.
 
 Suggested command discovery order:
+
 - Install dependencies using the repo’s package manager.
 - Read package.json scripts and CI/workflows to identify all meaningful validation commands.
 - Include project-specific commands such as build, verify, qa, SEO checks, workflow checks, navigation simulation, Astro checks, linting, type checks, and tests if they exist.
 - Run the deepest meaningful local validation the repo already defines.
 
 Change-management rules:
+
 - Make focused edits with clear intent.
 - Remove superseded code and dead styles when safe.
 - Avoid unnecessary renames unless they materially improve architecture.
@@ -110,6 +120,7 @@ Change-management rules:
 - Ensure monitoring/badge additions are real and wired, not decorative stubs.
 
 PR and git behavior:
+
 - Work on the current branch unless a new working branch is required.
 - If gh is available and authenticated, open or update a PR with this exact title:
   Fix all 15 site improvement issues: SEO, performance, accessibility, code quality, and content
@@ -122,6 +133,7 @@ PR and git behavior:
 
 Exit criteria:
 You may only declare the task complete when all of the following are true:
+
 - All 15 objectives are implemented or explicitly documented as blocked with hard evidence.
 - The repo’s full validation suite passes twice consecutively after final edits.
 - No known build, type, lint, test, QA, SEO, accessibility, or workflow/config errors remain from local verification.
@@ -130,6 +142,7 @@ You may only declare the task complete when all of the following are true:
 
 Final response format:
 Return a concise but complete implementation report with these sections:
+
 1. Completed objectives
 2. Files/components/layouts/content added or changed
 3. Verification commands run
