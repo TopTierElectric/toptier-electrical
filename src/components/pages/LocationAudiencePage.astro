@@ -1,0 +1,82 @@
+---
+import TTELayout from '~/layouts/TTELayout.astro';
+
+export interface Props {
+  audienceLabel: 'Commercial' | 'Residential';
+  canonicalSlug: string;
+  county: string;
+  leadSentence: string;
+  badgeLabel: string;
+  projectCtaHeading: string;
+  projectCtaCopy: string;
+  services: Array<{ href: string; title: string; description: string }>;
+}
+
+const { audienceLabel, canonicalSlug, county, leadSentence, badgeLabel, projectCtaHeading, projectCtaCopy, services } =
+  Astro.props;
+
+const canonical = `https://toptier-electrical.com/${canonicalSlug}`;
+const pageTitle = `${audienceLabel} Electrician Allegan MI | Top Tier Electrical`;
+const description = `${audienceLabel} electrical services in ${county}. Panel work, EV charging, lighting, and maintenance support.`;
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Service Areas', item: 'https://toptier-electrical.com/service-areas' },
+    { '@type': 'ListItem', position: 3, name: `${audienceLabel} Electrician Allegan MI`, item: canonical },
+  ],
+});
+---
+
+<TTELayout title={pageTitle} {description} {canonical} jsonLd={[breadcrumbLd]}>
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>{audienceLabel} Electrician — Allegan, MI</h1>
+        <p>{leadSentence}</p>
+        <a href="/booking" class="btn btn-primary">Request Scheduling</a>
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div class="container">
+        <div class="trust-badges">
+          <span class="badge">&#10004; Licensed &amp; Insured</span>
+          <span class="badge">MI License #6220430</span>
+          <span class="badge">{badgeLabel}</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="hub-shell">
+      <div class="container">
+        <h2>{audienceLabel} Electrical Services in {county}</h2>
+        <p>{projectCtaCopy}</p>
+        <div class="service-summary">
+          {
+            services.map((service) => (
+              <article>
+                <h3>
+                  <a href={service.href}>{service.title}</a>
+                </h3>
+                <p>{service.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>{projectCtaHeading}</h2>
+      <p>
+        Call <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a> or email <a
+          href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
+        > to confirm scope and scheduling.
+      </p>
+      <a href="/booking" class="btn btn-primary">Request Scheduling</a>
+    </section>
+  </main>
+</TTELayout>
