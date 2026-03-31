@@ -1,11 +1,22 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
+    {'@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://toptier-electrical.com/services'},
+    {'@type': 'ListItem', 'position': 3, 'name': 'Electrical Design Consultation', 'item': 'https://toptier-electrical.com/electrical-design-consultation'},
+  ],
+});
 ---
 
 <TTELayout
   title="Electrical Design Consultation | Top Tier Electrical"
   description="Professional electrical design consultation for new construction, remodels, and commercial projects in West Michigan."
   canonical="https://toptier-electrical.com/electrical-design-consultation"
+  jsonLd={[breadcrumbLd]}
 >
   <main id="main-content">
     <section class="hero">
@@ -24,7 +35,7 @@ import TTELayout from '~/layouts/TTELayout.astro';
         </div>
       </div>
     </div>
-    <section class="container" style="padding: 3rem 1rem;">
+    <section class="container py-12 px-4">
       <h2>Design Consultation Services</h2>
       <p>
         Good electrical design reduces change orders, prevents future rework, and ensures your project meets code from
