@@ -27,7 +27,7 @@
     "verify": "npm run verify:lockfile && npm run verify:monitoring-config && npm run verify:asset-references && npm run check",
     "monitor:uptime": "node scripts/run-monitoring.mjs full",
     "monitor:smoke": "node scripts/run-monitoring.mjs smoke",
-    "security:audit": "npm audit --audit-level=high",
+    "security:audit": "node scripts/run-security-audit.mjs",
     "verify:asset-references": "node scripts/verify-asset-references.mjs"
   },
   "dependencies": {
