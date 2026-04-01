@@ -430,7 +430,7 @@ header nav a:focus {
 /* Hero section */
 .hero {
   position: relative;
-  background: linear-gradient(135deg, #0c1f33 0%, #102c45 100%);
+  background: url('/assets/images/hero.jpg') center/cover no-repeat;
   color: var(--text-light);
   text-align: center;
   padding: 8rem 1rem 6rem;
@@ -2512,90 +2512,4 @@ header nav .btn-ghost:focus {
 
 .form-status[data-state='success'] {
   color: var(--success);
-}
-
-/* Homepage top-of-page refinements (hero through services) */
-.hero-home {
-  background:
-    radial-gradient(1200px 400px at 82% -10%, rgba(212, 175, 55, 0.2), transparent 60%),
-    linear-gradient(160deg, #121a2b 0%, #0f1626 52%, #0b101c 100%);
-}
-
-.hero-home .hero-picture {
-  border: 1px solid rgba(212, 175, 55, 0.25);
-}
-
-.trust-strip {
-  border-top: 1px solid rgba(212, 175, 55, 0.25);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-.trust-badges .badge {
-  border-radius: 999px;
-  border: 1px solid rgba(212, 175, 55, 0.35);
-  background: rgba(255, 255, 255, 0.02);
-  font-weight: 600;
-}
-
-.home-services {
-  padding-top: 4.5rem;
-}
-
-.section-eyebrow {
-  margin: 0;
-  text-align: center;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--brand-gold);
-  font-weight: 700;
-}
-
-.home-services h2 {
-  margin-top: 0.5rem;
-}
-
-.section-intro {
-  max-width: 760px;
-  margin: 0 auto 1.75rem;
-  text-align: center;
-  color: var(--text-muted);
-}
-
-.service-cards {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.service-card {
-  text-align: left;
-  border: 1px solid var(--component-card-border);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 8px 28px rgba(3, 12, 33, 0.06);
-  position: relative;
-}
-
-.service-card h3 {
-  margin-right: 1.25rem;
-}
-
-.service-card-arrow {
-  position: absolute;
-  right: 1rem;
-  top: 1.2rem;
-  color: var(--brand-gold);
-  font-weight: 700;
-}
-
-@media (max-width: 960px) {
-  .service-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .service-cards {
-    grid-template-columns: 1fr;
-  }
 }
