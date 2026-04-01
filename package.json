@@ -21,7 +21,13 @@
     "check:prettier": "prettier --check .",
     "fix": "npm run fix:eslint && npm run fix:prettier",
     "fix:eslint": "eslint --fix .",
-    "fix:prettier": "prettier -w ."
+    "fix:prettier": "prettier -w .",
+    "verify:lockfile": "node scripts/verify-lockfile.mjs",
+    "verify:monitoring-config": "node scripts/validate-monitoring-config.mjs",
+    "verify": "npm run verify:lockfile && npm run verify:monitoring-config && npm run check",
+    "monitor:uptime": "node scripts/run-monitoring.mjs full",
+    "monitor:smoke": "node scripts/run-monitoring.mjs smoke",
+    "security:audit": "npm audit --audit-level=high"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",

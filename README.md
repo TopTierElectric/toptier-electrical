@@ -79,3 +79,11 @@ MIT — see [LICENSE.md](./LICENSE.md)
 ## 🙏 Acknowledgements
 
 Based on the [AstroWind](https://github.com/onwidget/astrowind) template.
+
+## Monitoring & reliability workflows
+
+- `npm run monitor:uptime` runs full route, asset, conversion, and third-party checks.
+- `npm run monitor:smoke` runs a reduced post-deploy smoke subset.
+- `npm run verify` validates lockfile consistency, monitoring config, and project checks.
+- Set `MAINTENANCE_MODE=true` in repository variables to allow maintenance response patterns.
+- Alert notifications include run URL, failed route metadata, timestamp, and runbook link.
