@@ -4,10 +4,15 @@ import TTELayout from '~/layouts/TTELayout.astro';
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  'itemListElement': [
-    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://toptier-electrical.com/'},
-    {'@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://toptier-electrical.com/services'},
-    {'@type': 'ListItem', 'position': 3, 'name': 'Energy Consulting', 'item': 'https://toptier-electrical.com/energy-consulting'},
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://toptier-electrical.com/services' },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Energy Consulting',
+      item: 'https://toptier-electrical.com/energy-consulting',
+    },
   ],
 });
 ---

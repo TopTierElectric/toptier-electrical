@@ -140,6 +140,11 @@ You may only declare the task complete when all of the following are true:
 - The final summary includes exact commands run and their final status.
 - The working tree contains only intentional changes.
 
+Additional strict acceptance criteria (from prior reviewer notes):
+
+- All 15 objectives are implemented with hard evidence and verification artifacts.
+- Run the repo's full validation suite five consecutive times after final edits when feasible; if external blockers prevent this, document evidence and complete all local checks.
+
 Final response format:
 Return a concise but complete implementation report with these sections:
 
