@@ -1,7 +1,5 @@
 ---
-import { Image } from 'astro:assets';
 import TTELayout from '~/layouts/TTELayout.astro';
-import heroPanelImage from '~/assets/images/Residential Panel.webp';
 
 const localBusinessLd = `{
   "@context": "https://schema.org",
@@ -111,16 +109,24 @@ const breadcrumbLd = JSON.stringify({
           </div>
         </div>
         <div class="hero-image">
-          <Image
-            src={heroPanelImage}
-            alt="Clean residential electrical panel installation by Top Tier Electrical in Holland MI"
-            widths={[640, 960, 1280]}
-            sizes="(max-width: 768px) 100vw, 50vw"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-            class="hero-picture"
-          />
+          <picture class="hero-picture">
+            <source
+              srcset="/images/gallery/Residential%20Panel.webp 800w, /images/gallery/Residential%20Panel.webp 1200w"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              type="image/webp"
+            />
+            <source srcset="/images/gallery/Residential%20Panel.webp" type="image/webp" />
+            <img
+              src="/images/gallery/Residential%20Panel.webp"
+              alt="Clean residential electrical panel installation by Top Tier Electrical in Holland MI"
+              width="800"
+              height="600"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </picture>
         </div>
       </div>
     </section>

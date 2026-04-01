@@ -430,7 +430,7 @@ header nav a:focus {
 /* Hero section */
 .hero {
   position: relative;
-  background: linear-gradient(135deg, #0c1f33 0%, #102c45 100%);
+  background: url('/assets/images/hero.jpg') center/cover no-repeat;
   color: var(--text-light);
   text-align: center;
   padding: 8rem 1rem 6rem;
