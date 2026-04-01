@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import TTELayout from '~/layouts/TTELayout.astro';
+import heroPanelImage from '~/assets/images/Residential Panel.webp';
 
 const localBusinessLd = `{
   "@context": "https://schema.org",
@@ -36,7 +38,7 @@ const localBusinessLd = `{
   ],
   "sameAs": [
     "https://www.facebook.com/profile.php?id=61573826170938",
-    "https://g.page/r/CbQ3-X7fMvZ0EAE"
+    "https://share.google/pOgXH17fP6C0srCw9"
   ],
   "openingHoursSpecification": [
     {"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens": "08:00","closes": "18:00"},
@@ -109,24 +111,16 @@ const breadcrumbLd = JSON.stringify({
           </div>
         </div>
         <div class="hero-image">
-          <picture class="hero-picture">
-            <source
-              srcset="/images/gallery/Residential%20Panel.webp 800w, /images/gallery/Residential%20Panel.webp 1200w"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              type="image/webp"
-            />
-            <source srcset="/images/gallery/Residential%20Panel.webp" type="image/webp" />
-            <img
-              src="/images/gallery/Residential%20Panel.webp"
-              alt="Clean residential electrical panel installation by Top Tier Electrical in Holland MI"
-              width="800"
-              height="600"
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </picture>
+          <Image
+            src={heroPanelImage}
+            alt="Clean residential electrical panel installation by Top Tier Electrical in Holland MI"
+            widths={[640, 960, 1280]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+            class="hero-picture"
+          />
         </div>
       </div>
     </section>
