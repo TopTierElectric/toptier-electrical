@@ -1,0 +1,46 @@
+name: Post Deploy Smoke
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+
+jobs:
+  smoke:
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      RUNBOOK_URL: https://github.com/${{ github.repository }}/blob/main/docs/incident-runbook.md
+      MAINTENANCE_MODE: ${{ vars.MAINTENANCE_MODE || 'false' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run smoke checks
+        run: npm run monitor:smoke
+
+      - name: Upload smoke artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: post-deploy-smoke-results
+          path: artifacts/monitoring-results.json
+
+      - name: Alert on smoke failure
+        if: failure() && secrets.SLACK_WEBHOOK_URL != ''
+        run: |
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          curl --fail --silent --show-error --max-time 20 --retry 3 --retry-all-errors --retry-delay 2 \
+            -H 'Content-Type: application/json' \
+            -d "{\"text\":\"Post-deploy smoke failed. Run: ${RUN_URL} | Timestamp: ${TIMESTAMP} | Runbook: ${RUNBOOK_URL}\"}" \
+            '${{ secrets.SLACK_WEBHOOK_URL }}'

@@ -1,0 +1,26 @@
+name: Monthly SLO Report
+
+on:
+  schedule:
+    - cron: '0 8 1 * *'
+  workflow_dispatch:
+
+jobs:
+  slo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Generate SLO snapshot
+        run: npm run monitor:uptime
+      - name: Upload SLO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: monthly-slo-snapshot
+          path: artifacts/monitoring-results.json

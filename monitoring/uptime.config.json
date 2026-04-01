@@ -1,0 +1,69 @@
+{
+  "baseUrl": "https://toptier-electrical.com",
+  "maintenance": {
+    "enabled": false,
+    "expectedStatus": [200, 301, 302, 503],
+    "allowedContentMarkers": ["Scheduled maintenance", "We'll be back soon"]
+  },
+  "checks": [
+    {
+      "id": "home",
+      "path": "/",
+      "expectedStatus": [200],
+      "markers": ["Top Tier Electrical", "West Michigan"],
+      "fallbackMarkers": ["contact", "services"]
+    },
+    {
+      "id": "contact",
+      "path": "/contact",
+      "expectedStatus": [200],
+      "markers": ["Contact", "Top Tier Electrical"],
+      "fallbackMarkers": ["Call", "Email"],
+      "expectsFormAction": "https://formspree.io/f/"
+    },
+    {
+      "id": "services",
+      "path": "/services",
+      "expectedStatus": [200],
+      "markers": ["Services", "Electrical"],
+      "fallbackMarkers": ["Commercial", "Residential"]
+    },
+    {
+      "id": "booking",
+      "path": "/booking",
+      "expectedStatus": [200],
+      "markers": ["Book", "Appointment"],
+      "fallbackMarkers": ["Contact", "Request"]
+    },
+    {
+      "id": "thank-you",
+      "path": "/thank-you",
+      "expectedStatus": [200],
+      "markers": ["Thank", "Top Tier Electrical"],
+      "fallbackMarkers": ["back", "home"]
+    },
+    {
+      "id": "main-script",
+      "path": "/script.js",
+      "expectedStatus": [200],
+      "asset": true,
+      "markers": ["addEventListener"],
+      "fallbackMarkers": ["DOMContentLoaded"]
+    },
+    {
+      "id": "manifest",
+      "path": "/manifest.webmanifest",
+      "expectedStatus": [200],
+      "asset": true,
+      "markers": ["Top Tier Electrical"],
+      "fallbackMarkers": ["icons"]
+    }
+  ],
+  "thirdParty": [
+    {
+      "id": "formspree",
+      "url": "https://formspree.io",
+      "expectedStatus": [200, 301, 302]
+    }
+  ]
+}
