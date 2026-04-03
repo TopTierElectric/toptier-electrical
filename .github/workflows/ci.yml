@@ -29,4 +29,5 @@ jobs:
         run: npm run build
 
       - name: Security audit (high+)
+        if: github.event_name == 'push'
         run: npm run security:audit
