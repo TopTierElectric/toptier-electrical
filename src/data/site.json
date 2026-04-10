@@ -1,0 +1,66 @@
+{
+  "business": {
+    "name": "Top Tier Electrical",
+    "legalName": "Top Tier Electrical",
+    "email": "info@toptier-electrical.com",
+    "phoneDisplay": "(616) 334-7159",
+    "phoneE164": "+16163347159",
+    "license": "MI License #6220430",
+    "category": "Electrician"
+  },
+  "site": {
+    "domain": "toptier-electrical.com",
+    "origin": "https://toptier-electrical.com",
+    "canonicalBaseUrl": "https://toptier-electrical.com"
+  },
+  "seo": {
+    "googleBusinessProfileUrl": "https://g.page/r/CUr9o5vQ0M6nEAE",
+    "googleReviewUrl": "https://g.page/r/CUr9o5vQ0M6nEAE/review",
+    "socialProfiles": [
+      "https://www.facebook.com/profile.php?id=61573826170938"
+    ]
+  },
+  "serviceAreas": [
+    "Holland, MI",
+    "Grand Rapids, MI",
+    "Byron Center, MI",
+    "Zeeland, MI",
+    "Saugatuck, MI",
+    "Hudsonville, MI",
+    "Allegan, MI",
+    "Ada, MI"
+  ],
+  "routes": {
+    "services": [
+      "panel-upgrades",
+      "dedicated-circuits",
+      "electrical-repairs",
+      "lighting",
+      "generators",
+      "ev-chargers",
+      "energy-solutions",
+      "energy-consulting",
+      "electrical-design-consultation",
+      "code-corrections",
+      "commercial-led-lighting-retrofit",
+      "commercial-electrical-maintenance",
+      "emergency"
+    ],
+    "pages": [
+      "",
+      "about",
+      "services",
+      "residential",
+      "commercial",
+      "service-areas",
+      "gallery",
+      "blog",
+      "contact",
+      "booking",
+      "faq",
+      "testimonials",
+      "reviews",
+      "financing"
+    ]
+  }
+}

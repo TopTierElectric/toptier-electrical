@@ -1,89 +1,64 @@
-# ⚡ Top Tier Electrical — Business Website
+# Top Tier Electrical Website
 
-Licensed & insured electrician serving West Michigan. Built with Astro + Tailwind CSS.
+Licensed & insured electrician serving West Michigan.
 
-🌐 **Live site:** [https://toptier-electrical.com](https://toptier-electrical.com)
+- Live site: https://toptier-electrical.com
+- Deployment target: Cloudflare Pages (`wrangler.toml`, `wrangler.jsonc`)
 
-![Astro](https://img.shields.io/badge/Astro-FF5D01?style=flat&logo=astro&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
-![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat&logo=netlify&logoColor=white)
-[![CI](https://github.com/TopTierElectric/toptier-electrical/actions/workflows/ci.yml/badge.svg)](https://github.com/TopTierElectric/toptier-electrical/actions/workflows/ci.yml)
-[![Uptime Monitor](https://github.com/TopTierElectric/toptier-electrical/actions/workflows/uptime.yml/badge.svg)](https://github.com/TopTierElectric/toptier-electrical/actions/workflows/uptime.yml)
+## Canonical architecture
 
----
+See [`docs/CANONICAL_ARCHITECTURE.md`](docs/CANONICAL_ARCHITECTURE.md).
 
-## ✨ Features
+Key point: `src/data/site.json` is the source-of-truth for business identity and SEO entity data. Route validation is derived against `src/pages/**`.
 
-- **Service pages** — showcasing electrical services offered in West Michigan
-- **Blog / articles** — tips, project highlights, and industry updates
-- **SEO-optimized** — meta tags, OpenGraph, Twitter cards, sitemap
-- **Google Analytics** — integrated for visitor insights
-- **Sitemap & RSS feed** — auto-generated for search engines and subscribers
-- **Responsive & dark mode** — adapts to any device or user preference
-- **Image optimization** — sharp-powered image processing via Astro
-
----
-
-## 📁 Project Structure
-
-```
-src/
-├── pages/        # Route pages (.astro, .mdx)
-├── components/   # Reusable UI components
-├── content/      # Blog posts and content collections
-├── assets/       # Images, fonts, and static assets
-public/           # Files served as-is (favicons, robots.txt, etc.)
-```
-
----
-
-## 🚀 Getting Started
+## Setup
 
 ```bash
-npm install          # Install dependencies
-npm run dev          # Start dev server at localhost:4321
-npm run build        # Build production site to ./dist/
-npm run preview      # Preview build locally
-npm run check        # Check for errors (astro check + eslint + prettier)
-npm run fix          # Auto-fix lint/format issues
+npm ci
 ```
 
----
+## Local development
 
-## 🚢 Deployment
+```bash
+npm run dev
+```
 
-| Platform                       | Config file                         | Status    |
-| ------------------------------ | ----------------------------------- | --------- |
-| **Cloudflare Pages** (primary) | `wrangler.toml`                     | ✅ Active |
-| **Netlify**                    | `netlify.toml`                      | ✅ Ready  |
-| **Vercel**                     | `vercel.json`                       | ✅ Ready  |
-| **Docker**                     | `Dockerfile` + `docker-compose.yml` | ✅ Ready  |
-
-Deploy to Cloudflare Pages via Wrangler:
+## Build
 
 ```bash
 npm run build
-npm run deploy          # production
-npm run deploy:preview  # preview branch
 ```
 
----
+## Verification
 
-## 📄 License
+```bash
+npm run verify
+npm run check:workflows
+npm run check:redirects-cloudflare
+npm run check:navigation-sim
+npm run localseo:ci
+```
 
-MIT — see [LICENSE.md](./LICENSE.md)
+## Deploy (Cloudflare Pages)
 
----
+```bash
+npm run build
+npm run deploy
+```
 
-## 🙏 Acknowledgements
+Preview deploy:
 
-Based on the [AstroWind](https://github.com/onwidget/astrowind) template.
+```bash
+npm run deploy:preview
+```
 
-## Monitoring & reliability workflows
+## CI quality gate (pull requests)
 
-- `npm run monitor:uptime` runs full route, asset, conversion, and third-party checks.
-- `npm run monitor:smoke` runs a reduced post-deploy smoke subset.
-- `npm run verify` validates lockfile consistency, monitoring config, and project checks.
-- Set `MAINTENANCE_MODE=true` in repository variables to allow maintenance response patterns.
-- Alert notifications include run URL, failed route metadata, timestamp, and runbook link.
+Authoritative PR gate is `.github/workflows/ci.yml` and runs:
+
+1. `npm run build`
+2. `npm run verify`
+3. `npm run check:workflows`
+4. `npm run check:redirects-cloudflare`
+5. `npm run check:navigation-sim`
+6. `npm run localseo:ci`

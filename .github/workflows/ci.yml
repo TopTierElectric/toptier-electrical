@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  quality-gate:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -22,11 +22,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Verify lockfile + lint + formatting + type checks
-        run: npm run verify
-
       - name: Build
         run: npm run build
+
+      - name: Verify lockfile + lint + formatting + type checks + site config
+        run: npm run verify
+
+      - name: Validate workflow gate integrity
+        run: npm run check:workflows
+
+      - name: Validate Cloudflare redirects
+        run: npm run check:redirects-cloudflare
+
+      - name: Simulate navigation routes
+        run: npm run check:navigation-sim
+
+      - name: Run local SEO CI audit
+        run: npm run localseo:ci
 
       - name: Security audit (high+)
         if: github.event_name == 'push'
