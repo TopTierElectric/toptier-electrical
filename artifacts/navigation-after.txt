@@ -4,4 +4,4 @@ npm warn Unknown project config "shamefully-hoist". This will stop working in th
 > toptier-electrical@1.0.0-beta.52 check:navigation-sim
 > node scripts/check-navigation-sim.mjs
 
-Navigation simulation passed for 23 expected routes.
+Navigation simulation passed for 34 expected routes.
