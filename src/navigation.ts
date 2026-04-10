@@ -1,4 +1,5 @@
 import { getPermalink, getAsset } from './utils/permalinks';
+import siteData from './data/site.json';
 
 export const headerData = {
   links: [
@@ -13,7 +14,7 @@ export const headerData = {
     { text: 'Contact', href: getPermalink('/contact') },
   ],
   actions: [
-    { text: 'Call / Text (616) 334-7159', href: 'tel:+16163347159' },
+    { text: `Call / Text ${siteData.business.phoneDisplay}`, href: `tel:${siteData.business.phoneE164}` },
     { text: 'Request Scheduling', href: getPermalink('/booking') },
   ],
 };
@@ -33,8 +34,8 @@ export const footerData = {
     {
       title: 'Contact',
       links: [
-        { text: '(616) 334-7159', href: 'tel:+16163347159' },
-        { text: 'info@toptier-electrical.com', href: 'mailto:info@toptier-electrical.com' },
+        { text: siteData.business.phoneDisplay, href: `tel:${siteData.business.phoneE164}` },
+        { text: siteData.business.email, href: `mailto:${siteData.business.email}` },
       ],
     },
     {
@@ -60,9 +61,9 @@ export const footerData = {
     {
       ariaLabel: 'Facebook',
       icon: 'tabler:brand-facebook',
-      href: 'https://www.facebook.com/profile.php?id=61573826170938',
+      href: siteData.seo.socialProfiles[0],
     },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
-  footNote: `© ${new Date().getFullYear()} Top Tier Electrical. All rights reserved.`,
+  footNote: `© ${new Date().getFullYear()} ${siteData.business.name}. All rights reserved.`,
 };
