@@ -24,10 +24,15 @@
     "fix:prettier": "prettier -w .",
     "verify:lockfile": "node scripts/verify-lockfile.mjs",
     "verify:monitoring-config": "node scripts/validate-monitoring-config.mjs",
-    "verify": "npm run verify:lockfile && npm run verify:monitoring-config && npm run check",
+    "verify": "npm run verify:lockfile && npm run verify:monitoring-config && npm run verify:site-config && npm run check",
     "monitor:uptime": "node scripts/run-monitoring.mjs full",
     "monitor:smoke": "node scripts/run-monitoring.mjs smoke",
-    "security:audit": "npm audit --audit-level=high"
+    "security:audit": "npm audit --audit-level=high",
+    "verify:site-config": "node scripts/validate-site-config.mjs",
+    "check:workflows": "node scripts/check-workflows.mjs",
+    "check:redirects-cloudflare": "node scripts/check-redirects-cloudflare.mjs",
+    "check:navigation-sim": "node scripts/check-navigation-sim.mjs",
+    "localseo:ci": "node scripts/local-seo-audit.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",

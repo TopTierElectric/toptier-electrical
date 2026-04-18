@@ -24,3 +24,6 @@ pnpm-lock.yaml
 .astro
 # codex local artifacts
 .codex/
+
+# generated artifacts
+artifacts/
