@@ -1,22 +1,13 @@
-// Business data for Top Tier Electrical
+import siteData from './data/site.json';
 
 const businessData = {
-  name: 'Top Tier Electrical',
+  name: siteData.business.name,
   contactInformation: {
-    phone: '+1-616-334-7159',
-    email: 'info@toptier-electrical.com',
+    phone: siteData.business.phoneE164,
+    email: siteData.business.email,
     address: 'West Michigan',
   },
-  serviceAreas: [
-    'Holland, MI',
-    'Grand Rapids, MI',
-    'Byron Center, MI',
-    'Zeeland, MI',
-    'Saugatuck, MI',
-    'Hudsonville, MI',
-    'Allegan, MI',
-    'Ada, MI',
-  ],
+  serviceAreas: siteData.serviceAreas,
   hours: {
     Monday: '08:00 AM - 06:00 PM',
     Tuesday: '08:00 AM - 06:00 PM',
@@ -27,11 +18,11 @@ const businessData = {
     Sunday: 'Closed',
   },
   metadata: {
-    businessType: 'Electrician',
-    license: 'MI License #6220430',
-    website: 'https://toptier-electrical.com',
-    sameAs: ['https://www.facebook.com/profile.php?id=61573826170938', 'https://g.page/r/CUr9o5vQ0M6nEAE/review'],
-    googleBusinessProfile: 'https://g.page/r/CUr9o5vQ0M6nEAE',
+    businessType: siteData.business.category,
+    license: siteData.business.license,
+    website: siteData.site.origin,
+    sameAs: [...siteData.seo.socialProfiles, siteData.seo.googleReviewUrl],
+    googleBusinessProfile: siteData.seo.googleBusinessProfileUrl,
   },
 };
 
