@@ -112,11 +112,6 @@ const websiteLd = JSON.stringify({
   '@id': `${siteUrl}/#website`,
   name: siteData.business.name,
   url: `${siteUrl}/`,
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: `${siteUrl}/blog?search={search_term_string}`,
-    'query-input': 'required name=search_term_string',
-  },
 });
 
 const parseSchemaType = (schema: string) => {
