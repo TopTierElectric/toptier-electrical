@@ -49,6 +49,12 @@
     background 0.2s ease;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
+
 .btn-primary {
   background: var(--brand-gold);
   color: var(--brand-black);
@@ -105,6 +111,14 @@
   color: #c7c7c7;
   border-top: 2px solid var(--brand-gold);
   padding: 2.5rem 0;
+}
+
+.pre-footer,
+.gallery-section,
+.trust-section,
+.site-footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
 }
 
 .site-footer a {

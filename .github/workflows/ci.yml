@@ -25,6 +25,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Enforce performance budgets
+        run: npm run check:performance-budgets
+
       - name: Verify lockfile + lint + formatting + type checks + site config
         run: npm run verify
 

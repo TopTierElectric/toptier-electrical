@@ -32,6 +32,7 @@
     "check:workflows": "node scripts/check-workflows.mjs",
     "check:redirects-cloudflare": "node scripts/check-redirects-cloudflare.mjs",
     "check:navigation-sim": "node scripts/check-navigation-sim.mjs",
+    "check:performance-budgets": "node scripts/check-performance-budgets.mjs",
     "localseo:ci": "node scripts/local-seo-audit.mjs"
   },
   "dependencies": {
