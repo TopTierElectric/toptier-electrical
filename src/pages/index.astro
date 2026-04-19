@@ -3,74 +3,6 @@ import TTELayout from '~/layouts/TTELayout.astro';
 import { Image } from 'astro:assets';
 import heroImage from '~/assets/images/Residential Panel.webp';
 
-const localBusinessLd = `{
-  "@context": "https://schema.org",
-  "@type": "Electrician",
-  "@id": "https://toptier-electrical.com/#electrician",
-  "name": "Top Tier Electrical",
-  "url": "https://toptier-electrical.com/",
-  "telephone": "+1-616-334-7159",
-  "email": "info@toptier-electrical.com",
-  "description": "Licensed & insured electrician serving West Michigan. Panel upgrades, EV chargers, lighting, and reliable troubleshooting.",
-  "image": "https://toptier-electrical.com/images/logos/TopTierElectrical_Primary_FlatGold_512.png",
-  "logo": "https://toptier-electrical.com/images/logos/TopTierElectrical_Primary_FlatGold_512.png",
-  "priceRange": "$$",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Holland",
-    "addressRegion": "MI",
-    "addressCountry": "US"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 42.7876,
-    "longitude": -86.1089
-  },
-  "areaServed": [
-    {"@type": "City", "name": "Holland", "containedInPlace": {"@type": "State", "name": "Michigan"}},
-    {"@type": "City", "name": "Grand Rapids", "containedInPlace": {"@type": "State", "name": "Michigan"}},
-    {"@type": "City", "name": "Byron Center", "containedInPlace": {"@type": "State", "name": "Michigan"}},
-    {"@type": "City", "name": "Zeeland", "containedInPlace": {"@type": "State", "name": "Michigan"}},
-    {"@type": "City", "name": "Saugatuck", "containedInPlace": {"@type": "State", "name": "Michigan"}},
-    {"@type": "City", "name": "Hudsonville", "containedInPlace": {"@type": "State", "name": "Michigan"}},
-    {"@type": "City", "name": "Allegan", "containedInPlace": {"@type": "State", "name": "Michigan"}},
-    {"@type": "City", "name": "Ada", "containedInPlace": {"@type": "State", "name": "Michigan"}}
-  ],
-  "sameAs": [
-    "https://www.facebook.com/profile.php?id=61573826170938",
-    "https://share.google/pOgXH17fP6C0srCw9"
-  ],
-  "openingHoursSpecification": [
-    {"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens": "08:00","closes": "18:00"},
-    {"@type": "OpeningHoursSpecification","dayOfWeek": ["Saturday"],"opens": "09:00","closes": "13:00"}
-  ],
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Electrical Services",
-    "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Panel Upgrades"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "EV Charger Installation"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Lighting & Fixtures"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Electrical Repairs"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Generator Installation"}},
-      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Energy Solutions"}}
-    ]
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "1",
-    "bestRating": "5"
-  }
-}`; // NOTE: Update reviewCount above with the real count from Google Business Profile
-
-const websiteLd = `{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Top Tier Electrical",
-  "url": "https://toptier-electrical.com/"
-}`;
-
 const faqLd = `{
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -81,11 +13,6 @@ const faqLd = `{
     {"@type": "Question","name": "What areas do you serve?","acceptedAnswer": {"@type": "Answer","text": "We serve West Michigan, including Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Hudsonville, and Allegan. See full service areas at https://toptier-electrical.com/service-areas."}}
   ]
 }`;
-const breadcrumbLd = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' }],
-});
 ---
 
 <TTELayout
@@ -93,7 +20,7 @@ const breadcrumbLd = JSON.stringify({
   description="Licensed & insured electrician serving West Michigan. Panel upgrades, EV chargers, lighting, and reliable troubleshooting. Get a clear estimate—call (616) 334-7159."
   canonical="https://toptier-electrical.com/"
   ogImage="https://toptier-electrical.com/images/logos/TopTierElectrical_Primary_FlatGold_512.png"
-  jsonLd={[localBusinessLd, websiteLd, faqLd, breadcrumbLd]}
+  jsonLd={[faqLd]}
 >
   <main id="main-content">
     <section class="hero">
