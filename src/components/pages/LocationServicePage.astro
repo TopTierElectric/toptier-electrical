@@ -9,6 +9,14 @@ export interface Props {
 
 const { city, slug, county = `${city}, MI` } = Astro.props;
 const canonical = `https://toptier-electrical.com/${slug}`;
+const nearbyAreas = [
+  { city: 'Holland', href: '/electrician-holland' },
+  { city: 'Grand Rapids', href: '/electrician-grand-rapids' },
+  { city: 'Zeeland', href: '/electrician-zeeland' },
+  { city: 'Hudsonville', href: '/electrician-hudsonville' },
+  { city: 'Allegan', href: '/electrician-allegan' },
+  { city: 'Ada', href: '/electrician-ada' },
+].filter((area) => area.city !== city);
 ---
 
 <TTELayout
@@ -50,6 +58,19 @@ const canonical = `https://toptier-electrical.com/${slug}`;
           <li><a href="/energy-solutions">Energy solutions</a></li>
         </ul>
         <p><a href="/contact" class="btn btn-secondary">Confirm availability in {city}</a></p>
+      </div>
+    </section>
+    <section class="services">
+      <div class="container">
+        <h2>Nearby Service Areas</h2>
+        <p>
+          Looking for electrical help in a nearby city? Explore nearby service area pages or view our full West Michigan
+          coverage map.
+        </p>
+        <ul>
+          {nearbyAreas.slice(0, 4).map((area) => <li><a href={area.href}>Electrician in {area.city}, MI</a></li>)}
+          <li><a href="/service-areas">View all service areas</a></li>
+        </ul>
       </div>
     </section>
     <section class="cta-section">
