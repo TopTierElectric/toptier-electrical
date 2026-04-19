@@ -16,7 +16,7 @@ export const getSourceRoutes = () => {
       if (entry.name === 'rss.xml.ts' || entry.name.includes('[...')) continue;
       const rel = path.relative(root, full).replace(/\\/g, '/');
       let route = rel
-        .replace(/\.(astro|md|mdx|ts)$/, '')
+        .replace(/\.(astro|md|mdx|ts)$/,'')
         .replace(/\/index$/, '')
         .replace(/^index$/, '');
       route = `/${route}`.replace(/\/+/g, '/');

@@ -1,0 +1,53 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+
+> toptier-electrical@1.0.0-beta.52 verify
+> npm run verify:lockfile && npm run verify:monitoring-config && npm run verify:site-config && npm run check
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+
+> toptier-electrical@1.0.0-beta.52 verify:lockfile
+> node scripts/verify-lockfile.mjs
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+
+up to date in 981ms
+
+336 packages are looking for funding
+  run `npm fund` for details
+Lockfile consistency check passed.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+
+> toptier-electrical@1.0.0-beta.52 verify:monitoring-config
+> node scripts/validate-monitoring-config.mjs
+
+Monitoring config validation passed.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+
+> toptier-electrical@1.0.0-beta.52 verify:site-config
+> node scripts/validate-site-config.mjs
+
+Site config validation passed.
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+
+> toptier-electrical@1.0.0-beta.52 check
+> npm run check:astro && npm run check:eslint && npm run check:prettier
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+npm warn Unknown env config "shamefully-hoist". This will stop working in the next major version of npm.
+npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm.
+
+> toptier-electrical@1.0.0-beta.52 check:astro
+> astro check
+
+sh: 1: astro: not found
