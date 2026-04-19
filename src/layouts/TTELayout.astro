@@ -59,23 +59,74 @@ const breadcrumbLd = JSON.stringify({
   })),
 });
 
-const businessLd = JSON.stringify({
+const organizationLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Electrician',
+  '@id': `${siteUrl}/#electrician`,
   name: 'Top Tier Electrical',
   url: siteUrl,
+  email: 'info@toptier-electrical.com',
   telephone: '+1-616-334-7159',
-  sameAs: ['https://www.facebook.com/profile.php?id=61573826170938', 'https://share.google/pOgXH17fP6C0srCw9'],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '5',
-    reviewCount: '10',
+  description:
+    'Licensed and insured electrician serving West Michigan with panel upgrades, EV charging, lighting, troubleshooting, and code-correct installations.',
+  image: `${siteUrl}/images/logos/TopTierElectrical_Primary_FlatGold_512.png`,
+  logo: `${siteUrl}/images/logos/TopTierElectrical_Primary_FlatGold_512.png`,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Holland',
+    addressRegion: 'MI',
+    addressCountry: 'US',
   },
-  review: {
-    '@type': 'Review',
-    reviewRating: { '@type': 'Rating', ratingValue: '5' },
-    author: { '@type': 'Person', name: 'Verified Google Reviewer' },
-    reviewBody: 'Professional service, clear communication, and quality workmanship.',
+  areaServed: [
+    { '@type': 'City', name: 'Holland, MI' },
+    { '@type': 'City', name: 'Grand Rapids, MI' },
+    { '@type': 'City', name: 'Zeeland, MI' },
+    { '@type': 'City', name: 'Hudsonville, MI' },
+    { '@type': 'City', name: 'Allegan, MI' },
+    { '@type': 'City', name: 'Ada, MI' },
+    { '@type': 'City', name: 'Muskegon, MI' },
+  ],
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '18:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Saturday'],
+      opens: '09:00',
+      closes: '13:00',
+    },
+  ],
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      telephone: '+1-616-334-7159',
+      email: 'info@toptier-electrical.com',
+      areaServed: 'US-MI',
+      availableLanguage: ['en'],
+    },
+  ],
+  sameAs: ['https://www.facebook.com/profile.php?id=61573826170938', 'https://share.google/pOgXH17fP6C0srCw9'],
+});
+
+const websiteLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  name: 'Top Tier Electrical',
+  url: siteUrl,
+  inLanguage: 'en-US',
+  publisher: {
+    '@id': `${siteUrl}/#electrician`,
+  },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${siteUrl}/blog?search={search_term_string}`,
+    'query-input': 'required name=search_term_string',
   },
 });
 ---
@@ -113,7 +164,7 @@ const businessLd = JSON.stringify({
     <link rel="manifest" href="/manifest.webmanifest" />
     <!-- JSON-LD Structured Data -->
     {
-      [breadcrumbLd, businessLd, ...jsonLdScripts].map((ld) => (
+      [breadcrumbLd, organizationLd, websiteLd, ...jsonLdScripts].map((ld) => (
         <script type="application/ld+json" is:inline set:html={ld} />
       ))
     }

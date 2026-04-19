@@ -18,13 +18,19 @@
 /TopTierElectrical_Primary_White_2048.png /images/logos/TopTierElectrical_Primary_FlatGold_512.png 301
 /TopTierElectrical_Primary_White_512.png /images/logos/TopTierElectrical_Primary_FlatGold_512.png 301
 
-# Canonical route aliases for slash-style blog/service slugs
-/blog/electrical-safety-tips /blog-electrical-safety 301
-/blog/ev-charger-installation-guide /blog-ev-charging 301
-/blog/how-to-choose-right-electrician /blog-right-electrician 301
-/blog/signs-you-need-panel-upgrade /blog-panel-upgrade-signs 301
-/blog/whole-home-surge-protection /blog-surge-protection 301
-/blog/winter-generator-readiness /blog-generator-readiness 301
+# Canonical route aliases (legacy slugs -> canonical clean slugs)
+/blog/blog-electrical-safety /blog/electrical-safety-tips 301
+/blog/blog-ev-charging /blog/ev-charger-installation-guide 301
+/blog/blog-right-electrician /blog/how-to-choose-right-electrician 301
+/blog/blog-panel-upgrade-signs /blog/signs-you-need-panel-upgrade 301
+/blog/blog-surge-protection /blog/whole-home-surge-protection 301
+/blog/blog-generator-readiness /blog/winter-generator-readiness 301
+/blog-electrical-safety /blog/electrical-safety-tips 301
+/blog-ev-charging /blog/ev-charger-installation-guide 301
+/blog-right-electrician /blog/how-to-choose-right-electrician 301
+/blog-panel-upgrade-signs /blog/signs-you-need-panel-upgrade 301
+/blog-surge-protection /blog/whole-home-surge-protection 301
+/blog-generator-readiness /blog/winter-generator-readiness 301
 /code-corrections /electrical-repairs 301
 /dedicated-circuits /services 301
 /electrician-grand-haven /service-areas 301
