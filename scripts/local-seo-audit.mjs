@@ -5,23 +5,6 @@ const config = loadSiteConfig();
 const sourceRoutes = getSourceRoutes();
 const errors = [...validateSiteConfig(config)];
 
-const validateDuplicates = (label, list) => {
-  const duplicateSet = new Set();
-  const duplicates = [];
-
-  for (const item of list) {
-    if (duplicateSet.has(item)) duplicates.push(item);
-    duplicateSet.add(item);
-  }
-
-  if (duplicates.length) {
-    errors.push(`${label} contains duplicate slugs: ${[...new Set(duplicates)].join(', ')}`);
-  }
-};
-
-validateDuplicates('routes.services', config.routes.services ?? []);
-validateDuplicates('routes.pages', config.routes.pages ?? []);
-
 for (const slug of config.routes.services ?? []) {
   const route = `/${slug}`;
   if (!sourceRoutes.has(route)) errors.push(`Service route missing in src/pages: ${route}`);

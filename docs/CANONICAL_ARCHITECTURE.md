@@ -1,7 +1,6 @@
 # Canonical Architecture
 
 ## Canonical runtime source
-
 The canonical runtime source for production pages and templates is:
 
 - `src/pages/**`
@@ -11,14 +10,12 @@ The canonical runtime source for production pages and templates is:
 - `wrangler.toml` and `wrangler.jsonc` (Cloudflare Pages deploy config)
 
 ## Generated output paths
-
 Generated artifacts are outputs, not source-of-truth:
 
 - `dist/**`
 - `artifacts/**`
 
 ## Non-canonical / legacy paths
-
 These paths are not authoritative for runtime architecture decisions unless explicitly migrated:
 
 - Legacy root HTML files
@@ -27,7 +24,6 @@ These paths are not authoritative for runtime architecture decisions unless expl
 - Duplicate config layers that hardcode business identity
 
 ## Source-of-truth for business/site identity
-
 `src/data/site.json` is the single source-of-truth for:
 
 - business identity
@@ -39,7 +35,6 @@ These paths are not authoritative for runtime architecture decisions unless expl
 Any other config files must derive from this file and must not re-declare conflicting hardcoded values.
 
 ## Migration rules for future Codex work
-
 1. Do not replace the current static build/deploy shape with a different framework architecture.
 2. Add new business identity fields in `src/data/site.json` first, then expose thin adapters in `src/config/*` only when needed.
 3. Route additions must be implemented in `src/pages/**` and reflected in `src/data/site.json` route lists used by validation.
