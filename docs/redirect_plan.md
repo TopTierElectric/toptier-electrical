@@ -2,21 +2,13 @@
 
 ## Implemented in code
 
-- `/blog/blog-electrical-safety` -> `/blog/electrical-safety-tips` (301)
-- `/blog/blog-ev-charging` -> `/blog/ev-charger-installation-guide` (301)
-- `/blog/blog-right-electrician` -> `/blog/how-to-choose-right-electrician` (301)
-- `/blog/blog-panel-upgrade-signs` -> `/blog/signs-you-need-panel-upgrade` (301)
-- `/blog/blog-surge-protection` -> `/blog/whole-home-surge-protection` (301)
-- `/blog/blog-generator-readiness` -> `/blog/winter-generator-readiness` (301)
-- `/blog-electrical-safety` -> `/blog/electrical-safety-tips` (301)
-- `/blog-ev-charging` -> `/blog/ev-charger-installation-guide` (301)
-- `/blog-right-electrician` -> `/blog/how-to-choose-right-electrician` (301)
-- `/blog-panel-upgrade-signs` -> `/blog/signs-you-need-panel-upgrade` (301)
-- `/blog-surge-protection` -> `/blog/whole-home-surge-protection` (301)
-- `/blog-generator-readiness` -> `/blog/winter-generator-readiness` (301)
+- Blog redirect ownership is currently handled inside Astro page routes (`src/pages/blog/*.astro`).
+- Cloudflare `_redirects` intentionally excludes blog-slug remaps to avoid redirect cycles with page-level redirects.
+- Non-blog canonical consolidations remain in `public/_redirects` (e.g., `/code-corrections -> /electrical-repairs`, `/reviews -> /testimonials`).
 
 ## Guardrails
 
 - Keep single-hop redirects only.
+- Do not create reverse edge redirects for routes that already redirect at page level.
 - Keep canonical pointing to final destination URL.
 - Re-test during each release with `npm run build` and deployment smoke checks.

@@ -2,10 +2,10 @@
 
 ## Confirmed overlaps
 
-1. **Legacy blog slugs vs canonical blog URLs**
-   - Legacy routes existed under `/blog/blog-*` and alias-style `/blog-*` while canonical intent pages are `/blog/*-guide` style.
-   - Risk: diluted link equity and mixed relevance signals.
-   - **Fix implemented:** added 301 redirect rules from legacy slugs to canonical blog URLs in `public/_redirects`.
+1. **Cloudflare edge redirects vs Astro page redirects on blog routes**
+   - Clean-slug blog routes in `src/pages/blog/*.astro` currently issue 301 redirects to `/blog/blog-*`.
+   - Adding reverse edge redirects (`/blog/blog-* -> /blog/*`) creates redirect loops.
+   - **Fix implemented:** removed Cloudflare blog redirects from `public/_redirects` and left blog ownership at page-level redirects only.
 
 2. **Code corrections vs electrical repairs**
    - `/code-corrections` and `/electrical-repairs` overlap on troubleshooting/corrections intent.
