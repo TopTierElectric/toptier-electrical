@@ -3,20 +3,6 @@ import TTELayout from '~/layouts/TTELayout.astro';
 import { Image } from 'astro:assets';
 import heroImage from '~/assets/images/Residential Panel.webp';
 
-const servicesListLd = `{
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "Top Tier Electrical Service Categories",
-  "itemListElement": [
-    {"@type": "ListItem", "position": 1, "url": "https://toptier-electrical.com/panel-upgrades", "name": "Panel Upgrades"},
-    {"@type": "ListItem", "position": 2, "url": "https://toptier-electrical.com/ev-chargers", "name": "EV Charger Installation"},
-    {"@type": "ListItem", "position": 3, "url": "https://toptier-electrical.com/lighting", "name": "Lighting and Fixtures"},
-    {"@type": "ListItem", "position": 4, "url": "https://toptier-electrical.com/electrical-repairs", "name": "Electrical Repairs"},
-    {"@type": "ListItem", "position": 5, "url": "https://toptier-electrical.com/generators", "name": "Generator Installation"},
-    {"@type": "ListItem", "position": 6, "url": "https://toptier-electrical.com/energy-solutions", "name": "Energy Solutions"}
-  ]
-}`;
-
 const faqLd = `{
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -27,11 +13,6 @@ const faqLd = `{
     {"@type": "Question","name": "What areas do you serve?","acceptedAnswer": {"@type": "Answer","text": "We serve West Michigan, including Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Hudsonville, and Allegan. See full service areas at https://toptier-electrical.com/service-areas."}}
   ]
 }`;
-const breadcrumbLd = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' }],
-});
 ---
 
 <TTELayout
@@ -39,7 +20,7 @@ const breadcrumbLd = JSON.stringify({
   description="Licensed & insured electrician serving West Michigan. Panel upgrades, EV chargers, lighting, and reliable troubleshooting. Get a clear estimate—call (616) 334-7159."
   canonical="https://toptier-electrical.com/"
   ogImage="https://toptier-electrical.com/images/logos/TopTierElectrical_Primary_FlatGold_512.png"
-  jsonLd={[servicesListLd, faqLd, breadcrumbLd]}
+  jsonLd={[faqLd]}
 >
   <main id="main-content">
     <section class="hero">
