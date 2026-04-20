@@ -2,6 +2,7 @@
 import '@fontsource-variable/inter';
 import '~/assets/styles/tte-site.css';
 import Favicons from '~/components/Favicons.astro';
+import siteData from '~/data/site.json';
 
 export interface Props {
   title: string;
@@ -29,13 +30,18 @@ const {
   breadcrumbItems,
 } = Astro.props;
 
-const canonicalUrl = canonical || `https://toptier-electrical.com${Astro.url.pathname}`;
+const siteUrl = siteData.site.origin;
+const normalizePath = (path: string) => {
+  if (!path || path === '/') return '/';
+  return path.endsWith('/') ? path.slice(0, -1) : path;
+};
+
+const resolvedPath = normalizePath(Astro.url.pathname);
+const canonicalUrl = canonical || `${siteUrl}${resolvedPath}`;
 const resolvedOgTitle = ogTitle || title;
 const resolvedOgDescription = ogDescription || description;
 
-const jsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
-const siteUrl = 'https://toptier-electrical.com';
-const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const pathSegments = resolvedPath.split('/').filter(Boolean);
 const autoBreadcrumbItems = [
   { name: 'Home', item: `${siteUrl}/` },
   ...pathSegments.map((segment, index) => ({
@@ -47,6 +53,7 @@ const autoBreadcrumbItems = [
   })),
 ];
 const resolvedBreadcrumbs = breadcrumbItems ?? autoBreadcrumbItems;
+const hasBreadcrumbs = resolvedBreadcrumbs.length > 1;
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -59,75 +66,69 @@ const breadcrumbLd = JSON.stringify({
   })),
 });
 
-const organizationLd = JSON.stringify({
+const localBusinessLd = JSON.stringify({
   '@context': 'https://schema.org',
-  '@type': 'Electrician',
-  '@id': `${siteUrl}/#electrician`,
-  name: 'Top Tier Electrical',
+  '@type': 'LocalBusiness',
+  '@id': `${siteUrl}/#localbusiness`,
+  name: siteData.business.name,
   url: siteUrl,
-  email: 'info@toptier-electrical.com',
-  telephone: '+1-616-334-7159',
-  description:
-    'Licensed and insured electrician serving West Michigan with panel upgrades, EV charging, lighting, troubleshooting, and code-correct installations.',
+  telephone: siteData.business.phoneE164,
+  email: siteData.business.email,
   image: `${siteUrl}/images/logos/TopTierElectrical_Primary_FlatGold_512.png`,
-  logo: `${siteUrl}/images/logos/TopTierElectrical_Primary_FlatGold_512.png`,
+  priceRange: '$$',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Holland',
     addressRegion: 'MI',
     addressCountry: 'US',
   },
-  areaServed: [
-    { '@type': 'City', name: 'Holland, MI' },
-    { '@type': 'City', name: 'Grand Rapids, MI' },
-    { '@type': 'City', name: 'Zeeland, MI' },
-    { '@type': 'City', name: 'Hudsonville, MI' },
-    { '@type': 'City', name: 'Allegan, MI' },
-    { '@type': 'City', name: 'Ada, MI' },
-    { '@type': 'City', name: 'Muskegon, MI' },
-  ],
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '08:00',
-      closes: '18:00',
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Saturday'],
-      opens: '09:00',
-      closes: '13:00',
-    },
-  ],
+  areaServed: siteData.serviceAreas.map((area) => ({ '@type': 'Place', name: area })),
+  sameAs: siteData.seo.socialProfiles,
+});
+
+const organizationLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${siteUrl}/#organization`,
+  name: siteData.business.legalName,
+  url: siteUrl,
+  logo: `${siteUrl}/images/logos/TopTierElectrical_Primary_FlatGold_512.png`,
   contactPoint: [
     {
       '@type': 'ContactPoint',
+      telephone: siteData.business.phoneE164,
       contactType: 'customer service',
-      telephone: '+1-616-334-7159',
-      email: 'info@toptier-electrical.com',
+      email: siteData.business.email,
       areaServed: 'US-MI',
-      availableLanguage: ['en'],
+      availableLanguage: 'en',
     },
   ],
-  sameAs: ['https://www.facebook.com/profile.php?id=61573826170938', 'https://share.google/pOgXH17fP6C0srCw9'],
+  sameAs: siteData.seo.socialProfiles,
 });
 
 const websiteLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': `${siteUrl}/#website`,
-  name: 'Top Tier Electrical',
-  url: siteUrl,
-  inLanguage: 'en-US',
-  publisher: {
-    '@id': `${siteUrl}/#electrician`,
-  },
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: `${siteUrl}/blog?search={search_term_string}`,
-    'query-input': 'required name=search_term_string',
-  },
+  name: siteData.business.name,
+  url: `${siteUrl}/`,
+});
+
+const parseSchemaType = (schema: string) => {
+  try {
+    const parsed = JSON.parse(schema);
+    if (!parsed || typeof parsed !== 'object') return null;
+    return typeof parsed['@type'] === 'string' ? parsed['@type'] : null;
+  } catch {
+    return null;
+  }
+};
+
+const protectedTypes = new Set(['BreadcrumbList', 'LocalBusiness', 'Electrician', 'Organization', 'WebSite']);
+const rawJsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
+  const schemaType = parseSchemaType(schema);
+  return schemaType ? !protectedTypes.has(schemaType) : true;
 });
 ---
 
@@ -164,7 +165,7 @@ const websiteLd = JSON.stringify({
     <link rel="manifest" href="/manifest.webmanifest" />
     <!-- JSON-LD Structured Data -->
     {
-      [breadcrumbLd, organizationLd, websiteLd, ...jsonLdScripts].map((ld) => (
+      [breadcrumbLd, organizationLd, websiteLd, localBusinessLd, ...jsonLdScripts].map((ld) => (
         <script type="application/ld+json" is:inline set:html={ld} />
       ))
     }
@@ -261,6 +262,26 @@ const websiteLd = JSON.stringify({
         </nav>
       </div>
     </header>
+    {
+      hasBreadcrumbs && (
+        <nav class="container mt-4" aria-label="Breadcrumb">
+          <ol class="flex flex-wrap gap-2 text-sm text-muted">
+            {resolvedBreadcrumbs.map((entry, index) => (
+              <li class="inline-flex items-center gap-2">
+                {index > 0 && <span aria-hidden="true">/</span>}
+                {index === resolvedBreadcrumbs.length - 1 ? (
+                  <span aria-current="page">{entry.name}</span>
+                ) : (
+                  <a href={entry.item} class="underline-offset-4 hover:underline">
+                    {entry.name}
+                  </a>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
 
     <slot />
 
