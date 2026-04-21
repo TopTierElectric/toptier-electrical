@@ -9,13 +9,28 @@ const breadcrumbLd = JSON.stringify({
     { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://toptier-electrical.com/contact' },
   ],
 });
+
+const contactPageLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Top Tier Electrical',
+  url: 'https://toptier-electrical.com/contact',
+  mainEntity: {
+    '@type': 'Electrician',
+    '@id': 'https://toptier-electrical.com/#electrician',
+    name: 'Top Tier Electrical',
+    telephone: '+1-616-334-7159',
+    email: 'info@toptier-electrical.com',
+    areaServed: 'West Michigan',
+  },
+});
 ---
 
 <TTELayout
-  title="Contact Top Tier Electrical | West Michigan Electrician"
-  description="Call or email Top Tier Electrical for service in West Michigan. Share project details or request scheduling to confirm next steps."
+  title="Contact a West Michigan Electrician | Call, Text, or Book Online"
+  description="Contact Top Tier Electrical for service in West Michigan. Call, text, or request scheduling online for panel, lighting, EV charger, and repair work."
   canonical="https://toptier-electrical.com/contact"
-  jsonLd={[breadcrumbLd]}
+  jsonLd={[breadcrumbLd, contactPageLd]}
 >
   <main id="main-content">
     <section class="hero">
