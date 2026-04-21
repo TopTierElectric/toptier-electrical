@@ -33,7 +33,10 @@
     "check:redirects-cloudflare": "node scripts/check-redirects-cloudflare.mjs",
     "check:navigation-sim": "node scripts/check-navigation-sim.mjs",
     "check:performance-budgets": "node scripts/check-performance-budgets.mjs",
-    "localseo:ci": "node scripts/local-seo-audit.mjs"
+    "localseo:ci": "node scripts/local-seo-audit.mjs",
+    "check:seo-render": "node scripts/check-seo-render.mjs",
+    "check:integrations": "node scripts/check-integrations.mjs",
+    "crawl:preview": "node scripts/crawl-site-audit.mjs https://codex-task-title.toptier-electrical.pages.dev/"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",
