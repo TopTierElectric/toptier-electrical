@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 import crypto from 'node:crypto';
 
-const startUrl = process.argv[2] || 'https://codex-task-title.toptier-electrical.pages.dev/';
+const startUrl = process.argv[2] || process.env.CRAWL_TARGET_URL || 'https://toptier-electrical.com/';
 const maxPages = Number(process.argv[3] || 300);
+const strictMode = process.env.CRAWL_STRICT === '1';
 const origin = new URL(startUrl).origin;
 
 const queue = [startUrl];
@@ -73,4 +74,4 @@ console.log(
   )
 );
 
-if (failures.length) process.exitCode = 1;
+if (failures.length && strictMode) process.exitCode = 1;

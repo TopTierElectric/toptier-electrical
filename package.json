@@ -36,7 +36,7 @@
     "localseo:ci": "node scripts/local-seo-audit.mjs",
     "check:seo-render": "node scripts/check-seo-render.mjs",
     "check:integrations": "node scripts/check-integrations.mjs",
-    "crawl:preview": "node scripts/crawl-site-audit.mjs https://codex-task-title.toptier-electrical.pages.dev/"
+    "crawl:preview": "node scripts/crawl-site-audit.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",

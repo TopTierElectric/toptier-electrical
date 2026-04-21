@@ -10,6 +10,8 @@ Date: 2026-04-21
 ## Local byte-level crawl simulation
 
 - Command used: `node scripts/crawl-site-audit.mjs http://127.0.0.1:4322/ 300`
+- Reusable command: `npm run crawl:preview` (target can be passed as arg or `CRAWL_TARGET_URL` env var; default is `https://toptier-electrical.com/`).
+- Optional strict mode: set `CRAWL_STRICT=1` to return a non-zero exit code when fetch failures are detected.
 - Pages crawled: **34**
 - HTTP failures: **0**
 - Missing canonicals: **0**
