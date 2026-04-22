@@ -2371,6 +2371,8 @@ header nav .btn-ghost:focus {
 .hero-image {
   flex: 1 1 0;
   min-width: 0;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .hero-label {
@@ -2418,10 +2420,19 @@ header nav .btn-ghost:focus {
   .hero-cta {
     justify-content: center;
   }
+
+  .hero-image {
+    justify-content: center;
+  }
+
+  .hero-picture img {
+    max-height: none;
+  }
 }
 
 .hero-picture {
-  margin-top: 1.5rem;
+  width: min(100%, 560px);
+  margin-top: 0;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--brand-shadow);
@@ -2429,7 +2440,8 @@ header nav .btn-ghost:focus {
 
 .hero-picture img {
   width: 100%;
-  height: auto;
+  max-height: 420px;
+  object-fit: cover;
   display: block;
 }
 
