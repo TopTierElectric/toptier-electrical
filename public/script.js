@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 1200 && nav.classList.contains('active')) {
+      if (window.innerWidth >= 900 && nav.classList.contains('active')) {
         setMobileNavOpen(false);
       }
     });

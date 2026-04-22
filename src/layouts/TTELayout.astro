@@ -129,8 +129,8 @@ const websiteLd = JSON.stringify({
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#1a1a2e" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="robots" content={robots} />
@@ -228,7 +228,7 @@ const websiteLd = JSON.stringify({
         </a>
         <button
           type="button"
-          class="menu-toggle"
+          class="menu-toggle nav-toggle"
           aria-label="Toggle navigation"
           aria-controls="main-nav"
           aria-expanded="false"
@@ -300,30 +300,49 @@ const websiteLd = JSON.stringify({
       </div>
     </section>
     <footer class="site-footer">
-      <div class="footer-logo">
-        <picture>
-          <source srcset="/images/logos/TopTierElectrical_Logo_Web_600w.webp" type="image/webp" />
-          <img
-            src="/images/logos/TopTierElectrical_Logo_Web_600w.webp"
-            alt="Top Tier Electrical logo"
-            width="200"
-            height="64"
-            decoding="async"
-          />
-        </picture>
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <picture>
+              <source srcset="/images/logos/TopTierElectrical_Logo_Web_600w.webp" type="image/webp" />
+              <img
+                src="/images/logos/TopTierElectrical_Logo_Web_600w.webp"
+                alt="Top Tier Electrical logo"
+                width="200"
+                height="64"
+                decoding="async"
+              />
+            </picture>
+          </div>
+          <p>MI License #6220430</p>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <p>
+            <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a>
+          </p>
+          <p>
+            <a href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a>
+          </p>
+          <p>Mon–Fri 8am–6pm · Sat 9am–1pm</p>
+        </div>
+        <div class="footer-col">
+          <h4>Verify</h4>
+          <p>
+            <a
+              href="https://share.google/pOgXH17fP6C0srCw9"
+              rel="noopener noreferrer"
+              target="_blank"
+              aria-label="Google Business Profile"
+            >
+              Google Business Profile
+            </a>
+          </p>
+          <p><a href="/privacy">Privacy Policy</a></p>
+          <p><a href="/terms">Terms &amp; Conditions</a></p>
+        </div>
       </div>
-      <p>MI License #6220430</p>
-      <p>
-        <a
-          href="https://share.google/pOgXH17fP6C0srCw9"
-          rel="noopener noreferrer"
-          target="_blank"
-          aria-label="Google Business Profile"
-        >
-          Google Business Profile
-        </a>
-      </p>
-      <p>&copy; {new Date().getFullYear()} Top Tier Electrical. All rights reserved.</p>
+      <p class="footer-meta">&copy; {new Date().getFullYear()} Top Tier Electrical. All rights reserved.</p>
     </footer>
 
     <script src="/script.js" defer></script>
