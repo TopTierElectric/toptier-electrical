@@ -1,90 +1,26 @@
 ---
-import TTELayout from '~/layouts/TTELayout.astro';
-
-const breadcrumbLd = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Service Areas', item: 'https://toptier-electrical.com/service-areas' },
-  ],
-});
+import SiteRewriteLayout from '~/layouts/SiteRewriteLayout.astro';
 ---
 
-<TTELayout
-  title="Service Areas | Top Tier Electrical West Michigan"
-  description="Top Tier Electrical serves Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Hudsonville, Allegan, and Ada in West Michigan."
-  canonical="https://toptier-electrical.com/service-areas"
-  jsonLd={[breadcrumbLd]}
+<SiteRewriteLayout
+  title="Service Areas | Top Tier Electrical"
+  description="See the West Michigan communities Top Tier Electrical serves for residential and light commercial electrical work."
+  canonical="https://codex-task-title-n560vp.toptier-electrical.pages.dev/service-areas"
 >
-  <main id="main-content">
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Service Areas</h1>
-        <p>Serving West Michigan homeowners and businesses across the region.</p>
-        <a href="/contact" class="btn btn-primary">Check Your Area</a>
-      </div>
-    </section>
-    <div class="trust-strip">
-      <div class="container">
-        <div class="trust-badges">
-          <span class="badge">&#10004; Licensed &amp; Insured</span>
-          <span class="badge">MI License #6220430</span>
-          <span class="badge">&#127968; Local West Michigan</span>
-        </div>
-      </div>
-    </div>
-    <section class="container" class="section-pad">
-      <h2>Cities We Serve</h2>
-      <div class="service-cards">
-        <div class="service-card">
-          <h3><a href="/electrician-holland">Holland, MI</a></h3><p>
-            Residential and commercial electrical services in Holland and the surrounding area.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-grand-rapids">Grand Rapids, MI</a></h3><p>
-            Electrical service work throughout Grand Rapids and surrounding communities.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-zeeland">Zeeland, MI</a></h3><p>
-            Panel upgrades, lighting, and electrical repairs in Zeeland.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-allegan">Allegan, MI</a></h3><p>
-            Residential and commercial electrical in Allegan County.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-hudsonville">Hudsonville, MI</a></h3><p>
-            Electrical service work in Hudsonville and nearby areas.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-ada">Ada, MI</a></h3><p>Residential and commercial electrical services in Ada.</p>
-        </div>
-      </div>
-      <h2 class="mt-8">Full Coverage Area</h2>
-      <p>
-        We serve <strong>Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Hudsonville, Allegan, Ada</strong>,
-        and surrounding West Michigan communities.
+  <main class="container" role="main">
+    <section aria-labelledby="areas-heading">
+      <h1 id="areas-heading">Service Areas</h1>
+      <p class="content">
+        We serve West Michigan communities with residential and light commercial electrical services.
       </p>
-      <p>
-        If you're not sure whether we cover your location, call or text us at <a href="tel:+16163347159"
-          >(616)&nbsp;334&#8209;7159</a
-        > and we'll confirm quickly.
-      </p>
-    </section>
-    <section class="cta-section">
-      <h2>Confirm Your Area</h2>
-      <p>
-        Call <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a> or email <a
-          href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
-        > to confirm service availability.
-      </p>
-      <a href="/booking" class="btn btn-primary">Request Scheduling</a>
+      <ul class="service-areas-list">
+        <li>Holland, MI</li>
+        <li>Grand Rapids, MI</li>
+        <li>Zeeland, MI</li>
+        <li>Hudsonville, MI</li>
+        <li>Allegan, MI</li>
+        <li>Ada, MI</li>
+      </ul>
     </section>
   </main>
-</TTELayout>
+</SiteRewriteLayout>

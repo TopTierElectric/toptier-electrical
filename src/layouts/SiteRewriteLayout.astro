@@ -1,0 +1,97 @@
+---
+export interface Props {
+  title: string;
+  canonical: string;
+  description?: string;
+  jsonLd?: string;
+}
+
+const {
+  title,
+  canonical,
+  description = 'Top Tier Electrical serves West Michigan with licensed residential and light commercial electrical services.',
+  jsonLd,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    {jsonLd && <script type="application/ld+json" is:inline set:html={jsonLd} />}
+  </head>
+  <body>
+    <header class="site-header" role="banner">
+      <div class="container site-header-inner">
+        <div class="brand">
+          <a href="/" aria-label="Top Tier Electrical home">Top Tier Electrical</a>
+        </div>
+
+        <button
+          id="navToggle"
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="siteNav"
+          aria-label="Toggle navigation"
+        >
+          Menu
+        </button>
+
+        <nav id="siteNav" class="site-nav" role="navigation" aria-label="Primary">
+          <ul>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/our-work">Our Work</a></li>
+            <li><a href="/service-areas">Service Areas</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-ctas">
+          <a class="btn-primary" href="tel:+16163347159" aria-label="Call Top Tier Electrical">(616) 334‑7159</a>
+          <a class="btn-secondary" href="/request-scheduling" aria-label="Request Scheduling">Request Scheduling</a>
+        </div>
+      </div>
+    </header>
+
+    <slot />
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container site-footer-inner">
+        <div>
+          <p><strong>Top Tier Electrical</strong></p>
+          <p><a href="tel:+16163347159">(616) 334‑7159</a></p>
+          <p><a href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a></p>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/our-work">Our Work</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Service Areas</h4>
+          <ul class="service-areas-list">
+            <li>Holland, MI</li>
+            <li>Grand Rapids, MI</li>
+            <li>Zeeland, MI</li>
+            <li>Hudsonville, MI</li>
+            <li>Allegan, MI</li>
+            <li>Ada, MI</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline src="/assets/js/site.js" defer></script>
+  </body>
+</html>

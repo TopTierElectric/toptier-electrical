@@ -1,0 +1,33 @@
+---
+import SiteRewriteLayout from '~/layouts/SiteRewriteLayout.astro';
+---
+
+<SiteRewriteLayout
+  title="Request Scheduling | Top Tier Electrical"
+  description="Request electrical scheduling with Top Tier Electrical for panel, EV charger, repair, or lighting projects."
+  canonical="https://codex-task-title-n560vp.toptier-electrical.pages.dev/request-scheduling"
+>
+  <main class="container" role="main">
+    <section aria-labelledby="request-heading">
+      <h1 id="request-heading">Request Scheduling</h1>
+      <form name="request-scheduling" method="post" action="/thank-you">
+        <div>
+          <label for="project-type">Project Type</label><select id="project-type" name="project-type"
+            ><option>Panel Upgrade</option><option>EV Charger</option><option>Repairs</option><option>Lighting</option
+            ><option>Other</option></select
+          >
+        </div>
+        <div><label for="address">Service Address</label><input id="address" name="address" required /></div>
+        <div>
+          <label for="preferred-times">Preferred Times</label><input id="preferred-times" name="preferred-times" />
+        </div>
+        <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" required /></div>
+        <div><label for="email">Email</label><input id="email" name="email" type="email" required /></div>
+        <div>
+          <label for="details">Project Details</label><textarea id="details" name="details" required></textarea>
+        </div>
+        <button class="btn-primary" type="submit">Request Scheduling</button>
+      </form>
+    </section>
+  </main>
+</SiteRewriteLayout>
