@@ -1,8 +1,8 @@
 /* global gtag */
 // Basic JavaScript to handle mobile navigation toggle
 document.addEventListener('DOMContentLoaded', function () {
-  const menuToggle = document.querySelector('.menu-toggle');
-  const nav = document.getElementById('main-nav');
+  const menuToggle = document.getElementById('navToggle') || document.querySelector('.menu-toggle');
+  const nav = document.getElementById('siteNav') || document.getElementById('main-nav');
   function setMobileNavOpen(open) {
     if (!menuToggle || !nav) {
       return;

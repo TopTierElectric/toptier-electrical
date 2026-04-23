@@ -44,9 +44,9 @@ const breadcrumbLd = JSON.stringify({
   <main id="main-content">
     <section class="hero">
       <div class="container hero-layout">
-        <div class="hero-text">
+        <div class="hero-text hero-main">
           <div class="hero-label">Serving West Michigan</div>
-          <h1>Clean Electrical Work.<br />Clear Communication.</h1>
+          <h1 id="hero-heading">Electrician in West Michigan | Top Tier Electrical</h1>
           <p class="hero-sub">
             I focus on scope clarity, clean installs, and realistic timelines so you can make confident decisions about
             your electrical project.
@@ -56,13 +56,15 @@ const breadcrumbLd = JSON.stringify({
             <a href="tel:+16163347159" class="btn btn-ghost">Call / Text (616)&nbsp;334&#8209;7159</a>
           </div>
         </div>
-        <div class="hero-image">
+        <div class="hero-image hero-aside">
           <Image
             class="hero-picture"
+            width="1200"
+            height="675"
             src={heroImage}
             alt="Clean residential electrical panel installation by Top Tier Electrical in Holland MI"
             widths={[480, 800, 1200]}
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width:600px) 100vw, (max-width:900px) 60vw, 800px"
             format="webp"
             loading="eager"
             decoding="async"
@@ -77,6 +79,7 @@ const breadcrumbLd = JSON.stringify({
         <div class="trust-badges">
           <span class="badge">&#10004; Licensed &amp; Insured</span>
           <span class="badge">MI License #6220430</span>
+          <span class="badge">Mon–Fri 8am–6pm</span>
           <span class="badge">&#128274; Code-aware workmanship</span>
           <span class="badge">&#127968; Owner-operated</span>
         </div>
@@ -85,28 +88,28 @@ const breadcrumbLd = JSON.stringify({
 
     <section class="container" id="services">
       <h2>Services</h2>
-      <div class="service-cards">
-        <a href="/panel-upgrades" class="service-card">
+      <div class="service-cards card-grid" role="list">
+        <a href="/panel-upgrades" class="service-card card" role="listitem">
           <h3>Panel Upgrades</h3>
           <p>Safe, reliable service for modern electrical needs.</p>
         </a>
-        <a href="/ev-chargers" class="service-card">
+        <a href="/ev-chargers" class="service-card card" role="listitem">
           <h3>EV Charger Installation</h3>
           <p>Dedicated 240V circuits for Level 2 home charging.</p>
         </a>
-        <a href="/lighting" class="service-card">
+        <a href="/lighting" class="service-card card" role="listitem">
           <h3>Lighting &amp; Fixtures</h3>
           <p>Interior and exterior lighting with clean finish work.</p>
         </a>
-        <a href="/electrical-repairs" class="service-card">
+        <a href="/electrical-repairs" class="service-card card" role="listitem">
           <h3>Electrical Repairs</h3>
           <p>Troubleshooting and repair of outlets, circuits, and panels.</p>
         </a>
-        <a href="/generators" class="service-card">
+        <a href="/generators" class="service-card card" role="listitem">
           <h3>Generator Installation</h3>
           <p>Backup power with transfer switches and load planning.</p>
         </a>
-        <a href="/energy-solutions" class="service-card">
+        <a href="/energy-solutions" class="service-card card" role="listitem">
           <h3>Energy Solutions</h3>
           <p>Efficiency upgrades and smart energy management.</p>
         </a>
@@ -230,7 +233,7 @@ const breadcrumbLd = JSON.stringify({
       </p>
     </section>
 
-    <section class="container" id="faq">
+    <section class="container" id="faq" aria-labelledby="faq-heading">
       <h2>Common Questions</h2>
       <div class="faq-list">
         <details>

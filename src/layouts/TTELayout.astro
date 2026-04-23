@@ -110,6 +110,8 @@ const organizationLd = JSON.stringify({
       availableLanguage: ['en'],
     },
   ],
+  license: 'MI License #6220430',
+  openingHours: 'Mo-Fr 08:00-18:00, Sa 09:00-13:00',
   sameAs: ['https://www.facebook.com/profile.php?id=61573826170938', 'https://share.google/pOgXH17fP6C0srCw9'],
 });
 
@@ -155,6 +157,7 @@ const websiteLd = JSON.stringify({
     <meta name="geo.placename" content="West Michigan" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="en" href={canonicalUrl} />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml" />
     <Favicons />
     <link rel="manifest" href="/manifest.webmanifest" />
     <!-- JSON-LD Structured Data -->
@@ -212,7 +215,7 @@ const websiteLd = JSON.stringify({
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header class="site-header">
+    <header class="site-header" role="banner">
       <div class="container header-inner">
         <a class="logo" href="/" aria-label="Top Tier Electrical home">
           <picture>
@@ -228,16 +231,17 @@ const websiteLd = JSON.stringify({
         </a>
         <button
           type="button"
+          id="navToggle"
           class="menu-toggle nav-toggle"
           aria-label="Toggle navigation"
-          aria-controls="main-nav"
+          aria-controls="siteNav"
           aria-expanded="false"
         >
           <span></span>
           <span></span>
           <span></span>
         </button>
-        <nav id="main-nav" class="site-nav" aria-label="Main navigation">
+        <nav id="siteNav" class="site-nav" role="navigation" aria-label="Primary">
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/services">Services</a></li>
@@ -299,7 +303,7 @@ const websiteLd = JSON.stringify({
         </div>
       </div>
     </section>
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
       <div class="container footer-grid">
         <div class="footer-col">
           <div class="footer-logo">
@@ -327,19 +331,21 @@ const websiteLd = JSON.stringify({
           <p>Mon–Fri 8am–6pm · Sat 9am–1pm</p>
         </div>
         <div class="footer-col">
-          <h4>Verify</h4>
-          <p>
-            <a
-              href="https://share.google/pOgXH17fP6C0srCw9"
-              rel="noopener noreferrer"
-              target="_blank"
-              aria-label="Google Business Profile"
-            >
-              Google Business Profile
-            </a>
-          </p>
-          <p><a href="/privacy">Privacy Policy</a></p>
-          <p><a href="/terms">Terms &amp; Conditions</a></p>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/gallery">Our Work</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+          <h4>Service Areas</h4>
+          <ul class="service-areas-list">
+            <li>Holland, MI</li>
+            <li>Grand Rapids, MI</li>
+            <li>Zeeland, MI</li>
+            <li>Hudsonville, MI</li>
+            <li>Allegan, MI</li>
+            <li>Ada, MI</li>
+          </ul>
         </div>
       </div>
       <p class="footer-meta">&copy; {new Date().getFullYear()} Top Tier Electrical. All rights reserved.</p>
