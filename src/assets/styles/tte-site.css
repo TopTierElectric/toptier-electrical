@@ -2579,7 +2579,7 @@ video {
   gap: 0.75rem;
 }
 
-#main-nav {
+#siteNav {
   width: 100%;
 }
 
@@ -2722,7 +2722,7 @@ summary {
     flex-wrap: nowrap;
   }
 
-  #main-nav {
+  #siteNav {
     width: auto;
     position: static;
     display: flex !important;
@@ -2737,13 +2737,13 @@ summary {
     padding: 0;
   }
 
-  #main-nav ul {
+  #siteNav ul {
     flex-direction: row;
     align-items: center;
   }
 
-  #main-nav li,
-  #main-nav a {
+  #siteNav li,
+  #siteNav a {
     width: auto;
   }
 
