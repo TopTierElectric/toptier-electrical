@@ -59,71 +59,23 @@ const breadcrumbLd = JSON.stringify({
   })),
 });
 
-const organizationLd = JSON.stringify({
+const businessLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Electrician',
-  '@id': `${siteUrl}/#electrician`,
   name: 'Top Tier Electrical',
   url: siteUrl,
-  email: 'info@toptier-electrical.com',
   telephone: '+1-616-334-7159',
-  description:
-    'Licensed and insured electrician serving West Michigan with panel upgrades, EV charging, lighting, troubleshooting, and code-correct installations.',
-  image: `${siteUrl}/images/logos/TopTierElectrical_Primary_FlatGold_512.png`,
-  logo: `${siteUrl}/images/logos/TopTierElectrical_Primary_FlatGold_512.png`,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Holland',
-    addressRegion: 'MI',
-    addressCountry: 'US',
-  },
-  areaServed: [
-    { '@type': 'City', name: 'Holland, MI' },
-    { '@type': 'City', name: 'Grand Rapids, MI' },
-    { '@type': 'City', name: 'Zeeland, MI' },
-    { '@type': 'City', name: 'Hudsonville, MI' },
-    { '@type': 'City', name: 'Allegan, MI' },
-    { '@type': 'City', name: 'Ada, MI' },
-    { '@type': 'City', name: 'Muskegon, MI' },
-  ],
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '08:00',
-      closes: '18:00',
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Saturday'],
-      opens: '09:00',
-      closes: '13:00',
-    },
-  ],
-  contactPoint: [
-    {
-      '@type': 'ContactPoint',
-      contactType: 'customer service',
-      telephone: '+1-616-334-7159',
-      email: 'info@toptier-electrical.com',
-      areaServed: 'US-MI',
-      availableLanguage: ['en'],
-    },
-  ],
-  license: 'MI License #6220430',
-  openingHours: 'Mo-Fr 08:00-18:00, Sa 09:00-13:00',
   sameAs: ['https://www.facebook.com/profile.php?id=61573826170938', 'https://share.google/pOgXH17fP6C0srCw9'],
-});
-
-const websiteLd = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  '@id': `${siteUrl}/#website`,
-  name: 'Top Tier Electrical',
-  url: siteUrl,
-  inLanguage: 'en-US',
-  publisher: {
-    '@id': `${siteUrl}/#electrician`,
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5',
+    reviewCount: '10',
+  },
+  review: {
+    '@type': 'Review',
+    reviewRating: { '@type': 'Rating', ratingValue: '5' },
+    author: { '@type': 'Person', name: 'Verified Google Reviewer' },
+    reviewBody: 'Professional service, clear communication, and quality workmanship.',
   },
 });
 ---
@@ -131,8 +83,8 @@ const websiteLd = JSON.stringify({
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#1a1a2e" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="robots" content={robots} />
@@ -157,12 +109,11 @@ const websiteLd = JSON.stringify({
     <meta name="geo.placename" content="West Michigan" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="en" href={canonicalUrl} />
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap-index.xml" />
     <Favicons />
     <link rel="manifest" href="/manifest.webmanifest" />
     <!-- JSON-LD Structured Data -->
     {
-      [breadcrumbLd, organizationLd, websiteLd, ...jsonLdScripts].map((ld) => (
+      [breadcrumbLd, businessLd, ...jsonLdScripts].map((ld) => (
         <script type="application/ld+json" is:inline set:html={ld} />
       ))
     }
@@ -215,7 +166,7 @@ const websiteLd = JSON.stringify({
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header class="site-header" role="banner">
+    <header class="site-header">
       <div class="container header-inner">
         <a class="logo" href="/" aria-label="Top Tier Electrical home">
           <picture>
@@ -231,17 +182,16 @@ const websiteLd = JSON.stringify({
         </a>
         <button
           type="button"
-          id="navToggle"
-          class="menu-toggle nav-toggle"
+          class="menu-toggle"
           aria-label="Toggle navigation"
-          aria-controls="siteNav"
+          aria-controls="main-nav"
           aria-expanded="false"
         >
           <span></span>
           <span></span>
           <span></span>
         </button>
-        <nav id="siteNav" class="site-nav" role="navigation" aria-label="Primary">
+        <nav id="main-nav" aria-label="Main navigation">
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/services">Services</a></li>
@@ -253,7 +203,7 @@ const websiteLd = JSON.stringify({
             <li><a href="/about">About</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
-          <div class="nav-cta header-ctas">
+          <div class="nav-cta">
             <a href="tel:+16163347159" class="btn btn-ghost">Call / Text (616)&nbsp;334&#8209;7159</a>
             <a href="/booking" class="btn btn-primary">Request Scheduling</a>
           </div>
@@ -303,52 +253,31 @@ const websiteLd = JSON.stringify({
         </div>
       </div>
     </section>
-    <footer class="site-footer" role="contentinfo">
-      <div class="container footer-grid">
-        <div class="footer-col">
-          <div class="footer-logo">
-            <picture>
-              <source srcset="/images/logos/TopTierElectrical_Logo_Web_600w.webp" type="image/webp" />
-              <img
-                src="/images/logos/TopTierElectrical_Logo_Web_600w.webp"
-                alt="Top Tier Electrical logo"
-                width="200"
-                height="64"
-                decoding="async"
-              />
-            </picture>
-          </div>
-          <p>MI License #6220430</p>
-        </div>
-        <div class="footer-col">
-          <h4>Connect</h4>
-          <p>
-            <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a>
-          </p>
-          <p>
-            <a href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a>
-          </p>
-          <p>Mon–Fri 8am–6pm · Sat 9am–1pm</p>
-        </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="/#services">Services</a></li>
-            <li><a href="/gallery">Our Work</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
-          <h4>Service Areas</h4>
-          <ul class="service-areas-list">
-            <li>Holland, MI</li>
-            <li>Grand Rapids, MI</li>
-            <li>Zeeland, MI</li>
-            <li>Hudsonville, MI</li>
-            <li>Allegan, MI</li>
-            <li>Ada, MI</li>
-          </ul>
-        </div>
+    <footer class="site-footer">
+      <div class="footer-logo">
+        <picture>
+          <source srcset="/images/logos/TopTierElectrical_Logo_Web_600w.webp" type="image/webp" />
+          <img
+            src="/images/logos/TopTierElectrical_Logo_Web_600w.webp"
+            alt="Top Tier Electrical logo"
+            width="200"
+            height="64"
+            decoding="async"
+          />
+        </picture>
       </div>
-      <p class="footer-meta">&copy; {new Date().getFullYear()} Top Tier Electrical. All rights reserved.</p>
+      <p>MI License #6220430</p>
+      <p>
+        <a
+          href="https://share.google/pOgXH17fP6C0srCw9"
+          rel="noopener noreferrer"
+          target="_blank"
+          aria-label="Google Business Profile"
+        >
+          Google Business Profile
+        </a>
+      </p>
+      <p>&copy; {new Date().getFullYear()} Top Tier Electrical. All rights reserved.</p>
     </footer>
 
     <script is:inline src="/script.js" defer></script>
