@@ -18,10 +18,5 @@
 /TopTierElectrical_Primary_White_2048.png /images/logos/TopTierElectrical_Primary_FlatGold_512.png 301
 /TopTierElectrical_Primary_White_512.png /images/logos/TopTierElectrical_Primary_FlatGold_512.png 301
 
-# Blog route ownership is currently handled at page level in `src/pages/blog/*.astro`.
-# Do not add Cloudflare redirects for these blog slugs, or it can cause redirect loops.
-/code-corrections /electrical-repairs 301
-/dedicated-circuits /services 301
-/electrician-grand-haven /service-areas 301
-/electrician-muskegon /service-areas 301
-/reviews /testimonials 301
+# Canonical consolidation
+/testimonials /reviews 301

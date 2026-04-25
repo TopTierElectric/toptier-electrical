@@ -51,14 +51,25 @@
       "residential",
       "commercial",
       "service-areas",
+      "electrician-holland",
+      "electrician-grand-rapids",
+      "electrician-zeeland",
+      "electrician-hudsonville",
+      "electrician-allegan",
+      "electrician-ada",
+      "electrician-grand-haven",
+      "electrician-muskegon",
+      "residential-electrician-allegan-mi",
+      "commercial-electrician-allegan-mi",
       "gallery",
       "blog",
       "contact",
       "booking",
       "faq",
-      "testimonials",
       "reviews",
-      "financing"
+      "financing",
+      "privacy",
+      "terms"
     ]
   }
 }

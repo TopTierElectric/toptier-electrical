@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import siteData from '~/data/site.json';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -9,6 +10,13 @@ const breadcrumbLd = JSON.stringify({
     { '@type': 'ListItem', position: 2, name: 'Request Scheduling', item: 'https://toptier-electrical.com/booking' },
   ],
 });
+
+const canonicalOrigin =
+  process.env.PUBLIC_SITE_ORIGIN?.replace(/\/$/, '') ?? siteData.site.origin.replace(/\/$/, '');
+const formReturnOrigin =
+  process.env.PUBLIC_FORM_RETURN_ORIGIN?.replace(/\/$/, '') ??
+  (Astro.url?.origin?.includes('pages.dev') ? Astro.url.origin : canonicalOrigin);
+const thankYouUrl = `${formReturnOrigin}/thank-you`;
 ---
 
 <TTELayout
@@ -56,7 +64,7 @@ const breadcrumbLd = JSON.stringify({
             <h3>Service Booking Form</h3>
             <form name="booking" method="POST" action="https://formspree.io/f/mkovbvgj" novalidate data-enhanced-form>
               <input type="hidden" name="_subject" value="New booking request from Top Tier Electrical" />
-              <input type="hidden" name="_next" value="https://toptier-electrical.com/thank-you" />
+              <input type="hidden" name="_next" value={thankYouUrl} />
               <input type="hidden" name="form_name" value="Booking form" />
               <input
                 class="form-honeypot"
