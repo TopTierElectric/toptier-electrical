@@ -31,11 +31,11 @@ jobs:
       - name: Verify lockfile + lint + formatting + type checks + site config
         run: npm run verify
 
+      - name: Run unit QA tests
+        run: npm run test
+
       - name: Validate workflow gate integrity
         run: npm run check:workflows
-
-      - name: Validate Cloudflare redirects
-        run: npm run check:redirects-cloudflare
 
       - name: Simulate navigation routes
         run: npm run check:navigation-sim
@@ -43,6 +43,35 @@ jobs:
       - name: Run local SEO CI audit
         run: npm run localseo:ci
 
+      - name: Check SEO render quality
+        run: npm run check:seo-render
+
+      - name: Check integration scaffolding
+        run: npm run check:integrations
+
+      - name: Check route governance
+        run: npm run check:route-governance
+
+      - name: Check review schema policy
+        run: npm run check:review-schema-policy
+
+      - name: Check schema graph integrity
+        run: npm run check:schema-graph
+
+      - name: Check image markup hygiene
+        run: npm run check:image-markup
+
+      - name: Check phone normalization
+        run: npm run check:phone-normalization
+
+      - name: Check identity drift
+        run: npm run check:identity-drift
+
+      - name: Check sitemap and robots
+        run: npm run check:sitemap-robots
+
+      - name: Run e2e smoke checks
+        run: npm run test:e2e:smoke
+
       - name: Security audit (high+)
-        if: github.event_name == 'push'
-        run: npm run security:audit
+        run: npm audit --audit-level=high

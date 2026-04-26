@@ -1,6 +1,9 @@
 # Cloudflare Pages _redirects supports path redirects only.
 # Host/protocol canonicalization (www -> apex, http -> https) must be enforced
 # in Cloudflare zone Redirect Rules/Bulk Redirects, not here.
+http://www.toptier-electrical.com/* https://toptier-electrical.com/:splat 301!
+https://www.toptier-electrical.com/* https://toptier-electrical.com/:splat 301!
+http://toptier-electrical.com/* https://toptier-electrical.com/:splat 301!
 
 # Legacy entry aliases (keep minimal)
 /index / 301
@@ -9,6 +12,8 @@
 
 # Optional: true legacy semantic redirects (only if these URLs were used historically)
 /pricing /services 301
+/financing /booking 301
+/sitemap.xml /sitemap-index.xml 301
 
 # Legacy logo file locations → astrowind public/images/logos
 /TopTierElectrical_Primary_Black_2048.png /images/logos/TopTierElectrical_Primary_FlatGold_512.png 301
@@ -18,10 +23,5 @@
 /TopTierElectrical_Primary_White_2048.png /images/logos/TopTierElectrical_Primary_FlatGold_512.png 301
 /TopTierElectrical_Primary_White_512.png /images/logos/TopTierElectrical_Primary_FlatGold_512.png 301
 
-# Blog route ownership is currently handled at page level in `src/pages/blog/*.astro`.
-# Do not add Cloudflare redirects for these blog slugs, or it can cause redirect loops.
-/code-corrections /electrical-repairs 301
-/dedicated-circuits /services 301
-/electrician-grand-haven /service-areas 301
-/electrician-muskegon /service-areas 301
-/reviews /testimonials 301
+# Canonical consolidation
+/testimonials /reviews 301

@@ -1,14 +1,21 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import siteData from '~/data/site.json';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Request Scheduling', item: 'https://toptier-electrical.com/booking' },
+    { '@type': 'ListItem', position: 2, name: 'Get a Clear Estimate', item: 'https://toptier-electrical.com/booking' },
   ],
 });
+
+const canonicalOrigin = process.env.PUBLIC_SITE_ORIGIN?.replace(/\/$/, '') ?? siteData.site.origin.replace(/\/$/, '');
+const formReturnOrigin =
+  process.env.PUBLIC_FORM_RETURN_ORIGIN?.replace(/\/$/, '') ??
+  (Astro.url?.origin?.includes('pages.dev') ? Astro.url.origin : canonicalOrigin);
+const thankYouUrl = `${formReturnOrigin}/thank-you`;
 ---
 
 <TTELayout
@@ -22,7 +29,7 @@ const breadcrumbLd = JSON.stringify({
       <div class="hero-content">
         <h1>Schedule Your Service</h1>
         <p>Submit a request—I'll confirm scope and timing within 1 business day.</p>
-        <a href="tel:+16163347159" class="btn btn-secondary">Or Call Now</a>
+        <a href="tel:+16163347159" class="btn btn-secondary">Call (616) 334-7159</a>
       </div>
     </section>
     <div class="trust-strip">
@@ -48,15 +55,15 @@ const breadcrumbLd = JSON.stringify({
             </ol>
             <p class="response-note"><strong>Response time:</strong> within 1 business day.</p>
             <p>If you're unsure which service you need or have questions about booking, call or text us anytime.</p>
-            <p><strong>Phone:</strong> <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a></p>
-            <p><strong>Text:</strong> <a href="sms:+16163347159">(616)&nbsp;334&#8209;7159</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+16163347159">(616) 334-7159</a></p>
+            <p><strong>Text:</strong> <a href="sms:+16163347159">(616) 334-7159</a></p>
             <p><strong>Email:</strong> <a href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a></p>
           </div>
           <div class="contact-form">
             <h3>Service Booking Form</h3>
             <form name="booking" method="POST" action="https://formspree.io/f/mkovbvgj" novalidate data-enhanced-form>
               <input type="hidden" name="_subject" value="New booking request from Top Tier Electrical" />
-              <input type="hidden" name="_next" value="https://toptier-electrical.com/thank-you" />
+              <input type="hidden" name="_next" value={thankYouUrl} />
               <input type="hidden" name="form_name" value="Booking form" />
               <input
                 class="form-honeypot"
@@ -92,8 +99,8 @@ const breadcrumbLd = JSON.stringify({
               <label for="book-notes">Additional Notes</label>
               <textarea id="book-notes" name="notes" placeholder="Describe your project or any special requirements"
               ></textarea>
-              <button type="submit" data-cta="booking-schedule-service" data-submit-label="Request Scheduling">
-                Request Scheduling
+              <button type="submit" data-cta="booking-schedule-service" data-submit-label="Get a Clear Estimate">
+                Get a Clear Estimate
               </button>
               <p class="form-status" data-form-status aria-live="polite"></p>
               <p class="form-fallback">
@@ -110,7 +117,7 @@ const breadcrumbLd = JSON.stringify({
     <section class="cta-section">
       <h2>Need Help Right Away?</h2>
       <p>
-        For urgent electrical issues, call <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a> to confirm next steps.
+        For urgent electrical issues, call <a href="tel:+16163347159">(616) 334-7159</a> to confirm next steps.
       </p>
       <a href="tel:+16163347159" class="btn btn-primary">Call Now</a>
     </section>
