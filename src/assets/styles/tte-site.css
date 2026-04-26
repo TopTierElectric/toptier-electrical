@@ -95,7 +95,7 @@ body {
   padding: 0;
   font-family: var(--font-body);
   color: var(--text-dark);
-  background: var(--light-bg);
+  background: #f1f5f9;
   line-height: var(--line-height-body);
 }
 
@@ -435,10 +435,10 @@ header nav a:focus {
 /* Hero section */
 .hero {
   position: relative;
-  background: linear-gradient(135deg, #2f343a 0%, #4b5563 100%);
-  color: var(--text-light);
+  background: #0f172a;
+  color: #ffffff;
   text-align: center;
-  padding: 8rem 1rem 6rem;
+  padding: 4rem 0;
 }
 
 .hero::before {
@@ -1350,8 +1350,8 @@ footer p {
 
 /* Call-to-action section */
 .cta-section {
-  background: var(--primary);
-  color: var(--text-light);
+  background: #0f172a;
+  color: #ffffff;
   padding: 3rem 1rem;
   text-align: center;
 }
@@ -2328,14 +2328,72 @@ header nav .btn-ghost:focus {
 }
 
 .site-footer {
-  background: var(--brand-charcoal);
-  color: #c7c7c7;
+  background: #0f172a;
+  color: #ffffff;
   border-top: 2px solid var(--brand-gold);
   padding: 2.5rem 0;
 }
 
 .site-footer a {
-  color: #f0f0f0;
+  color: #c9a24d;
+}
+
+.card,
+.service-card,
+.trust-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.section-band {
+  position: relative;
+  padding: 3rem 0;
+}
+
+.section-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+.section-white::before {
+  background: #ffffff;
+}
+
+.section-slate::before {
+  background: #334155;
+}
+
+.section-slate,
+.section-slate h2,
+.section-slate h3,
+.section-slate p,
+.section-slate li {
+  color: #ffffff;
+}
+
+.section-slate a:not(.btn) {
+  color: #c9a24d;
+}
+
+.section-slate.trust-section {
+  background: transparent;
+}
+
+.section-slate .faq-list details {
+  background: #ffffff;
+  color: var(--text-dark);
+}
+
+.section-slate .faq-list summary,
+.section-slate .faq-list p {
+  color: var(--text-dark);
 }
 
 .footer-grid {
@@ -2485,9 +2543,9 @@ body.menu-open {
 .hero {
   width: 100%;
   overflow: hidden;
-  background: linear-gradient(135deg, #2f343a 0%, #4b5563 100%);
-  color: var(--text-light);
-  padding: clamp(3rem, 8vw, 5rem) 0;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 4rem 0;
 }
 
 .hero::before {
