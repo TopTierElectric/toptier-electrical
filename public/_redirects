@@ -12,6 +12,7 @@ http://toptier-electrical.com/* https://toptier-electrical.com/:splat 301!
 
 # Optional: true legacy semantic redirects (only if these URLs were used historically)
 /pricing /services 301
+/financing /booking 301
 /sitemap.xml /sitemap-index.xml 301
 
 # Legacy logo file locations → astrowind public/images/logos
