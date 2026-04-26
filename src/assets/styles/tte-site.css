@@ -2397,6 +2397,15 @@ header nav .btn-ghost:focus {
   color: var(--text-dark);
 }
 
+#about .trust-item h3,
+#about .trust-item p {
+  color: var(--text-dark);
+}
+
+#faq .faq-list a {
+  color: var(--text-dark);
+}
+
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
