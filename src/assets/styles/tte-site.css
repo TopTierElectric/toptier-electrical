@@ -127,10 +127,15 @@ html {
 
 /* Layout helpers */
 .container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
+  padding-inline: 0;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: min(100% - 4rem, 1200px);
+  }
 }
 
 /* Header */
@@ -866,18 +871,6 @@ header nav a:focus {
 .service-card p {
   font-size: 0.95rem;
   color: var(--muted);
-}
-
-.service-card a {
-  margin-top: 1rem;
-  display: inline-block;
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.service-card a:hover {
-  text-decoration: underline;
 }
 
 /* Gallery section */
@@ -2334,98 +2327,6 @@ header nav .btn-ghost:focus {
   overflow: hidden;
 }
 
-/* Homepage two-column hero layout (parity with preview branch styling) */
-.hero:has(.hero-layout) {
-  padding: 4rem 1rem;
-  text-align: left;
-}
-
-.hero-layout {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  position: relative;
-  z-index: 1;
-  text-align: left;
-}
-
-.hero-text {
-  flex: 1 1 0;
-  min-width: 0;
-}
-
-.hero-image {
-  flex: 1 1 0;
-  min-width: 0;
-}
-
-.hero-label {
-  display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--brand-gold);
-  margin-bottom: 0.75rem;
-}
-
-.hero-text h1 {
-  font-size: clamp(1.9rem, 3.5vw, 3.25rem);
-  line-height: 1.15;
-  margin-bottom: 1rem;
-  color: var(--text-light);
-}
-
-.hero-sub {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 1.75rem;
-  max-width: 520px;
-}
-
-@media (max-width: 768px) {
-  .hero-layout {
-    flex-direction: column;
-    gap: 2rem;
-    text-align: center;
-  }
-
-  .hero-label {
-    display: block;
-  }
-
-  .hero-sub {
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-cta {
-    justify-content: center;
-  }
-}
-
-.hero-picture {
-  margin-top: 1.5rem;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--brand-shadow);
-}
-
-.hero-picture img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: 1.25rem 0;
-}
-
 .site-footer {
   background: var(--brand-charcoal);
   color: #c7c7c7;
@@ -2528,19 +2429,6 @@ img {
 
 body.menu-open {
   overflow: hidden;
-}
-
-/* Container + section rhythm */
-.container {
-  width: min(100% - 2rem, 1200px);
-  margin-inline: auto;
-  padding-inline: 0;
-}
-
-@media (min-width: 768px) {
-  .container {
-    width: min(100% - 4rem, 1200px);
-  }
 }
 
 /* Header + mobile nav containment */
