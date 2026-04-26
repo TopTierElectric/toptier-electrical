@@ -30,7 +30,7 @@ for (const file of files) {
     if (isHighPriority) {
       highPriorityCount += 1;
       if (!/index\.astro$/.test(rel)) {
-        failures.push(`${rel}: fetchpriority=\"high\" should be restricted to the true LCP image.`);
+        failures.push(`${rel}: fetchpriority="high" should be restricted to the true LCP image.`);
       }
     }
     if (!isHighPriority && !decorative && !/\bloading\s*=/.test(attrs)) {

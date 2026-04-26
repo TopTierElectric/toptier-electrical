@@ -31,6 +31,9 @@ jobs:
       - name: Verify lockfile + lint + formatting + type checks + site config
         run: npm run verify
 
+      - name: Run unit QA tests
+        run: npm run test
+
       - name: Validate workflow gate integrity
         run: npm run check:workflows
 
@@ -57,6 +60,18 @@ jobs:
 
       - name: Check image markup hygiene
         run: npm run check:image-markup
+
+      - name: Check phone normalization
+        run: npm run check:phone-normalization
+
+      - name: Check identity drift
+        run: npm run check:identity-drift
+
+      - name: Check sitemap and robots
+        run: npm run check:sitemap-robots
+
+      - name: Run e2e smoke checks
+        run: npm run test:e2e:smoke
 
       - name: Security audit (high+)
         run: npm audit --audit-level=high

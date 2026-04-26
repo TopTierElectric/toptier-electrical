@@ -14,8 +14,8 @@ export const headerData = {
     { text: 'Contact', href: getPermalink('/contact') },
   ],
   actions: [
-    { text: `Call / Text ${siteData.business.phoneDisplay}`, href: `tel:${siteData.business.phoneE164}` },
-    { text: 'Request Scheduling', href: getPermalink('/booking') },
+    { text: `Call ${siteData.business.phoneDisplay}`, href: `tel:${siteData.business.phoneE164}` },
+    { text: 'Get a Clear Estimate', href: getPermalink('/booking') },
   ],
 };
 
@@ -25,7 +25,7 @@ export const footerData = {
       title: 'Quick Links',
       links: [
         { text: 'Services', href: getPermalink('/services') },
-        { text: 'Request Scheduling', href: getPermalink('/booking') },
+        { text: 'Get a Clear Estimate', href: getPermalink('/booking') },
         { text: 'About', href: getPermalink('/about') },
         { text: 'Blog', href: getPermalink('/blog') },
         { text: 'FAQ', href: getPermalink('/faq') },

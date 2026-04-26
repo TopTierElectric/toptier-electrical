@@ -16,8 +16,8 @@ for (const line of redirectsContent.split(/\r?\n/)) {
 }
 
 const manifestRoutes = new Set([
-  ...((config.routes.pages ?? []).map((slug) => (slug ? `/${slug}` : '/'))),
-  ...((config.routes.services ?? []).map((slug) => `/${slug}`)),
+  ...(config.routes.pages ?? []).map((slug) => (slug ? `/${slug}` : '/')),
+  ...(config.routes.services ?? []).map((slug) => `/${slug}`),
 ]);
 
 const excluded = new Set(['/404', '/thank-you']);

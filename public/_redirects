@@ -1,6 +1,9 @@
 # Cloudflare Pages _redirects supports path redirects only.
 # Host/protocol canonicalization (www -> apex, http -> https) must be enforced
 # in Cloudflare zone Redirect Rules/Bulk Redirects, not here.
+http://www.toptier-electrical.com/* https://toptier-electrical.com/:splat 301!
+https://www.toptier-electrical.com/* https://toptier-electrical.com/:splat 301!
+http://toptier-electrical.com/* https://toptier-electrical.com/:splat 301!
 
 # Legacy entry aliases (keep minimal)
 /index / 301
@@ -9,6 +12,7 @@
 
 # Optional: true legacy semantic redirects (only if these URLs were used historically)
 /pricing /services 301
+/sitemap.xml /sitemap-index.xml 301
 
 # Legacy logo file locations → astrowind public/images/logos
 /TopTierElectrical_Primary_Black_2048.png /images/logos/TopTierElectrical_Primary_FlatGold_512.png 301

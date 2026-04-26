@@ -15,6 +15,11 @@ const required = [
   'npm run check:review-schema-policy',
   'npm run check:schema-graph',
   'npm run check:image-markup',
+  'npm run check:phone-normalization',
+  'npm run check:identity-drift',
+  'npm run check:sitemap-robots',
+  'npm run test',
+  'npm run test:e2e:smoke',
   'npm audit --audit-level=high',
 ];
 

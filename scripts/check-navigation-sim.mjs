@@ -5,7 +5,7 @@ const config = loadSiteConfig();
 const routes = getSourceRoutes();
 
 const staticNavigationRoutes = (config.routes.pages ?? []).map((slug) => (slug ? `/${slug}` : '/'));
-const checks = [...staticNavigationRoutes, ...((config.routes.services ?? []).map((slug) => `/${slug}`))];
+const checks = [...staticNavigationRoutes, ...(config.routes.services ?? []).map((slug) => `/${slug}`)];
 
 const dedupedChecks = [...new Set(checks)];
 const missing = dedupedChecks.filter((route) => !routes.has(route));

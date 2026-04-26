@@ -93,6 +93,20 @@ document.addEventListener('DOMContentLoaded', function () {
       window.dispatchEvent(new CustomEvent('tte:track', { detail: { eventName, meta } }));
     }
 
+    window.addEventListener('tte:track', function (event) {
+      const detail = event.detail || {};
+      const eventName = detail.eventName || '';
+      const meta = detail.meta || {};
+      if (!eventName) return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: eventName, ...meta });
+
+      if (typeof gtag === 'function') {
+        gtag('event', eventName, meta);
+      }
+    });
+
     function trackCta(target) {
       if (!target) {
         return;
@@ -120,10 +134,10 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       const href = link.getAttribute('href') || '';
       if (href.startsWith('tel:')) {
-        tteTrack('call_click', { href });
+        tteTrack('phone_call_click', { href });
       }
       if (href.startsWith('sms:')) {
-        tteTrack('text_click', { href });
+        tteTrack('sms_click', { href });
       }
       if (href.startsWith('mailto:')) {
         tteTrack('email_click', { href });

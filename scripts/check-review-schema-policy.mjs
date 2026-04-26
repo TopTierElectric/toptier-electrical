@@ -25,10 +25,12 @@ const toArray = (value) => (Array.isArray(value) ? value : value ? [value] : [])
 const nodeTypes = (node) => new Set(toArray(node?.['@type']).map(String));
 
 for (const file of htmlFiles) {
-  const route = `/${path.relative(distDir, file).replace(/\\/g, '/').replace(/index\.html$/, '').replace(/\.html$/, '')}`.replace(
-    /\/$/,
-    ''
-  ) || '/';
+  const route =
+    `/${path
+      .relative(distDir, file)
+      .replace(/\\/g, '/')
+      .replace(/index\.html$/, '')
+      .replace(/\.html$/, '')}`.replace(/\/$/, '') || '/';
   const html = fs.readFileSync(file, 'utf8');
   const ldBlocks = [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)];
 

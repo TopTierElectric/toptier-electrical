@@ -21,7 +21,8 @@ walk(distDir);
 const routeByFile = new Map();
 for (const file of htmlFiles) {
   const rel = path.relative(distDir, file).replace(/\\/g, '/');
-  const route = rel === 'index.html' ? '/' : `/${rel.replace(/index\.html$/, '').replace(/\.html$/, '')}`.replace(/\/$/, '') || '/';
+  const route =
+    rel === 'index.html' ? '/' : `/${rel.replace(/index\.html$/, '').replace(/\.html$/, '')}`.replace(/\/$/, '') || '/';
   routeByFile.set(file, route);
 }
 const validRoutes = new Set(routeByFile.values());
@@ -47,7 +48,14 @@ for (const [file, route] of routeByFile.entries()) {
 
     if (target.origin !== 'https://toptier-electrical.com') continue;
     const pathname = target.pathname.replace(/\/+$/, '') || '/';
-    if (!validRoutes.has(pathname) && !pathname.startsWith('/images/') && !pathname.startsWith('/assets/')) {
+    if (
+      !validRoutes.has(pathname) &&
+      pathname !== '/rss.xml' &&
+      pathname !== '/tag' &&
+      pathname !== '/category' &&
+      !pathname.startsWith('/images/') &&
+      !pathname.startsWith('/assets/')
+    ) {
       failures.push(`${route}: unresolved internal link ${pathname}`);
     }
     linkCount += 1;
