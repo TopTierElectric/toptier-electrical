@@ -2347,52 +2347,53 @@ header nav .btn-ghost:focus {
   padding: 1.5rem;
 }
 
-.section-band {
+#services,
+#areas,
+#about,
+#faq {
   position: relative;
-  padding: 3rem 0;
+  padding: 3rem 1rem;
 }
 
-.section-band::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  left: 50%;
-  width: 100vw;
-  transform: translateX(-50%);
-  z-index: -1;
-}
-
-.section-white::before {
+#services,
+#areas {
   background: #ffffff;
+  box-shadow: 0 0 0 100vmax #ffffff;
+  clip-path: inset(0 -100vmax);
 }
 
-.section-slate::before {
+#about,
+#faq {
   background: #334155;
+  box-shadow: 0 0 0 100vmax #334155;
+  clip-path: inset(0 -100vmax);
 }
 
-.section-slate,
-.section-slate h2,
-.section-slate h3,
-.section-slate p,
-.section-slate li {
+#about,
+#about h2,
+#about h3,
+#about p,
+#about li,
+#faq,
+#faq h2,
+#faq h3,
+#faq p,
+#faq li {
   color: #ffffff;
 }
 
-.section-slate a:not(.btn) {
+#about a:not(.btn),
+#faq a:not(.btn) {
   color: #c9a24d;
 }
 
-.section-slate.trust-section {
-  background: transparent;
-}
-
-.section-slate .faq-list details {
+#faq .faq-list details {
   background: #ffffff;
   color: var(--text-dark);
 }
 
-.section-slate .faq-list summary,
-.section-slate .faq-list p {
+#faq .faq-list summary,
+#faq .faq-list p {
   color: var(--text-dark);
 }
 
