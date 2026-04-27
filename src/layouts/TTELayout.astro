@@ -3,6 +3,7 @@ import '@fontsource-variable/inter';
 import '~/assets/styles/tte-site.css';
 import Favicons from '~/components/Favicons.astro';
 import siteData from '~/data/site.json';
+import { toApexCanonical } from '~/utils/canonical';
 
 export interface Props {
   title: string;
@@ -51,7 +52,7 @@ const normalizePath = (path: string) => {
 };
 
 const resolvedPath = normalizePath(Astro.url.pathname);
-const canonicalUrl = canonical || `${siteUrl}${resolvedPath}`;
+const canonicalUrl = toApexCanonical(canonical || `${siteUrl}${resolvedPath}`, resolvedPath);
 const resolvedOgTitle = ogTitle || title;
 const resolvedOgDescription = ogDescription || description;
 
