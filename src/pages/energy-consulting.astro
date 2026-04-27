@@ -1,5 +1,29 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import QuickAnswerEv from '~/components/pages/QuickAnswerEv.astro';
+import RelatedServices from '~/components/pages/RelatedServices.astro';
+import OwnerCredentials from '~/components/pages/OwnerCredentials.astro';
+
+const serviceLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://toptier-electrical.com/energy-consulting#service',
+  name: 'Energy Consulting',
+  serviceType: 'Energy consulting and load planning',
+  provider: { '@id': 'https://toptier-electrical.com/#localbusiness' },
+  areaServed: [
+    'Holland MI',
+    'Grand Rapids MI',
+    'Byron Center MI',
+    'Zeeland MI',
+    'Saugatuck MI',
+    'Hudsonville MI',
+    'Allegan MI',
+  ],
+  description:
+    'Energy consulting to prioritize electrical upgrades, clarify scope, and plan projects without guesswork.',
+  url: 'https://toptier-electrical.com/energy-consulting',
+});
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -18,10 +42,10 @@ const breadcrumbLd = JSON.stringify({
 ---
 
 <TTELayout
-  title="Energy Consulting | West Michigan Electrician"
+  title="Energy Consulting in West Michigan | Top Tier Electrical"
   description="Calm, professional energy consulting to prioritize upgrades, clarify scope, and help you make confident decisions without pressure."
   canonical="https://toptier-electrical.com/energy-consulting"
-  jsonLd={[breadcrumbLd]}
+  jsonLd={[serviceLd, breadcrumbLd]}
 >
   <main id="main-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -104,6 +128,10 @@ const breadcrumbLd = JSON.stringify({
         <p>If you want a plan you can trust—without pressure—schedule an energy consultation.</p>
       </div>
     </section>
+
+    <QuickAnswerEv />
+    <RelatedServices />
+    <OwnerCredentials />
     <section class="cta-section">
       <h2>Ready for Clarity?</h2>
       <p>

@@ -2,6 +2,7 @@
 import '@fontsource-variable/inter';
 import '~/assets/styles/tte-site.css';
 import Favicons from '~/components/Favicons.astro';
+import { SITE } from '~/config/site';
 
 export interface Props {
   title: string;
@@ -29,12 +30,13 @@ const {
   breadcrumbItems,
 } = Astro.props;
 
-const canonicalUrl = canonical || `https://toptier-electrical.com${Astro.url.pathname}`;
+const canonicalPath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, '');
+const canonicalUrl = canonical || `${SITE.url}${canonicalPath}`;
 const resolvedOgTitle = ogTitle || title;
 const resolvedOgDescription = ogDescription || description;
 
 const jsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
-const siteUrl = 'https://toptier-electrical.com';
+const siteUrl = SITE.url;
 const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
 const autoBreadcrumbItems = [
   { name: 'Home', item: `${siteUrl}/` },
@@ -62,30 +64,22 @@ const breadcrumbLd = JSON.stringify({
 const organizationLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Electrician',
-  '@id': `${siteUrl}/#electrician`,
-  name: 'Top Tier Electrical',
+  '@id': `${siteUrl}/#localbusiness`,
+  name: SITE.name,
   url: siteUrl,
-  email: 'info@toptier-electrical.com',
-  telephone: '+1-616-334-7159',
+  email: SITE.email,
+  telephone: SITE.phone,
   description:
-    'Licensed and insured electrician serving West Michigan with panel upgrades, EV charging, lighting, troubleshooting, and code-correct installations.',
+    'Licensed and insured West Michigan electrician providing panel upgrades, EV charger installation, lighting, troubleshooting, generator readiness, and light commercial electrical work.',
   image: `${siteUrl}/images/logos/TopTierElectrical_Primary_FlatGold_512.png`,
   logo: `${siteUrl}/images/logos/TopTierElectrical_Primary_FlatGold_512.png`,
+  priceRange: '$$-$$$',
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Holland',
     addressRegion: 'MI',
     addressCountry: 'US',
   },
-  areaServed: [
-    { '@type': 'City', name: 'Holland, MI' },
-    { '@type': 'City', name: 'Grand Rapids, MI' },
-    { '@type': 'City', name: 'Zeeland, MI' },
-    { '@type': 'City', name: 'Hudsonville, MI' },
-    { '@type': 'City', name: 'Allegan, MI' },
-    { '@type': 'City', name: 'Ada, MI' },
-    { '@type': 'City', name: 'Muskegon, MI' },
-  ],
+  areaServed: SITE.areaServed.map((city) => ({ '@type': 'City', name: city })),
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
@@ -95,19 +89,27 @@ const organizationLd = JSON.stringify({
     },
     {
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Saturday'],
+      dayOfWeek: 'Saturday',
       opens: '09:00',
       closes: '13:00',
     },
   ],
-  contactPoint: [
+  makesOffer: [
     {
-      '@type': 'ContactPoint',
-      contactType: 'customer service',
-      telephone: '+1-616-334-7159',
-      email: 'info@toptier-electrical.com',
-      areaServed: 'US-MI',
-      availableLanguage: ['en'],
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: 'Electrical Panel Upgrades' },
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: 'EV Charger Installation' },
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: 'Electrical Troubleshooting and Repairs' },
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: 'Lighting Installation' },
     },
   ],
   sameAs: ['https://www.facebook.com/profile.php?id=61573826170938', 'https://share.google/pOgXH17fP6C0srCw9'],
@@ -117,11 +119,11 @@ const websiteLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': `${siteUrl}/#website`,
-  name: 'Top Tier Electrical',
+  name: SITE.name,
   url: siteUrl,
   inLanguage: 'en-US',
   publisher: {
-    '@id': `${siteUrl}/#electrician`,
+    '@id': `${siteUrl}/#localbusiness`,
   },
 });
 ---
@@ -136,14 +138,14 @@ const websiteLd = JSON.stringify({
     <meta name="robots" content={robots} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="author" content="Top Tier Electrical" />
+    <meta name="author" content={SITE.name} />
     <!-- Open Graph -->
     <meta property="og:title" content={resolvedOgTitle} />
     <meta property="og:description" content={resolvedOgDescription} />
     <meta property="og:type" content={ogType} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:site_name" content="Top Tier Electrical" />
+    <meta property="og:site_name" content={SITE.name} />
     <meta property="og:locale" content="en_US" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -250,8 +252,12 @@ const websiteLd = JSON.stringify({
             <li><a href="/contact">Contact</a></li>
           </ul>
           <div class="nav-cta">
-            <a href="tel:+16163347159" class="btn btn-ghost">Call / Text (616)&nbsp;334&#8209;7159</a>
-            <a href="/booking" class="btn btn-primary">Request Scheduling</a>
+            <a href="tel:+16163347159" class="btn btn-ghost" data-analytics-event="phone_click"
+              >Call / Text (616)&nbsp;334&#8209;7159</a
+            >
+            <a href="/booking" class="btn btn-primary" data-analytics-event="request_scheduling_click"
+              >Request Scheduling</a
+            >
           </div>
         </nav>
       </div>
@@ -259,9 +265,14 @@ const websiteLd = JSON.stringify({
 
     <slot />
 
-    <nav class="sticky-bar" aria-label="Mobile quick actions">
-      <a href="tel:+16163347159" aria-label="Call or text Top Tier Electrical">Call / Text</a>
-      <a href="/booking" class="btn" aria-label="Request electrical service scheduling">Request Scheduling</a>
+    <nav class="mobile-sticky-cta" aria-label="Mobile quick actions">
+      <a href="tel:+16163347159" data-analytics-event="phone_click" aria-label="Call Top Tier Electrical">Call</a>
+      <a href="sms:+16163347159" data-analytics-event="sms_click" aria-label="Text Top Tier Electrical">Text</a>
+      <a
+        href="/contact"
+        data-analytics-event="request_scheduling_click"
+        aria-label="Request electrical service scheduling">Request Scheduling</a
+      >
     </nav>
 
     <!-- Pre-footer -->
@@ -287,11 +298,11 @@ const websiteLd = JSON.stringify({
           <div class="footer-col">
             <h4>Service Areas</h4>
             <ul aria-label="Service area links">
-              <li><a href="/electrician-holland">Holland, MI</a></li>
-              <li><a href="/electrician-grand-rapids">Grand Rapids, MI</a></li>
-              <li><a href="/electrician-zeeland">Zeeland, MI</a></li>
-              <li><a href="/electrician-hudsonville">Hudsonville, MI</a></li>
-              <li><a href="/electrician-allegan">Allegan, MI</a></li>
+              <li><a href="/electrician-holland-mi">Holland, MI</a></li>
+              <li><a href="/electrician-grand-rapids-mi">Grand Rapids, MI</a></li>
+              <li><a href="/electrician-zeeland-mi">Zeeland, MI</a></li>
+              <li><a href="/electrician-hudsonville-mi">Hudsonville, MI</a></li>
+              <li><a href="/electrician-allegan-mi">Allegan, MI</a></li>
               <li><a href="/electrician-ada">Ada, MI</a></li>
               <li><a href="/service-areas">All Areas →</a></li>
             </ul>
@@ -324,6 +335,7 @@ const websiteLd = JSON.stringify({
         </a>
       </p>
       <p>&copy; {new Date().getFullYear()} Top Tier Electrical. All rights reserved.</p>
+      <p><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms &amp; Conditions</a></p>
     </footer>
 
     <script src="/script.js" defer></script>

@@ -1,5 +1,4 @@
 User-agent: *
-Allow: /
-Disallow: /thank-you
+Disallow:
 
 Sitemap: https://toptier-electrical.com/sitemap.xml
