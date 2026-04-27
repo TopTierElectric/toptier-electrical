@@ -1,5 +1,8 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import QuickAnswerEv from '~/components/pages/QuickAnswerEv.astro';
+import RelatedServices from '~/components/pages/RelatedServices.astro';
+import OwnerCredentials from '~/components/pages/OwnerCredentials.astro';
 import BreadcrumbSchema from '~/components/seo/BreadcrumbSchema.astro';
 
 const jsonLd = [
@@ -69,7 +72,7 @@ const jsonLd = [
 ---
 
 <TTELayout
-  title="Panel & Service Upgrades | West Michigan Electrician"
+  title="Electrical Panel Upgrades in West Michigan | Top Tier Electrical"
   description="Clean, code-compliant electrical panel upgrades and service upgrades in West Michigan. Clear scope, tidy installs, and reliable long-term results."
   canonical="https://toptier-electrical.com/panel-upgrades"
   jsonLd={jsonLd}
@@ -176,6 +179,10 @@ const jsonLd = [
         </p>
       </div>
     </section>
+
+    <QuickAnswerEv />
+    <RelatedServices />
+    <OwnerCredentials />
     <section class="cta-section">
       <h2>Ready for an Upgrade?</h2>
       <p>

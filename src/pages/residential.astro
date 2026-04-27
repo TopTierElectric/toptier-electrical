@@ -1,5 +1,8 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import QuickAnswerEv from '~/components/pages/QuickAnswerEv.astro';
+import RelatedServices from '~/components/pages/RelatedServices.astro';
+import OwnerCredentials from '~/components/pages/OwnerCredentials.astro';
 
 const serviceLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -33,7 +36,7 @@ const breadcrumbLd = JSON.stringify({
 ---
 
 <TTELayout
-  title="Residential Electrician Services | Top Tier Electrical"
+  title="Residential Electrical Services in West Michigan | Top Tier Electrical"
   description="Residential electrical services across West Michigan. Panel upgrades, EV chargers, lighting, repairs, generators, and more."
   canonical="https://toptier-electrical.com/residential"
   jsonLd={[serviceLd, breadcrumbLd]}
@@ -97,6 +100,10 @@ const breadcrumbLd = JSON.stringify({
         </div>
       </div>
     </section>
+
+    <QuickAnswerEv />
+    <RelatedServices />
+    <OwnerCredentials />
     <section class="cta-section">
       <h2>Ready to Schedule?</h2>
       <p>

@@ -252,8 +252,12 @@ const websiteLd = JSON.stringify({
             <li><a href="/contact">Contact</a></li>
           </ul>
           <div class="nav-cta">
-            <a href="tel:+16163347159" class="btn btn-ghost">Call / Text (616)&nbsp;334&#8209;7159</a>
-            <a href="/booking" class="btn btn-primary">Request Scheduling</a>
+            <a href="tel:+16163347159" class="btn btn-ghost" data-analytics-event="phone_click"
+              >Call / Text (616)&nbsp;334&#8209;7159</a
+            >
+            <a href="/booking" class="btn btn-primary" data-analytics-event="request_scheduling_click"
+              >Request Scheduling</a
+            >
           </div>
         </nav>
       </div>
@@ -261,9 +265,14 @@ const websiteLd = JSON.stringify({
 
     <slot />
 
-    <nav class="sticky-bar" aria-label="Mobile quick actions">
-      <a href="tel:+16163347159" aria-label="Call or text Top Tier Electrical">Call / Text</a>
-      <a href="/booking" class="btn" aria-label="Request electrical service scheduling">Request Scheduling</a>
+    <nav class="mobile-sticky-cta" aria-label="Mobile quick actions">
+      <a href="tel:+16163347159" data-analytics-event="phone_click" aria-label="Call Top Tier Electrical">Call</a>
+      <a href="sms:+16163347159" data-analytics-event="sms_click" aria-label="Text Top Tier Electrical">Text</a>
+      <a
+        href="/contact"
+        data-analytics-event="request_scheduling_click"
+        aria-label="Request electrical service scheduling">Request Scheduling</a
+      >
     </nav>
 
     <!-- Pre-footer -->
@@ -326,6 +335,7 @@ const websiteLd = JSON.stringify({
         </a>
       </p>
       <p>&copy; {new Date().getFullYear()} Top Tier Electrical. All rights reserved.</p>
+      <p><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms &amp; Conditions</a></p>
     </footer>
 
     <script src="/script.js" defer></script>

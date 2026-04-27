@@ -1,5 +1,8 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import QuickAnswerEv from '~/components/pages/QuickAnswerEv.astro';
+import RelatedServices from '~/components/pages/RelatedServices.astro';
+import OwnerCredentials from '~/components/pages/OwnerCredentials.astro';
 
 const jsonLd = [
   JSON.stringify({
@@ -34,7 +37,7 @@ const jsonLd = [
 ---
 
 <TTELayout
-  title="Commercial Electrical Services | Top Tier Electrical"
+  title="Commercial Electrician in West Michigan | Top Tier Electrical"
   description="Commercial electrical services in West Michigan for tenant improvements, warehouse lighting, controls, repairs, maintenance, upgrades, and emergency response."
   canonical="https://toptier-electrical.com/commercial"
   jsonLd={jsonLd}
@@ -127,6 +130,9 @@ const jsonLd = [
       </div>
     </section>
 
+    <QuickAnswerEv />
+    <RelatedServices />
+    <OwnerCredentials />
     <section class="cta-section">
       <h2>Ready to Discuss Your Project?</h2>
       <p>
