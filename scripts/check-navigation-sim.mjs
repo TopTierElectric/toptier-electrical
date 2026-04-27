@@ -18,17 +18,15 @@ const staticNavigationRoutes = [
   '/faq',
   '/terms',
   '/privacy',
-  '/electrician-holland',
-  '/electrician-grand-rapids',
-  '/electrician-zeeland',
-  '/electrician-hudsonville',
-  '/electrician-allegan',
-  '/electrician-ada',
-  '/electrician-grand-haven',
-  '/electrician-muskegon',
 ];
 
-const checks = [...staticNavigationRoutes, ...config.routes.services.map((slug) => `/${slug}`)];
+const locationRoutes = (config.routes.locations ?? []).map((slug) => `/${slug}`);
+
+const checks = [
+  ...staticNavigationRoutes,
+  ...config.routes.services.map((slug) => `/${slug}`),
+  ...locationRoutes,
+];
 
 const dedupedChecks = [...new Set(checks)];
 const missing = dedupedChecks.filter((route) => !routes.has(route));

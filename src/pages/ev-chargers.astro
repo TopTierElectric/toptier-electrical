@@ -1,5 +1,8 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import QuickAnswerEv from '~/components/pages/QuickAnswerEv.astro';
+import RelatedServices from '~/components/pages/RelatedServices.astro';
+import OwnerCredentials from '~/components/pages/OwnerCredentials.astro';
 
 const jsonLd = [
   JSON.stringify({
@@ -31,7 +34,7 @@ const jsonLd = [
 ---
 
 <TTELayout
-  title="EV Charger Installation | West Michigan Electrician"
+  title="EV Charger Installation in West Michigan | Top Tier Electrical"
   description="Level 2 EV charger installs with capacity checks, clean wiring, and permit coordination. Safe, code-compliant charging for your home or business."
   canonical="https://toptier-electrical.com/ev-chargers"
   jsonLd={jsonLd}
@@ -138,6 +141,10 @@ const jsonLd = [
         </p>
       </div>
     </section>
+
+    <QuickAnswerEv />
+    <RelatedServices />
+    <OwnerCredentials />
     <section class="cta-section">
       <h2>Ready to Charge?</h2>
       <p>

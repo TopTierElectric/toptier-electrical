@@ -125,6 +125,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.addEventListener('click', function (event) {
+      const analyticsTarget = event.target.closest('[data-analytics-event]');
+      if (analyticsTarget && typeof gtag === 'function') {
+        gtag('event', analyticsTarget.dataset.analyticsEvent, {
+          link_url: analyticsTarget.href || window.location.href,
+          page_path: window.location.pathname,
+        });
+      }
+
       const gaTarget = event.target.closest('[data-ga-event]');
       if (gaTarget && typeof gtag === 'function') {
         gtag('event', gaTarget.dataset.gaEvent, {
@@ -152,8 +160,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.querySelectorAll('form').forEach(function (form) {
+      form.addEventListener(
+        'focusin',
+        function () {
+          tteTrack('contact_form_start', {
+            formName: form.getAttribute('name') || 'unnamed',
+          });
+        },
+        { once: true }
+      );
+
       form.addEventListener('submit', function () {
-        tteTrack('form_submit', {
+        tteTrack('contact_form_submit', {
           formName: form.getAttribute('name') || 'unnamed',
         });
       });
