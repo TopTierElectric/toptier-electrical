@@ -20,8 +20,12 @@
 
 # Blog route ownership is currently handled at page level in `src/pages/blog/*.astro`.
 # Do not add Cloudflare redirects for these blog slugs, or it can cause redirect loops.
-/code-corrections /electrical-repairs 301
-/dedicated-circuits /services 301
-/electrician-grand-haven /service-areas 301
-/electrician-muskegon /service-areas 301
-/reviews /testimonials 301
+/electrician-holland /electrician-holland-mi 301
+/electrician-grand-rapids /electrician-grand-rapids-mi 301
+/electrician-byron-center /electrician-byron-center-mi 301
+/electrician-zeeland /electrician-zeeland-mi 301
+/electrician-saugatuck-douglas /electrician-saugatuck-mi 301
+/electrician-hudsonville /electrician-hudsonville-mi 301
+/electrician-allegan /electrician-allegan-mi 301
+
+/lighting-fixtures /lighting 301
