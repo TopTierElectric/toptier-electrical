@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     nav.classList.toggle('active', open);
     menuToggle.setAttribute('aria-expanded', String(open));
-    document.body.classList.toggle('menu-open', open);
   }
 
   if (menuToggle && nav) {
@@ -34,12 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('resize', function () {
       if (window.innerWidth > 1200 && nav.classList.contains('active')) {
-        setMobileNavOpen(false);
-      }
-    });
-
-    window.addEventListener('orientationchange', function () {
-      if (nav.classList.contains('active')) {
         setMobileNavOpen(false);
       }
     });

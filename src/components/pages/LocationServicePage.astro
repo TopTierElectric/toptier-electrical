@@ -9,6 +9,14 @@ export interface Props {
 
 const { city, slug, county = `${city}, MI` } = Astro.props;
 const canonical = `https://toptier-electrical.com/${slug}`;
+const nearbyAreas = [
+  { city: 'Holland', href: '/electrician-holland' },
+  { city: 'Grand Rapids', href: '/electrician-grand-rapids' },
+  { city: 'Zeeland', href: '/electrician-zeeland' },
+  { city: 'Hudsonville', href: '/electrician-hudsonville' },
+  { city: 'Allegan', href: '/electrician-allegan' },
+  { city: 'Ada', href: '/electrician-ada' },
+].filter((area) => area.city !== city);
 ---
 
 <TTELayout
@@ -21,7 +29,7 @@ const canonical = `https://toptier-electrical.com/${slug}`;
       <div class="hero-content">
         <h1>Electrician in {city}, MI</h1>
         <p>Licensed, insured electrical service for {city} homes and commercial spaces.</p>
-        <a href="/booking" class="btn btn-primary">Request Scheduling</a>
+        <a href="/booking" class="btn btn-primary">Get a Clear Estimate</a>
       </div>
     </section>
     <div class="trust-strip">
@@ -52,14 +60,33 @@ const canonical = `https://toptier-electrical.com/${slug}`;
         <p><a href="/contact" class="btn btn-secondary">Confirm availability in {city}</a></p>
       </div>
     </section>
+    <section class="services">
+      <div class="container">
+        <h2>Nearby Service Areas</h2>
+        <p>
+          Looking for electrical help in a nearby city? Explore nearby service area pages or view our full West Michigan
+          coverage map.
+        </p>
+        <ul>
+          {
+            nearbyAreas.slice(0, 4).map((area) => (
+              <li>
+                <a href={area.href}>Electrician in {area.city}, MI</a>
+              </li>
+            ))
+          }
+          <li><a href="/service-areas">View all service areas</a></li>
+        </ul>
+      </div>
+    </section>
     <section class="cta-section">
       <h2>Schedule Service in {city}</h2>
       <p>
-        Call <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a> or email <a
-          href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
+        Call <a href="tel:+16163347159">(616) 334-7159</a> or email <a href="mailto:info@toptier-electrical.com"
+          >info@toptier-electrical.com</a
         > to confirm scope and scheduling.
       </p>
-      <a href="/booking" class="btn btn-primary">Request Scheduling</a>
+      <a href="/booking" class="btn btn-primary">Get a Clear Estimate</a>
     </section>
   </main>
 </TTELayout>

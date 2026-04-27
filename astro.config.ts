@@ -24,11 +24,17 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   output: 'static',
   site: 'https://toptier-electrical.com',
+  prefetch: {
+    prefetchAll: false,
+    defaultStrategy: 'viewport',
+  },
   integrations: [
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+      filter: (page) => !page.endsWith('/thank-you'),
+    }),
     mdx(),
     icon({
       include: {
