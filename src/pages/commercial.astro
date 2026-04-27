@@ -1,30 +1,53 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
 
-const breadcrumbLd = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Commercial', item: 'https://toptier-electrical.com/commercial' },
-  ],
-});
+const jsonLd = [
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': 'https://toptier-electrical.com/commercial#service',
+    name: 'Commercial Electrical Services in West Michigan',
+    serviceType: 'Commercial electrical services',
+    provider: { '@id': 'https://toptier-electrical.com/#localbusiness' },
+    areaServed: [
+      'Holland MI',
+      'Grand Rapids MI',
+      'Byron Center MI',
+      'Zeeland MI',
+      'Saugatuck MI',
+      'Hudsonville MI',
+      'Allegan MI',
+    ],
+    description:
+      'Commercial electrical service for West Michigan shops, warehouses, offices, agricultural facilities, and light manufacturing spaces.',
+    url: 'https://toptier-electrical.com/commercial',
+  }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Commercial', item: 'https://toptier-electrical.com/commercial' },
+    ],
+  }),
+];
 ---
 
 <TTELayout
   title="Commercial Electrical Services | Top Tier Electrical"
-  description="Light commercial electrical services across West Michigan. Panel work, LED retrofits, controls, and maintenance for businesses."
+  description="Commercial electrical services in West Michigan for tenant improvements, warehouse lighting, controls, repairs, maintenance, upgrades, and emergency response."
   canonical="https://toptier-electrical.com/commercial"
-  jsonLd={[breadcrumbLd]}
+  jsonLd={jsonLd}
 >
   <main id="main-content">
     <section class="hero">
       <div class="hero-content">
-        <h1>Commercial Electrical Services</h1>
-        <p>Electrical service work for businesses across West Michigan.</p>
+        <h1>Commercial Electrical Services in West Michigan</h1>
+        <p>Scope clarity, clean execution, and practical planning to reduce downtime for your business.</p>
         <a href="/booking" class="btn btn-primary">Get a Clear Estimate</a>
       </div>
     </section>
+
     <div class="trust-strip">
       <div class="container">
         <div class="trust-badges">
@@ -35,29 +58,75 @@ const breadcrumbLd = JSON.stringify({
         </div>
       </div>
     </div>
+
     <section class="services">
       <div class="container">
-        <h2>Services for Businesses</h2>
+        <h2>Commercial Electrical Work We Handle</h2>
         <ul>
-          <li><a href="/panel-upgrades">Panel upgrades and service corrections</a></li>
-          <li><a href="/lighting">LED lighting retrofits and commercial lighting</a></li>
-          <li><a href="/ev-chargers">EV charger installation</a></li>
-          <li><a href="/electrical-repairs">Electrical repairs and troubleshooting</a></li>
-          <li><a href="/generators">Generator and backup power planning</a></li>
-          <li><a href="/energy-consulting">Energy consulting and load planning</a></li>
+          <li>Tenant improvements and remodel electrical scope</li>
+          <li>Warehouse and high-bay lighting upgrades</li>
+          <li>Control panels and low-voltage control integration</li>
+          <li>3-phase distribution improvements and troubleshooting</li>
+          <li>Maintenance and repair for recurring electrical issues</li>
+          <li>Service upgrades and panel modernization</li>
+          <li>Emergency response for urgent outages and unsafe conditions</li>
         </ul>
-        <h3>Industries We Serve</h3>
+
+        <h2>Industries and Spaces Served</h2>
+        <ul>
+          <li>Shops and showrooms</li>
+          <li>Warehouses and distribution spaces</li>
+          <li>Offices and mixed-use buildings</li>
+          <li>Small manufacturing and process spaces</li>
+          <li>Restaurants and commercial kitchens</li>
+          <li>Multi-tenant commercial units</li>
+          <li>Agricultural and mixed-use properties</li>
+        </ul>
+
+        <h2>Pricing Factors</h2>
+        <ul>
+          <li>Site access and allowable working hours</li>
+          <li>Existing wiring and panel condition</li>
+          <li>Required shutdown windows and sequencing</li>
+          <li>Equipment lead times and material availability</li>
+          <li>Permit and inspection requirements</li>
+          <li>Lift access or ceiling height constraints</li>
+        </ul>
+
+        <h2>How We Reduce Downtime</h2>
+        <ol>
+          <li>Walkthrough and constraints review with your team.</li>
+          <li>Scope clarification and electrical sequencing plan.</li>
+          <li>Material planning before outage windows.</li>
+          <li>Scheduled execution during planned downtime.</li>
+          <li>Verification, labeling, and handoff documentation.</li>
+        </ol>
+
+        <h2>Commercial Electrical FAQs</h2>
         <p>
-          We work with retail, offices, light industrial, agricultural facilities, and small commercial construction
-          across West Michigan.
+          <strong>Can work be scheduled around business hours?</strong><br />Yes. We coordinate scope and timing to
+          minimize operational disruption.
         </p>
-        <h3>What to Expect</h3>
         <p>
-          Clear scope before work begins, minimal disruption to your operations, and a professional finish that holds
-          up.
+          <strong>Do you handle emergency service calls?</strong><br />Yes. If an outage or unsafe condition affects
+          operations, call for urgent response.
         </p>
+        <p>
+          <strong>Do you support ongoing maintenance needs?</strong><br />Yes. We can support recurring maintenance and
+          repair priorities for active facilities.
+        </p>
+
+        <h2>Related Commercial Services</h2>
+        <ul>
+          <li><a href="/commercial-electrical-maintenance">Commercial maintenance</a></li>
+          <li><a href="/lighting">Warehouse and facility lighting upgrades</a></li>
+          <li><a href="/electrical-repairs">Commercial troubleshooting and repairs</a></li>
+          <li><a href="/energy-consulting">Energy and load planning</a></li>
+          <li><a href="/contact">Contact Top Tier Electrical</a></li>
+        </ul>
       </div>
     </section>
+
     <section class="cta-section">
       <h2>Ready to Discuss Your Project?</h2>
       <p>
