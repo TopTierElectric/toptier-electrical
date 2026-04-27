@@ -11,19 +11,12 @@
   "site": {
     "domain": "toptier-electrical.com",
     "origin": "https://toptier-electrical.com",
-    "canonicalBaseUrl": "https://toptier-electrical.com",
-    "headers": {
-      "assets_cache_immutable": "public, max-age=31536000, immutable"
-    }
+    "canonicalBaseUrl": "https://toptier-electrical.com"
   },
   "seo": {
     "googleBusinessProfileUrl": "https://g.page/r/CUr9o5vQ0M6nEAE",
     "googleReviewUrl": "https://g.page/r/CUr9o5vQ0M6nEAE/review",
-    "socialProfiles": ["https://www.facebook.com/profile.php?id=61573826170938"],
-    "analytics": {
-      "ga4MeasurementId": "",
-      "gtmId": ""
-    }
+    "socialProfiles": ["https://www.facebook.com/profile.php?id=61573826170938"]
   },
   "serviceAreas": [
     "Holland, MI",
@@ -58,26 +51,14 @@
       "residential",
       "commercial",
       "service-areas",
-      "electrician-holland",
-      "electrician-grand-rapids",
-      "electrician-byron-center",
-      "electrician-zeeland",
-      "electrician-saugatuck-douglas",
-      "electrician-hudsonville",
-      "electrician-allegan",
-      "electrician-ada",
-      "electrician-grand-haven",
-      "electrician-muskegon",
-      "residential-electrician-allegan-mi",
-      "commercial-electrician-allegan-mi",
       "gallery",
       "blog",
       "contact",
       "booking",
       "faq",
+      "testimonials",
       "reviews",
-      "privacy",
-      "terms"
+      "financing"
     ]
   }
 }

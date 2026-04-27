@@ -7,7 +7,7 @@
 ### Homepage `/`
 
 - Primary intent: local electrician + conversion.
-- Gap closed: added explicit scheduling process .
+- Gap closed: added explicit scheduling process and financing internal link.
 - Remaining: add visible case-study cards in next release.
 
 ### Services hub `/services`

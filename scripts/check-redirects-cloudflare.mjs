@@ -2,8 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const redirectsPath = new URL('../public/_redirects', import.meta.url);
-const content = fs.readFileSync(redirectsPath, 'utf8');
-const lines = content
+const redirectsContent = fs.readFileSync(redirectsPath, 'utf8');
+const lines = redirectsContent
   .split(/\r?\n/)
   .map((line) => line.trim())
   .filter(Boolean)

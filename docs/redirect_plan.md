@@ -4,7 +4,7 @@
 
 - Blog redirect ownership is currently handled inside Astro page routes (`src/pages/blog/*.astro`).
 - Cloudflare `_redirects` intentionally excludes blog-slug remaps to avoid redirect cycles with page-level redirects.
-- Non-blog canonical consolidations remain in `public/_redirects` (`/testimonials -> /reviews`).
+- Non-blog canonical consolidations remain in `public/_redirects` (e.g., `/code-corrections -> /electrical-repairs`, `/reviews -> /testimonials`).
 
 ## Guardrails
 

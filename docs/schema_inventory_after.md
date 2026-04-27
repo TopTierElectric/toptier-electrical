@@ -4,7 +4,7 @@
 
 - `BreadcrumbList` (auto-generated per route)
 - `Electrician` entity with `@id`, contact, opening hours, service area
-- `WebSite` with `SearchAction`
+- `WebSite` entity (without `SearchAction`, since on-site query handling is not implemented)
 - `SiteNavigationElement`
 
 ## Homepage (`src/pages/index.astro`)

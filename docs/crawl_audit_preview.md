@@ -1,15 +1,34 @@
-# Preview crawl audit usage
+# Crawl Audit (Preview + Local Simulation)
 
-`crawl:preview` is intentionally parameterized and does **not** hardcode a Pages hostname.
+Date: 2026-04-21
 
-Use either CLI arg or `PREVIEW_URL`:
+## Remote preview crawl attempt
 
-```bash
-npm run crawl:preview -- https://codex-task-title-n560vp.toptier-electrical.pages.dev/
-```
+- Target: `https://codex-task-title.toptier-electrical.pages.dev/`
+- Result: network fetch failure from this execution environment (external connectivity blocker for this host).
 
-or
+## Local byte-level crawl simulation
 
-```bash
-PREVIEW_URL="https://codex-task-title-n560vp.toptier-electrical.pages.dev/" npm run crawl:preview
-```
+- Command used: `node scripts/crawl-site-audit.mjs http://127.0.0.1:4322/ 300`
+- Reusable command: `npm run crawl:preview` (target can be passed as arg or `CRAWL_TARGET_URL` env var; default is `https://toptier-electrical.com/`).
+- Optional strict mode: set `CRAWL_STRICT=1` to return a non-zero exit code when fetch failures are detected.
+- Pages crawled: **34**
+- HTTP failures: **0**
+- Missing canonicals: **0**
+- Missing H1: **0**
+- Long titles (>70): **0**
+
+The crawler records response byte size and SHA-256 hash for each page to support content-change and regression detection.
+
+## Sample validated pages
+
+- `/` – 22,090 bytes, sha256 `3e2e544d69976ccb3b87c77e2ba3e5e5d0818d69f69dad73729f3fc102e28d5c`
+- `/services` – 16,640 bytes, sha256 `45afc5f594b7d52e7321d4d7a6441927baa8a76e39ff11dd4d06da540642413d`
+- `/blog` – 15,705 bytes, sha256 `49720fce54e282775e1e27f0063fc9b93e8ff114738cc0a195e1da6fbf5f38b7`
+- `/about` – 18,146 bytes, sha256 `8517a32ef66adf31f9894ccd4269e224332770a1a73834387f90741dd3161b77`
+- `/contact` – 17,953 bytes, sha256 `87cb4c5e9eb0d9d339397a50f777b677f47342b13f790e5b6846a51ce67fdf87`
+
+## Notes
+
+- Redirect simulation checks remain covered by `npm run check:redirects-cloudflare` and `npm run check:navigation-sim`.
+- Render-level SEO checks remain covered by `npm run check:seo-render`.

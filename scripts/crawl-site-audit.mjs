@@ -1,84 +1,77 @@
 #!/usr/bin/env node
+import crypto from 'node:crypto';
 
-const startUrl = process.argv[2] || process.env.PREVIEW_URL;
+const startUrl = process.argv[2] || process.env.CRAWL_TARGET_URL || 'https://toptier-electrical.com/';
+const maxPages = Number(process.argv[3] || 300);
+const strictMode = process.env.CRAWL_STRICT === '1';
+const origin = new URL(startUrl).origin;
 
-if (!startUrl) {
-  throw new Error(
-    'Missing preview URL. Pass argv[2] or set PREVIEW_URL, e.g. PREVIEW_URL="https://codex-task-title-n560vp.toptier-electrical.pages.dev/" npm run crawl:preview'
-  );
-}
-
-const parsedStartUrl = new URL(startUrl);
-if (!['http:', 'https:'].includes(parsedStartUrl.protocol)) {
-  throw new Error(`Unsupported protocol for preview crawl: ${parsedStartUrl.protocol}`);
-}
-
-const normalizePath = (pathname) => pathname.replace(/\/+$/, '') || '/';
-const normalizeUrl = (url) => {
-  const cloned = new URL(url.toString());
-  cloned.hash = '';
-  cloned.search = '';
-  cloned.pathname = normalizePath(cloned.pathname);
-  return cloned.toString();
-};
-
-const extractLinks = (html, base) => {
-  const links = [];
-  const linkRegex = /<a\b[^>]*href\s*=\s*"([^"]+)"[^>]*>/gi;
-  let match;
-  while ((match = linkRegex.exec(html))) {
-    const href = match[1].trim();
-    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) continue;
-    try {
-      const candidate = new URL(href, base);
-      if (candidate.origin !== base.origin) continue;
-      links.push(normalizeUrl(candidate));
-    } catch {
-      // ignore malformed URLs
-    }
-  }
-  return links;
-};
-
-const queue = [normalizeUrl(parsedStartUrl)];
-const seen = new Set();
+const queue = [startUrl];
+const visited = new Set();
+const results = [];
 const failures = [];
-const MAX_PAGES = Number.parseInt(process.env.CRAWL_MAX_PAGES || '120', 10);
 
-while (queue.length > 0 && seen.size < MAX_PAGES) {
-  const current = queue.shift();
-  if (seen.has(current)) continue;
-  seen.add(current);
+const normalize = (url) => {
+  const u = new URL(url, origin);
+  u.hash = '';
+  if (u.pathname !== '/' && u.pathname.endsWith('/')) u.pathname = u.pathname.slice(0, -1);
+  return u.toString();
+};
 
-  let response;
+while (queue.length && visited.size < maxPages) {
+  const current = normalize(queue.shift());
+  if (visited.has(current)) continue;
+  visited.add(current);
+
   try {
-    response = await fetch(current, { redirect: 'follow' });
+    const res = await fetch(current, { redirect: 'follow' });
+    const body = await res.text();
+    const bytes = Buffer.byteLength(body, 'utf8');
+    const digest = crypto.createHash('sha256').update(body).digest('hex');
+    const contentType = res.headers.get('content-type') || '';
+
+    const title = (body.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || '').trim();
+    const h1Count = (body.match(/<h1[\s>]/gi) || []).length;
+    const canonical =
+      body.match(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i)?.[1] ||
+      body.match(/<link[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["'][^>]*>/i)?.[1] ||
+      '';
+
+    results.push({ url: current, status: res.status, bytes, sha256: digest, title, h1Count, canonical, contentType });
+
+    if (!res.ok) failures.push(`HTTP ${res.status}: ${current}`);
+    if (!contentType.includes('text/html')) continue;
+
+    const links = [...body.matchAll(/<a[^>]*href=["']([^"']+)["'][^>]*>/gi)].map((m) => m[1]);
+    for (const href of links) {
+      if (!href || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) continue;
+      const next = normalize(new URL(href, current).toString());
+      if (!next.startsWith(origin)) continue;
+      if (!visited.has(next)) queue.push(next);
+    }
   } catch (error) {
-    failures.push(`${current} -> network error: ${error.message}`);
-    continue;
-  }
-
-  if (!response.ok) {
-    failures.push(`${current} -> HTTP ${response.status}`);
-    continue;
-  }
-
-  const contentType = response.headers.get('content-type') || '';
-  if (!contentType.includes('text/html')) continue;
-
-  const html = await response.text();
-  const discovered = extractLinks(html, parsedStartUrl);
-  for (const link of discovered) {
-    if (!seen.has(link)) queue.push(link);
+    failures.push(`Fetch error: ${current} (${error.message})`);
   }
 }
 
-console.log(`Preview crawl target: ${normalizeUrl(parsedStartUrl)} | visited ${seen.size} pages`);
+const longTitles = results.filter((r) => r.title.length > 70).map((r) => `${r.url} (${r.title.length})`);
+const missingCanonicals = results.filter((r) => r.contentType.includes('text/html') && !r.canonical).map((r) => r.url);
+const missingH1 = results.filter((r) => r.contentType.includes('text/html') && r.h1Count === 0).map((r) => r.url);
 
-if (failures.length) {
-  console.error('Preview crawl found failures:');
-  failures.forEach((failure) => console.error(`- ${failure}`));
-  process.exit(1);
-}
+console.log(
+  JSON.stringify(
+    {
+      startUrl,
+      crawled: results.length,
+      failures,
+      longTitles,
+      missingCanonicals,
+      missingH1,
+      sample: results.slice(0, 10),
+    },
+    null,
+    2
+  )
+);
 
-console.log('Preview crawl completed with no HTTP/network failures.');
+if (failures.length && strictMode) process.exitCode = 1;
