@@ -41,11 +41,11 @@ export const footerData = {
     {
       title: 'Service Areas',
       links: [
-        { text: 'Holland, MI', href: getPermalink('/electrician-holland-mi') },
-        { text: 'Grand Rapids, MI', href: getPermalink('/electrician-grand-rapids-mi') },
-        { text: 'Zeeland, MI', href: getPermalink('/electrician-zeeland-mi') },
-        { text: 'Hudsonville, MI', href: getPermalink('/electrician-hudsonville-mi') },
-        { text: 'Allegan, MI', href: getPermalink('/electrician-allegan-mi') },
+        { text: 'Holland, MI', href: getPermalink('/electrician-holland') },
+        { text: 'Grand Rapids, MI', href: getPermalink('/electrician-grand-rapids') },
+        { text: 'Zeeland, MI', href: getPermalink('/electrician-zeeland') },
+        { text: 'Hudsonville, MI', href: getPermalink('/electrician-hudsonville') },
+        { text: 'Allegan, MI', href: getPermalink('/electrician-allegan') },
         { text: 'Ada, MI', href: getPermalink('/electrician-ada') },
         { text: 'Grand Haven, MI', href: getPermalink('/electrician-grand-haven') },
         { text: 'Muskegon, MI', href: getPermalink('/electrician-muskegon') },

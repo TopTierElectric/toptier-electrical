@@ -1,6 +1,5 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
-import OwnerCredentials from '~/components/pages/OwnerCredentials.astro';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -13,7 +12,7 @@ const breadcrumbLd = JSON.stringify({
 ---
 
 <TTELayout
-  title="About Top Tier Electrical | Owner-Operated West Michigan Electrician"
+  title="About Top Tier Electrical | Owner-Operated Electrician in West Michigan"
   description="Meet the licensed, owner-operated electrician behind Top Tier Electrical. Learn our process, workmanship standards, and service approach across West Michigan."
   jsonLd={[breadcrumbLd]}
 >
@@ -108,13 +107,11 @@ const breadcrumbLd = JSON.stringify({
       <p>See panels, EV chargers, lighting upgrades, and commercial service work completed across West Michigan.</p>
       <p><a class="btn btn-primary" href="/gallery">View Project Gallery</a></p>
     </section>
-    <OwnerCredentials />
-
     <section class="cta-section">
       <h2>Ready to Work Together?</h2>
       <p>
-        Call <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a> or email <a
-          href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
+        Call <a href="tel:+16163347159">(616) 334-7159</a> or email <a href="mailto:info@toptier-electrical.com"
+          >info@toptier-electrical.com</a
         > to confirm scope and scheduling.
       </p>
       <a href="/booking" class="btn btn-primary">Get a Clear Estimate</a>

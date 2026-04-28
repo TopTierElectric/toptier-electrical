@@ -2,7 +2,8 @@
 import '@fontsource-variable/inter';
 import '~/assets/styles/tte-site.css';
 import Favicons from '~/components/Favicons.astro';
-import { SITE } from '~/config/site';
+import siteData from '~/data/site.json';
+import { toApexCanonical } from '~/utils/canonical';
 
 export interface Props {
   title: string;
@@ -30,14 +31,32 @@ const {
   breadcrumbItems,
 } = Astro.props;
 
-const canonicalPath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, '');
-const canonicalUrl = canonical || `${SITE.url}${canonicalPath}`;
+const siteUrl = siteData.site.origin;
+const gaMeasurementId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID || siteData.seo?.analytics?.ga4MeasurementId || '';
+const gtmId = import.meta.env.PUBLIC_GTM_ID || siteData.seo?.analytics?.gtmId || '';
+
+const analyticsHeadHtml = [
+  gtmId
+    ? `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');</script>`
+    : '',
+  gaMeasurementId
+    ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${gaMeasurementId}');</script>`
+    : '',
+]
+  .filter(Boolean)
+  .join('');
+
+const normalizePath = (path: string) => {
+  if (!path || path === '/') return '/';
+  return path.endsWith('/') ? path.slice(0, -1) : path;
+};
+
+const resolvedPath = normalizePath(Astro.url.pathname);
+const canonicalUrl = toApexCanonical(canonical || `${siteUrl}${resolvedPath}`, resolvedPath);
 const resolvedOgTitle = ogTitle || title;
 const resolvedOgDescription = ogDescription || description;
 
-const jsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
-const siteUrl = SITE.url;
-const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const pathSegments = resolvedPath.split('/').filter(Boolean);
 const autoBreadcrumbItems = [
   { name: 'Home', item: `${siteUrl}/` },
   ...pathSegments.map((segment, index) => ({
@@ -49,6 +68,7 @@ const autoBreadcrumbItems = [
   })),
 ];
 const resolvedBreadcrumbs = breadcrumbItems ?? autoBreadcrumbItems;
+const hasBreadcrumbs = resolvedBreadcrumbs.length > 1;
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -61,70 +81,69 @@ const breadcrumbLd = JSON.stringify({
   })),
 });
 
-const organizationLd = JSON.stringify({
+const localBusinessLd = JSON.stringify({
   '@context': 'https://schema.org',
-  '@type': 'Electrician',
+  '@type': 'LocalBusiness',
   '@id': `${siteUrl}/#localbusiness`,
-  name: SITE.name,
+  name: siteData.business.name,
   url: siteUrl,
-  email: SITE.email,
-  telephone: SITE.phone,
-  description:
-    'Licensed and insured West Michigan electrician providing panel upgrades, EV charger installation, lighting, troubleshooting, generator readiness, and light commercial electrical work.',
+  telephone: siteData.business.phoneE164,
+  email: siteData.business.email,
   image: `${siteUrl}/images/logos/TopTierElectrical_Primary_FlatGold_512.png`,
-  logo: `${siteUrl}/images/logos/TopTierElectrical_Primary_FlatGold_512.png`,
-  priceRange: '$$-$$$',
+  priceRange: '$$',
   address: {
     '@type': 'PostalAddress',
+    addressLocality: 'Holland',
     addressRegion: 'MI',
     addressCountry: 'US',
   },
-  areaServed: SITE.areaServed.map((city) => ({ '@type': 'City', name: city })),
-  openingHoursSpecification: [
+  areaServed: siteData.serviceAreas.map((area) => ({ '@type': 'Place', name: area })),
+  sameAs: siteData.seo.socialProfiles,
+});
+
+const organizationLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${siteUrl}/#organization`,
+  name: siteData.business.legalName,
+  url: siteUrl,
+  logo: `${siteUrl}/images/logos/TopTierElectrical_Primary_FlatGold_512.png`,
+  contactPoint: [
     {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '08:00',
-      closes: '18:00',
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: 'Saturday',
-      opens: '09:00',
-      closes: '13:00',
-    },
-  ],
-  makesOffer: [
-    {
-      '@type': 'Offer',
-      itemOffered: { '@type': 'Service', name: 'Electrical Panel Upgrades' },
-    },
-    {
-      '@type': 'Offer',
-      itemOffered: { '@type': 'Service', name: 'EV Charger Installation' },
-    },
-    {
-      '@type': 'Offer',
-      itemOffered: { '@type': 'Service', name: 'Electrical Troubleshooting and Repairs' },
-    },
-    {
-      '@type': 'Offer',
-      itemOffered: { '@type': 'Service', name: 'Lighting Installation' },
+      '@type': 'ContactPoint',
+      telephone: siteData.business.phoneE164,
+      contactType: 'customer service',
+      email: siteData.business.email,
+      areaServed: 'US-MI',
+      availableLanguage: 'en',
     },
   ],
-  sameAs: ['https://www.facebook.com/profile.php?id=61573826170938', 'https://share.google/pOgXH17fP6C0srCw9'],
+  sameAs: siteData.seo.socialProfiles,
 });
 
 const websiteLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': `${siteUrl}/#website`,
-  name: SITE.name,
-  url: siteUrl,
-  inLanguage: 'en-US',
-  publisher: {
-    '@id': `${siteUrl}/#localbusiness`,
-  },
+  name: siteData.business.name,
+  url: `${siteUrl}/`,
+});
+
+const parseSchemaType = (schema: string) => {
+  try {
+    const parsed = JSON.parse(schema);
+    if (!parsed || typeof parsed !== 'object') return null;
+    return typeof parsed['@type'] === 'string' ? parsed['@type'] : null;
+  } catch {
+    return null;
+  }
+};
+
+const protectedTypes = new Set(['BreadcrumbList', 'LocalBusiness', 'Electrician', 'Organization', 'WebSite']);
+const rawJsonLdScripts = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
+  const schemaType = parseSchemaType(schema);
+  return schemaType ? !protectedTypes.has(schemaType) : true;
 });
 ---
 
@@ -138,14 +157,14 @@ const websiteLd = JSON.stringify({
     <meta name="robots" content={robots} />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="author" content={SITE.name} />
+    <meta name="author" content="Top Tier Electrical" />
     <!-- Open Graph -->
     <meta property="og:title" content={resolvedOgTitle} />
     <meta property="og:description" content={resolvedOgDescription} />
     <meta property="og:type" content={ogType} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:site_name" content="Top Tier Electrical" />
     <meta property="og:locale" content="en_US" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -161,7 +180,7 @@ const websiteLd = JSON.stringify({
     <link rel="manifest" href="/manifest.webmanifest" />
     <!-- JSON-LD Structured Data -->
     {
-      [breadcrumbLd, organizationLd, websiteLd, ...jsonLdScripts].map((ld) => (
+      [breadcrumbLd, organizationLd, websiteLd, localBusinessLd, ...jsonLdScripts].map((ld) => (
         <script type="application/ld+json" is:inline set:html={ld} />
       ))
     }
@@ -193,17 +212,7 @@ const websiteLd = JSON.stringify({
         ]
       }
     </script>
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-FTQKB78PLE"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        // eslint-disable-next-line prefer-rest-params
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-FTQKB78PLE');
-    </script>
+    {analyticsHeadHtml && <Fragment set:html={analyticsHeadHtml} />}
     <!-- Cloudflare Insights -->
     <script
       is:inline
@@ -252,27 +261,38 @@ const websiteLd = JSON.stringify({
             <li><a href="/contact">Contact</a></li>
           </ul>
           <div class="nav-cta">
-            <a href="tel:+16163347159" class="btn btn-ghost" data-analytics-event="phone_click"
-              >Call (616)&nbsp;334&#8209;7159</a
-            >
-            <a href="/booking" class="btn btn-primary" data-analytics-event="clear_estimate_click"
-              >Get a Clear Estimate</a
-            >
+            <a href="tel:+16163347159" class="btn btn-ghost">Call (616) 334-7159</a>
+            <a href="/booking" class="btn btn-primary">Get a Clear Estimate</a>
           </div>
         </nav>
       </div>
     </header>
+    {
+      hasBreadcrumbs && (
+        <nav class="container mt-4" aria-label="Breadcrumb">
+          <ol class="flex flex-wrap gap-2 text-sm text-muted">
+            {resolvedBreadcrumbs.map((entry, index) => (
+              <li class="inline-flex items-center gap-2">
+                {index > 0 && <span aria-hidden="true">/</span>}
+                {index === resolvedBreadcrumbs.length - 1 ? (
+                  <span aria-current="page">{entry.name}</span>
+                ) : (
+                  <a href={entry.item} class="underline-offset-4 hover:underline">
+                    {entry.name}
+                  </a>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
 
     <slot />
 
-    <nav class="mobile-sticky-cta" aria-label="Mobile quick actions">
-      <a href="tel:+16163347159" data-analytics-event="phone_click" aria-label="Call Top Tier Electrical">Call</a>
-      <a href="sms:+16163347159" data-analytics-event="sms_click" aria-label="Text Top Tier Electrical">Text</a>
-      <a
-        href="/booking"
-        data-analytics-event="clear_estimate_click"
-        aria-label="Get a clear estimate for electrical service">Get a Clear Estimate</a
-      >
+    <nav class="sticky-bar" aria-label="Mobile quick actions">
+      <a href="tel:+16163347159" aria-label="Call or text Top Tier Electrical">Call (616) 334-7159</a>
+      <a href="/booking" class="btn" aria-label="Request electrical service scheduling">Get a Clear Estimate</a>
     </nav>
 
     <!-- Pre-footer -->
@@ -291,18 +311,18 @@ const websiteLd = JSON.stringify({
           </div>
           <div class="footer-col">
             <h4>Contact</h4>
-            <p><a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a></p>
+            <p><a href="tel:+16163347159">(616) 334-7159</a></p>
             <p><a href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a></p>
             <p>Mon–Fri 8am–6pm · Sat 9am–1pm</p>
           </div>
           <div class="footer-col">
             <h4>Service Areas</h4>
             <ul aria-label="Service area links">
-              <li><a href="/electrician-holland-mi">Holland, MI</a></li>
-              <li><a href="/electrician-grand-rapids-mi">Grand Rapids, MI</a></li>
-              <li><a href="/electrician-zeeland-mi">Zeeland, MI</a></li>
-              <li><a href="/electrician-hudsonville-mi">Hudsonville, MI</a></li>
-              <li><a href="/electrician-allegan-mi">Allegan, MI</a></li>
+              <li><a href="/electrician-holland">Holland, MI</a></li>
+              <li><a href="/electrician-grand-rapids">Grand Rapids, MI</a></li>
+              <li><a href="/electrician-zeeland">Zeeland, MI</a></li>
+              <li><a href="/electrician-hudsonville">Hudsonville, MI</a></li>
+              <li><a href="/electrician-allegan">Allegan, MI</a></li>
               <li><a href="/electrician-ada">Ada, MI</a></li>
               <li><a href="/service-areas">All Areas →</a></li>
             </ul>
@@ -326,7 +346,7 @@ const websiteLd = JSON.stringify({
       <p>MI License #6220430</p>
       <p>
         <a
-          href="https://share.google/pOgXH17fP6C0srCw9"
+          href={siteData.seo.googleBusinessProfileUrl}
           rel="noopener noreferrer"
           target="_blank"
           aria-label="Google Business Profile"
@@ -335,7 +355,6 @@ const websiteLd = JSON.stringify({
         </a>
       </p>
       <p>&copy; {new Date().getFullYear()} Top Tier Electrical. All rights reserved.</p>
-      <p><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms &amp; Conditions</a></p>
     </footer>
 
     <script src="/script.js" defer></script>

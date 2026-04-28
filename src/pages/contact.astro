@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import siteData from '~/data/site.json';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -17,18 +18,24 @@ const contactPageLd = JSON.stringify({
   url: 'https://toptier-electrical.com/contact',
   mainEntity: {
     '@type': 'Electrician',
-    '@id': 'https://toptier-electrical.com/#electrician',
+    '@id': 'https://toptier-electrical.com/#localbusiness',
     name: 'Top Tier Electrical',
     telephone: '+1-616-334-7159',
     email: 'info@toptier-electrical.com',
     areaServed: 'West Michigan',
   },
 });
+
+const canonicalOrigin = process.env.PUBLIC_SITE_ORIGIN?.replace(/\/$/, '') ?? siteData.site.origin.replace(/\/$/, '');
+const formReturnOrigin =
+  process.env.PUBLIC_FORM_RETURN_ORIGIN?.replace(/\/$/, '') ??
+  (Astro.url?.origin?.includes('pages.dev') ? Astro.url.origin : canonicalOrigin);
+const thankYouUrl = `${formReturnOrigin}/thank-you`;
 ---
 
 <TTELayout
   title="Contact a West Michigan Electrician | Call, Text, or Book Online"
-  description="Contact Top Tier Electrical for service in West Michigan. Call, text, or request scheduling online for panel, lighting, EV charger, and repair work."
+  description="Contact Top Tier Electrical for electrical service in West Michigan. Call, text, or request scheduling online for panel, lighting, EV charger, and repair projects."
   canonical="https://toptier-electrical.com/contact"
   jsonLd={[breadcrumbLd, contactPageLd]}
 >
@@ -56,8 +63,8 @@ const contactPageLd = JSON.stringify({
         <div class="contact-grid">
           <div class="contact-info">
             <h3>Contact Details</h3>
-            <p><strong>Phone:</strong> <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a></p>
-            <p><strong>Text:</strong> <a href="sms:+16163347159">(616)&nbsp;334&#8209;7159</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+16163347159">(616) 334-7159</a></p>
+            <p><strong>Text:</strong> <a href="sms:+16163347159">(616) 334-7159</a></p>
             <p><strong>Email:</strong> <a href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a></p>
             <p>
               <strong>Service Area:</strong> Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Douglas, Hudsonville,
@@ -74,7 +81,7 @@ const contactPageLd = JSON.stringify({
             </p>
             <form name="contact" method="POST" action="https://formspree.io/f/mkovbvgj" novalidate data-enhanced-form>
               <input type="hidden" name="_subject" value="New contact request from Top Tier Electrical" />
-              <input type="hidden" name="_next" value="https://toptier-electrical.com/thank-you" />
+              <input type="hidden" name="_next" value={thankYouUrl} />
               <input type="hidden" name="form_name" value="Contact form" />
               <input
                 class="form-honeypot"
@@ -87,12 +94,26 @@ const contactPageLd = JSON.stringify({
               />
               <label for="name">Name</label>
               <input type="text" id="name" name="name" required autocomplete="name" />
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required autocomplete="email" />
               <label for="phone">Phone</label>
               <input type="tel" id="phone" name="phone" required autocomplete="tel" />
+              <label for="service-type">Service Type</label>
+              <select id="service-type" name="service_type" required autocomplete="off">
+                <option value="" disabled selected>Select a service</option>
+                <option value="Panel Upgrade">Panel Upgrade</option>
+                <option value="EV Charger Installation">EV Charger Installation</option>
+                <option value="Lighting & Fixtures">Lighting & Fixtures</option>
+                <option value="Electrical Repairs">Electrical Repairs</option>
+                <option value="Generator Installation">Generator Installation</option>
+                <option value="Other">Other</option>
+              </select>
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" required autocomplete="address-level2" />
               <label for="message">Message</label>
               <textarea id="message" name="message" required autocomplete="off"></textarea>
+              <label class="checkbox-row" for="contact-permission">
+                <input type="checkbox" id="contact-permission" name="contact_permission" required />
+                I give permission to be contacted about this request.
+              </label>
               <button type="submit" data-cta="contact-request-quote" data-submit-label="Request a Quote"
                 >Request a Quote</button
               >
@@ -119,8 +140,8 @@ const contactPageLd = JSON.stringify({
     <section class="cta-section">
       <h2>Need Service?</h2>
       <p>
-        Call us at <a href="tel:+16163347159">(616)&nbsp;334&#8209;7159</a> or email <a
-          href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a
+        Call us at <a href="tel:+16163347159">(616) 334-7159</a> or email <a href="mailto:info@toptier-electrical.com"
+          >info@toptier-electrical.com</a
         > and we'll confirm next steps.
       </p>
       <a href="/booking" class="btn btn-primary">Get a Clear Estimate</a>

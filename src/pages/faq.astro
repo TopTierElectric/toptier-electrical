@@ -9,44 +9,13 @@ const breadcrumbLd = JSON.stringify({
     { '@type': 'ListItem', position: 2, name: 'FAQ', item: 'https://toptier-electrical.com/faq' },
   ],
 });
-
-const faqLd = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'When should I upgrade my electrical panel?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'If your panel is outdated, trips frequently, or lacks space for new circuits, an upgrade may be the safest option.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'Do you install EV chargers?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Yes. We install Level 2 EV chargers for homes and small businesses with safe routing and proper circuit sizing.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: 'What areas do you serve?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'We serve West Michigan including Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Hudsonville, and Allegan.',
-      },
-    },
-  ],
-});
 ---
 
 <TTELayout
   title="FAQ | Top Tier Electrical"
   description="Frequently asked questions about electrical services, panel upgrades, EV chargers and more."
   canonical="https://toptier-electrical.com/faq"
-  jsonLd={[breadcrumbLd, faqLd]}
+  jsonLd={[breadcrumbLd]}
 >
   <main id="main-content">
     <section class="hero">
