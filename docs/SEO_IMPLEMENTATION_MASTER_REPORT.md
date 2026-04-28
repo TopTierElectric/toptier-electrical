@@ -21,7 +21,7 @@ Published in `docs/keyword_to_url_map.md` with one primary canonical URL per clu
 
 ## 5) Page-level improvements completed
 
-- Homepage: process section + financing internal link.
+- Homepage: process section.
 - Services/contact/about: improved title + meta intent clarity.
 
 ## 6) Schema changes completed

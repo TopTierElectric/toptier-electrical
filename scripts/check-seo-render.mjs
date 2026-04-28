@@ -24,16 +24,6 @@ const issues = [];
 const warnings = [];
 const excludedRoutePrefixes = ['/tag/', '/category/', '/decapcms'];
 const excludedExactRoutes = ['/404'];
-const blogShimDir = path.resolve('src/pages/blog');
-const blogShimRoutes = new Set();
-if (fs.existsSync(blogShimDir)) {
-  for (const filename of fs.readdirSync(blogShimDir)) {
-    if (!filename.endsWith('.astro')) continue;
-    const slug = filename.replace(/\.astro$/, '');
-    if (slug === 'index') continue;
-    blogShimRoutes.add(`/blog/${slug}`);
-  }
-}
 
 const getRoute = (file) => {
   const rel = path.relative(distDir, file).replace(/\\/g, '/');
@@ -47,7 +37,7 @@ for (const file of htmlFiles) {
   const isExcluded =
     excludedExactRoutes.includes(route) ||
     excludedRoutePrefixes.some((prefix) => route.startsWith(prefix)) ||
-    blogShimRoutes.has(route);
+    route.startsWith('/blog/blog-');
   if (isExcluded) continue;
 
   const titleMatch = html.match(/<title>([\s\S]*?)<\/title>/i);

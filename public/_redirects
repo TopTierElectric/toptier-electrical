@@ -1,6 +1,9 @@
 # Cloudflare Pages _redirects supports path redirects only.
 # Host/protocol canonicalization (www -> apex, http -> https) must be enforced
 # in Cloudflare zone Redirect Rules/Bulk Redirects, not here.
+http://www.toptier-electrical.com/* https://toptier-electrical.com/:splat 301!
+https://www.toptier-electrical.com/* https://toptier-electrical.com/:splat 301!
+http://toptier-electrical.com/* https://toptier-electrical.com/:splat 301!
 
 # Legacy entry aliases (keep minimal)
 /index / 301
@@ -9,6 +12,16 @@
 
 # Optional: true legacy semantic redirects (only if these URLs were used historically)
 /pricing /services 301
+/financing /booking 301
+/sitemap.xml /sitemap-index.xml 301
+
+# Legacy clean blog slugs -> canonical blog-* slugs (edge 301 to avoid static HTML soft redirects)
+/blog/electrical-safety-tips /blog/blog-electrical-safety 301
+/blog/ev-charger-installation-guide /blog/blog-ev-charging 301
+/blog/winter-generator-readiness /blog/blog-generator-readiness 301
+/blog/signs-you-need-panel-upgrade /blog/blog-panel-upgrade-signs 301
+/blog/how-to-choose-right-electrician /blog/blog-right-electrician 301
+/blog/whole-home-surge-protection /blog/blog-surge-protection 301
 
 # Legacy logo file locations → astrowind public/images/logos
 /TopTierElectrical_Primary_Black_2048.png /images/logos/TopTierElectrical_Primary_FlatGold_512.png 301
@@ -18,14 +31,5 @@
 /TopTierElectrical_Primary_White_2048.png /images/logos/TopTierElectrical_Primary_FlatGold_512.png 301
 /TopTierElectrical_Primary_White_512.png /images/logos/TopTierElectrical_Primary_FlatGold_512.png 301
 
-# Blog route ownership is currently handled at page level in `src/pages/blog/*.astro`.
-# Do not add Cloudflare redirects for these blog slugs, or it can cause redirect loops.
-/electrician-holland /electrician-holland-mi 301
-/electrician-grand-rapids /electrician-grand-rapids-mi 301
-/electrician-byron-center /electrician-byron-center-mi 301
-/electrician-zeeland /electrician-zeeland-mi 301
-/electrician-saugatuck-douglas /electrician-saugatuck-mi 301
-/electrician-hudsonville /electrician-hudsonville-mi 301
-/electrician-allegan /electrician-allegan-mi 301
-
-/lighting-fixtures /lighting 301
+# Canonical consolidation
+/testimonials /reviews 301

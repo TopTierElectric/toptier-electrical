@@ -13,7 +13,7 @@
 
 3. **Reviews vs testimonials**
    - `/reviews` overlaps with `/testimonials` intent.
-   - **Status:** existing redirect retained (`/reviews -> /testimonials`).
+   - **Status:** existing redirect retained (`/testimonials -> /reviews`).
 
 ## Monitoring actions
 

@@ -37,7 +37,19 @@
     "check:seo-render": "node scripts/check-seo-render.mjs",
     "check:integrations": "node scripts/check-integrations.mjs",
     "crawl:preview": "node scripts/crawl-site-audit.mjs",
-    "qa": "npm run verify && npm run check:redirects-cloudflare && npm run check:navigation-sim && npm run check:seo-render"
+    "crawl:dist": "node scripts/crawl-dist-all.mjs",
+    "check:review-schema-policy": "node scripts/check-review-schema-policy.mjs",
+    "check:schema-graph": "node scripts/check-schema-graph-integrity.mjs",
+    "check:route-governance": "node scripts/check-route-governance.mjs",
+    "check:image-markup": "node scripts/check-image-markup.mjs",
+    "check:canonical-tags": "node scripts/check-canonical-tags.mjs",
+    "check:sitemap-robots": "node scripts/check-sitemap-robots.mjs",
+    "check:phone-normalization": "node scripts/check-phone-normalization.mjs",
+    "check:identity-drift": "node scripts/check-identity-drift.mjs",
+    "test": "node scripts/run-unit-tests.mjs",
+    "test:e2e": "node scripts/run-e2e-smoke.mjs",
+    "test:e2e:smoke": "node scripts/run-e2e-smoke.mjs",
+    "qa": "npm run verify && npm run test && npm run build && npm run check:seo-render && npm run test:e2e:smoke"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",

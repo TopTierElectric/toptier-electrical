@@ -1,9 +1,5 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
-import QuickAnswerEv from '~/components/pages/QuickAnswerEv.astro';
-import RelatedServices from '~/components/pages/RelatedServices.astro';
-import OwnerCredentials from '~/components/pages/OwnerCredentials.astro';
-import BreadcrumbSchema from '~/components/seo/BreadcrumbSchema.astro';
 
 const jsonLd = [
   JSON.stringify({
@@ -68,24 +64,29 @@ const jsonLd = [
       },
     ],
   }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://toptier-electrical.com/services' },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Panel Upgrades',
+        item: 'https://toptier-electrical.com/panel-upgrades',
+      },
+    ],
+  }),
 ];
 ---
 
 <TTELayout
-  title="Electrical Panel Upgrades in West Michigan | Top Tier Electrical"
+  title="Panel & Service Upgrades | West Michigan Electrician"
   description="Clean, code-compliant electrical panel upgrades and service upgrades in West Michigan. Clear scope, tidy installs, and reliable long-term results."
   canonical="https://toptier-electrical.com/panel-upgrades"
   jsonLd={jsonLd}
 >
-  <Fragment slot="head">
-    <BreadcrumbSchema
-      crumbs={[
-        { name: 'Home', url: 'https://toptier-electrical.com/' },
-        { name: 'Services', url: 'https://toptier-electrical.com/services' },
-        { name: 'Panel Upgrades', url: 'https://toptier-electrical.com/panel-upgrades' },
-      ]}
-    />
-  </Fragment>
   <main id="main-content">
     <section class="hero">
       <div class="hero-content">
@@ -179,10 +180,6 @@ const jsonLd = [
         </p>
       </div>
     </section>
-
-    <QuickAnswerEv />
-    <RelatedServices />
-    <OwnerCredentials />
     <section class="cta-section">
       <h2>Ready for an Upgrade?</h2>
       <p>
