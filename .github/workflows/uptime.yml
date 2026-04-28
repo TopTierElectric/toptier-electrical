@@ -12,7 +12,7 @@ jobs:
       contents: read
     env:
       RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
-      RUNBOOK_URL: https://github.com/${{ github.repository }}/blob/main/docs/incident-runbook.md
+      RUNBOOK_URL: https://github.com/${{ github.repository }}/blob/work/docs/incident-runbook.md
       MAINTENANCE_MODE: ${{ vars.MAINTENANCE_MODE || 'false' }}
     steps:
       - uses: actions/checkout@v4
