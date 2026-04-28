@@ -10,12 +10,12 @@ export interface Props {
 const { city, slug, county = `${city}, MI` } = Astro.props;
 const canonical = `https://toptier-electrical.com/${slug}`;
 const nearbyAreas = [
-  { city: 'Holland', href: '/electrician-holland' },
-  { city: 'Grand Rapids', href: '/electrician-grand-rapids' },
-  { city: 'Zeeland', href: '/electrician-zeeland' },
-  { city: 'Hudsonville', href: '/electrician-hudsonville' },
-  { city: 'Allegan', href: '/electrician-allegan' },
-  { city: 'Ada', href: '/electrician-ada' },
+  { city: 'Holland', href: '/electrician-holland-mi' },
+  { city: 'Grand Rapids', href: '/electrician-grand-rapids-mi' },
+  { city: 'Zeeland', href: '/electrician-zeeland-mi' },
+  { city: 'Hudsonville', href: '/electrician-hudsonville-mi' },
+  { city: 'Allegan', href: '/electrician-allegan-mi' },
+  { city: 'Ada', href: '/electrician-ada-mi' },
 ].filter((area) => area.city !== city);
 ---
 

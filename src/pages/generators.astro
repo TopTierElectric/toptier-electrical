@@ -13,20 +13,6 @@ const jsonLd = [
     serviceType: 'Generator Installation',
     url: 'https://toptier-electrical.com/generators',
   }),
-  JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://toptier-electrical.com/services' },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: 'Generator Installation',
-        item: 'https://toptier-electrical.com/generators',
-      },
-    ],
-  }),
 ];
 ---
 
@@ -48,7 +34,7 @@ const jsonLd = [
       <div class="hero-content">
         <h1>Generator Sales &amp; Installation</h1>
         <p>Backup power that's sized correctly, installed safely, and easy to live with.</p>
-        <a href="/booking" class="btn btn-primary">Schedule a Walkthrough</a>
+        <a href="/booking" class="btn btn-primary">Get a Clear Estimate</a>
       </div>
     </section>
     <div class="trust-strip">
@@ -141,7 +127,7 @@ const jsonLd = [
           >info@toptier-electrical.com</a
         > to discuss generator options.
       </p>
-      <a href="/booking" class="btn btn-primary">Schedule a Walkthrough</a>
+      <a href="/booking" class="btn btn-primary">Get a Clear Estimate</a>
     </section>
   </main>
 </TTELayout>
