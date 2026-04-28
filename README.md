@@ -52,6 +52,12 @@ Preview deploy:
 npm run deploy:preview
 ```
 
+Deploy to the `codex-add-canonical-urls-to` branch alias (used for the corresponding `*.pages.dev` URL):
+
+```bash
+npm run deploy:main
+```
+
 ## CI quality gate (pull requests)
 
 Authoritative PR gate is `.github/workflows/ci.yml` and runs:

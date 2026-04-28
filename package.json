@@ -1,7 +1,7 @@
 {
   "name": "toptier-electrical",
   "version": "1.0.0-beta.52",
-  "description": "Business website for Top Tier Electrical — Licensed & insured electrician serving West Michigan. Built with Astro + Tailwind CSS.",
+  "description": "Business website for Top Tier Electrical \u2014 Licensed & insured electrician serving West Michigan. Built with Astro + Tailwind CSS.",
   "type": "module",
   "private": true,
   "engines": {
@@ -14,6 +14,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "deploy": "wrangler pages deploy ./dist --project-name=toptier-electrical",
+    "deploy:main": "wrangler pages deploy ./dist --project-name=toptier-electrical --branch=codex-add-canonical-urls-to",
     "deploy:preview": "wrangler pages deploy ./dist --project-name=toptier-electrical --branch=preview",
     "check": "npm run check:astro && npm run check:eslint && npm run check:prettier",
     "check:astro": "astro check",
