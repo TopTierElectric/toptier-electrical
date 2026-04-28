@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       const href = link.getAttribute('href') || '';
       if (href.startsWith('tel:')) {
-        tteTrack('phone_call_click', { href });
+        tteTrack('phone_click', { href });
       }
       if (href.startsWith('sms:')) {
         tteTrack('sms_click', { href });
