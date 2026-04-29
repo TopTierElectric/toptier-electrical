@@ -15,19 +15,89 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { post } = Astro.props as Props;
 
 const url = getCanonical(getPermalink(post.permalink, 'post'));
+const canonical = String(url);
+
+// E-E-A-T author signal: licensed electrician identity
+const personLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://toptier-electrical.com/#owner',
+  name: 'Carl, Top Tier Electrical',
+  jobTitle: 'Licensed Electrician (Owner-Operator)',
+  worksFor: { '@id': 'https://toptier-electrical.com/#localbusiness' },
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    credentialCategory: 'Professional License',
+    name: 'State of Michigan Electrical License #6220430',
+    recognizedBy: { '@type': 'Organization', name: 'State of Michigan' },
+  },
+  url: 'https://toptier-electrical.com/about',
+});
+
+// Article schema for rich-result eligibility and AI/search snippets
+const articleLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+  headline: post.title,
+  description: post.excerpt || '',
+  datePublished: post.publishDate ? new Date(post.publishDate).toISOString() : undefined,
+  dateModified: post.updateDate
+    ? new Date(post.updateDate).toISOString()
+    : post.publishDate
+      ? new Date(post.publishDate).toISOString()
+      : undefined,
+  author: { '@id': 'https://toptier-electrical.com/#owner' },
+  publisher: { '@id': 'https://toptier-electrical.com/#organization' },
+  url: canonical,
+  keywords: post.tags ? (Array.isArray(post.tags) ? post.tags.join(', ') : '') : undefined,
+});
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://toptier-electrical.com/blog' },
+    { '@type': 'ListItem', position: 3, name: post.title, item: canonical },
+  ],
+});
 ---
 
 <TTELayout
   title={`${post.title} | Top Tier Electrical`}
   description={post.excerpt || ''}
-  canonical={String(url)}
+  canonical={canonical}
   ogType="article"
+  jsonLd={[breadcrumbLd, personLd, articleLd]}
 >
   <main id="main-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li aria-current="page">{post.title}</li>
+      </ol>
+    </nav>
     <section class="hero">
       <div class="hero-content">
         <h1>{post.title}</h1>
         {post.excerpt && <p>{post.excerpt}</p>}
+        {
+          post.publishDate && (
+            <p class="muted" style="font-size: 0.9rem; margin-top: 0.5rem;">
+              By <a href="/about">Carl, Top Tier Electrical</a> — Licensed Electrician (MI #6220430)
+              {' · '}
+              <time datetime={new Date(post.publishDate).toISOString()}>
+                {new Date(post.publishDate).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+            </p>
+          )
+        }
       </div>
     </section>
     <article class="blog-post">
