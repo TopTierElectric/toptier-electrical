@@ -68,7 +68,13 @@ const autoBreadcrumbItems = [
   })),
 ];
 const resolvedBreadcrumbs = breadcrumbItems ?? autoBreadcrumbItems;
-const hasBreadcrumbs = resolvedBreadcrumbs.length > 1;
+// Only render the visible breadcrumb nav when the caller explicitly
+// passes `breadcrumbItems`. Most pages render their own inline
+// `<nav class="breadcrumb">` block (the established pattern), so
+// auto-rendering here would create duplicate breadcrumb landmarks.
+// BreadcrumbList JSON-LD below still uses the auto-generated path
+// as a fallback, which is what we want for SEO regardless.
+const hasBreadcrumbs = !!breadcrumbItems && breadcrumbItems.length > 1;
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
