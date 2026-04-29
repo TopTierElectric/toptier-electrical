@@ -8,8 +8,12 @@ if (!fs.existsSync(robotsPath)) {
 }
 
 const robots = fs.readFileSync(robotsPath, 'utf8');
-if (!robots.includes('Sitemap: https://toptier-electrical.com/sitemap.xml')) {
-  console.error('robots.txt must include: Sitemap: https://toptier-electrical.com/sitemap.xml');
+const acceptedSitemapDirectives = [
+  'Sitemap: https://toptier-electrical.com/sitemap.xml',
+  'Sitemap: https://toptier-electrical.com/sitemap-index.xml',
+];
+if (!acceptedSitemapDirectives.some((d) => robots.includes(d))) {
+  console.error(`robots.txt must include one of:\n  - ${acceptedSitemapDirectives.join('\n  - ')}`);
   process.exit(1);
 }
 
