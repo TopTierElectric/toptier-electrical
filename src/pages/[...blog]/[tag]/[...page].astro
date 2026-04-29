@@ -24,9 +24,13 @@ const robots = `${shouldIndex ? 'index' : 'noindex'}, ${shouldFollow ? 'follow' 
 
 const title = `Posts tagged '${tag.title}'${currentPage > 1 ? ` — Page ${currentPage}` : ''} | Top Tier Electrical Blog`;
 const canonical = `https://toptier-electrical.com${Astro.url.pathname}`;
+const description =
+  currentPage > 1
+    ? `Articles tagged with ${tag.title} — page ${currentPage}. Practical electrical guides from Top Tier Electrical for West Michigan homeowners and businesses.`
+    : `Articles tagged with ${tag.title}. Practical electrical guides from Top Tier Electrical for West Michigan homeowners and businesses.`;
 ---
 
-<TTELayout title={title} canonical={canonical} robots={robots} description={`Posts tagged ${tag.title}.`}>
+<TTELayout title={title} canonical={canonical} robots={robots} description={description}>
   <main id="main-content" class="container section-pad-tight section-pad-bottom">
     <Headline>Tag: {tag.title}</Headline>
     <BlogList posts={page.data} />
