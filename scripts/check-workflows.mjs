@@ -20,7 +20,7 @@ const required = [
   'npm run check:sitemap-robots',
   'npm run test',
   'npm run test:e2e:smoke',
-  'npm audit --audit-level=critical',
+  'npm audit --audit-level=high',
 ];
 
 const missing = required.filter((cmd) => !ci.includes(cmd));
