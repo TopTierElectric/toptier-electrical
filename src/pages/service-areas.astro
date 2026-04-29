@@ -1,21 +1,11 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
-
-const breadcrumbLd = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Service Areas', item: 'https://toptier-electrical.com/service-areas' },
-  ],
-});
 ---
 
 <TTELayout
   title="Service Areas | Top Tier Electrical West Michigan"
-  description="Top Tier Electrical serves Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Hudsonville, Allegan, and Ada in West Michigan."
+  description="Top Tier Electrical serves Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Douglas, Hudsonville, Jamestown, Allegan, and Ada in West Michigan."
   canonical="https://toptier-electrical.com/service-areas"
-  jsonLd={[breadcrumbLd]}
 >
   <main id="main-content">
     <section class="hero">
@@ -38,48 +28,61 @@ const breadcrumbLd = JSON.stringify({
       <h2>Cities We Serve</h2>
       <div class="service-cards">
         <div class="service-card">
-          <h3><a href="/electrician-holland">Holland, MI</a></h3><p>
+          <h3><a href="/electrician-holland-mi">Holland, MI</a></h3><p>
             Residential and commercial electrical services in Holland and the surrounding area.
           </p>
         </div>
         <div class="service-card">
-          <h3><a href="/electrician-grand-rapids">Grand Rapids, MI</a></h3><p>
+          <h3><a href="/electrician-grand-rapids-mi">Grand Rapids, MI</a></h3><p>
             Electrical service work throughout Grand Rapids and surrounding communities.
           </p>
         </div>
         <div class="service-card">
-          <h3><a href="/electrician-byron-center">Byron Center, MI</a></h3><p>
+          <h3><a href="/electrician-byron-center-mi">Byron Center, MI</a></h3><p>
             Home electrical upgrades and troubleshooting across Byron Center.
           </p>
         </div>
         <div class="service-card">
-          <h3><a href="/electrician-zeeland">Zeeland, MI</a></h3><p>
+          <h3><a href="/electrician-zeeland-mi">Zeeland, MI</a></h3><p>
             Panel upgrades, lighting, and electrical repairs in Zeeland.
           </p>
         </div>
         <div class="service-card">
-          <h3><a href="/electrician-saugatuck-douglas">Saugatuck / Douglas, MI</a></h3><p>
-            Electrical service and upgrades throughout Saugatuck and Douglas.
+          <h3><a href="/electrician-saugatuck-mi">Saugatuck, MI</a></h3><p>
+            Electrical service and upgrades throughout Saugatuck.
           </p>
         </div>
         <div class="service-card">
-          <h3><a href="/electrician-allegan">Allegan, MI</a></h3><p>
+          <h3><a href="/electrician-douglas-mi">Douglas, MI</a></h3><p>
+            Electrical service and upgrades throughout Douglas.
+          </p>
+        </div>
+        <div class="service-card">
+          <h3><a href="/electrician-allegan-mi">Allegan, MI</a></h3><p>
             Residential and commercial electrical in Allegan County.
           </p>
         </div>
         <div class="service-card">
-          <h3><a href="/electrician-hudsonville">Hudsonville, MI</a></h3><p>
+          <h3><a href="/electrician-hudsonville-mi">Hudsonville, MI</a></h3><p>
             Electrical service work in Hudsonville and nearby areas.
           </p>
         </div>
         <div class="service-card">
-          <h3><a href="/electrician-ada">Ada, MI</a></h3><p>Residential and commercial electrical services in Ada.</p>
+          <h3><a href="/electrician-ada-mi">Ada, MI</a></h3><p>
+            Residential and commercial electrical services in Ada.
+          </p>
+        </div>
+        <div class="service-card">
+          <h3><a href="/electrician-jamestown-mi">Jamestown, MI</a></h3><p>
+            Panel upgrades, EV chargers, and troubleshooting in Jamestown.
+          </p>
         </div>
       </div>
       <h2 class="mt-8">Full Coverage Area</h2>
       <p>
-        We serve <strong>Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Hudsonville, Allegan, Ada</strong>,
-        and surrounding West Michigan communities.
+        We serve <strong
+          >Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Douglas, Hudsonville, Jamestown, Allegan, Ada</strong
+        >, and surrounding West Michigan communities.
       </p>
       <p>
         If you're not sure whether we cover your location, call or text us at <a href="tel:+16163347159"

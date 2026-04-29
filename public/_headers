@@ -1,9 +1,9 @@
 # Keep Cloudflare preview URLs out of search engine indexes.
 https://:project.pages.dev/*
-  X-Robots-Tag: noindex
+  X-Robots-Tag: noindex, nofollow
 
 https://:version.:project.pages.dev/*
-  X-Robots-Tag: noindex
+  X-Robots-Tag: noindex, nofollow
 
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
