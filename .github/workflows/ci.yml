@@ -73,9 +73,9 @@ jobs:
       - name: Run e2e smoke checks
         run: npm run test:e2e:smoke
 
-      - name: Security audit (critical+)
-        # Lowered from --audit-level=high while pre-existing transitive
-        # high-severity vulns (picomatch, svgo via astro-compress, etc.)
-        # are tracked in a separate dependency-upgrade PR. Critical-level
-        # advisories will still fail the gate.
-        run: npm audit --audit-level=critical
+      - name: Security audit (high+)
+        # Note: a moderate-severity Astro 5.x advisory (define:vars XSS)
+        # remains. Clearing it requires bumping to Astro 6.x — a major
+        # version bump tracked separately. --audit-level=high catches
+        # the rest.
+        run: npm audit --audit-level=high
