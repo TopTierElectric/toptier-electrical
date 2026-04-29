@@ -9,6 +9,10 @@ export interface Props {
 
 const { city, slug, county = `${city}, MI` } = Astro.props;
 const canonical = `https://toptier-electrical.com/${slug}`;
+const hasDistinctCounty = county !== `${city}, MI`;
+const description = hasDistinctCounty
+  ? `Licensed electrician in ${city}, MI (${county}). Panel upgrades, EV chargers, lighting, repairs, and code corrections.`
+  : `Licensed electrician for ${city}, MI homes and businesses. Panel upgrades, EV chargers, lighting, repairs, and code corrections.`;
 const nearbyAreas = [
   { city: 'Holland', href: '/electrician-holland-mi' },
   { city: 'Grand Rapids', href: '/electrician-grand-rapids-mi' },
@@ -19,11 +23,7 @@ const nearbyAreas = [
 ].filter((area) => area.city !== city);
 ---
 
-<TTELayout
-  title={`Electrician ${city} MI | Top Tier Electrical`}
-  description={`Licensed electrician serving ${county}. Panel upgrades, EV charger installation, lighting, and electrical repairs.`}
-  canonical={canonical}
->
+<TTELayout title={`Electrician ${city} MI | Top Tier Electrical`} {description} canonical={canonical}>
   <main id="main-content">
     <section class="hero">
       <div class="hero-content">

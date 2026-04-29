@@ -9,13 +9,60 @@ const breadcrumbLd = JSON.stringify({
     { '@type': 'ListItem', position: 2, name: 'Residential', item: 'https://toptier-electrical.com/residential' },
   ],
 });
+
+const faqLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Do you handle small jobs and big projects?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. We handle single-circuit repairs and full-home rewires alike. Small jobs get the same scope clarity and clean finish as big ones.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you charge for an estimate?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For most jobs, no — we provide clear estimates without upfront charges. For complex diagnostics where the work itself is the assessment, we discuss it before scheduling.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How quickly can you get out for a service call?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For non-emergency work, usually within the same week. Urgent issues are prioritized. Holland and immediately surrounding cities are scheduled fastest.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you work on older homes?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Older homes are a big part of what we do — panel upgrades, code corrections, aluminum branch wiring remediation, and bringing aging systems up to current code.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What payment do you accept?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We accept standard payment methods. Specifics are confirmed in the quote and invoice.',
+      },
+    },
+  ],
+});
 ---
 
 <TTELayout
   title="Residential Electrician in West Michigan | Top Tier Electrical"
   description="Residential electrical services across West Michigan. Panel upgrades, EV chargers, lighting, repairs, generators, and more."
   canonical="https://toptier-electrical.com/residential"
-  jsonLd={[breadcrumbLd]}
+  jsonLd={[breadcrumbLd, faqLd]}
 >
   <main id="main-content">
     <section class="hero">
@@ -107,6 +154,43 @@ const breadcrumbLd = JSON.stringify({
         <p class="text-center mt-4">
           <a href="/projects" class="btn btn-ghost">View all projects</a>
         </p>
+      </div>
+    </section>
+    <section class="container section-pad">
+      <h2>Residential Electrician FAQs</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Do you handle small jobs and big projects?</summary>
+          <p>
+            Yes. We handle single-circuit repairs and full-home rewires alike. Small jobs get the same scope clarity and
+            clean finish as big ones.
+          </p>
+        </details>
+        <details>
+          <summary>Do you charge for an estimate?</summary>
+          <p>
+            For most jobs, no — we provide clear estimates without upfront charges. For complex diagnostics where the
+            work itself is the assessment, we discuss it before scheduling.
+          </p>
+        </details>
+        <details>
+          <summary>How quickly can you get out for a service call?</summary>
+          <p>
+            For non-emergency work, usually within the same week. Urgent issues are prioritized. Holland and immediately
+            surrounding cities are scheduled fastest.
+          </p>
+        </details>
+        <details>
+          <summary>Do you work on older homes?</summary>
+          <p>
+            Yes. Older homes are a big part of what we do — panel upgrades, code corrections, aluminum branch wiring
+            remediation, and bringing aging systems up to current code.
+          </p>
+        </details>
+        <details>
+          <summary>What payment do you accept?</summary>
+          <p>We accept standard payment methods. Specifics are confirmed in the quote and invoice.</p>
+        </details>
       </div>
     </section>
     <section class="cta-section">

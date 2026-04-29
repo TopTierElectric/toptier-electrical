@@ -9,13 +9,60 @@ const breadcrumbLd = JSON.stringify({
     { '@type': 'ListItem', position: 2, name: 'Commercial', item: 'https://toptier-electrical.com/commercial' },
   ],
 });
+
+const faqLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Do you handle three-phase commercial work?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. We handle 480V three-phase distribution, motor controls, and dedicated circuits for industrial and light-manufacturing equipment. The Steeltech 1200A 480V shop addition is one example.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can you work around our operating hours?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. We schedule work to minimize downtime — after hours, weekends, or in phases for active operations. We confirm the schedule before the job starts.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you handle permits and inspections?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Permit pulling, inspection coordination, and on-site coordination with other trades is part of the scope.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you do new construction electrical?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes — additions, buildouts, and full new construction. We coordinate with framing, mechanical, and finish trades on the schedule.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What size projects do you take on?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'From single-circuit repairs up to multi-thousand square foot industrial buildouts. The Steeltech 80x120 shop addition is on the larger end of our typical range.',
+      },
+    },
+  ],
+});
 ---
 
 <TTELayout
   title="Commercial Electrician in West Michigan | Top Tier Electrical"
   description="Light commercial electrical services across West Michigan. Panel work, LED retrofits, controls, and maintenance for businesses."
   canonical="https://toptier-electrical.com/commercial"
-  jsonLd={[breadcrumbLd]}
+  jsonLd={[breadcrumbLd, faqLd]}
 >
   <main id="main-content">
     <section class="hero">
@@ -91,6 +138,46 @@ const breadcrumbLd = JSON.stringify({
         <p class="text-center mt-4">
           <a href="/projects" class="btn btn-ghost">View all projects</a>
         </p>
+      </div>
+    </section>
+    <section class="container section-pad">
+      <h2>Commercial Electrician FAQs</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Do you handle three-phase commercial work?</summary>
+          <p>
+            Yes. We handle 480V three-phase distribution, motor controls, and dedicated circuits for industrial and
+            light-manufacturing equipment. The Steeltech 1200A 480V shop addition is one example.
+          </p>
+        </details>
+        <details>
+          <summary>Can you work around our operating hours?</summary>
+          <p>
+            Yes. We schedule work to minimize downtime — after hours, weekends, or in phases for active operations. We
+            confirm the schedule before the job starts.
+          </p>
+        </details>
+        <details>
+          <summary>Do you handle permits and inspections?</summary>
+          <p>
+            Yes. Permit pulling, inspection coordination, and on-site coordination with other trades is part of the
+            scope.
+          </p>
+        </details>
+        <details>
+          <summary>Do you do new construction electrical?</summary>
+          <p>
+            Yes — additions, buildouts, and full new construction. We coordinate with framing, mechanical, and finish
+            trades on the schedule.
+          </p>
+        </details>
+        <details>
+          <summary>What size projects do you take on?</summary>
+          <p>
+            From single-circuit repairs up to multi-thousand square foot industrial buildouts. The Steeltech 80×120 shop
+            addition is on the larger end of our typical range.
+          </p>
+        </details>
       </div>
     </section>
     <section class="cta-section">
