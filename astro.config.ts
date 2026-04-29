@@ -33,7 +33,14 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     sitemap({
-      filter: (page) => !page.endsWith('/thank-you'),
+      // Exclude noindex pages from the sitemap so we don't waste crawl
+      // budget advertising pages we don't want indexed.
+      filter: (page) => {
+        if (page.endsWith('/thank-you')) return false;
+        if (page.includes('/tag/')) return false; // noindex by design
+        if (page.endsWith('/decapcms') || page.includes('/decapcms/')) return false;
+        return true;
+      },
     }),
     mdx(),
     icon({

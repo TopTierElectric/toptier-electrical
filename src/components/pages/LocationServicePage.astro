@@ -25,6 +25,13 @@ const nearbyAreas = [
 
 <TTELayout title={`Electrician ${city} MI | Top Tier Electrical`} {description} canonical={canonical}>
   <main id="main-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/service-areas">Service Areas</a></li>
+        <li aria-current="page">Electrician in {city}, MI</li>
+      </ol>
+    </nav>
     <section class="hero">
       <div class="hero-content">
         <h1>Electrician in {city}, MI</h1>
