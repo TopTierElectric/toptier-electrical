@@ -133,6 +133,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       }
 
+      const analyticsTarget = event.target.closest('[data-analytics-event]');
+      if (analyticsTarget && typeof gtag === 'function') {
+        gtag('event', analyticsTarget.dataset.analyticsEvent, {
+          link_url: analyticsTarget.href || window.location.href,
+          page_path: window.location.pathname,
+        });
+      }
+
       const link = event.target.closest('a[href]');
       const button = event.target.closest('button[data-cta]');
       trackCta(button || link);
@@ -141,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       const href = link.getAttribute('href') || '';
       if (href.startsWith('tel:')) {
-        tteTrack('phone_call_click', { href });
+        tteTrack('phone_click', { href });
       }
       if (href.startsWith('sms:')) {
         tteTrack('sms_click', { href });
