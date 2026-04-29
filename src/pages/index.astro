@@ -2,6 +2,7 @@
 import TTELayout from '~/layouts/TTELayout.astro';
 import { Image } from 'astro:assets';
 import heroImage from '~/assets/images/Residential Panel.webp';
+import siteData from '~/data/site.json';
 
 const faqLd = `{
   "@context": "https://schema.org",
@@ -119,8 +120,8 @@ const faqLd = `{
         </figure>
         <figure>
           <img
-            src="/images/gallery/Residential%20Panel.webp"
-            alt="Residential panel upgrade"
+            src="/images/gallery/Residential%20panel%20install.webp"
+            alt="Residential panel installation"
             loading="lazy"
             decoding="async"
             width="400"
@@ -215,11 +216,8 @@ const faqLd = `{
       </div>
       <p class="text-center mt-6">
         <a href="/reviews" class="btn btn-primary">Read More Reviews</a>
-        <a
-          href="https://g.page/r/CUr9o5vQ0M6nEAE/review"
-          class="btn btn-ghost"
-          target="_blank"
-          rel="noopener noreferrer">Leave a Google Review</a
+        <a href={siteData.seo.googleReviewUrl} class="btn btn-ghost" target="_blank" rel="noopener noreferrer"
+          >Leave a Google Review</a
         >
       </p>
     </section>
