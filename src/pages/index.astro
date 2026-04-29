@@ -2,6 +2,7 @@
 import TTELayout from '~/layouts/TTELayout.astro';
 import { Image } from 'astro:assets';
 import heroImage from '~/assets/images/Residential Panel.webp';
+import siteData from '~/data/site.json';
 
 const faqLd = `{
   "@context": "https://schema.org",
@@ -216,7 +217,7 @@ const faqLd = `{
       <p class="text-center mt-6">
         <a href="/reviews" class="btn btn-primary">Read More Reviews</a>
         <a
-          href="https://g.page/r/CUr9o5vQ0M6nEAE/review"
+          href={siteData.seo.googleReviewUrl}
           class="btn btn-ghost"
           target="_blank"
           rel="noopener noreferrer">Leave a Google Review</a
