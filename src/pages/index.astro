@@ -1,12 +1,12 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
-import { Image, getImage } from 'astro:assets';
+import { Picture, getImage } from 'astro:assets';
 import heroImage from '~/assets/images/Residential Panel.webp';
 import siteData from '~/data/site.json';
 
 const heroPreload = await getImage({
   src: heroImage,
-  format: 'webp',
+  format: 'avif',
   width: 800,
 });
 
@@ -29,7 +29,15 @@ const faqLd = `{
   ogImage="https://toptier-electrical.com/images/og/pages/home.png"
   jsonLd={[faqLd]}
 >
-  <link slot="head" rel="preload" as="image" href={heroPreload.src} fetchpriority="high" media="(min-width: 769px)" />
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={heroPreload.src}
+    type="image/avif"
+    fetchpriority="high"
+    media="(min-width: 769px)"
+  />
   <main id="main-content">
     <section class="hero">
       <div class="container hero-layout">
@@ -53,13 +61,13 @@ const faqLd = `{
           </div>
         </div>
         <div class="hero-image">
-          <Image
+          <Picture
             class="hero-picture"
             src={heroImage}
             alt="Clean residential electrical panel installation by Top Tier Electrical in Holland MI"
             widths={[480, 800, 1200]}
             sizes="(max-width: 768px) 100vw, 50vw"
-            format="webp"
+            formats={['avif', 'webp']}
             loading="eager"
             decoding="async"
             fetchpriority="high"
