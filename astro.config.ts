@@ -24,6 +24,13 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   output: 'static',
   site: 'https://toptier-electrical.com',
+  build: {
+    // Inline all CSS as <style> tags to eliminate render-blocking CSS
+    // requests. The single ~36 KB CSS bundle (~10 KB gzipped) is small
+    // enough that inlining beats the round-trip on first paint, which
+    // Lighthouse repeatedly flags as render-blocking.
+    inlineStylesheets: 'always',
+  },
   prefetch: {
     prefetchAll: false,
     defaultStrategy: 'viewport',
