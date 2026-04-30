@@ -17,6 +17,7 @@ const { post } = Astro.props as Props;
 
 const url = getCanonical(getPermalink(post.permalink, 'post'));
 const canonical = String(url);
+const ogImage = `https://toptier-electrical.com/images/og/blog/${post.slug}.png`;
 
 const relatedServices = blogRelatedServices[post.slug] ?? [];
 
@@ -44,6 +45,7 @@ const articleLd = JSON.stringify({
   mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
   headline: post.title,
   description: post.excerpt || '',
+  image: ogImage,
   datePublished: post.publishDate ? new Date(post.publishDate).toISOString() : undefined,
   dateModified: post.updateDate
     ? new Date(post.updateDate).toISOString()
@@ -53,7 +55,13 @@ const articleLd = JSON.stringify({
   author: { '@id': 'https://toptier-electrical.com/#owner' },
   publisher: { '@id': 'https://toptier-electrical.com/#organization' },
   url: canonical,
-  keywords: post.tags ? (Array.isArray(post.tags) ? post.tags.join(', ') : '') : undefined,
+  articleSection: post.category?.title,
+  keywords: Array.isArray(post.tags)
+    ? post.tags
+        .map((t) => (typeof t === 'string' ? t : t?.title))
+        .filter(Boolean)
+        .join(', ')
+    : undefined,
 });
 
 const breadcrumbLd = JSON.stringify({
@@ -72,6 +80,7 @@ const breadcrumbLd = JSON.stringify({
   description={post.excerpt || ''}
   canonical={canonical}
   ogType="article"
+  ogImage={ogImage}
   jsonLd={[breadcrumbLd, personLd, articleLd]}
 >
   <main id="main-content">
