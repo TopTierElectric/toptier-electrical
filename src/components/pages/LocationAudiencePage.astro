@@ -16,6 +16,7 @@ const { audienceLabel, canonicalSlug, county, leadSentence, badgeLabel, projectC
   Astro.props;
 
 const canonical = `https://toptier-electrical.com/${canonicalSlug}`;
+const ogImage = `https://toptier-electrical.com/images/og/locations/${canonicalSlug}.png`;
 const pageTitle = `${audienceLabel} Electrician Allegan MI | Top Tier Electrical`;
 const description = `${audienceLabel} electrical services in ${county}. Panel work, EV charging, lighting, and maintenance support.`;
 
@@ -30,7 +31,7 @@ const breadcrumbLd = JSON.stringify({
 });
 ---
 
-<TTELayout title={pageTitle} {description} {canonical} jsonLd={[breadcrumbLd]}>
+<TTELayout title={pageTitle} {description} {canonical} {ogImage} jsonLd={[breadcrumbLd]}>
   <main id="main-content">
     <section class="hero">
       <div class="hero-content">

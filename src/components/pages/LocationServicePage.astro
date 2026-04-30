@@ -9,6 +9,7 @@ export interface Props {
 
 const { city, slug, county = `${city}, MI` } = Astro.props;
 const canonical = `https://toptier-electrical.com/${slug}`;
+const ogImage = `https://toptier-electrical.com/images/og/locations/${slug}.png`;
 const hasDistinctCounty = county !== `${city}, MI`;
 const description = hasDistinctCounty
   ? `Licensed electrician in ${city}, MI (${county}). Panel upgrades, EV chargers, lighting, repairs, and code corrections.`
@@ -23,7 +24,7 @@ const nearbyAreas = [
 ].filter((area) => area.city !== city);
 ---
 
-<TTELayout title={`Electrician ${city} MI | Top Tier Electrical`} {description} canonical={canonical}>
+<TTELayout title={`Electrician ${city} MI | Top Tier Electrical`} {description} canonical={canonical} {ogImage}>
   <main id="main-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <ol>

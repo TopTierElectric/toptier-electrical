@@ -70,9 +70,11 @@ const otherServices = service.relatedServices.map((s) => ({
   href: `/${s.slug}-${city.slug}`,
   name: `${s.name} in ${city.name}, MI`,
 }));
+
+const ogImage = `https://toptier-electrical.com/images/og/service-city/${slug}.png`;
 ---
 
-<TTELayout {title} {description} {canonical} jsonLd={[breadcrumbLd, serviceLd, faqLd]}>
+<TTELayout {title} {description} {canonical} {ogImage} jsonLd={[breadcrumbLd, serviceLd, faqLd]}>
   <main id="main-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <ol>
