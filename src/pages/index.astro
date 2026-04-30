@@ -1,8 +1,14 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import heroImage from '~/assets/images/Residential Panel.webp';
 import siteData from '~/data/site.json';
+
+const heroPreload = await getImage({
+  src: heroImage,
+  format: 'webp',
+  width: 800,
+});
 
 const faqLd = `{
   "@context": "https://schema.org",
@@ -23,6 +29,14 @@ const faqLd = `{
   ogImage="https://toptier-electrical.com/images/logos/TopTierElectrical_Primary_FlatGold_512.png"
   jsonLd={[faqLd]}
 >
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={heroPreload.src}
+    fetchpriority="high"
+    media="(min-width: 769px)"
+  />
   <main id="main-content">
     <section class="hero">
       <div class="container hero-layout">
