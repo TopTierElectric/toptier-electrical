@@ -15,13 +15,47 @@ const breadcrumbLd = JSON.stringify({
     },
   ],
 });
+
+const howToLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How West Michigan energy consulting works',
+  description:
+    'Our four-step process for prioritizing energy upgrades and clarifying scope: walkthrough, plan, execute, and verify.',
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: 'Walkthrough',
+      text: 'Gather goals, constraints, and future plans for the home or business.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: 'Plan',
+      text: 'Provide practical options and priorities so you can make confident decisions without pressure.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: 'Execute',
+      text: 'If you choose to move forward, work is completed cleanly and code-compliantly.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 4,
+      name: 'Verify',
+      text: 'Confirm results and document what was done so the changes are easy to live with.',
+    },
+  ],
+});
 ---
 
 <TTELayout
   title="Energy Consulting | West Michigan Electrician"
   description="Calm, professional energy consulting to prioritize upgrades, clarify scope, and help you make confident decisions without pressure."
   canonical="https://toptier-electrical.com/energy-consulting"
-  jsonLd={[breadcrumbLd]}
+  jsonLd={[breadcrumbLd, howToLd]}
 >
   <main id="main-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
