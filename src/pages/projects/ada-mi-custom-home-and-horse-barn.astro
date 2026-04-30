@@ -3,17 +3,17 @@ import TTELayout from '~/layouts/TTELayout.astro';
 
 const projectImages = [
   {
-    src: '/images/gallery/Light%20Fixture.webp',
+    src: 'Light Fixture',
     alt: 'Custom light fixture installation in Ada, MI custom home',
     caption: 'House — custom light fixture installation in the main living space.',
   },
   {
-    src: '/images/gallery/Horse%20Barn.webp',
+    src: 'Horse Barn',
     alt: 'Custom horse barn electrical installation in Ada, MI',
     caption: 'Barn — electrical package for the custom horse barn.',
   },
   {
-    src: '/images/gallery/Horse%20Stall%20Lighting.webp',
+    src: 'Horse Stall Lighting',
     alt: 'Horse stall lighting in custom barn in Ada, MI',
     caption: 'Barn — stall lighting laid out for daily use and animal welfare.',
   },
@@ -133,7 +133,16 @@ const breadcrumbLd = JSON.stringify({
         {
           projectImages.map((img) => (
             <figure>
-              <img src={img.src} alt={img.alt} width="800" height="600" loading="lazy" decoding="async" />
+              <img
+                src={`/images/gallery-thumbs/${encodeURIComponent(img.src)}-480.webp`}
+                srcset={`/images/gallery-thumbs/${encodeURIComponent(img.src)}-480.webp 480w, /images/gallery-thumbs/${encodeURIComponent(img.src)}-800.webp 800w`}
+                sizes="(max-width: 600px) 95vw, (max-width: 1024px) 50vw, 33vw"
+                alt={img.alt}
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
               <figcaption>{img.caption}</figcaption>
             </figure>
           ))
