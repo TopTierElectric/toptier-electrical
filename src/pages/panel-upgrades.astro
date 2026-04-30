@@ -75,6 +75,39 @@ const jsonLd = [
       },
     ],
   }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How a West Michigan electrical panel upgrade works',
+    description:
+      'Our four-step process for replacing a residential electrical panel: walkthrough, plan, execute, and verify.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Walkthrough',
+        text: 'We review your current loads and what you are adding so capacity and layout are clear before any work starts.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Plan',
+        text: 'Define a clear scope, load approach, and sequencing so the install runs without surprises.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Execute',
+        text: 'Replace the panel with tidy workmanship, organized circuit routing, and a professional finish.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 4,
+        name: 'Verify',
+        text: 'Function check every circuit, label clearly, and walk you through the finished panel at handoff.',
+      },
+    ],
+  }),
 ];
 ---
 
@@ -82,6 +115,7 @@ const jsonLd = [
   title="Electrical Panel Upgrades in West Michigan | Top Tier Electrical"
   description="Clean, code-compliant electrical panel upgrades and service upgrades in West Michigan. Clear scope, tidy installs, and reliable long-term results."
   canonical="https://toptier-electrical.com/panel-upgrades"
+  ogImage="https://toptier-electrical.com/images/og/panel-upgrades.png"
   jsonLd={jsonLd}
 >
   <main id="main-content">
@@ -189,6 +223,18 @@ const jsonLd = [
           a clear scope and a quote you can trust—without pressure.
         </p>
       </div>
+    </section>
+    <section class="container section-pad">
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="/blog/blog-panel-upgrade-signs">5 signs you need an electrical panel upgrade</a></li>
+        <li><a href="/blog/when-to-upgrade-electrical-panel">When should you upgrade your electrical panel?</a></li>
+        <li><a href="/blog/electrical-panel-upgrade-cost">How much does an electrical panel upgrade cost?</a></li>
+        <li><a href="/blog/200-amp-vs-400-amp-service">200-amp vs 400-amp electrical service compared</a></li>
+        <li>
+          <a href="/blog/do-i-need-a-panel-upgrade-for-an-ev-charger">Do I need a panel upgrade for an EV charger?</a>
+        </li>
+      </ul>
     </section>
     <section class="container section-pad">
       <h2>Electrical Panel Upgrades by City</h2>

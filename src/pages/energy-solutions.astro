@@ -24,6 +24,39 @@ const jsonLd = [
     serviceType: 'Energy Efficiency Consulting',
     url: 'https://toptier-electrical.com/energy-solutions',
   }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How West Michigan energy efficiency upgrades work',
+    description:
+      'Our four-step process for prioritizing and installing energy upgrades that cut waste without disrupting daily life.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Walkthrough',
+        text: 'Identify where energy is being wasted and where comfort matters most across the home or business.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Plan',
+        text: 'Prioritize upgrades by impact and disruption so the most valuable changes happen first.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Execute',
+        text: 'Complete a clean, organized installation with code-compliant materials and tidy finish work.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 4,
+        name: 'Verify',
+        text: 'Confirm performance and explain what changed so you can see the impact of the upgrade.',
+      },
+    ],
+  }),
 ];
 ---
 
@@ -31,6 +64,7 @@ const jsonLd = [
   title="Energy Solutions | West Michigan Electrician"
   description="Practical energy upgrades—LED, controls, and load planning—to improve comfort and reduce waste without overcomplicating your home."
   canonical="https://toptier-electrical.com/energy-solutions"
+  ogImage="https://toptier-electrical.com/images/og/energy-solutions.png"
   jsonLd={jsonLd}
 >
   <main id="main-content">
@@ -125,6 +159,14 @@ const jsonLd = [
           project.
         </p>
       </div>
+    </section>
+    <section class="container section-pad">
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="/blog/led-retrofit-vs-fixture-replacement">LED retrofit vs fixture replacement</a></li>
+        <li><a href="/blog/blog-surge-protection">Whole-home surge protection: why it matters</a></li>
+        <li><a href="/blog/blog-generator-readiness">Winter generator readiness: backup power tips</a></li>
+      </ul>
     </section>
     <section class="cta-section">
       <h2>Ready for Practical Upgrades?</h2>

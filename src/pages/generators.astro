@@ -24,6 +24,39 @@ const jsonLd = [
     serviceType: 'Generator Installation',
     url: 'https://toptier-electrical.com/generators',
   }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How a West Michigan home generator install works',
+    description:
+      'Our four-step process for installing a standby generator with a transfer switch: walkthrough, plan, execute, and verify.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Walkthrough',
+        text: 'Define outage priorities, site constraints, and which circuits matter most when the power is out.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Plan',
+        text: 'Choose the right generator size and transfer switch layout for your loads and lot.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Execute',
+        text: 'Install the generator, transfer switch, and feeder runs cleanly, safely, and to code.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 4,
+        name: 'Verify',
+        text: 'Test the transfer under load, confirm labeling, and walk you through how to operate it.',
+      },
+    ],
+  }),
 ];
 ---
 
@@ -31,6 +64,7 @@ const jsonLd = [
   title="Generator Installation | West Michigan Electrician"
   description="Backup power systems sized and installed safely with clear scope, clean workmanship, and verified operation."
   canonical="https://toptier-electrical.com/generators"
+  ogImage="https://toptier-electrical.com/images/og/generators.png"
   jsonLd={jsonLd}
 >
   <main id="main-content">
@@ -136,6 +170,13 @@ const jsonLd = [
         <h2>Next Step</h2>
         <p>Request a walkthrough to discuss generator options and get a clear quote without pressure.</p>
       </div>
+    </section>
+    <section class="container section-pad">
+      <h2>Related reading</h2>
+      <ul>
+        <li><a href="/blog/blog-generator-readiness">Winter generator readiness: backup power tips</a></li>
+        <li><a href="/blog/blog-surge-protection">Whole-home surge protection: why it matters</a></li>
+      </ul>
     </section>
     <section class="cta-section">
       <h2>Plan for Reliable Backup Power</h2>
