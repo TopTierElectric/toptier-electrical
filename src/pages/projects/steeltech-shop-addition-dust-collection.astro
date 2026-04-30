@@ -3,53 +3,53 @@ import TTELayout from '~/layouts/TTELayout.astro';
 
 const projectImages = [
   {
-    src: '/images/gallery/SteelTech%20Conduit%20Room.webp',
+    src: 'SteelTech Conduit Room',
     alt: 'Industrial conduit routing in shop addition mechanical room for Steeltech',
     caption:
       'Conduit routing organized in the mechanical room — clean runs, supported correctly, ready for inspection.',
   },
   {
-    src: '/images/gallery/Switch%20Gear.webp',
+    src: 'Switch Gear',
     alt: 'Commercial switchgear installation for Steeltech shop addition',
     caption: 'Switchgear installation feeding the new addition.',
   },
   {
-    src: '/images/gallery/Control%20Cabinet.webp',
+    src: 'Control Cabinet',
     alt: 'Commercial control cabinet built for dust collection system',
     caption: 'Control cabinet built for the dust collection system and addition equipment.',
   },
   {
-    src: '/images/gallery/Conduit%20Piping.webp',
+    src: 'Conduit Piping',
     alt: 'Conduit piping installation in industrial shop addition',
     caption: 'Conduit runs through the addition — straight, supported, and labeled.',
   },
   {
-    src: '/images/gallery/Dust%20Collector%20System.webp',
+    src: 'Dust Collector System',
     alt: 'Industrial dust collector system wired and integrated',
     caption: 'Dust collector system wired in and integrated with the shop layout.',
   },
   {
-    src: '/images/gallery/Dust%20Collector%20motor.webp',
+    src: 'Dust Collector motor',
     alt: 'Dust collector motor wiring and disconnect',
     caption: 'Dust collector motor wired with appropriate protection and disconnect.',
   },
   {
-    src: '/images/gallery/Blower%20Motor.webp',
+    src: 'Blower Motor',
     alt: 'Blower motor wiring for industrial dust collection',
     caption: 'Blower motor for the dust collection system.',
   },
   {
-    src: '/images/gallery/Motor%20Control.webp',
+    src: 'Motor Control',
     alt: 'Motor control panel for shop addition equipment',
     caption: 'Motor control for shop equipment.',
   },
   {
-    src: '/images/gallery/Field%20Controls.webp',
+    src: 'Field Controls',
     alt: 'Field controls installation for industrial dust collection system',
     caption: 'Field controls integrated with the rest of the system.',
   },
   {
-    src: '/images/gallery/Control%20Work.webp',
+    src: 'Control Work',
     alt: 'Control wiring for industrial fabrication shop addition',
     caption: 'Control wiring for the addition.',
   },
@@ -173,7 +173,16 @@ const breadcrumbLd = JSON.stringify({
         {
           projectImages.map((img) => (
             <figure>
-              <img src={img.src} alt={img.alt} width="800" height="600" loading="lazy" decoding="async" />
+              <img
+                src={`/images/gallery-thumbs/${encodeURIComponent(img.src)}-480.webp`}
+                srcset={`/images/gallery-thumbs/${encodeURIComponent(img.src)}-480.webp 480w, /images/gallery-thumbs/${encodeURIComponent(img.src)}-800.webp 800w`}
+                sizes="(max-width: 600px) 95vw, (max-width: 1024px) 50vw, 33vw"
+                alt={img.alt}
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
               <figcaption>{img.caption}</figcaption>
             </figure>
           ))

@@ -16,7 +16,7 @@ const projects = [
     title: 'Steeltech 80×120 Shop Addition With Donaldson Torit Dust Collection — Grand Rapids, MI (2025)',
     summary:
       'A 9,600 sq ft fabrication shop addition in Grand Rapids. 1200A 480V three-phase branch circuit, switchgear, control cabinet, conduit, motor controls, and a large Donaldson Torit industrial dust collection system.',
-    image: '/images/gallery/SteelTech%20Conduit%20Room.webp',
+    image: 'SteelTech Conduit Room',
     alt: 'Industrial conduit routing in commercial shop addition for Steeltech',
     services: ['Commercial', 'Switchgear', 'Motor Controls', 'Conduit'],
   },
@@ -25,7 +25,7 @@ const projects = [
     title: 'Ada Custom Home and Horse Barn — 400A Service',
     summary:
       'Custom home and matching custom horse barn in Ada, MI on a single 400A service. Decorative lighting in the home, code-compliant stall lighting and barn power, and a clean finish across both buildings.',
-    image: '/images/gallery/Light%20Fixture.webp',
+    image: 'Light Fixture',
     alt: 'Custom home decorative lighting in Ada, MI',
     services: ['Residential', 'Custom Home', 'Lighting', 'Service Upgrade'],
   },
@@ -74,7 +74,9 @@ const projects = [
           projects.map((project) => (
             <a class="service-card" href={project.href}>
               <img
-                src={project.image}
+                src={`/images/gallery-thumbs/${encodeURIComponent(project.image)}-480.webp`}
+                srcset={`/images/gallery-thumbs/${encodeURIComponent(project.image)}-480.webp 480w, /images/gallery-thumbs/${encodeURIComponent(project.image)}-800.webp 800w`}
+                sizes="(max-width: 600px) 95vw, 50vw"
                 alt={project.alt}
                 width="800"
                 height="600"
