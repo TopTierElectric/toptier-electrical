@@ -232,12 +232,6 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
       }
     </script>
     {analyticsHeadHtml && <Fragment set:html={analyticsHeadHtml} />}
-    <!-- Cloudflare Insights -->
-    <script
-      is:inline
-      defer
-      src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token":"f3a4c2b1d9e54a6b8c1f7e2d3a4b5c6d"}'></script>
     <slot name="head" />
   </head>
   <body>

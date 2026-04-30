@@ -186,6 +186,8 @@ header nav a {
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
+  display: inline-block;
+  padding: 0.5rem 0.25rem;
 }
 
 /* Active navigation link styling */
@@ -1937,6 +1939,7 @@ footer p {
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
+.footer-col h3,
 .footer-col h4 {
   color: var(--primary);
   margin-top: 0;
@@ -1949,12 +1952,15 @@ footer p {
   margin: 0;
 }
 .footer-col li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
 }
 .footer-col a {
   color: var(--text-dark);
   text-decoration: none;
   transition: color 0.2s ease;
+  display: inline-block;
+  padding: 0.4rem 0;
+  min-height: 32px;
 }
 .footer-col a:hover {
   color: var(--secondary);
@@ -2384,7 +2390,11 @@ header nav .btn-ghost:focus {
 
 #about a:not(.btn),
 #faq a:not(.btn) {
-  color: #c9a24d;
+  color: #e6cc72;
+}
+
+#faq .faq-list a:not(.btn) {
+  color: #8a6d20;
 }
 
 #faq .faq-list details {
