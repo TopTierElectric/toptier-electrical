@@ -1,5 +1,4 @@
 ---
-import '@fontsource-variable/inter';
 import '~/assets/styles/tte-site.css';
 import Favicons from '~/components/Favicons.astro';
 import siteData from '~/data/site.json';
@@ -195,6 +194,7 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
     <meta name="geo.placename" content="West Michigan" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="en" href={canonicalUrl} />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin-wght-normal.woff2" crossorigin />
     {
       gaMeasurementId && (
         <Fragment>
