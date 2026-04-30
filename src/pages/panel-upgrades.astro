@@ -75,6 +75,39 @@ const jsonLd = [
       },
     ],
   }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How a West Michigan electrical panel upgrade works',
+    description:
+      'Our four-step process for replacing a residential electrical panel: walkthrough, plan, execute, and verify.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Walkthrough',
+        text: 'We review your current loads and what you are adding so capacity and layout are clear before any work starts.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Plan',
+        text: 'Define a clear scope, load approach, and sequencing so the install runs without surprises.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Execute',
+        text: 'Replace the panel with tidy workmanship, organized circuit routing, and a professional finish.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 4,
+        name: 'Verify',
+        text: 'Function check every circuit, label clearly, and walk you through the finished panel at handoff.',
+      },
+    ],
+  }),
 ];
 ---
 

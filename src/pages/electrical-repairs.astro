@@ -24,6 +24,39 @@ const jsonLd = [
     serviceType: 'Electrical Repair',
     url: 'https://toptier-electrical.com/electrical-repairs',
   }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How West Michigan electrical repairs work',
+    description:
+      'Our four-step process for diagnosing and fixing residential and light commercial electrical problems: diagnose, explain, fix, and verify.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Diagnose',
+        text: 'Investigate the root cause of the problem rather than just clearing the symptom.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Explain',
+        text: 'Walk you through what we found and the safest repair options before any work is done.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Fix',
+        text: 'Complete the repair correctly and safely with code-compliant parts and clean workmanship.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 4,
+        name: 'Verify',
+        text: 'Test the repaired circuit or device and confirm everything works before calling it done.',
+      },
+    ],
+  }),
 ];
 ---
 
