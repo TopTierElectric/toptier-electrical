@@ -195,6 +195,14 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
     <meta name="geo.placename" content="West Michigan" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="en" href={canonicalUrl} />
+    {
+      gaMeasurementId && (
+        <Fragment>
+          <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+          <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+        </Fragment>
+      )
+    }
     <Favicons />
     <link rel="manifest" href="/manifest.webmanifest" />
     <!-- JSON-LD Structured Data -->
@@ -322,7 +330,6 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
     <nav class="sticky-bar" aria-label="Mobile quick actions">
       <a
         href="tel:+16163347159"
-        aria-label="Call or text Top Tier Electrical"
         data-ga-event="phone_click"
         data-ga-label="Sticky Call"
         data-ga-destination="tel:+16163347159"
@@ -332,7 +339,6 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
       <a
         href="/booking"
         class="btn"
-        aria-label="Request electrical service scheduling"
         data-ga-event="clear_estimate_click"
         data-ga-label="Sticky Get a Clear Estimate"
         data-ga-destination="/booking"
