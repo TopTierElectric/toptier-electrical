@@ -1,3 +1,7 @@
+Contact: mailto:info@toptier-electrical.com
 Contact: mailto:toptierelectric117@gmail.com
+Contact: tel:+1-616-334-7159
+Expires: 2027-04-30T00:00:00.000Z
 Preferred-Languages: en
+Canonical: https://toptier-electrical.com/.well-known/security.txt
 Policy: https://toptier-electrical.com/contact
