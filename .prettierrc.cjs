@@ -9,5 +9,10 @@ module.exports = {
 
   plugins: [require.resolve('prettier-plugin-astro')],
 
-  overrides: [{ files: '*.astro', options: { parser: 'astro' } }],
+  overrides: [
+    { files: '*.astro', options: { parser: 'astro' } },
+    // Cloudflare Pages' bundled wrangler v3 JSONC parser rejects trailing
+    // commas with PropertyNameExpected, so keep them out of wrangler.jsonc.
+    { files: 'wrangler.jsonc', options: { trailingComma: 'none' } },
+  ],
 };
