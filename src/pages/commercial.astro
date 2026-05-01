@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -116,15 +117,12 @@ const faqLd = JSON.stringify({
       <div class="container">
         <h2>Recent Related Work</h2>
         <article class="service-card" style="display: block;">
-          <img
-            src="/images/gallery-thumbs/SteelTech%20Conduit%20Room-480.webp"
-            srcset="/images/gallery-thumbs/SteelTech%20Conduit%20Room-480.webp 480w, /images/gallery-thumbs/SteelTech%20Conduit%20Room-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 50vw, 33vw"
+          <GalleryThumb
+            name="SteelTech Conduit Room"
             alt="Industrial conduit routing in commercial shop addition for Steeltech"
-            width="800"
-            height="600"
-            loading="lazy"
-            decoding="async"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 50vw, 33vw"
+            width={800}
+            height={600}
             style="border-radius: 8px; margin-bottom: 1rem; max-width: 100%; height: auto;"
           />
           <h3>

@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -45,267 +46,201 @@ const breadcrumbLd = JSON.stringify({
       <p>Clean installs, organized routing, and code-correct workmanship across residential and commercial projects.</p>
       <div class="gallery-grid">
         <figure>
-          <img
-            src="/images/gallery-thumbs/Electrical%20Panels-480.webp"
-            srcset="/images/gallery-thumbs/Electrical%20Panels-480.webp 480w, /images/gallery-thumbs/Electrical%20Panels-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Electrical Panels"
             alt="Electrical panel installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Panel installation with organized circuits.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Residential%20panel%20install-480.webp"
-            srcset="/images/gallery-thumbs/Residential%20panel%20install-480.webp 480w, /images/gallery-thumbs/Residential%20panel%20install-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Residential panel install"
             alt="Residential panel installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Residential panel installation.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Control%20Cabinet-480.webp"
-            srcset="/images/gallery-thumbs/Control%20Cabinet-480.webp 480w, /images/gallery-thumbs/Control%20Cabinet-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Control Cabinet"
             alt="Commercial control cabinet"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Commercial control cabinet installation.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/backup%20Generator-480.webp"
-            srcset="/images/gallery-thumbs/backup%20Generator-480.webp 480w, /images/gallery-thumbs/backup%20Generator-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="backup Generator"
             alt="Backup generator installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Backup generator installation with transfer switch.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/LED%20HandRail-480.webp"
-            srcset="/images/gallery-thumbs/LED%20HandRail-480.webp 480w, /images/gallery-thumbs/LED%20HandRail-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="LED HandRail"
             alt="LED handrail lighting"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Custom LED handrail lighting.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Interior%20LED%20lighitng-480.webp"
-            srcset="/images/gallery-thumbs/Interior%20LED%20lighitng-480.webp 480w, /images/gallery-thumbs/Interior%20LED%20lighitng-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Interior LED lighitng"
             alt="Interior LED lighting upgrade"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Interior LED lighting upgrade.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Multi%20panel%20Assembly-480.webp"
-            srcset="/images/gallery-thumbs/Multi%20panel%20Assembly-480.webp 480w, /images/gallery-thumbs/Multi%20panel%20Assembly-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Multi panel Assembly"
             alt="Multi-panel assembly"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Multi-panel assembly for commercial space.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Conduit%20Piping-480.webp"
-            srcset="/images/gallery-thumbs/Conduit%20Piping-480.webp 480w, /images/gallery-thumbs/Conduit%20Piping-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Conduit Piping"
             alt="Conduit piping installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Clean conduit piping installation.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Motor%20Control-480.webp"
-            srcset="/images/gallery-thumbs/Motor%20Control-480.webp 480w, /images/gallery-thumbs/Motor%20Control-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Motor Control"
             alt="Motor control installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Motor control panel installation.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/SteelTech%20Conduit%20Room-480.webp"
-            srcset="/images/gallery-thumbs/SteelTech%20Conduit%20Room-480.webp 480w, /images/gallery-thumbs/SteelTech%20Conduit%20Room-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="SteelTech Conduit Room"
             alt="Commercial conduit room"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Commercial conduit room organization.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Switch%20Gear-480.webp"
-            srcset="/images/gallery-thumbs/Switch%20Gear-480.webp 480w, /images/gallery-thumbs/Switch%20Gear-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Switch Gear"
             alt="Commercial switchgear"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Commercial switchgear installation.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Counter%20Bar%20Lighting-480.webp"
-            srcset="/images/gallery-thumbs/Counter%20Bar%20Lighting-480.webp 480w, /images/gallery-thumbs/Counter%20Bar%20Lighting-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Counter Bar Lighting"
             alt="Counter bar lighting installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Counter bar lighting for commercial space.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Light%20Fixture-480.webp"
-            srcset="/images/gallery-thumbs/Light%20Fixture-480.webp 480w, /images/gallery-thumbs/Light%20Fixture-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Light Fixture"
             alt="Custom light fixture installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Custom light fixture installation.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Exterior%20Light%20Fixtures-480.webp"
-            srcset="/images/gallery-thumbs/Exterior%20Light%20Fixtures-480.webp 480w, /images/gallery-thumbs/Exterior%20Light%20Fixtures-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Exterior Light Fixtures"
             alt="Exterior light fixtures"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Exterior light fixtures installation.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Panel%20Work-480.webp"
-            srcset="/images/gallery-thumbs/Panel%20Work-480.webp 480w, /images/gallery-thumbs/Panel%20Work-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Panel Work"
             alt="Panel work detail"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Panel work with labeled circuits.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/EMT%20Piping-480.webp"
-            srcset="/images/gallery-thumbs/EMT%20Piping-480.webp 480w, /images/gallery-thumbs/EMT%20Piping-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="EMT Piping"
             alt="EMT conduit piping"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>EMT conduit piping for commercial install.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Field%20Controls-480.webp"
-            srcset="/images/gallery-thumbs/Field%20Controls-480.webp 480w, /images/gallery-thumbs/Field%20Controls-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Field Controls"
             alt="Field controls installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Field controls for industrial project.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Transformer-480.webp"
-            srcset="/images/gallery-thumbs/Transformer-480.webp 480w, /images/gallery-thumbs/Transformer-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Transformer"
             alt="Transformer installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Transformer installation with clean routing.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Meter%20Socket%20Bank-480.webp"
-            srcset="/images/gallery-thumbs/Meter%20Socket%20Bank-480.webp 480w, /images/gallery-thumbs/Meter%20Socket%20Bank-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Meter Socket Bank"
             alt="Meter socket bank"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Meter socket bank for multi-unit property.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Electrical%20panel%20replacement-480.webp"
-            srcset="/images/gallery-thumbs/Electrical%20panel%20replacement-480.webp 480w, /images/gallery-thumbs/Electrical%20panel%20replacement-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Electrical panel replacement"
             alt="Electrical panel upgrade and replacement"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Electrical panel upgrade and replacement.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Barn-480.webp"
-            srcset="/images/gallery-thumbs/Barn-480.webp 480w, /images/gallery-thumbs/Barn-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Barn"
             alt="Barn electrical installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Barn electrical installation.</figcaption>
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Gas%20Station%20Service%20Call%20-480.webp"
-            srcset="/images/gallery-thumbs/Gas%20Station%20Service%20Call%20-480.webp 480w, /images/gallery-thumbs/Gas%20Station%20Service%20Call%20-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+          <GalleryThumb
+            name="Gas Station Service Call "
             alt="Commercial service call"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 45vw, 30vw"
+            width={400}
+            height={300}
           /><figcaption>Commercial service call completed.</figcaption>
         </figure>
       </div>

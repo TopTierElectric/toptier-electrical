@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -73,15 +74,12 @@ const projects = [
         {
           projects.map((project) => (
             <a class="service-card" href={project.href}>
-              <img
-                src={`/images/gallery-thumbs/${encodeURIComponent(project.image)}-480.webp`}
-                srcset={`/images/gallery-thumbs/${encodeURIComponent(project.image)}-480.webp 480w, /images/gallery-thumbs/${encodeURIComponent(project.image)}-800.webp 800w`}
-                sizes="(max-width: 600px) 95vw, 50vw"
+              <GalleryThumb
+                name={project.image}
                 alt={project.alt}
-                width="800"
-                height="600"
-                loading="lazy"
-                decoding="async"
+                sizes="(max-width: 600px) 95vw, 50vw"
+                width={800}
+                height={600}
                 style="border-radius: 8px; margin-bottom: 1rem;"
               />
               <h3>{project.title}</h3>

@@ -1,0 +1,46 @@
+---
+export interface Props {
+  /** Basename of the image (e.g. "Control Cabinet"). Files at `/images/gallery-thumbs/{name}-480.{webp,avif}` and `-800` are expected to exist. */
+  name: string;
+  alt: string;
+  sizes?: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync' | 'auto';
+  class?: string;
+  style?: string;
+}
+
+const {
+  name,
+  alt,
+  sizes = '(max-width: 600px) 95vw, (max-width: 1024px) 50vw, 33vw',
+  width = 400,
+  height = 300,
+  loading = 'lazy',
+  decoding = 'async',
+  class: className,
+  style,
+} = Astro.props;
+
+const enc = encodeURIComponent(name);
+const avifSrcset = `/images/gallery-thumbs/${enc}-480.avif 480w, /images/gallery-thumbs/${enc}-800.avif 800w`;
+const webpSrcset = `/images/gallery-thumbs/${enc}-480.webp 480w, /images/gallery-thumbs/${enc}-800.webp 800w`;
+const fallbackSrc = `/images/gallery-thumbs/${enc}-480.webp`;
+---
+
+<picture>
+  <source type="image/avif" srcset={avifSrcset} sizes={sizes} />
+  <source type="image/webp" srcset={webpSrcset} sizes={sizes} />
+  <img
+    src={fallbackSrc}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding={decoding}
+    class={className}
+    style={style}
+  />
+</picture>
