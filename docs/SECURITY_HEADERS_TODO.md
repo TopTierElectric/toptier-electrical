@@ -6,8 +6,7 @@ Current CSP in `public/_headers` still includes `'unsafe-inline'` for `script-sr
 
 1. Inline JSON-LD blocks in `src/layouts/TTELayout.astro`.
 2. Inline Google Analytics bootstrap script in `src/layouts/TTELayout.astro`.
-3. Inline Cloudflare beacon configuration attributes in `src/layouts/TTELayout.astro`.
-4. Page-level inline `<style is:inline>` blocks in review-related markup (`src/pages/reviews.astro`).
+3. Page-level inline `<style is:inline>` blocks in review-related markup (`src/pages/reviews.astro`).
 
 ## Why this remains
 
