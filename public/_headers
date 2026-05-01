@@ -41,3 +41,22 @@ https://:version.:project.pages.dev/*
 
 /manifest.webmanifest
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Force text/plain for robots.txt and security.txt so strict validators
+# (Lighthouse, security.txt validators) don't choke on a charset-annotated
+# or auto-detected Content-Type.
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=300, stale-while-revalidate=86400
+
+/.well-known/security.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
+
+/sitemap-index.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=300, stale-while-revalidate=86400
+
+/sitemap-0.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=300, stale-while-revalidate=86400
