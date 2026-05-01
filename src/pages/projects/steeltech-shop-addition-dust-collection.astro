@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 
 const projectImages = [
   {
@@ -173,15 +174,12 @@ const breadcrumbLd = JSON.stringify({
         {
           projectImages.map((img) => (
             <figure>
-              <img
-                src={`/images/gallery-thumbs/${encodeURIComponent(img.src)}-480.webp`}
-                srcset={`/images/gallery-thumbs/${encodeURIComponent(img.src)}-480.webp 480w, /images/gallery-thumbs/${encodeURIComponent(img.src)}-800.webp 800w`}
-                sizes="(max-width: 600px) 95vw, (max-width: 1024px) 50vw, 33vw"
+              <GalleryThumb
+                name={img.src}
                 alt={img.alt}
-                width="800"
-                height="600"
-                loading="lazy"
-                decoding="async"
+                sizes="(max-width: 600px) 95vw, (max-width: 1024px) 50vw, 33vw"
+                width={800}
+                height={600}
               />
               <figcaption>{img.caption}</figcaption>
             </figure>

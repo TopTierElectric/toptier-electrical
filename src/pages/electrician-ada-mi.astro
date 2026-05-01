@@ -1,5 +1,6 @@
 ---
 import LocationServicePage from '~/components/pages/LocationServicePage.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 ---
 
 <LocationServicePage city="Ada" slug="electrician-ada-mi" county="Kent County, MI">
@@ -39,15 +40,12 @@ import LocationServicePage from '~/components/pages/LocationServicePage.astro';
     <div class="container">
       <h2>Recent Work in Ada</h2>
       <article class="service-card" style="display: block;">
-        <img
-          src="/images/gallery-thumbs/Light%20Fixture-480.webp"
-          srcset="/images/gallery-thumbs/Light%20Fixture-480.webp 480w, /images/gallery-thumbs/Light%20Fixture-800.webp 800w"
-          sizes="(max-width: 600px) 95vw, (max-width: 1024px) 50vw, 33vw"
+        <GalleryThumb
+          name="Light Fixture"
           alt="Custom home decorative lighting installation in Ada, MI"
-          width="800"
-          height="600"
-          loading="lazy"
-          decoding="async"
+          sizes="(max-width: 600px) 95vw, (max-width: 1024px) 50vw, 33vw"
+          width={800}
+          height={600}
           style="border-radius: 8px; margin-bottom: 1rem; max-width: 100%; height: auto;"
         />
         <h3>

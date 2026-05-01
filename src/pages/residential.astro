@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -104,28 +105,22 @@ const faqLd = JSON.stringify({
         <p>Submit a request, receive a clear scope, and choose a confirmed scheduling window.</p>
         <div class="proof-grid">
           <figure class="proof-card">
-            <img
-              src="/images/gallery-thumbs/Service%20after-480.webp"
-              srcset="/images/gallery-thumbs/Service%20after-480.webp 480w, /images/gallery-thumbs/Service%20after-800.webp 800w"
-              sizes="(max-width: 600px) 95vw, 50vw"
+            <GalleryThumb
+              name="Service after"
               alt="Residential panel installation"
-              loading="lazy"
-              decoding="async"
-              width="400"
-              height="300"
+              sizes="(max-width: 600px) 95vw, 50vw"
+              width={400}
+              height={300}
             />
             <figcaption>Outdated service gear → upgraded panel → safer daily power.</figcaption>
           </figure>
           <figure class="proof-card">
-            <img
-              src="/images/gallery-thumbs/7550693456474594645-480.webp"
-              srcset="/images/gallery-thumbs/7550693456474594645-480.webp 480w, /images/gallery-thumbs/7550693456474594645-800.webp 800w"
-              sizes="(max-width: 600px) 95vw, 50vw"
+            <GalleryThumb
+              name="7550693456474594645"
               alt="Custom LED accent lighting"
-              loading="lazy"
-              decoding="async"
-              width="400"
-              height="300"
+              sizes="(max-width: 600px) 95vw, 50vw"
+              width={400}
+              height={300}
             />
             <figcaption>Custom LED accent lighting.</figcaption>
           </figure>
@@ -136,15 +131,12 @@ const faqLd = JSON.stringify({
       <div class="container">
         <h2>Recent Related Work</h2>
         <article class="service-card" style="display: block;">
-          <img
-            src="/images/gallery-thumbs/Light%20Fixture-480.webp"
-            srcset="/images/gallery-thumbs/Light%20Fixture-480.webp 480w, /images/gallery-thumbs/Light%20Fixture-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 50vw, 33vw"
+          <GalleryThumb
+            name="Light Fixture"
             alt="Custom home decorative lighting in Ada, MI"
-            width="800"
-            height="600"
-            loading="lazy"
-            decoding="async"
+            sizes="(max-width: 600px) 95vw, (max-width: 1024px) 50vw, 33vw"
+            width={800}
+            height={600}
             style="border-radius: 8px; margin-bottom: 1rem; max-width: 100%; height: auto;"
           />
           <h3>

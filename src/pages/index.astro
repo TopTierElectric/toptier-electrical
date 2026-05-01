@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 import { Picture, getImage } from 'astro:assets';
 import heroImage from '~/assets/images/Residential Panel.webp';
 import siteData from '~/data/site.json';
@@ -152,75 +153,57 @@ const faqLd = `{
       <h2>Our Work</h2>
       <div class="gallery-grid">
         <figure>
-          <img
-            src="/images/gallery-thumbs/Control%20Cabinet-480.webp"
-            srcset="/images/gallery-thumbs/Control%20Cabinet-480.webp 480w, /images/gallery-thumbs/Control%20Cabinet-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, 33vw"
+          <GalleryThumb
+            name="Control Cabinet"
             alt="Commercial control cabinet installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, 33vw"
+            width={400}
+            height={300}
           />
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Residential%20panel%20install-480.webp"
-            srcset="/images/gallery-thumbs/Residential%20panel%20install-480.webp 480w, /images/gallery-thumbs/Residential%20panel%20install-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, 33vw"
+          <GalleryThumb
+            name="Residential panel install"
             alt="Residential panel installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, 33vw"
+            width={400}
+            height={300}
           />
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/backup%20Generator-480.webp"
-            srcset="/images/gallery-thumbs/backup%20Generator-480.webp 480w, /images/gallery-thumbs/backup%20Generator-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, 33vw"
+          <GalleryThumb
+            name="backup Generator"
             alt="Backup generator installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, 33vw"
+            width={400}
+            height={300}
           />
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/LED%20HandRail-480.webp"
-            srcset="/images/gallery-thumbs/LED%20HandRail-480.webp 480w, /images/gallery-thumbs/LED%20HandRail-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, 33vw"
+          <GalleryThumb
+            name="LED HandRail"
             alt="LED handrail lighting installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, 33vw"
+            width={400}
+            height={300}
           />
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Interior%20LED%20lighitng-480.webp"
-            srcset="/images/gallery-thumbs/Interior%20LED%20lighitng-480.webp 480w, /images/gallery-thumbs/Interior%20LED%20lighitng-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, 33vw"
+          <GalleryThumb
+            name="Interior LED lighitng"
             alt="Interior LED lighting upgrade"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, 33vw"
+            width={400}
+            height={300}
           />
         </figure>
         <figure>
-          <img
-            src="/images/gallery-thumbs/Multi%20panel%20Assembly-480.webp"
-            srcset="/images/gallery-thumbs/Multi%20panel%20Assembly-480.webp 480w, /images/gallery-thumbs/Multi%20panel%20Assembly-800.webp 800w"
-            sizes="(max-width: 600px) 95vw, 33vw"
+          <GalleryThumb
+            name="Multi panel Assembly"
             alt="Multi-panel assembly installation"
-            loading="lazy"
-            decoding="async"
-            width="400"
-            height="300"
+            sizes="(max-width: 600px) 95vw, 33vw"
+            width={400}
+            height={300}
           />
         </figure>
       </div>
