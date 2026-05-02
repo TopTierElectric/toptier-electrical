@@ -170,11 +170,24 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('form[data-enhanced-form]').forEach(function (form) {
       const submitButton = form.querySelector('button[type="submit"]');
       const status = form.querySelector('[data-form-status]');
+      const originalLabel = submitButton ? submitButton.textContent : '';
 
       function setStatus(message, state) {
         if (!status) return;
         status.textContent = message;
         status.setAttribute('data-state', state);
+      }
+
+      function setBusy(busy) {
+        if (!submitButton) return;
+        submitButton.disabled = busy;
+        if (busy) {
+          submitButton.setAttribute('aria-busy', 'true');
+          submitButton.textContent = 'Submitting...';
+        } else {
+          submitButton.removeAttribute('aria-busy');
+          submitButton.textContent = originalLabel;
+        }
       }
 
       form.addEventListener('submit', function (event) {
@@ -194,12 +207,53 @@ document.addEventListener('DOMContentLoaded', function () {
           return;
         }
 
-        if (submitButton) {
-          submitButton.disabled = true;
-          submitButton.setAttribute('aria-busy', 'true');
-          submitButton.textContent = 'Submitting...';
+        // Progressive enhancement: when fetch is available, submit via AJAX so
+        // success and error states surface inline. Without fetch, fall through
+        // to a normal browser POST and let the server redirect.
+        if (typeof window.fetch !== 'function') {
+          setStatus("Submitting your request. We'll follow up shortly.", 'success');
+          return;
         }
-        setStatus("Submitting your request. We'll follow up shortly.", 'success');
+
+        event.preventDefault();
+        setStatus('Sending...', 'pending');
+        setBusy(true);
+
+        const action = form.getAttribute('action') || '/api/contact';
+        fetch(action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+          credentials: 'same-origin',
+        })
+          .then(function (response) {
+            return response
+              .json()
+              .catch(function () {
+                return { ok: response.ok };
+              })
+              .then(function (json) {
+                return { response: response, json: json };
+              });
+          })
+          .then(function (result) {
+            if (result.response.ok && result.json.ok !== false) {
+              setStatus(result.json.message || "Thanks — we'll respond within one business day.", 'success');
+              form.reset();
+            } else {
+              const message =
+                result.json && result.json.error
+                  ? result.json.error
+                  : 'Something went wrong. Please call (616) 334-7159 or email info@toptier-electrical.com.';
+              setStatus(message, 'error');
+            }
+          })
+          .catch(function () {
+            setStatus('Network error. Please call (616) 334-7159 or email info@toptier-electrical.com.', 'error');
+          })
+          .then(function () {
+            setBusy(false);
+          });
       });
 
       form.addEventListener('invalid', function (event) {
