@@ -1,102 +1,86 @@
-# Contact form setup — Cloudflare Pages Function + MailChannels
+# Contact form setup — Cloudflare Pages Function + Resend
 
 The `/contact` and `/booking` forms POST to `/api/contact`, a Cloudflare Pages
-Function (`functions/api/contact.ts`) that sends email via MailChannels.
+Function (`functions/api/contact.ts`) that sends email via [Resend](https://resend.com).
 
-The function runs on Cloudflare's edge, has zero monthly cost, and replaces
-the previous Formspree integration. Unlike Formspree, there is no
-"unauthorized domain" allowlist gotcha — the form POST is same-origin, so
-the previous `Origin: null` rejection class of failure cannot occur.
+The function runs on Cloudflare's edge for free. Resend's free tier covers
+3,000 emails per month and 100 per day — well above this site's volume.
+
+> **Why Resend instead of MailChannels?** MailChannels deprecated the free
+> Cloudflare Workers tier, and Cloudflare's own Email Service requires the
+> Workers Paid plan ($5/mo). Resend stays free, and Cloudflare publishes an
+> [official tutorial](https://developers.cloudflare.com/workers/tutorials/send-emails-with-resend/)
+> for this exact integration.
 
 ## What you need to do once before this works
 
-### 1. SPF — authorize MailChannels to send for the domain
+### 1. Create a Resend account and verify the domain
 
-Add (or update) a TXT record at the apex of `toptier-electrical.com`:
+1. Sign up at https://resend.com (free, no credit card)
+2. **Domains** → **Add Domain** → enter `toptier-electrical.com`
+3. Resend will display a list of DNS records — typically:
+   - 1× MX record (e.g. `feedback-smtp.us-east-1.amazonses.com`)
+   - 1× SPF TXT record at the apex (`v=spf1 include:amazonses.com ~all` or similar — Resend's exact value)
+   - 1× DKIM TXT record (long base64 public key under `resend._domainkey`)
+   - 1× DMARC TXT record (optional, recommended)
+4. Add each record to **Cloudflare DNS** for `toptier-electrical.com`:
+   - **DNS → Records → Add record** for each
+   - Use the exact Type / Name / Content Resend gives you
+   - TTL: Auto, Proxy: DNS only (gray cloud)
+5. Wait for Resend dashboard to mark the domain as **Verified** (1–5 min once DNS propagates)
 
-```
-toptier-electrical.com   TXT   "v=spf1 include:relay.mailchannels.net include:_spf.mx.cloudflare.net ~all"
-```
+> **SPF merge:** Cloudflare DNS will reject a second SPF record. If
+> `toptier-electrical.com` already has a `v=spf1 ...` record (e.g. for
+> Microsoft 365), edit the existing record to merge Resend's include into
+> the same line — for example:
+> `v=spf1 include:spf.protection.outlook.com include:amazonses.com ~all`
 
-If an SPF record already exists, **merge** — keep all existing `include:` and
-`a:` mechanisms, and add `include:relay.mailchannels.net`. Only one SPF
-record may exist per domain.
+### 2. Generate an API key
 
-### 2. Domain Lockdown — explicitly authorize Cloudflare Workers/Pages
+1. In Resend dashboard → **API Keys** → **Create API Key**
+2. Permission: **Sending access** is enough
+3. Copy the key (shown once). Format: `re_xxxxxxxxxxxxxxxxxxx`
 
-MailChannels requires a Domain Lockdown TXT record before it will accept
-sends from a Cloudflare Workers/Pages account. Add:
+### 3. Add the API key to Cloudflare Pages
 
-```
-_mailchannels.toptier-electrical.com   TXT   "v=mc1 cfid=<your-cloudflare-account-tag>.workers.dev"
-```
+1. https://dash.cloudflare.com → **Workers & Pages** → **toptier-electrical** project
+2. **Settings** → **Environment variables**
+3. Add for **both** Production and Preview:
 
-Replace `<your-cloudflare-account-tag>` with the value from your Cloudflare
-dashboard URL (e.g. if your dashboard URL is
-`https://dash.cloudflare.com/53677e867c0bc14922c99056bf5c346d`, the account
-tag is `53677e867c0bc14922c99056bf5c346d`).
+   | Variable         | Value                        |
+   | ---------------- | ---------------------------- |
+   | `RESEND_API_KEY` | the `re_...` key from Resend |
+   - Click **Encrypt** so the key is treated as a secret.
 
-Without this record, MailChannels rejects all sends with `403 Forbidden`.
+4. **Deployments** → top deployment → **Retry deployment** so the new env var takes effect.
 
-### 3. (Optional but recommended) DKIM — improve deliverability
+### 4. (Optional) Override the recipient
 
-Without DKIM, Gmail/Outlook may flag messages from `noreply@toptier-electrical.com`
-as "unverified sender" and route them to spam.
+If you want submissions to go to a different inbox without redeploying:
 
-To set up DKIM:
+| Variable            | Default                       | Purpose                        |
+| ------------------- | ----------------------------- | ------------------------------ |
+| `CONTACT_RECIPIENT` | `info@toptier-electrical.com` | Override the recipient address |
 
-1. Generate an Ed25519 keypair (or RSA-2048):
+## Cleanup of the old MailChannels records (optional)
 
-   ```bash
-   openssl genrsa 2048 | tee priv.pem | openssl rsa -pubout -outform der | openssl base64 -A
-   ```
+These records were added during the abandoned MailChannels attempt and are
+no longer needed. They're inert — leave them or remove them at your leisure:
 
-   Save the private key (`priv.pem`) for step 3 and copy the printed public
-   key.
-
-2. Publish the public key as a TXT record:
-
-   ```
-   mailchannels._domainkey.toptier-electrical.com   TXT   "v=DKIM1; k=rsa; p=<public-key-base64>"
-   ```
-
-3. In the Cloudflare Pages dashboard → **toptier-electrical** project →
-   **Settings** → **Environment variables**, add (for both Production and
-   Preview environments):
-
-   | Variable                        | Value                                   |
-   | ------------------------------- | --------------------------------------- |
-   | `MAILCHANNELS_DKIM_DOMAIN`      | `toptier-electrical.com`                |
-   | `MAILCHANNELS_DKIM_SELECTOR`    | `mailchannels`                          |
-   | `MAILCHANNELS_DKIM_PRIVATE_KEY` | contents of `priv.pem` (paste full PEM) |
-
-The function only attaches DKIM signatures when all three are present, so
-omitting them is safe — the form still works without DKIM, just with worse
-deliverability.
-
-## Optional environment variables
-
-| Variable                 | Default                       | Purpose                                                                               |
-| ------------------------ | ----------------------------- | ------------------------------------------------------------------------------------- |
-| `MAILCHANNELS_RECIPIENT` | `info@toptier-electrical.com` | Where the email goes. Override to test against a different inbox without redeploying. |
+- TXT at `_mailchannels.toptier-electrical.com` (`v=mc1 cfid=...`)
+- The `include:relay.mailchannels.net` fragment in the apex SPF record (you
+  can drop just that include, leaving the rest of the SPF intact)
 
 ## Local testing
 
-Pages Functions don't run under `astro dev`. To test locally with the
-function:
+Pages Functions don't run under `astro dev`. To exercise the function
+locally:
 
 ```bash
 npm run build
-npx wrangler pages dev dist --compatibility-date=2025-03-30
+RESEND_API_KEY=re_... npx wrangler pages dev dist --compatibility-date=2025-03-30
 ```
 
-Then open `http://localhost:8788/contact`. Note that local sends go to
-MailChannels' real production API — submissions will arrive in the recipient
-inbox. Use `MAILCHANNELS_RECIPIENT` env var to redirect to a test inbox if
-needed.
-
-## Removing Formspree
-
-The Formspree account / form `mkovbvgj` is no longer used by this site.
-Once production traffic has migrated and emails are arriving normally,
-deactivate the Formspree form to stop the rate-limit/notification cruft.
+Then submit `/contact` at `http://localhost:8788/contact`. Sends go to
+Resend's real production API — submissions will reach the recipient inbox.
+Use `CONTACT_RECIPIENT` to redirect to a test inbox if needed.

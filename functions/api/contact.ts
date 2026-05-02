@@ -1,8 +1,6 @@
 interface Env {
-  MAILCHANNELS_RECIPIENT?: string;
-  MAILCHANNELS_DKIM_DOMAIN?: string;
-  MAILCHANNELS_DKIM_SELECTOR?: string;
-  MAILCHANNELS_DKIM_PRIVATE_KEY?: string;
+  RESEND_API_KEY?: string;
+  CONTACT_RECIPIENT?: string;
 }
 
 interface PagesContext<E> {
@@ -51,10 +49,6 @@ export const onRequestPost = async (context: PagesContext<Env>): Promise<Respons
   if (!isValidEmail(email)) {
     return errorResponse(request, 'Please enter a valid email address.', 422);
   }
-  // Either a free-text message (contact form) or a structured service
-  // selection (booking form) must be present so we don't email a blank
-  // submission. Forms enforce their own required fields client-side; this
-  // is the server-side floor.
   if (!message && !service) {
     return errorResponse(request, 'Please tell us what you need help with.', 422);
   }
@@ -66,36 +60,35 @@ export const onRequestPost = async (context: PagesContext<Env>): Promise<Respons
   }
   bodyLines.push('', `User-Agent: ${request.headers.get('User-Agent') || 'unknown'}`, `Origin: ${origin || 'unknown'}`);
 
-  const recipient = env.MAILCHANNELS_RECIPIENT || RECIPIENT_FALLBACK;
+  const recipient = env.CONTACT_RECIPIENT || RECIPIENT_FALLBACK;
   const subject = `${formName} from ${name}`;
 
-  const personalization: Record<string, unknown> = { to: [{ email: recipient }] };
-  if (env.MAILCHANNELS_DKIM_DOMAIN && env.MAILCHANNELS_DKIM_SELECTOR && env.MAILCHANNELS_DKIM_PRIVATE_KEY) {
-    personalization.dkim_domain = env.MAILCHANNELS_DKIM_DOMAIN;
-    personalization.dkim_selector = env.MAILCHANNELS_DKIM_SELECTOR;
-    personalization.dkim_private_key = env.MAILCHANNELS_DKIM_PRIVATE_KEY;
+  if (!env.RESEND_API_KEY) {
+    console.error('RESEND_API_KEY env var is not set on this Pages environment');
+    return errorResponse(request, 'Email delivery is not configured. Please call (616) 334-7159.', 502);
   }
 
-  const payload = {
-    personalizations: [personalization],
-    from: { email: FROM_ADDRESS, name: FROM_NAME },
-    reply_to: { email, name },
-    subject,
-    content: [{ type: 'text/plain', value: bodyLines.join('\n') }],
-  };
-
   try {
-    const resp = await fetch('https://api.mailchannels.net/tx/v1/send', {
+    const resp = await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(payload),
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${env.RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: `${FROM_NAME} <${FROM_ADDRESS}>`,
+        to: [recipient],
+        reply_to: email,
+        subject,
+        text: bodyLines.join('\n'),
+      }),
     });
     if (!resp.ok) {
-      console.error('MailChannels send rejected', resp.status, await resp.text().catch(() => ''));
+      console.error('Resend send rejected', resp.status, await resp.text().catch(() => ''));
       return errorResponse(request, 'Email delivery failed. Please call (616) 334-7159.', 502);
     }
   } catch (err) {
-    console.error('MailChannels fetch failed', err);
+    console.error('Resend fetch failed', err);
     return errorResponse(request, 'Email delivery failed. Please call (616) 334-7159.', 502);
   }
 
