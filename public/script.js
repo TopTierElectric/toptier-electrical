@@ -181,7 +181,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const requiredFields = form.querySelectorAll('[required]');
         let invalidField = null;
         requiredFields.forEach(function (field) {
-          if (!field.value && !invalidField) invalidField = field;
+          if (invalidField) return;
+          const isCheckable = field.type === 'checkbox' || field.type === 'radio';
+          const isMissing = isCheckable ? !field.checked : !field.value || !field.value.trim();
+          if (isMissing) invalidField = field;
         });
 
         if (invalidField) {
