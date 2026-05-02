@@ -1,6 +1,5 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
-import siteData from '~/data/site.json';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -25,12 +24,6 @@ const contactPageLd = JSON.stringify({
     areaServed: 'West Michigan',
   },
 });
-
-const canonicalOrigin = process.env.PUBLIC_SITE_ORIGIN?.replace(/\/$/, '') ?? siteData.site.origin.replace(/\/$/, '');
-const formReturnOrigin =
-  process.env.PUBLIC_FORM_RETURN_ORIGIN?.replace(/\/$/, '') ??
-  (Astro.url?.origin?.includes('pages.dev') ? Astro.url.origin : canonicalOrigin);
-const thankYouUrl = `${formReturnOrigin}/thank-you`;
 ---
 
 <TTELayout
@@ -86,9 +79,7 @@ const thankYouUrl = `${formReturnOrigin}/thank-you`;
             <p>
               If you'd like to pick a specific date and time, please use our <a href="/booking">online booking form</a>.
             </p>
-            <form name="contact" method="POST" action="https://formspree.io/f/mkovbvgj" novalidate data-enhanced-form>
-              <input type="hidden" name="_subject" value="New contact request from Top Tier Electrical" />
-              <input type="hidden" name="_next" value={thankYouUrl} />
+            <form name="contact" method="POST" action="/api/contact" novalidate data-enhanced-form>
               <input type="hidden" name="form_name" value="Contact form" />
               <input
                 class="form-honeypot"
