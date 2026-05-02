@@ -42,13 +42,21 @@ export const onRequestPost = async (context: PagesContext<Env>): Promise<Respons
   const name = str(data.get('name'));
   const email = str(data.get('email'));
   const message = str(data.get('message') || data.get('notes'));
+  const service = str(data.get('service') || data.get('service_type'));
   const formName = str(data.get('form_name')) || 'Contact form';
 
-  if (!name || !email || !message) {
-    return errorResponse(request, 'Please fill in name, email, and a message.', 422);
+  if (!name || !email) {
+    return errorResponse(request, 'Please fill in name and email.', 422);
   }
   if (!isValidEmail(email)) {
     return errorResponse(request, 'Please enter a valid email address.', 422);
+  }
+  // Either a free-text message (contact form) or a structured service
+  // selection (booking form) must be present so we don't email a blank
+  // submission. Forms enforce their own required fields client-side; this
+  // is the server-side floor.
+  if (!message && !service) {
+    return errorResponse(request, 'Please tell us what you need help with.', 422);
   }
 
   const bodyLines: string[] = [`Submission: ${formName}`, ''];
