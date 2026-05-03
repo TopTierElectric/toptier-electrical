@@ -2614,6 +2614,30 @@ body.menu-open {
   justify-content: center;
 }
 
+.hero-trust {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-trust li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.hero-trust li::before {
+  content: '✓';
+  color: var(--brand-gold);
+  font-weight: 700;
+  margin-right: 0.4rem;
+}
+
 .hero-image {
   min-width: 0;
   width: 100%;
@@ -2644,6 +2668,10 @@ body.menu-open {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
+  }
+
+  .hero-trust {
+    justify-content: flex-start;
   }
 
   .hero-picture {
