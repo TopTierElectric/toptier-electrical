@@ -259,13 +259,18 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
       <div class="container header-inner">
         <a class="logo" href="/">
           <picture>
-            <source srcset="/images/logos/TopTierElectrical_Logo_Web_600w.webp" type="image/webp" />
+            <source
+              srcset="/images/logos/TopTierElectrical_Logo_Web_180w.webp 180w, /images/logos/TopTierElectrical_Logo_Web_300w.webp 300w"
+              sizes="(max-width: 1200px) 92px, 120px"
+              type="image/webp"
+            />
             <img
-              src="/images/logos/TopTierElectrical_Logo_Web_600w.webp"
+              src="/images/logos/TopTierElectrical_Logo_Web_180w.webp"
               alt="Top Tier Electrical logo"
-              width="300"
-              height="287"
+              width="180"
+              height="172"
               decoding="async"
+              fetchpriority="high"
             />
           </picture>
         </a>
@@ -396,12 +401,16 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
     <footer class="site-footer">
       <div class="footer-logo">
         <picture>
-          <source srcset="/images/logos/TopTierElectrical_Logo_Web_600w.webp" type="image/webp" />
+          <source
+            srcset="/images/logos/TopTierElectrical_Logo_Web_180w.webp 180w, /images/logos/TopTierElectrical_Logo_Web_300w.webp 300w"
+            sizes="120px"
+            type="image/webp"
+          />
           <img
-            src="/images/logos/TopTierElectrical_Logo_Web_600w.webp"
+            src="/images/logos/TopTierElectrical_Logo_Web_180w.webp"
             alt="Top Tier Electrical logo"
-            width="300"
-            height="287"
+            width="180"
+            height="172"
             decoding="async"
           />
         </picture>
