@@ -22,9 +22,17 @@ const PAGES_PREVIEW_RE = /^https:\/\/[a-z0-9-]+\.toptier-electrical\.pages\.dev$
 
 // GET /api/contact returns a small diagnostic JSON so we can verify
 // from a browser whether the env bindings reached the running function.
-// No secret values are exposed — only which keys are set.
+// Gated by a token query param (?key=...) so the route appears as 404
+// to unauthenticated callers — no secret values are exposed but we don't
+// want to leak deployment metadata either.
+const DIAG_TOKEN = 'f1b378abb203800401f7cb507e03c6db';
+
 export const onRequestGet = async (context: PagesContext<Env>): Promise<Response> => {
-  const { env } = context;
+  const { request, env } = context;
+  const url = new URL(request.url);
+  if (url.searchParams.get('key') !== DIAG_TOKEN) {
+    return new Response('Not Found', { status: 404, headers: { 'cache-control': 'no-store' } });
+  }
   const apiKey = typeof env.RESEND_API_KEY === 'string' ? env.RESEND_API_KEY.trim() : '';
   return new Response(
     JSON.stringify({
