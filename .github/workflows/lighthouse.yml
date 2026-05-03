@@ -24,6 +24,9 @@ jobs:
           script: |
             const maxAttempts = 30;
             const delayMs = 30000;
+            const headSha = context.payload.pull_request.head.sha;
+            const shortSha = headSha.substring(0, 7);
+            core.info(`Waiting for Cloudflare Pages deploy of ${shortSha} (full: ${headSha})`);
             for (let i = 0; i < maxAttempts; i++) {
               const comments = await github.paginate(github.rest.issues.listComments, {
                 owner: context.repo.owner,
@@ -32,20 +35,26 @@ jobs:
                 per_page: 100,
               });
               const cf = comments
-                .filter(c => c.user && c.user.login === 'cloudflare-workers-and-pages[bot]')
+                .filter((c) => c.user && c.user.login === 'cloudflare-workers-and-pages[bot]')
+                .filter((c) => c.body && c.body.includes(`<code>${shortSha}</code>`))
+                .filter((c) => c.body.includes('Deploy successful'))
                 .reverse()[0];
-              if (cf && cf.body && cf.body.includes('Deploy successful')) {
+              if (cf) {
                 const match = cf.body.match(/https:\/\/[a-z0-9-]+\.toptier-electrical\.pages\.dev/);
                 if (match) {
                   core.setOutput('url', match[0]);
-                  core.info('Found preview URL: ' + match[0]);
+                  core.info('Found preview URL for ' + shortSha + ': ' + match[0]);
                   return;
                 }
               }
-              core.info(`Attempt ${i + 1}/${maxAttempts}: preview not ready yet, waiting ${delayMs}ms`);
-              await new Promise(r => setTimeout(r, delayMs));
+              core.info(
+                `Attempt ${i + 1}/${maxAttempts}: deploy comment for ${shortSha} not ready yet, waiting ${delayMs}ms`
+              );
+              await new Promise((r) => setTimeout(r, delayMs));
             }
-            core.setFailed('Cloudflare Pages preview deploy did not complete within 15 minutes');
+            core.setFailed(
+              `Cloudflare Pages preview deploy for commit ${shortSha} did not complete within 15 minutes`
+            );
 
       - name: Run Lighthouse via PSI API (mobile)
         id: psi
