@@ -9,10 +9,11 @@ interface PagesContext<E> {
 }
 
 const RECIPIENT_FALLBACK = 'info@toptier-electrical.com';
-// Resend verifies the `send` subdomain (so the apex SPF/DKIM stay
-// untouched and Microsoft 365 keeps working). Sender address must live
-// under that verified subdomain or Resend rejects with 403.
-const SENDER_DOMAIN = 'send.toptier-electrical.com';
+// Resend's domain verification covers the apex; the `send.` subdomain is
+// only where Resend installed the SPF/MX records. Send-from address must
+// match the verified domain that the API key is scoped to (the apex), or
+// Resend rejects with 403 "API key is not authorized to send from ...".
+const SENDER_DOMAIN = 'toptier-electrical.com';
 const FROM_ADDRESS = `noreply@${SENDER_DOMAIN}`;
 const FROM_NAME = 'Top Tier Electrical Contact Form';
 
