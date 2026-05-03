@@ -20,6 +20,38 @@ const ALLOWED_ORIGINS = new Set(['https://toptier-electrical.com', 'https://www.
 
 const PAGES_PREVIEW_RE = /^https:\/\/[a-z0-9-]+\.toptier-electrical\.pages\.dev$/i;
 
+// GET /api/contact returns a small diagnostic JSON so we can verify
+// from a browser whether the env bindings reached the running function.
+// No secret values are exposed — only which keys are set.
+export const onRequestGet = async (context: PagesContext<Env>): Promise<Response> => {
+  const { env } = context;
+  const apiKey = typeof env.RESEND_API_KEY === 'string' ? env.RESEND_API_KEY.trim() : '';
+  return new Response(
+    JSON.stringify({
+      ok: true,
+      function: 'api/contact',
+      bindings: {
+        RESEND_API_KEY: {
+          set: apiKey.length > 0,
+          length: apiKey.length,
+          starts_with_re: apiKey.startsWith('re_'),
+        },
+        CONTACT_RECIPIENT: {
+          set: typeof env.CONTACT_RECIPIENT === 'string' && env.CONTACT_RECIPIENT.length > 0,
+        },
+      },
+      env_keys: Object.keys(env || {}).sort(),
+    }),
+    {
+      status: 200,
+      headers: {
+        'content-type': 'application/json',
+        'cache-control': 'no-store',
+      },
+    }
+  );
+};
+
 export const onRequestPost = async (context: PagesContext<Env>): Promise<Response> => {
   const { request, env } = context;
 
