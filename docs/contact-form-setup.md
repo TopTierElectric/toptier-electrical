@@ -62,6 +62,37 @@ If you want submissions to go to a different inbox without redeploying:
 | ------------------- | ----------------------------- | ------------------------------ |
 | `CONTACT_RECIPIENT` | `info@toptier-electrical.com` | Override the recipient address |
 
+### 5. (Optional) SMS lead alerts via Twilio
+
+When all four of these Pages secrets are set, every successful form
+submission also fires an SMS to the owner so the lead gets a real-time
+ping (response speed is the single biggest driver of close rate in home
+services). Sending is best-effort — a Twilio failure does not affect the
+user-facing success response.
+
+| Variable             | Value                                                          |
+| -------------------- | -------------------------------------------------------------- |
+| `TWILIO_ACCOUNT_SID` | from https://console.twilio.com (starts with `AC...`)          |
+| `TWILIO_AUTH_TOKEN`  | from https://console.twilio.com (Secret in Pages dashboard)    |
+| `TWILIO_FROM_NUMBER` | a verified Twilio number, E.164 format e.g. `+16165550100`     |
+| `OWNER_PHONE`        | destination phone for alerts, E.164 format e.g. `+16163347159` |
+
+Without all four set, the SMS path is silently skipped and the rest of
+the function works unchanged.
+
+### 6. (Optional) Customer auto-confirmation email
+
+Sends a friendly "we got your message" reply to the customer right after
+submission. Sets expectation, builds the relationship, and primes the
+review-request workflow that runs after each completed job.
+
+| Variable                     | Value to enable          | Purpose                                 |
+| ---------------------------- | ------------------------ | --------------------------------------- |
+| `SEND_CUSTOMER_CONFIRMATION` | any non-empty (e.g. `1`) | Turn on the customer auto-confirm email |
+
+Uses the same `RESEND_API_KEY`. If unset or empty, the auto-confirm is
+silently skipped.
+
 ## Cleanup of the old MailChannels records (optional)
 
 These records were added during the abandoned MailChannels attempt and are
