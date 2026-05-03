@@ -1,3 +1,59 @@
+# Block known AI TRAINING crawlers only. User-agent Disallow rules
+# are honored by the major scrapers — stronger signal than the
+# experimental `Content-Signal: ai-train=no` directive that only some
+# crawlers parse and that Lighthouse flags as unknown.
+#
+# IMPORTANT: only training/dataset crawlers are blocked here. User-fetch
+# agents (e.g. ChatGPT-User, Claude-Web, Perplexity-User) and search
+# agents (OAI-SearchBot, Amazonbot) are intentionally NOT blocked
+# because they're how real users reach your business through AI assistants
+# and voice search. Blocking them would hurt referral discoverability
+# without preventing training. FacebookBot is also allowed so link
+# previews still render when pages are shared on Facebook.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: omgili
+Disallow: /
+
+User-agent: omgilibot
+Disallow: /
+
+# Allow all other crawlers (Googlebot, Bingbot, AI assistant user-fetch
+# agents, link-preview bots, etc.) full access.
 User-agent: *
 Allow: /
 Disallow: /thank-you
