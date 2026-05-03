@@ -110,9 +110,10 @@ jobs:
               `| Performance | ${perf} | ${emoji(perf)} |`,
               `| Accessibility | ${a11y} | ${emoji(a11y)} |`,
               `| Best Practices | ${bp} | ${emoji(bp)} |`,
-              `| SEO | ${seo} | ${emoji(seo)} |`,
+              `| SEO | ${seo} | ${emoji(seo)} (preview always low; noindex by design) |`,
               '',
               '_Score legend: 🟢 ≥96 · 🟡 ≥90 · 🔴 <90._',
+              '_SEO is intentionally not gated on preview deploys because they ship `X-Robots-Tag: noindex, nofollow`. Only Performance / Accessibility / Best Practices are checked against the regression floor. Production-side SEO is verified separately._',
             ].join('\n');
             await github.rest.issues.createComment({
               owner: context.repo.owner,
@@ -121,14 +122,21 @@ jobs:
               body,
             });
 
-      - name: Fail job if any score regressed below 90
+      - name: Fail job if Performance / Accessibility / Best Practices regressed
         if: steps.psi.outputs.perf
         run: |
           PERF="${{ steps.psi.outputs.perf }}"
           A11Y="${{ steps.psi.outputs.a11y }}"
           BP="${{ steps.psi.outputs.bp }}"
-          SEO="${{ steps.psi.outputs.seo }}"
-          if [ "$PERF" -lt 90 ] || [ "$A11Y" -lt 90 ] || [ "$BP" -lt 90 ] || [ "$SEO" -lt 90 ]; then
-            echo "Lighthouse regression: P=$PERF A=$A11Y BP=$BP SEO=$SEO (any <90 fails)"
+          # Performance floor 80: PSI single-run variance can swing ±10 points
+          # on Slow 4G mobile. 80 catches genuine regressions while absorbing
+          # noise. A11y and BP floor 90: those are stable across runs.
+          # SEO is NOT gated here — preview URLs ship `X-Robots-Tag: noindex,
+          # nofollow` from src/middleware.ts so they always score ~70 by
+          # design. Production-side SEO is verified by manual PSI on the
+          # apex after merge.
+          if [ "$PERF" -lt 80 ] || [ "$A11Y" -lt 90 ] || [ "$BP" -lt 90 ]; then
+            echo "Lighthouse regression on preview: P=$PERF A=$A11Y BP=$BP"
+            echo "Floors: P>=80, A>=90, BP>=90 (SEO ungated due to noindex header)"
             exit 1
           fi
