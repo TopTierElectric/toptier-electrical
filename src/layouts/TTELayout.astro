@@ -34,19 +34,24 @@ const siteUrl = siteData.site.origin;
 const gaMeasurementId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID || siteData.seo?.analytics?.ga4MeasurementId || '';
 const gtmId = import.meta.env.PUBLIC_GTM_ID || siteData.seo?.analytics?.gtmId || '';
 
-// Analytics loads via a deferred-to-idle pattern (not Partytown).
-// gtag.js parse + execute is ~150ms on the main thread — enough to
-// regress LCP if it runs during initial render. Solution: queue gtag
-// events synchronously (so we never miss one) but defer the actual
-// gtag.js script load until requestIdleCallback fires (after LCP).
-// When gtag.js arrives it processes the queued events normally, so
-// pageview/event tracking is preserved with at most ~1-2s delay.
+// Analytics loads via a deferred-but-eager-on-interaction pattern.
+// gtag.js parse + execute is ~150 ms on the main thread — enough to
+// regress LCP if it runs during initial render. Solution:
+//   1. Queue gtag events synchronously (so we never miss one).
+//   2. Defer the actual gtag.js script load. Whichever fires first
+//      among (a) requestIdleCallback with a 1500 ms ceiling,
+//      (b) first user interaction (scroll/click/touch/key), or
+//      (c) 1500 ms setTimeout fallback — triggers the load.
+// Result: engaged users get gtag.js the instant they touch the page;
+// passive users get it within 1.5 s; almost no bounce session is too
+// short to capture the pageview hit. LCP stays clean because the
+// load happens after first paint in every realistic scenario.
 const analyticsHeadHtml = [
   gtmId
-    ? `<script>(function(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});function load(){var f=document.getElementsByTagName('script')[0],j=document.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=${gtmId}';f.parentNode.insertBefore(j,f);}if('requestIdleCallback' in window){requestIdleCallback(load,{timeout:4000});}else{setTimeout(load,2500);}})();</script>`
+    ? `<script>(function(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});var loaded=false;function load(){if(loaded)return;loaded=true;var f=document.getElementsByTagName('script')[0],j=document.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=${gtmId}';f.parentNode.insertBefore(j,f);}if('requestIdleCallback' in window){requestIdleCallback(load,{timeout:1500});}else{setTimeout(load,1500);}['scroll','click','keydown','touchstart','pointerdown'].forEach(function(ev){window.addEventListener(ev,load,{once:true,passive:true,capture:true});});})();</script>`
     : '',
   gaMeasurementId
-    ? `<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${gaMeasurementId}');function loadGA(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}';document.head.appendChild(s);}if('requestIdleCallback' in window){requestIdleCallback(loadGA,{timeout:4000});}else{setTimeout(loadGA,2500);}</script>`
+    ? `<script>(function(){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${gaMeasurementId}');var loaded=false;function loadGA(){if(loaded)return;loaded=true;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}';document.head.appendChild(s);}if('requestIdleCallback' in window){requestIdleCallback(loadGA,{timeout:1500});}else{setTimeout(loadGA,1500);}['scroll','click','keydown','touchstart','pointerdown'].forEach(function(ev){window.addEventListener(ev,loadGA,{once:true,passive:true,capture:true});});})();</script>`
     : '',
 ]
   .filter(Boolean)
