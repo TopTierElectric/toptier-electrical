@@ -1,0 +1,125 @@
+name: Lighthouse on PR preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+# Wait for the Cloudflare Pages preview deployment to finish before
+# auditing it. The Pages app posts a `Cloudflare Pages` check + a sticky
+# comment with the preview URL when the deploy succeeds.
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Wait for Cloudflare Pages deploy comment
+        id: wait
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const maxAttempts = 30;
+            const delayMs = 30000;
+            for (let i = 0; i < maxAttempts; i++) {
+              const comments = await github.paginate(github.rest.issues.listComments, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                per_page: 100,
+              });
+              const cf = comments
+                .filter(c => c.user && c.user.login === 'cloudflare-workers-and-pages[bot]')
+                .reverse()[0];
+              if (cf && cf.body && cf.body.includes('Deploy successful')) {
+                const match = cf.body.match(/https:\/\/[a-z0-9-]+\.toptier-electrical\.pages\.dev/);
+                if (match) {
+                  core.setOutput('url', match[0]);
+                  core.info('Found preview URL: ' + match[0]);
+                  return;
+                }
+              }
+              core.info(`Attempt ${i + 1}/${maxAttempts}: preview not ready yet, waiting ${delayMs}ms`);
+              await new Promise(r => setTimeout(r, delayMs));
+            }
+            core.setFailed('Cloudflare Pages preview deploy did not complete within 15 minutes');
+
+      - name: Run Lighthouse via PSI API (mobile)
+        id: psi
+        if: steps.wait.outputs.url
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const url = "${{ steps.wait.outputs.url }}";
+            const target = encodeURIComponent(url);
+            const apiUrl =
+              `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${target}&strategy=mobile` +
+              `&category=performance&category=accessibility&category=best-practices&category=seo`;
+            const resp = await fetch(apiUrl);
+            if (!resp.ok) {
+              core.setFailed(`PSI API returned ${resp.status}`);
+              return;
+            }
+            const json = await resp.json();
+            const cats = json.lighthouseResult && json.lighthouseResult.categories;
+            if (!cats) {
+              core.setFailed('PSI response missing categories');
+              return;
+            }
+            const score = (cat) => Math.round((cats[cat]?.score ?? 0) * 100);
+            const perf = score('performance');
+            const a11y = score('accessibility');
+            const bp = score('best-practices');
+            const seo = score('seo');
+            core.setOutput('perf', perf);
+            core.setOutput('a11y', a11y);
+            core.setOutput('bp', bp);
+            core.setOutput('seo', seo);
+            core.setOutput('url', url);
+
+      - name: Comment scores on PR
+        if: steps.psi.outputs.perf
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const perf = ${{ steps.psi.outputs.perf || 0 }};
+            const a11y = ${{ steps.psi.outputs.a11y || 0 }};
+            const bp = ${{ steps.psi.outputs.bp || 0 }};
+            const seo = ${{ steps.psi.outputs.seo || 0 }};
+            const url = "${{ steps.psi.outputs.url }}";
+            const emoji = (n) => (n >= 96 ? '🟢' : n >= 90 ? '🟡' : '🔴');
+            const body = [
+              '## Lighthouse on PR preview',
+              '',
+              `Audited: \`${url}\` (mobile, Slow 4G via PSI API)`,
+              '',
+              '| Score | Value | |',
+              '|---|---|---|',
+              `| Performance | ${perf} | ${emoji(perf)} |`,
+              `| Accessibility | ${a11y} | ${emoji(a11y)} |`,
+              `| Best Practices | ${bp} | ${emoji(bp)} |`,
+              `| SEO | ${seo} | ${emoji(seo)} |`,
+              '',
+              '_Score legend: 🟢 ≥96 · 🟡 ≥90 · 🔴 <90._',
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body,
+            });
+
+      - name: Fail job if any score regressed below 90
+        if: steps.psi.outputs.perf
+        run: |
+          PERF="${{ steps.psi.outputs.perf }}"
+          A11Y="${{ steps.psi.outputs.a11y }}"
+          BP="${{ steps.psi.outputs.bp }}"
+          SEO="${{ steps.psi.outputs.seo }}"
+          if [ "$PERF" -lt 90 ] || [ "$A11Y" -lt 90 ] || [ "$BP" -lt 90 ] || [ "$SEO" -lt 90 ]; then
+            echo "Lighthouse regression: P=$PERF A=$A11Y BP=$BP SEO=$SEO (any <90 fails)"
+            exit 1
+          fi
