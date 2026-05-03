@@ -21,46 +21,6 @@ const ALLOWED_ORIGINS = new Set(['https://toptier-electrical.com', 'https://www.
 
 const PAGES_PREVIEW_RE = /^https:\/\/[a-z0-9-]+\.toptier-electrical\.pages\.dev$/i;
 
-// GET /api/contact returns a small diagnostic JSON so we can verify
-// from a browser whether the env bindings reached the running function.
-// Gated by a token query param (?key=...) so the route appears as 404
-// to unauthenticated callers — no secret values are exposed but we don't
-// want to leak deployment metadata either.
-const DIAG_TOKEN = 'f1b378abb203800401f7cb507e03c6db';
-
-export const onRequestGet = async (context: PagesContext<Env>): Promise<Response> => {
-  const { request, env } = context;
-  const url = new URL(request.url);
-  if (url.searchParams.get('key') !== DIAG_TOKEN) {
-    return new Response('Not Found', { status: 404, headers: { 'cache-control': 'no-store' } });
-  }
-  const apiKey = typeof env.RESEND_API_KEY === 'string' ? env.RESEND_API_KEY.trim() : '';
-  return new Response(
-    JSON.stringify({
-      ok: true,
-      function: 'api/contact',
-      bindings: {
-        RESEND_API_KEY: {
-          set: apiKey.length > 0,
-          length: apiKey.length,
-          starts_with_re: apiKey.startsWith('re_'),
-        },
-        CONTACT_RECIPIENT: {
-          set: typeof env.CONTACT_RECIPIENT === 'string' && env.CONTACT_RECIPIENT.length > 0,
-        },
-      },
-      env_keys: Object.keys(env || {}).sort(),
-    }),
-    {
-      status: 200,
-      headers: {
-        'content-type': 'application/json',
-        'cache-control': 'no-store',
-      },
-    }
-  );
-};
-
 export const onRequestPost = async (context: PagesContext<Env>): Promise<Response> => {
   const { request, env } = context;
 
