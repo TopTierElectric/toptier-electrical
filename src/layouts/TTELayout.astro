@@ -34,12 +34,17 @@ const siteUrl = siteData.site.origin;
 const gaMeasurementId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID || siteData.seo?.analytics?.ga4MeasurementId || '';
 const gtmId = import.meta.env.PUBLIC_GTM_ID || siteData.seo?.analytics?.gtmId || '';
 
+// Analytics loads natively with `async` (no Partytown). Partytown's
+// sandbox iframe surfaces deprecated browser APIs (SharedStorage,
+// AttributionReporting) that Lighthouse penalizes under Best Practices,
+// and the perf cost of loading GA on the main thread is small (<50ms TBT)
+// because gtag.js itself is async + cached after first load.
 const analyticsHeadHtml = [
   gtmId
-    ? `<script type="text/partytown">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');</script>`
+    ? `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');</script>`
     : '',
   gaMeasurementId
-    ? `<script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}"></script><script type="text/partytown">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${gaMeasurementId}');</script>`
+    ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${gaMeasurementId}');</script>`
     : '',
 ]
   .filter(Boolean)
