@@ -1,0 +1,139 @@
+name: Lighthouse on PR preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+# Posts a Lighthouse audit comment to the PR after Cloudflare Pages
+# finishes deploying the preview. The job is INFORMATIONAL ONLY — it
+# never fails the build, even if scores look bad. PSI's mobile audit
+# has ±10-point single-run variance which is too noisy to gate on.
+# Use the score comment as a signal, then verify regressions with
+# manual PSI runs before deciding to revert.
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    # The whole job is best-effort: don't block the PR even if PSI
+    # errors, the deploy is slow, or the preview URL isn't reachable.
+    continue-on-error: true
+    steps:
+      - name: Wait for Cloudflare Pages deploy comment for this commit
+        id: wait
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const maxAttempts = 30;
+            const delayMs = 30000;
+            const headSha = context.payload.pull_request.head.sha;
+            const shortSha = headSha.substring(0, 7);
+            core.info(`Waiting for Cloudflare Pages deploy of ${shortSha} (full: ${headSha})`);
+            for (let i = 0; i < maxAttempts; i++) {
+              const comments = await github.paginate(github.rest.issues.listComments, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                per_page: 100,
+              });
+              const cf = comments
+                .filter((c) => c.user && c.user.login === 'cloudflare-workers-and-pages[bot]')
+                .filter((c) => c.body && c.body.includes(`<code>${shortSha}</code>`))
+                .filter((c) => c.body.includes('Deploy successful'))
+                .reverse()[0];
+              if (cf) {
+                const match = cf.body.match(/https:\/\/[a-z0-9-]+\.toptier-electrical\.pages\.dev/);
+                if (match) {
+                  core.setOutput('url', match[0]);
+                  core.info('Found preview URL for ' + shortSha + ': ' + match[0]);
+                  return;
+                }
+              }
+              core.info(
+                `Attempt ${i + 1}/${maxAttempts}: deploy comment for ${shortSha} not ready yet, waiting ${delayMs}ms`
+              );
+              await new Promise((r) => setTimeout(r, delayMs));
+            }
+            core.warning(
+              `Cloudflare Pages preview deploy for commit ${shortSha} did not complete within timeout. Skipping audit.`
+            );
+
+      - name: Run Lighthouse via PSI API (mobile)
+        id: psi
+        if: steps.wait.outputs.url
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const url = "${{ steps.wait.outputs.url }}";
+            const target = encodeURIComponent(url);
+            const apiUrl =
+              `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${target}&strategy=mobile` +
+              `&category=performance&category=accessibility&category=best-practices&category=seo`;
+            try {
+              const resp = await fetch(apiUrl);
+              if (!resp.ok) {
+                core.warning(`PSI API returned ${resp.status} — skipping comment`);
+                return;
+              }
+              const json = await resp.json();
+              const cats = json.lighthouseResult && json.lighthouseResult.categories;
+              if (!cats) {
+                core.warning('PSI response missing categories — skipping comment');
+                return;
+              }
+              const score = (cat) => {
+                const s = cats[cat] && cats[cat].score;
+                return s == null ? null : Math.round(s * 100);
+              };
+              core.setOutput('perf', score('performance'));
+              core.setOutput('a11y', score('accessibility'));
+              core.setOutput('bp', score('best-practices'));
+              core.setOutput('seo', score('seo'));
+              core.setOutput('url', url);
+            } catch (e) {
+              core.warning(`PSI API call failed: ${e.message} — skipping comment`);
+            }
+
+      - name: Comment scores on PR
+        if: steps.psi.outputs.perf != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const perfRaw = "${{ steps.psi.outputs.perf }}";
+            const a11yRaw = "${{ steps.psi.outputs.a11y }}";
+            const bpRaw = "${{ steps.psi.outputs.bp }}";
+            const seoRaw = "${{ steps.psi.outputs.seo }}";
+            const url = "${{ steps.psi.outputs.url }}";
+            const fmt = (s) => (s === '' || s == null ? 'n/a' : s);
+            const emoji = (s) => {
+              const n = Number(s);
+              if (Number.isNaN(n)) return '⚪';
+              return n >= 96 ? '🟢' : n >= 90 ? '🟡' : '🔴';
+            };
+            const body = [
+              '## Lighthouse on PR preview',
+              '',
+              `Audited: \`${url}\` (mobile, Slow 4G via PSI API)`,
+              '',
+              '| Score | Value | |',
+              '|---|---|---|',
+              `| Performance | ${fmt(perfRaw)} | ${emoji(perfRaw)} |`,
+              `| Accessibility | ${fmt(a11yRaw)} | ${emoji(a11yRaw)} |`,
+              `| Best Practices | ${fmt(bpRaw)} | ${emoji(bpRaw)} |`,
+              `| SEO | ${fmt(seoRaw)} | ${emoji(seoRaw)} (preview always low; noindex by design) |`,
+              '',
+              '_Score legend: 🟢 ≥96 · 🟡 ≥90 · 🔴 <90._',
+              '_Informational only — this job never fails the build. Mobile PSI has ±10-point single-run variance; use these as a signal, then verify any regression with a manual PSI run._',
+              '_SEO is intentionally not used as a regression signal because preview URLs ship `X-Robots-Tag: noindex, nofollow`._',
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body,
+            });
+
