@@ -10,8 +10,8 @@
   },
   "site": {
     "domain": "toptier-electrical.com",
-    "origin": "https://toptier-electrical.com",
-    "canonicalBaseUrl": "https://toptier-electrical.com",
+    "origin": "https://www.toptier-electrical.com",
+    "canonicalBaseUrl": "https://www.toptier-electrical.com",
     "headers": {
       "assets_cache_immutable": "public, max-age=31536000, immutable"
     }

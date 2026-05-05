@@ -8,8 +8,8 @@ export interface Props {
 }
 
 const { city, slug, county = `${city}, MI` } = Astro.props;
-const canonical = `https://toptier-electrical.com/${slug}`;
-const ogImage = `https://toptier-electrical.com/images/og/locations/${slug}.png`;
+const canonical = `https://www.toptier-electrical.com/${slug}`;
+const ogImage = `https://www.toptier-electrical.com/images/og/locations/${slug}.png`;
 const hasDistinctCounty = county !== `${city}, MI`;
 const description = hasDistinctCounty
   ? `Licensed electrician in ${city}, MI (${county}). Panel upgrades, EV chargers, lighting, repairs, and code corrections.`

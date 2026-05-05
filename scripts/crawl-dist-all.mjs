@@ -40,13 +40,13 @@ for (const [file, route] of routeByFile.entries()) {
 
     let target;
     try {
-      target = new URL(href, 'https://toptier-electrical.com');
+      target = new URL(href, 'https://www.toptier-electrical.com');
     } catch {
       failures.push(`${route}: malformed href ${href}`);
       continue;
     }
 
-    if (target.origin !== 'https://toptier-electrical.com') continue;
+    if (target.origin !== 'https://www.toptier-electrical.com') continue;
     const pathname = target.pathname.replace(/\/+$/, '') || '/';
     if (
       !validRoutes.has(pathname) &&

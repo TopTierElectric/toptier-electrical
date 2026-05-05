@@ -24,7 +24,7 @@ for (const file of htmlFiles) {
   const route =
     rel === 'index.html' ? '/' : `/${rel.replace(/index\.html$/, '').replace(/\.html$/, '')}`.replace(/\/$/, '') || '/';
   if (route === '/404' || route.startsWith('/decapcms')) continue;
-  const expected = `https://toptier-electrical.com${route === '/' ? '/' : route}`;
+  const expected = `https://www.toptier-electrical.com${route === '/' ? '/' : route}`;
   const html = fs.readFileSync(file, 'utf8');
   const canonicalMatchA = [...html.matchAll(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/gi)];
   const canonicalMatchB = [...html.matchAll(/<link[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["'][^>]*>/gi)];
@@ -38,8 +38,8 @@ for (const file of htmlFiles) {
     continue;
   }
   const canonical = canonicalMatches[0][1];
-  if (!canonical.startsWith('https://toptier-electrical.com')) {
-    issues.push(`${route}: canonical must use https://toptier-electrical.com (found ${canonical})`);
+  if (!canonical.startsWith('https://www.toptier-electrical.com')) {
+    issues.push(`${route}: canonical must use https://www.toptier-electrical.com (found ${canonical})`);
     continue;
   }
   if (!route.startsWith('/blog/') && canonical !== expected) {
