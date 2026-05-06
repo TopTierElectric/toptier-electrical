@@ -23,8 +23,8 @@ const shouldFollow = blogCategoryRobots?.follow ?? true;
 const robots = `${shouldIndex ? 'index' : 'noindex'}, ${shouldFollow ? 'follow' : 'nofollow'}`;
 
 const title = `Category '${category.title}'${currentPage > 1 ? ` — Page ${currentPage}` : ''} | Top Tier Electrical Blog`;
-const canonical = `https://toptier-electrical.com${Astro.url.pathname}`;
-const ogImage = `https://toptier-electrical.com/images/og/category/${category.slug}.png`;
+const canonical = `https://www.toptier-electrical.com${Astro.url.pathname}`;
+const ogImage = `https://www.toptier-electrical.com/images/og/category/${category.slug}.png`;
 const description =
   currentPage > 1
     ? `Articles in the ${category.title} category — page ${currentPage}. Practical electrical guides from Top Tier Electrical for West Michigan homeowners and businesses.`

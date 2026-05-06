@@ -5,8 +5,13 @@ const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Get a Clear Estimate', item: 'https://toptier-electrical.com/booking' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.toptier-electrical.com/' },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Get a Clear Estimate',
+      item: 'https://www.toptier-electrical.com/booking',
+    },
   ],
 });
 ---
@@ -14,8 +19,8 @@ const breadcrumbLd = JSON.stringify({
 <TTELayout
   title="Book Electrical Service | Top Tier Electrical"
   description="Schedule electrical service in West Michigan. Choose a service, preferred date, and time, and we'll confirm the scope and next steps."
-  canonical="https://toptier-electrical.com/booking"
-  ogImage="https://toptier-electrical.com/images/og/pages/booking.png"
+  canonical="https://www.toptier-electrical.com/booking"
+  ogImage="https://www.toptier-electrical.com/images/og/pages/booking.png"
   jsonLd={[breadcrumbLd]}
 >
   <main id="main-content">

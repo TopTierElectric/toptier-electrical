@@ -1,6 +1,21 @@
 # Cloudflare Pages _redirects supports path redirects only.
-# Host/protocol canonicalization (www -> apex, http -> https) must be enforced
-# in Cloudflare zone Redirect Rules/Bulk Redirects, not here.
+#
+# Host/protocol canonicalization belongs in Cloudflare zone Redirect
+# Rules / Bulk Redirects, not here:
+#   - apex (toptier-electrical.com) → https://www.toptier-electrical.com
+#     (308 Permanent Redirect, preserve path + query)
+#   - http://* → https://* (Cloudflare's "Always Use HTTPS" toggle)
+#
+# Canonical host is `www.toptier-electrical.com`. Every sitemap entry,
+# OG URL, and `<link rel="canonical">` already points there. Google's
+# URL Inspection consistently selects www over apex due to external
+# authority signals (GBP, citations, social), so we match that choice
+# at the technical layer too.
+#
+# If apex starts returning 200 again without a redirect, expect Google
+# Search Console to surface "Duplicate, Google chose different
+# canonical than user" on apex URLs. The fix is to add the apex → www
+# 308 rule above.
 
 # Legacy entry aliases (keep minimal)
 /index / 301

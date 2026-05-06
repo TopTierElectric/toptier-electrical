@@ -1,6 +1,6 @@
 site:
   name: Top Tier Electrical
-  site: 'https://toptier-electrical.com'
+  site: 'https://www.toptier-electrical.com'
   base: '/'
   trailingSlash: false
 

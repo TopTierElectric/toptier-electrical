@@ -9,8 +9,8 @@ if (!fs.existsSync(robotsPath)) {
 
 const robots = fs.readFileSync(robotsPath, 'utf8');
 const acceptedSitemapDirectives = [
-  'Sitemap: https://toptier-electrical.com/sitemap.xml',
-  'Sitemap: https://toptier-electrical.com/sitemap-index.xml',
+  'Sitemap: https://www.toptier-electrical.com/sitemap.xml',
+  'Sitemap: https://www.toptier-electrical.com/sitemap-index.xml',
 ];
 if (!acceptedSitemapDirectives.some((d) => robots.includes(d))) {
   console.error(`robots.txt must include one of:\n  - ${acceptedSitemapDirectives.join('\n  - ')}`);

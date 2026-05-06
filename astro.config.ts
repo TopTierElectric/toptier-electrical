@@ -17,7 +17,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   output: 'static',
-  site: 'https://toptier-electrical.com',
+  site: 'https://www.toptier-electrical.com',
   build: {
     // Inline all CSS as <style> tags to eliminate render-blocking CSS
     // requests. The single ~36 KB CSS bundle (~10 KB gzipped) is small

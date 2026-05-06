@@ -15,8 +15,8 @@ export interface Props {
 const { audienceLabel, canonicalSlug, county, leadSentence, badgeLabel, projectCtaHeading, projectCtaCopy, services } =
   Astro.props;
 
-const canonical = `https://toptier-electrical.com/${canonicalSlug}`;
-const ogImage = `https://toptier-electrical.com/images/og/locations/${canonicalSlug}.png`;
+const canonical = `https://www.toptier-electrical.com/${canonicalSlug}`;
+const ogImage = `https://www.toptier-electrical.com/images/og/locations/${canonicalSlug}.png`;
 const pageTitle = `${audienceLabel} Electrician Allegan MI | Top Tier Electrical`;
 const description = `${audienceLabel} electrical services in ${county}. Panel work, EV charging, lighting, and maintenance support.`;
 
@@ -24,8 +24,13 @@ const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toptier-electrical.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Service Areas', item: 'https://toptier-electrical.com/service-areas' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.toptier-electrical.com/' },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Service Areas',
+      item: 'https://www.toptier-electrical.com/service-areas',
+    },
     { '@type': 'ListItem', position: 3, name: `${audienceLabel} Electrician Allegan MI`, item: canonical },
   ],
 });
