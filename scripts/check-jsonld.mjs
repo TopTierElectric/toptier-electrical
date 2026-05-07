@@ -106,7 +106,9 @@ for (const file of htmlFiles) {
   }
 }
 
-console.log(`Scanned ${htmlFiles.length} HTML files; ${pagesAudited} pages with JSON-LD; ${totalBlocks} JSON-LD blocks.`);
+console.log(
+  `Scanned ${htmlFiles.length} HTML files; ${pagesAudited} pages with JSON-LD; ${totalBlocks} JSON-LD blocks.`
+);
 console.log('');
 
 let bad = false;
