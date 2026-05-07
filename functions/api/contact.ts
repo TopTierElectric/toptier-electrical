@@ -83,20 +83,24 @@ export const onRequestPost = async (context: PagesContext<Env>): Promise<Respons
   }
 
   try {
-    const resp = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `Bearer ${env.RESEND_API_KEY}`,
+    const resp = await fetchWithTimeout(
+      'https://api.resend.com/emails',
+      {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${env.RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: `${FROM_NAME} <${FROM_ADDRESS}>`,
+          to: [recipient],
+          reply_to: email,
+          subject,
+          text: bodyLines.join('\n'),
+        }),
       },
-      body: JSON.stringify({
-        from: `${FROM_NAME} <${FROM_ADDRESS}>`,
-        to: [recipient],
-        reply_to: email,
-        subject,
-        text: bodyLines.join('\n'),
-      }),
-    });
+      12_000
+    );
     if (!resp.ok) {
       console.error('Resend send rejected', resp.status, await resp.text().catch(() => ''));
       return errorResponse(request, 'Email delivery failed. Please call (616) 334-7159.', 502);
@@ -145,14 +149,18 @@ async function sendOwnerSms(
   params.set('Body', body);
 
   try {
-    const resp = await fetch(url, {
-      method: 'POST',
-      headers: {
-        Authorization: `Basic ${auth}`,
-        'content-type': 'application/x-www-form-urlencoded',
+    const resp = await fetchWithTimeout(
+      url,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Basic ${auth}`,
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        body: params.toString(),
       },
-      body: params.toString(),
-    });
+      8_000
+    );
     if (!resp.ok) {
       console.error('Twilio SMS rejected', resp.status, await resp.text().catch(() => ''));
     }
@@ -187,25 +195,42 @@ async function sendCustomerConfirmation(
   ].join('\n');
 
   try {
-    const resp = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        authorization: `Bearer ${env.RESEND_API_KEY}`,
+    const resp = await fetchWithTimeout(
+      'https://api.resend.com/emails',
+      {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${env.RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: `${OWNER_BUSINESS_NAME} <${FROM_ADDRESS}>`,
+          to: [email],
+          reply_to: env.CONTACT_RECIPIENT || RECIPIENT_FALLBACK,
+          subject: `We received your ${heading} — ${OWNER_BUSINESS_NAME}`,
+          text,
+        }),
       },
-      body: JSON.stringify({
-        from: `${OWNER_BUSINESS_NAME} <${FROM_ADDRESS}>`,
-        to: [email],
-        reply_to: env.CONTACT_RECIPIENT || RECIPIENT_FALLBACK,
-        subject: `We received your ${heading} — ${OWNER_BUSINESS_NAME}`,
-        text,
-      }),
-    });
+      8_000
+    );
     if (!resp.ok) {
       console.error('Customer confirmation rejected', resp.status, await resp.text().catch(() => ''));
     }
   } catch (err) {
     console.error('Customer confirmation fetch failed', err);
+  }
+}
+
+// Wraps fetch with an AbortController-based timeout so a slow upstream
+// (Resend, Twilio) can't hang the Pages Function past Cloudflare's edge
+// timeout and surface as a 504 to the user.
+async function fetchWithTimeout(input: string, init: RequestInit, timeoutMs: number): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(input, { ...init, signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
   }
 }
 
