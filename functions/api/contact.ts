@@ -191,7 +191,7 @@ async function sendCustomerConfirmation(
     '',
     `— The ${OWNER_BUSINESS_NAME} team`,
     'MI License #6220430 · Licensed & Insured',
-    `https://toptier-electrical.com`,
+    `https://www.toptier-electrical.com`,
   ].join('\n');
 
   try {
