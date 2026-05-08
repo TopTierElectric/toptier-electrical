@@ -11,6 +11,8 @@ const heroPreload = await getImage({
   width: 800,
 });
 
+const heroPreloadMobile = await getImage({ src: heroImage, format: 'avif', width: 480 });
+
 const faqLd = `{
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -38,6 +40,15 @@ const faqLd = `{
     type="image/avif"
     fetchpriority="high"
     media="(min-width: 769px)"
+  />
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href={heroPreloadMobile.src}
+    type="image/avif"
+    fetchpriority="high"
+    media="(max-width: 768px)"
   />
   <main id="main-content">
     <section class="hero">
