@@ -72,9 +72,17 @@ const faqLd = `{
             <a href="tel:+16163347159" class="btn btn-ghost">Call (616) 334-7159</a>
           </div>
           <ul class="hero-trust" aria-label="Credentials and trust signals">
-            <li>Licensed MI #6220430</li>
-            <li>Insured</li>
-            <li>Local West Michigan team</li>
+            <li>
+              <a
+                href={siteData.seo.googleBusinessProfileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Read our ${siteData.seo.googleReviewCount} verified Google reviews`}
+                >★ {siteData.seo.googleReviewAverage.toFixed(1)} from {siteData.seo.googleReviewCount} Google reviews</a
+              >
+            </li>
+            <li>Master Electrician · MI License #6220430</li>
+            <li>Insured · Owner-Operated</li>
             <li>Clear scope before work starts</li>
           </ul>
         </div>
