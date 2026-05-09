@@ -12,8 +12,8 @@ const canonical = `https://www.toptier-electrical.com/${slug}`;
 const ogImage = `https://www.toptier-electrical.com/images/og/locations/${slug}.png`;
 const hasDistinctCounty = county !== `${city}, MI`;
 const description = hasDistinctCounty
-  ? `Licensed electrician in ${city}, MI (${county}). Panel upgrades, EV chargers, lighting, repairs, and code corrections.`
-  : `Licensed electrician for ${city}, MI homes and businesses. Panel upgrades, EV chargers, lighting, repairs, and code corrections.`;
+  ? `Licensed master electrician in ${city}, MI (${county}). Panel upgrades, EV chargers, lighting, repairs. Call (616) 334-7159.`
+  : `Licensed master electrician for ${city}, MI homes and businesses. Panel upgrades, EV chargers, lighting, repairs. Call (616) 334-7159.`;
 const nearbyAreas = [
   { city: 'Holland', href: '/electrician-holland-mi' },
   { city: 'Grand Rapids', href: '/electrician-grand-rapids-mi' },
@@ -24,7 +24,7 @@ const nearbyAreas = [
 ].filter((area) => area.city !== city);
 ---
 
-<TTELayout title={`Electrician ${city} MI | Top Tier Electrical`} {description} canonical={canonical} {ogImage}>
+<TTELayout title={`${city}, MI Master Electrician | Top Tier Electrical`} {description} canonical={canonical} {ogImage}>
   <main id="main-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <ol>
@@ -35,8 +35,8 @@ const nearbyAreas = [
     </nav>
     <section class="hero">
       <div class="hero-content">
-        <h1>Electrician in {city}, MI</h1>
-        <p>Licensed, insured electrical service for {city} homes and commercial spaces.</p>
+        <h1>Master Electrician in {city}, MI</h1>
+        <p>Licensed master electrician serving {city} homes and commercial spaces. MI License #6220430.</p>
         <a
           href="/booking"
           class="btn btn-primary"
