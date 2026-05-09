@@ -13,7 +13,7 @@ const KB = 1024;
 const budgets = [
   { file: 'dist/index.html', maxBytes: 180 * KB, label: 'Homepage HTML budget' },
   { file: 'dist/script.js', maxBytes: 20 * KB, label: 'Client JS bootstrap budget' },
-  { file: 'dist/images/logos/TopTierElectrical_Logo_Web_600w.webp', maxBytes: 380 * KB, label: 'Primary logo budget' },
+  { file: 'dist/images/logos/TopTierElectrical_Logo_Web_300w.webp', maxBytes: 60 * KB, label: 'Primary logo budget' },
 ];
 
 const cssFiles = ['dist/css/components.css', 'dist/css/design-tokens.css'];
