@@ -103,6 +103,8 @@ const electricianLd = JSON.stringify({
   '@type': 'Electrician',
   '@id': `${siteUrl}/#localbusiness`,
   name: siteData.business.name,
+  alternateName: siteData.business.alternateName,
+  legalName: siteData.business.legalName,
   url: siteUrl,
   telephone: siteData.business.phoneE164,
   email: siteData.business.email,
@@ -147,6 +149,7 @@ const organizationLd = JSON.stringify({
   '@type': 'Organization',
   '@id': `${siteUrl}/#organization`,
   name: siteData.business.legalName,
+  alternateName: [siteData.business.name, siteData.business.alternateName],
   url: siteUrl,
   logo: `${siteUrl}/images/logos/TopTierElectrical_Primary_FlatGold_512.png`,
   contactPoint: [
@@ -464,7 +467,7 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
         <a href="/privacy">Privacy Policy</a> ·
         <a href="/terms">Terms &amp; Conditions</a>
       </p>
-      <p>&copy; {new Date().getFullYear()} Top Tier Electrical. All rights reserved.</p>
+      <p>&copy; {new Date().getFullYear()} Top Tier Electrical LLC. All rights reserved.</p>
     </footer>
 
     <script is:inline src="/script.js" defer></script>
