@@ -31,14 +31,25 @@
   "serviceAreas": [
     "Holland, MI",
     "Grand Rapids, MI",
-    "Byron Center, MI",
+    "Allegan, MI",
     "Zeeland, MI",
     "Saugatuck, MI",
     "Douglas, MI",
     "Hudsonville, MI",
-    "Jamestown, MI",
-    "Allegan, MI",
-    "Ada, MI"
+    "Byron Center, MI",
+    "Muskegon, MI",
+    "Grand Haven, MI",
+    "Jamestown Township, MI",
+    "Ada Township, MI",
+    "Forest Hills, MI",
+    "Caledonia, MI",
+    "Wayland, MI",
+    "Plainwell, MI",
+    "Fennville, MI",
+    "Jenison, MI",
+    "Hopkins, MI",
+    "Alto, MI",
+    "Comstock Park, MI"
   ],
   "routes": {
     "services": [
