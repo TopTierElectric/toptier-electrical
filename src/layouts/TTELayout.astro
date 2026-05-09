@@ -114,6 +114,17 @@ const electricianLd = JSON.stringify({
     addressCountry: 'US',
   },
   areaServed: siteData.serviceAreas.map((area) => ({ '@type': 'Place', name: area })),
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    credentialCategory: 'license',
+    name: 'Michigan Master Electrician License',
+    identifier: '6220430',
+    recognizedBy: {
+      '@type': 'GovernmentOrganization',
+      name: 'Michigan Department of Licensing and Regulatory Affairs (LARA)',
+      url: 'https://www.michigan.gov/lara',
+    },
+  },
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
@@ -157,6 +168,21 @@ const websiteLd = JSON.stringify({
   '@id': `${siteUrl}/#website`,
   name: siteData.business.name,
   url: `${siteUrl}/`,
+});
+
+const webPageLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${canonicalUrl}#webpage`,
+  url: canonicalUrl,
+  name: title,
+  description,
+  inLanguage: 'en-US',
+  isPartOf: { '@id': `${siteUrl}/#website` },
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', 'main p:first-of-type'],
+  },
 });
 
 const parseSchemaType = (schema: string) => {
@@ -218,7 +244,7 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
     <link rel="manifest" href="/manifest.webmanifest" />
     <!-- JSON-LD Structured Data -->
     {
-      [breadcrumbLd, organizationLd, websiteLd, electricianLd, ...jsonLdScripts].map((ld) => (
+      [breadcrumbLd, organizationLd, websiteLd, webPageLd, electricianLd, ...jsonLdScripts].map((ld) => (
         <script type="application/ld+json" is:inline set:html={ld} />
       ))
     }
@@ -415,7 +441,15 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
           />
         </picture>
       </div>
-      <p>MI License #6220430</p>
+      <p>
+        <a
+          href="https://aca-prod.accela.com/lara/"
+          rel="noopener noreferrer"
+          target="_blank"
+          aria-label="Verify Michigan electrical license #6220430 on the LARA Accela portal"
+          >Master Electrician · MI License #6220430 (verify on LARA →)</a
+        >
+      </p>
       <p>
         <a
           href={siteData.seo.googleBusinessProfileUrl}
