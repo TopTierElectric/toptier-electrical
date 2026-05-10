@@ -27,3 +27,10 @@ pnpm-lock.yaml
 
 # generated artifacts
 artifacts/
+
+# local working artifacts (one-off reference docs, exports, ad-hoc
+# downloads — e.g. GBP product photos, marketing exports). Generated
+# for specific tasks and should never be committed.
+*.zip
+*.xlsx
+gbp-photos/
