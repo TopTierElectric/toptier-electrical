@@ -22,9 +22,26 @@ const nearbyAreas = [
   { city: 'Hudsonville', href: '/electrician-hudsonville-mi' },
   { city: 'Ada', href: '/electrician-ada-mi' },
 ].filter((area) => area.city !== city);
+
+// Explicit 3-level BreadcrumbList: Home → Service Areas → {City}.
+// Without this, TTELayout's auto-generated breadcrumb falls back to
+// 2 levels (Home → URL-segment-titleized) which misses the
+// 'Service Areas' parent and reads awkwardly ('Electrician Holland
+// Mi' rather than 'Electrician in Holland, MI').
+const breadcrumbItems = [
+  { name: 'Home', item: 'https://www.toptier-electrical.com/' },
+  { name: 'Service Areas', item: 'https://www.toptier-electrical.com/service-areas' },
+  { name: `Electrician in ${city}, MI`, item: canonical },
+];
 ---
 
-<TTELayout title={`${city}, MI Master Electrician | Top Tier Electrical`} {description} canonical={canonical} {ogImage}>
+<TTELayout
+  title={`${city}, MI Master Electrician | Top Tier Electrical`}
+  {description}
+  canonical={canonical}
+  {ogImage}
+  {breadcrumbItems}
+>
   <main id="main-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <ol>
