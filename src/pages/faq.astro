@@ -9,6 +9,81 @@ const breadcrumbLd = JSON.stringify({
     { '@type': 'ListItem', position: 2, name: 'FAQ', item: 'https://www.toptier-electrical.com/faq' },
   ],
 });
+
+// FAQPage JSON-LD must match the visible Q&A text on the page verbatim
+// (Google policy). If the visible <details> block below changes, this
+// schema must change with it. Eight Q&As mirror what's shown to the user.
+const faqLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': 'https://www.toptier-electrical.com/faq#faqpage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'When should I upgrade my electrical panel?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'If your panel is outdated, trips frequently, or lacks space for new circuits, an upgrade may be the safest option.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does a panel upgrade take?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Timing depends on the panel layout and scope, but most upgrades are completed in a single day once the plan is confirmed.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you install EV chargers?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. We install Level 2 EV chargers for homes and small businesses with safe routing and proper circuit sizing.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does an EV charger installation take?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Many installations are completed in one visit after the routing and electrical capacity are confirmed.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What areas do you serve?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'We serve West Michigan including Holland, Grand Rapids, Allegan, Zeeland, Saugatuck, Hudsonville, Byron Center, Muskegon, and Grand Haven, plus surrounding communities.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are you licensed and insured?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. We are a licensed master electrician (MI License #6220430) and fully insured. Verify the license on the Michigan LARA Accela portal.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you provide scope details before work begins?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. We confirm the repair or installation scope before starting work so you know the plan.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do you work on weekends?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, we offer Saturday appointments from 9am to 1pm.',
+      },
+    },
+  ],
+});
 ---
 
 <TTELayout
@@ -16,7 +91,7 @@ const breadcrumbLd = JSON.stringify({
   description="Permits, panel costs, EV charger eligibility, code questions answered for West Michigan homeowners by a licensed master electrician. Call (616) 334-7159."
   canonical="https://www.toptier-electrical.com/faq"
   ogImage="https://www.toptier-electrical.com/images/og/pages/faq.png"
-  jsonLd={[breadcrumbLd]}
+  jsonLd={[breadcrumbLd, faqLd]}
 >
   <main id="main-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -93,15 +168,18 @@ const breadcrumbLd = JSON.stringify({
           <details>
             <summary><span class="faq-icon">&#127758;</span> What areas do you serve?</summary>
             <p>
-              We serve West Michigan including Holland, Grand Rapids, Byron Center, Zeeland, Saugatuck, Hudsonville, and
-              Allegan. See our <a href="/service-areas">service areas page</a> for more information.
+              We serve West Michigan including Holland, Grand Rapids, Allegan, Zeeland, Saugatuck, Hudsonville, Byron
+              Center, Muskegon, and Grand Haven, plus surrounding communities. See our <a href="/service-areas"
+                >service areas page</a
+              > for more information.
             </p>
           </details>
           <details>
             <summary><span class="faq-icon">&#128203;</span> Are you licensed and insured?</summary>
             <p>
-              Yes. We are licensed and insured, and the site footer lists MI License #6220430. <a href="/contact"
-                >Contact us for details</a
+              Yes. We are a licensed master electrician (MI License #6220430) and fully insured. Verify the license on
+              the <a href="https://aca-prod.accela.com/lara/" rel="noopener noreferrer" target="_blank"
+                >Michigan LARA Accela portal</a
               >.
             </p>
           </details>

@@ -1,7 +1,23 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
 
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.toptier-electrical.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://www.toptier-electrical.com/services' },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Energy Solutions',
+      item: 'https://www.toptier-electrical.com/energy-solutions',
+    },
+  ],
+});
+
 const jsonLd = [
+  breadcrumbLd,
   JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Service',
