@@ -57,9 +57,17 @@ const analyticsHeadHtml = [
   .filter(Boolean)
   .join('');
 
+// Astro 5 with `build.format: 'file'` returns the underlying file path
+// (e.g. `/tag/electrician.html`) through `Astro.url.pathname` for
+// dynamic routes during static prerender. Strip `.html` and the
+// trailing slash so canonical URLs, JSON-LD `url` fields, and
+// auto-generated breadcrumbs all reflect the publicly served pretty
+// URL instead of the file-output path.
 const normalizePath = (path: string) => {
   if (!path || path === '/') return '/';
-  return path.endsWith('/') ? path.slice(0, -1) : path;
+  let next = path.replace(/\.html$/i, '');
+  if (next.length > 1 && next.endsWith('/')) next = next.slice(0, -1);
+  return next || '/';
 };
 
 const resolvedPath = normalizePath(Astro.url.pathname);

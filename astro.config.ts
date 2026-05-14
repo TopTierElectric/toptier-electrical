@@ -24,6 +24,14 @@ export default defineConfig({
     // enough that inlining beats the round-trip on first paint, which
     // Lighthouse repeatedly flags as render-blocking.
     inlineStylesheets: 'always',
+    // Emit `panel-upgrades.html` rather than `panel-upgrades/index.html`.
+    // Combined with `trailingSlash: 'never'` (set by the astrowind
+    // integration), this stops Cloudflare Pages from 308-redirecting
+    // `/panel-upgrades` to `/panel-upgrades/`, which Google Search
+    // Console previously reported as "Page is not indexed: Page with
+    // redirect" and caused Google to select the trailing-slash variant
+    // as canonical against our user-declared canonical.
+    format: 'file',
   },
   prefetch: {
     prefetchAll: false,

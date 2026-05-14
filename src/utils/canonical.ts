@@ -12,12 +12,24 @@ const DEFAULT_CANONICAL_ORIGIN = 'https://www.toptier-electrical.com';
 // external link signals (GBP, citations, social), so the canonical was
 // switched to www to match. The function name kept its original form
 // for import-stability but now produces a www result.
+// Strip `.html` suffix and any single trailing slash so the canonical
+// URL matches the publicly served pretty URL — not the underlying file
+// path. Astro 5 with `build.format: 'file'` exposes file-style paths
+// (e.g. `/tag/electrician.html`) through `Astro.url.pathname` during
+// static prerender of dynamic routes, which would otherwise leak into
+// `<link rel="canonical">` for tag/category pagination pages.
+const normalizeCanonicalPath = (pathname: string): string => {
+  let next = pathname.replace(/\.html$/i, '');
+  if (next.length > 1 && next.endsWith('/')) next = next.slice(0, -1);
+  return next || '/';
+};
+
 export const toCanonical = (input: string, fallbackPath = '/'): string => {
-  const fallback = new URL(fallbackPath || '/', DEFAULT_CANONICAL_ORIGIN);
+  const fallback = new URL(normalizeCanonicalPath(fallbackPath || '/'), DEFAULT_CANONICAL_ORIGIN);
 
   try {
     const parsed = new URL(input, DEFAULT_CANONICAL_ORIGIN);
-    const resolved = new URL(parsed.pathname, DEFAULT_CANONICAL_ORIGIN);
+    const resolved = new URL(normalizeCanonicalPath(parsed.pathname), DEFAULT_CANONICAL_ORIGIN);
     return resolved.toString();
   } catch {
     return fallback.toString();
