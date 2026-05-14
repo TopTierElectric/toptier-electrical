@@ -1654,6 +1654,43 @@ footer p {
   gap: 2rem;
   align-items: center;
 }
+
+/* About page — Meet Carl section (owner intro with photo) */
+.meet-section {
+  padding: 3rem 0;
+}
+.meet-grid {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .meet-grid {
+    grid-template-columns: minmax(280px, 1fr) 2fr;
+    gap: 3rem;
+  }
+}
+.meet-photo {
+  margin: 0;
+  max-width: 480px;
+}
+.meet-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+}
+.meet-body h2 {
+  margin-top: 0;
+}
+.meet-body p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+.meet-body p:last-child {
+  margin-bottom: 0;
+}
 .about-text p {
   color: var(--muted);
   margin-bottom: 1rem;
