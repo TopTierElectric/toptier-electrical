@@ -1,5 +1,7 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import { Picture } from 'astro:assets';
+import carlPortrait from '~/assets/images/IMG_1167.jpeg';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -31,6 +33,48 @@ const breadcrumbLd = JSON.stringify({
           I started Top Tier Electrical to deliver clear communication, clean code-correct work, and planning that helps
           clients avoid expensive rework later.
         </p>
+      </div>
+    </section>
+    <section class="container meet-section">
+      <div class="meet-grid">
+        <figure class="meet-photo">
+          <Picture
+            src={carlPortrait}
+            alt="Carl, Master Electrician and owner of Top Tier Electrical, at his home office desk in Allegan, MI, surrounded by NFPA 70 National Electrical Code books and electrical training materials."
+            widths={[360, 480, 720, 960]}
+            sizes="(min-width: 768px) 480px, calc(100vw - 2rem)"
+            formats={['avif', 'webp']}
+            fallbackFormat="jpeg"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+        <div class="meet-body">
+          <h2>Meet Carl</h2>
+          <p>
+            Carl is the master electrician and owner behind Top Tier Electrical. His desk stack tells the work story:
+            NFPA 70 National Electrical Code, 2023 edition right next to the 2020 — plus applied grounding and bonding,
+            commercial and industrial wiring, instrumentation and process control, and the custom training binders from
+            his master's certification work. The reference shelf isn't decoration; it's how he keeps every job
+            code-correct on the current edition.
+          </p>
+          <p>
+            Owner-operated means when you call, you reach the person doing the work — not a dispatcher or sub. Carl
+            pulls permits in his own name and signs every walkthrough.
+          </p>
+          <p>
+            <strong>Off the clock, family comes first.</strong> Kids running through the office, the dog as the only foreman.
+            Outside West Michigan jobsites you'll find him in the woods or on the water — hunting season is sacred and the
+            camo on the wall isn't decoration.
+          </p>
+          <p>
+            Top Tier Electrical was built to be the contractor Carl would want his own family to call. <a
+              href="https://aca-prod.accela.com/lara/"
+              rel="noopener noreferrer"
+              target="_blank">Verify MI License #6220430 on the LARA portal</a
+            >.
+          </p>
+        </div>
       </div>
     </section>
     <section class="container card">
