@@ -7,7 +7,22 @@
     "phoneDisplay": "(616) 334-7159",
     "phoneE164": "+16163347159",
     "license": "MI License #6220430",
-    "category": "Electrician"
+    "category": "Electrician",
+    "address": {
+      "streetAddress": "2980 30th Street",
+      "addressLocality": "Allegan",
+      "addressRegion": "MI",
+      "postalCode": "49010",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "latitude": 42.5292,
+      "longitude": -85.8589
+    },
+    "founder": {
+      "name": "Carl",
+      "jobTitle": "Master Electrician, Owner"
+    }
   },
   "site": {
     "domain": "toptier-electrical.com",

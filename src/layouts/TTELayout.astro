@@ -112,8 +112,23 @@ const electricianLd = JSON.stringify({
   priceRange: '$$',
   address: {
     '@type': 'PostalAddress',
-    addressRegion: 'MI',
-    addressCountry: 'US',
+    streetAddress: siteData.business.address.streetAddress,
+    addressLocality: siteData.business.address.addressLocality,
+    addressRegion: siteData.business.address.addressRegion,
+    postalCode: siteData.business.address.postalCode,
+    addressCountry: siteData.business.address.addressCountry,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: siteData.business.geo.latitude,
+    longitude: siteData.business.geo.longitude,
+  },
+  founder: {
+    '@type': 'Person',
+    '@id': `${siteUrl}/#owner`,
+    name: siteData.business.founder.name,
+    jobTitle: siteData.business.founder.jobTitle,
+    worksFor: { '@id': `${siteUrl}/#localbusiness` },
   },
   areaServed: siteData.serviceAreas.map((area) => ({ '@type': 'Place', name: area })),
   aggregateRating: {
