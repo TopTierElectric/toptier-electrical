@@ -1,5 +1,7 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import { Picture } from 'astro:assets';
+import carlPortrait from '~/assets/images/IMG_1167.jpeg';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -36,11 +38,13 @@ const breadcrumbLd = JSON.stringify({
     <section class="container meet-section">
       <div class="meet-grid">
         <figure class="meet-photo">
-          <img
-            src="/images/about/carl-portrait.jpg"
+          <Picture
+            src={carlPortrait}
             alt="Carl, Master Electrician and owner of Top Tier Electrical, at his home office desk in Allegan, MI, surrounded by NFPA 70 National Electrical Code books and electrical training materials."
-            width="800"
-            height="1067"
+            widths={[360, 480, 720, 960]}
+            sizes="(min-width: 768px) 480px, calc(100vw - 2rem)"
+            formats={['avif', 'webp']}
+            fallbackFormat="jpeg"
             loading="lazy"
             decoding="async"
           />
