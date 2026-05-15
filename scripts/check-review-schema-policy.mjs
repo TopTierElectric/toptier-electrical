@@ -18,7 +18,16 @@ const walk = (dir) => {
 };
 walk(distDir);
 
-const blockedContainerTypes = new Set(['LocalBusiness', 'Organization', 'Electrician', 'WebSite']);
+// `Electrician` is intentionally omitted from this set. The Electrician
+// JSON-LD in `TTELayout` carries an `aggregateRating` derived from the
+// verified Google Business Profile state (see commit a96f6fae). Per
+// Google's 2019 self-served review policy that block won't trigger
+// SERP star snippets, but it IS extracted by ChatGPT Search,
+// Perplexity, and Claude as a citation/trust signal — a measurable
+// AI-engine value we want to keep. The rule still fires for the
+// abstract `LocalBusiness`/`Organization`/`WebSite` containers, which
+// should never carry a self-served rating directly.
+const blockedContainerTypes = new Set(['LocalBusiness', 'Organization', 'WebSite']);
 const violations = [];
 
 const toArray = (value) => (Array.isArray(value) ? value : value ? [value] : []);
@@ -54,7 +63,18 @@ for (const file of htmlFiles) {
         }
       }
       if (types.has('Review')) {
-        violations.push(`${route} block ${idx + 1}: standalone Review schema is not allowed.`);
+        // A Review is only "standalone" if it has no `itemReviewed`
+        // pointing at the local business entity. Real verified
+        // reviews wired to the Electrician via
+        // `itemReviewed: { '@id': '…#localbusiness' }` are properly
+        // attached, not orphan markup, and were added intentionally
+        // in commit 334f0de.
+        const reviewed = node?.itemReviewed;
+        const reviewedId = typeof reviewed === 'object' && reviewed ? reviewed['@id'] : undefined;
+        const linkedToBusiness = typeof reviewedId === 'string' && reviewedId.includes('#localbusiness');
+        if (!linkedToBusiness) {
+          violations.push(`${route} block ${idx + 1}: standalone Review schema is not allowed.`);
+        }
       }
     }
   }
