@@ -1,11 +1,15 @@
 const DEFAULT_CANONICAL_ORIGIN = 'https://www.toptier-electrical.com';
 
 // Normalizes any input URL/path to the canonical origin (currently the
-// www subdomain). Strips the input's own host/scheme and resolves the
-// path against the canonical origin, so a value like
-// `https://www.toptier-electrical.com/foo` becomes
-// `https://www.toptier-electrical.com/foo` and a bare path like `/foo`
-// becomes `https://www.toptier-electrical.com/foo`.
+// www subdomain). Strips the input's own host/scheme, removes any
+// trailing .html extension, and resolves the result against the
+// canonical origin. So `/foo`, `https://anything.com/foo`, and
+// `/foo.html` all canonicalize to `https://www.toptier-electrical.com/foo`.
+//
+// The `.html` stripping is required because Astro's build.format='file'
+// emits dist/foo.html and Astro.url.pathname returns '/foo.html' at
+// runtime. Without stripping, canonical tags would point to the file
+// path (`/foo.html`) instead of the public URL (`/foo`).
 //
 // Originally named `toApexCanonical` when the canonical was the apex.
 // Google's URL Inspection consistently picks www over apex due to
@@ -29,7 +33,14 @@ export const toCanonical = (input: string, fallbackPath = '/'): string => {
 
   try {
     const parsed = new URL(input, DEFAULT_CANONICAL_ORIGIN);
-    const resolved = new URL(normalizeCanonicalPath(parsed.pathname), DEFAULT_CANONICAL_ORIGIN);
+    let pathname = parsed.pathname;
+    if (pathname.endsWith('.html')) {
+      pathname = pathname.slice(0, -5);
+    }
+    if (pathname === '') {
+      pathname = '/';
+    }
+    const resolved = new URL(pathname, DEFAULT_CANONICAL_ORIGIN);
     return resolved.toString();
   } catch {
     return fallback.toString();

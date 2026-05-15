@@ -13,42 +13,6 @@ const heroPreload = await getImage({
 
 const heroPreloadMobile = await getImage({ src: heroImage, format: 'avif', width: 480 });
 
-// Verbatim excerpts from real verified Google reviews on
-// Top Tier Electrical's Google Business Profile. Linked via
-// `itemReviewed` to the Electrician entity declared in TTELayout so
-// Google treats them as reviews OF the business, not standalone.
-const reviewsLd = JSON.stringify([
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Review',
-    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-    author: { '@type': 'Person', name: 'Thomas Farrell' },
-    reviewBody:
-      "We've had 5 new builds and 2 remodels — this is by far the best we ever felt with. Very engaged, very friendly. You can't find a better person more focused, more in line with your desires on your build. Won't nickel and dime you for every thought.",
-    publisher: { '@type': 'Organization', name: 'Google' },
-    itemReviewed: { '@id': 'https://www.toptier-electrical.com/#localbusiness' },
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Review',
-    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-    author: { '@type': 'Person', name: 'Kayley Maguire' },
-    reviewBody:
-      'After speaking with 2 electricians before him that fell through, we were nervous. Carl came over right away to give us a quote, kept us updated the entire time, and made sure our power was turned back on same day. Pricing was very fair and communication was excellent.',
-    publisher: { '@type': 'Organization', name: 'Google' },
-    itemReviewed: { '@id': 'https://www.toptier-electrical.com/#localbusiness' },
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Review',
-    reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
-    author: { '@type': 'Person', name: 'Christopher Keeler' },
-    reviewBody: 'Really nice young man! I am a contractor and I use him on all of my projects.',
-    publisher: { '@type': 'Organization', name: 'Google' },
-    itemReviewed: { '@id': 'https://www.toptier-electrical.com/#localbusiness' },
-  },
-]);
-
 const faqLd = `{
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -66,7 +30,7 @@ const faqLd = `{
   description="Licensed master electrician serving West Michigan. Panel upgrades, EV chargers, lighting, and reliable troubleshooting. Call (616) 334-7159."
   canonical="https://www.toptier-electrical.com/"
   ogImage="https://www.toptier-electrical.com/images/og/pages/home.png"
-  jsonLd={[faqLd, reviewsLd]}
+  jsonLd={[faqLd]}
 >
   <link
     slot="head"
