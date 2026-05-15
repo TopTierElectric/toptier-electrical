@@ -131,13 +131,6 @@ const electricianLd = JSON.stringify({
     worksFor: { '@id': `${siteUrl}/#localbusiness` },
   },
   areaServed: siteData.serviceAreas.map((area) => ({ '@type': 'Place', name: area })),
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: siteData.seo.googleReviewAverage,
-    reviewCount: siteData.seo.googleReviewCount,
-    bestRating: 5,
-    worstRating: 1,
-  },
   hasCredential: {
     '@type': 'EducationalOccupationalCredential',
     credentialCategory: 'license',
