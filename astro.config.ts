@@ -24,6 +24,18 @@ export default defineConfig({
     // enough that inlining beats the round-trip on first paint, which
     // Lighthouse repeatedly flags as render-blocking.
     inlineStylesheets: 'always',
+    // Emit one .html file per route (dist/faq.html) instead of the
+    // default directory pattern (dist/faq/index.html). The directory
+    // pattern made BOTH /faq and /faq/ serve identical content, and
+    // Google's URL canonicalization algorithm was choosing the
+    // trailing-slash variant as canonical even though every page's
+    // <link rel="canonical"> and the sitemap declare the no-slash
+    // form. Result: GSC was flagging /faq, /panel-upgrades, etc. as
+    // "Page with redirect" and refusing to index them. With format:
+    // 'file', /faq.html is the only file emitted — /faq/ returns 404,
+    // so only one URL form exists and Google must respect the
+    // declared canonical.
+    format: 'file',
   },
   prefetch: {
     prefetchAll: false,
