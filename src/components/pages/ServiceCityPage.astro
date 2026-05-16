@@ -24,6 +24,44 @@ export interface Props {
 
 const { service, city } = Astro.props;
 
+// Per-service curated spoke crosswalk: the 3 most-relevant blog deep dives
+// for each service hub. Wired into every <service>-<city> page so local
+// landing pages also distribute equity to the spoke corpus (move 4 of the
+// hub-spoke architecture plan).
+const SERVICE_GUIDES: Record<string, Array<{ slug: string; title: string }>> = {
+  'panel-upgrades': [
+    { slug: '100-amp-vs-200-amp-panel', title: '100 amp vs 200 amp panel: which does your home need?' },
+    { slug: 'zinsco-fpe-panel-replacement', title: 'Zinsco and Federal Pacific panels: why they need to go' },
+    { slug: 'electrical-panel-upgrade-cost', title: 'Electrical panel upgrade cost: what determines the price?' },
+  ],
+  'ev-chargers': [
+    { slug: 'level-1-vs-level-2-ev-charger', title: 'Level 1 vs Level 2 EV charger: which should you install?' },
+    { slug: 'michigan-ev-charger-rebates', title: 'Michigan EV charger rebates & utility programs (2026)' },
+    { slug: 'where-to-install-ev-charger', title: 'Where to install your EV charger: garage layout tips' },
+  ],
+  'electrical-repairs': [
+    { slug: 'burning-smell-from-outlet', title: 'Burning smell from an outlet: what to do in the next 5 minutes' },
+    { slug: 'flickering-lights-when-to-worry', title: "Flickering lights: when it's annoying vs when it's an emergency" },
+    { slug: 'why-breakers-trip', title: 'Why does my breaker keep tripping?' },
+  ],
+  lighting: [
+    { slug: 'smart-lighting-controls-explained', title: 'Smart lighting controls: dimmers, scenes, and occupancy sensors' },
+    { slug: 'outdoor-security-lighting-guide', title: 'Outdoor security lighting: placement, wattage, and code' },
+    { slug: 'led-retrofit-vs-fixture-replacement', title: 'LED retrofit vs full fixture replacement' },
+  ],
+  generators: [
+    { slug: 'how-to-size-a-whole-home-generator', title: 'How to size a whole-home generator for a Michigan home' },
+    { slug: 'whole-home-vs-portable-generator', title: 'Whole-home vs portable generator: which makes sense?' },
+    { slug: 'automatic-transfer-switch-explained', title: 'What an automatic transfer switch does (and why you need one)' },
+  ],
+  'code-corrections': [
+    { slug: 'knob-and-tube-wiring-what-to-do', title: 'Knob-and-tube wiring: what to do if you still have it' },
+    { slug: 'aluminum-wiring-what-to-do', title: 'Aluminum wiring: what to do if you have it' },
+    { slug: 'gfci-vs-afci-vs-dual-function', title: 'GFCI vs AFCI vs dual-function breakers' },
+  ],
+};
+const relatedGuides = SERVICE_GUIDES[service.slug] ?? [];
+
 const slug = `${service.slug}-${city.slug}`;
 const canonical = `https://www.toptier-electrical.com/${slug}`;
 const title = `${service.name} in ${city.name}, MI | Top Tier Electrical`;
@@ -141,6 +179,18 @@ const ogImage = `https://www.toptier-electrical.com/images/og/service-city/${slu
           ))
         }
       </div>
+
+      <h3>Related Guides</h3>
+      <p>Deeper reading on the questions {city.name} homeowners ask before this kind of project:</p>
+      <ul>
+        {
+          relatedGuides.map((g) => (
+            <li>
+              <a href={`/blog/${g.slug}`}>{g.title}</a>
+            </li>
+          ))
+        }
+      </ul>
 
       <h3>Other Services in {city.name}</h3>
       <ul>

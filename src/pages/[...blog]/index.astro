@@ -21,6 +21,23 @@ const ogImage = `https://www.toptier-electrical.com/images/og/blog/${post.slug}.
 
 const relatedServices = blogRelatedServices[post.slug] ?? [];
 
+// Cluster taxonomy: map post.category → service hub URL + schema @id so each
+// spoke explicitly belongs to a cluster in both the visible breadcrumb and
+// the BreadcrumbList JSON-LD. This signals topical taxonomy to Google.
+const CATEGORY_HUB: Record<string, { path: string; label: string; serviceId: string }> = {
+  'Panel Upgrades': { path: '/panel-upgrades', label: 'Panel Upgrades', serviceId: 'https://www.toptier-electrical.com/panel-upgrades#service' },
+  Generators: { path: '/generators', label: 'Generators', serviceId: 'https://www.toptier-electrical.com/generators#service' },
+  'EV Charging': { path: '/ev-chargers', label: 'EV Chargers', serviceId: 'https://www.toptier-electrical.com/ev-chargers#service' },
+  'Electrical Repairs': { path: '/electrical-repairs', label: 'Electrical Repairs', serviceId: 'https://www.toptier-electrical.com/electrical-repairs#service' },
+  Lighting: { path: '/lighting', label: 'Lighting', serviceId: 'https://www.toptier-electrical.com/lighting#service' },
+  Commercial: { path: '/commercial', label: 'Commercial', serviceId: 'https://www.toptier-electrical.com/commercial#service' },
+  'Code Corrections': { path: '/code-corrections', label: 'Code Corrections', serviceId: 'https://www.toptier-electrical.com/code-corrections#service' },
+  'Electrical Tips': { path: '/services', label: 'Electrical Services', serviceId: 'https://www.toptier-electrical.com/services#service' },
+};
+const categoryTitle = post.category?.title;
+const cluster = categoryTitle ? CATEGORY_HUB[categoryTitle] : undefined;
+const clusterUrl = cluster ? `https://www.toptier-electrical.com${cluster.path}` : undefined;
+
 // E-E-A-T author signal: licensed electrician identity
 const personLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -38,10 +55,14 @@ const personLd = JSON.stringify({
   url: 'https://www.toptier-electrical.com/about',
 });
 
-// Article schema for rich-result eligibility and AI/search snippets
+// Article schema for rich-result eligibility and AI/search snippets.
+// `isPartOf` ties the article to its cluster Service entity, creating an
+// explicit graph edge between spoke and hub that Google's knowledge graph
+// reads as a topical hierarchy.
 const articleLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Article',
+  '@id': `${canonical}#article`,
   mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
   headline: post.title,
   description: post.excerpt || '',
@@ -55,7 +76,13 @@ const articleLd = JSON.stringify({
   author: { '@id': 'https://www.toptier-electrical.com/#owner' },
   publisher: { '@id': 'https://www.toptier-electrical.com/#organization' },
   url: canonical,
-  articleSection: post.category?.title,
+  articleSection: categoryTitle,
+  ...(cluster
+    ? {
+        isPartOf: { '@type': 'Service', '@id': cluster.serviceId, name: cluster.label, url: clusterUrl },
+        about: { '@type': 'Service', '@id': cluster.serviceId },
+      }
+    : {}),
   keywords: Array.isArray(post.tags)
     ? post.tags
         .map((t) => (typeof t === 'string' ? t : t?.title))
@@ -64,15 +91,23 @@ const articleLd = JSON.stringify({
     : undefined,
 });
 
-const breadcrumbLd = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.toptier-electrical.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.toptier-electrical.com/blog' },
-    { '@type': 'ListItem', position: 3, name: post.title, item: canonical },
-  ],
-});
+// Cluster breadcrumb: Home > [Cluster] > Post (vs. generic Home > Blog > Post).
+// Falls back to Home > Blog > Post when category has no mapped hub.
+// Passed via TTELayout's `breadcrumbItems` prop so the layout emits both the
+// visible nav and the BreadcrumbList JSON-LD using these items. (The layout
+// filters caller-provided BreadcrumbList JSON-LD out of `jsonLd` by design
+// to prevent duplicates.)
+const breadcrumbItems = cluster
+  ? [
+      { name: 'Home', item: 'https://www.toptier-electrical.com/' },
+      { name: cluster.label, item: clusterUrl as string },
+      { name: post.title, item: canonical },
+    ]
+  : [
+      { name: 'Home', item: 'https://www.toptier-electrical.com/' },
+      { name: 'Blog', item: 'https://www.toptier-electrical.com/blog' },
+      { name: post.title, item: canonical },
+    ];
 ---
 
 <TTELayout
@@ -81,16 +116,10 @@ const breadcrumbLd = JSON.stringify({
   canonical={canonical}
   ogType="article"
   ogImage={ogImage}
-  jsonLd={[breadcrumbLd, personLd, articleLd]}
+  jsonLd={[personLd, articleLd]}
+  breadcrumbItems={breadcrumbItems}
 >
   <main id="main-content">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="/">Home</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li aria-current="page">{post.title}</li>
-      </ol>
-    </nav>
     <section class="hero">
       <div class="hero-content">
         <h1>{post.title}</h1>

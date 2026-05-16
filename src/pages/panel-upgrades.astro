@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import { buildSubjectOfArticles } from '~/data/blog-related-services';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -53,6 +54,7 @@ const jsonLd = [
     ],
     serviceType: 'Electrical Panel Upgrade',
     url: 'https://www.toptier-electrical.com/panel-upgrades',
+    subjectOf: buildSubjectOfArticles('/panel-upgrades'),
   }),
   JSON.stringify({
     '@context': 'https://schema.org',
@@ -241,6 +243,148 @@ const jsonLd = [
           a clear scope and a quote you can trust—without pressure.
         </p>
       </div>
+    </section>
+    <section class="container section-pad pillar">
+      <h2>Complete Guide to Electrical Panel Upgrades in West Michigan</h2>
+      <p>
+        An electrical panel — sometimes called a breaker box, service panel, or load center — is the central hub of every
+        electrical system in a building. It takes utility power from your meter and distributes it through individual
+        breakers to every circuit in your home. When the panel is undersized, aging, or made by a brand with documented
+        defects, every load downstream of it carries the same risk: nuisance trips, voltage instability, or in the worst
+        case, a panel fire.
+      </p>
+      <p>
+        This guide covers what a panel upgrade actually is, how to tell when you need one, what's involved in the work, and
+        the West Michigan specifics — permitting, utility coordination, and the panel brands we see most often in Holland,
+        Grand Rapids, Hudsonville, and the surrounding lakeshore communities.
+      </p>
+
+      <h3>What "Panel Upgrade" Actually Means</h3>
+      <p>
+        "Panel upgrade" is shorthand for any of three distinct scopes that often overlap:
+      </p>
+      <ul>
+        <li>
+          <strong>Panel replacement</strong> — removing the existing breaker enclosure and installing a new one of the
+          same amperage (typically 100 → 100 or 200 → 200). Done when the panel itself is failing but service capacity is
+          adequate.
+        </li>
+        <li>
+          <strong>Service upgrade</strong> — increasing total service amperage (typically 100 → 200, or 200 → 400). Includes
+          new service entrance conductors, meter base, and main breaker. Requires utility coordination.
+        </li>
+        <li>
+          <strong>Code-driven upgrade</strong> — replacing a panel because the brand has documented defects (Zinsco,
+          Federal Pacific Stab-Lok) regardless of size or condition. Insurance carriers increasingly require these.
+        </li>
+      </ul>
+      <p>
+        Most homes that "need a panel upgrade" actually need a combination: 100 → 200 amp service upgrade plus a modern
+        panel that has spare breaker slots and supports the AFCI/GFCI protections required by current code.
+      </p>
+
+      <h3>How to Know You Need One</h3>
+      <p>
+        The most common signs we see during walkthroughs across West Michigan:
+      </p>
+      <ul>
+        <li>
+          <strong>Breakers trip during normal use</strong> — when the AC starts, when the dryer runs with the dishwasher,
+          or randomly without explanation. <a href="/blog/why-breakers-trip">Why breakers trip</a> covers the causes in
+          detail.
+        </li>
+        <li>
+          <strong>Lights flicker under load</strong> — brief dimming when motors start is normal in 100-amp service homes,
+          but persistent or whole-house flickering signals an undersized service. See
+          <a href="/blog/flickering-lights-when-to-worry">flickering lights: when to worry</a> for the triage guide.
+        </li>
+        <li>
+          <strong>No spare breaker slots</strong> — you can't add a circuit without removing one, or the panel is already
+          packed with tandem (double-wide) breakers.
+        </li>
+        <li>
+          <strong>You're planning an EV charger</strong> — Level 2 chargers add 40–48 amps of load. On a 100-amp panel
+          already running central AC, that's usually too much. See
+          <a href="/blog/do-i-need-a-panel-upgrade-for-an-ev-charger">do I need a panel upgrade for an EV charger?</a>
+        </li>
+        <li>
+          <strong>You see Federal Pacific or Zinsco on the cover</strong> — replace regardless of condition. See
+          <a href="/blog/zinsco-fpe-panel-replacement">why Zinsco and Federal Pacific panels need to go</a>.
+        </li>
+        <li>
+          <strong>Burning smell from the panel or outlets</strong> — turn off the main breaker and call. See
+          <a href="/blog/burning-smell-from-outlet">burning smell from an outlet: what to do in the next 5 minutes</a>.
+        </li>
+      </ul>
+
+      <h3>Sizing: 100 vs 200 vs 400 Amp</h3>
+      <p>
+        Service amperage is the maximum current the panel can pass through the main breaker. 200 amp is the modern
+        residential default — large enough to support central AC, electric range, EV charger, and future loads without
+        running near capacity. 100 amp service was standard from the 1950s through the 1990s and is still adequate for
+        smaller homes with gas-heavy appliances and no EV.
+      </p>
+      <p>
+        The sizing decision comes down to a documented <a href="/glossary/load-calculation">load calculation</a> per
+        NEC Article 220, not a guess based on square footage. We run this on every quote. See
+        <a href="/blog/100-amp-vs-200-amp-panel">100 amp vs 200 amp panel: which does your home need?</a> for the
+        decision framework, and <a href="/blog/200-amp-vs-400-amp-service">200 amp vs 400 amp service compared</a> for
+        larger homes considering 400 amp.
+      </p>
+
+      <h3>What Replacement Involves</h3>
+      <p>A standard 100 → 200 amp upgrade in West Michigan runs 6–10 hours of on-site work and includes:</p>
+      <ol>
+        <li>Permit pull with the local AHJ.</li>
+        <li>Utility coordination — the meter is pulled for the work window (typically 2–4 hours).</li>
+        <li>Removing the existing panel and verifying the <a href="/glossary/service-entrance">service entrance</a> conductors are sized for the new amperage.</li>
+        <li>Replacing the meter base if corroded or undersized.</li>
+        <li>Installing the new panel, typically Square D QO/Homeline, Siemens, or Eaton CH.</li>
+        <li>Verifying <a href="/glossary/bonding-vs-grounding">bonding and grounding</a> per NEC Article 250 — including ground rod connections and water-pipe bonds.</li>
+        <li>Re-terminating every circuit with proper labeling.</li>
+        <li>Final inspection by the AHJ.</li>
+      </ol>
+      <p>
+        We coordinate the utility cut, pull the permit, and close out the inspection. You don't deal with paperwork — see
+        <a href="/blog/electrical-panel-upgrade-cost">electrical panel upgrade cost: what determines the price</a> for
+        the full pricing breakdown.
+      </p>
+
+      <h3>Common Pairings: Generator, EV, Code Corrections</h3>
+      <p>
+        Most panel upgrades we run aren't standalone. Common pairings:
+      </p>
+      <ul>
+        <li>
+          <strong>Generator install.</strong> A whole-home generator needs an automatic transfer switch tied directly to
+          the panel. Doing both together saves a second mobilization and one permit. See
+          <a href="/blog/how-to-size-a-whole-home-generator">how to size a whole-home generator for a Michigan home</a>.
+        </li>
+        <li>
+          <strong>EV charger install.</strong> The 200-amp upgrade and the EV circuit go in during the same window. See
+          <a href="/blog/level-1-vs-level-2-ev-charger">Level 1 vs Level 2 EV charger</a> and
+          <a href="/blog/where-to-install-ev-charger">where to install your EV charger</a>.
+        </li>
+        <li>
+          <strong>Code corrections.</strong> Older homes with the panel open are the time to address knob-and-tube,
+          aluminum branch wiring, or missing AFCI/GFCI protection. See
+          <a href="/blog/knob-and-tube-wiring-what-to-do">knob-and-tube wiring: what to do if you still have it</a> and
+          <a href="/blog/aluminum-wiring-what-to-do">aluminum wiring: what to do if you have it</a>.
+        </li>
+      </ul>
+
+      <h3>West Michigan Specifics</h3>
+      <p>
+        Holland, Hudsonville, Zeeland, and Grand Rapids each have slightly different permit processes and inspection
+        timing, but the underlying NEC adoption is the same (2020 NEC with Michigan amendments). Consumers Energy and DTE
+        each have their own service-coordination process for the meter pull, with typical scheduling 5–10 business days
+        out. Holland Board of Public Works runs a faster turnaround in their service territory.
+      </p>
+      <p>
+        Older lakeshore neighborhoods (downtown Holland, Saugatuck, parts of Macatawa) often have undersized service
+        drops and corroded meter bases that drive the scope larger than originally quoted. We identify these during the
+        walkthrough so the quote reflects the real scope, not a sales-friendly underestimate.
+      </p>
     </section>
     <section class="container section-pad">
       <h2>Related reading</h2>

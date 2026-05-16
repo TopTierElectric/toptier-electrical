@@ -162,3 +162,24 @@ export const blogRelatedServices: Record<string, RelatedService[]> = {
     { href: '/code-corrections', label: 'Our Code-Correction Service' },
   ],
 };
+
+// Reverse lookup: which blog post slugs reference a given service hub.
+// Used by hub pages to emit `subjectOf` in their Service JSON-LD — an
+// explicit schema-graph edge from hub → spoke that Google reads as a
+// topical hierarchy (move 3 of the hub-spoke architecture plan).
+export const getSpokesForHub = (hubPath: string): string[] => {
+  const slugs = new Set<string>();
+  for (const [slug, services] of Object.entries(blogRelatedServices)) {
+    if (services.some((s) => s.href === hubPath)) slugs.add(slug);
+  }
+  return Array.from(slugs).sort();
+};
+
+// Builds the `subjectOf` array of Article entities for a hub's Service schema.
+export const buildSubjectOfArticles = (hubPath: string, siteOrigin = 'https://www.toptier-electrical.com') => {
+  return getSpokesForHub(hubPath).map((slug) => ({
+    '@type': 'Article',
+    '@id': `${siteOrigin}/blog/${slug}#article`,
+    url: `${siteOrigin}/blog/${slug}`,
+  }));
+};
