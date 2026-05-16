@@ -24,22 +24,50 @@ const HOWTO_BY_SLUG = {
     description:
       'Steps to take in the next 5 minutes when an electrical outlet has a burning smell. Stop the fault before it becomes a fire.',
     steps: [
-      { name: 'Unplug everything in the outlet', text: 'Pull cords carefully. If the plug feels hot or will not release, leave it and skip to the breaker step.' },
-      { name: 'Turn off the breaker for that circuit', text: 'If you do not know which breaker controls it, turn off the main breaker.' },
-      { name: 'Do not use water on the outlet', text: 'Use a Class C electrical fire extinguisher only if something is smoking or glowing.' },
-      { name: 'Check for visible damage', text: 'Look for brown or black scorch marks, melted plastic, or warmth at the cover plate.' },
-      { name: 'Leave the breaker off and call an electrician same-day', text: 'Do not reset the breaker to test. Reach a licensed electrician within hours, not days.' },
+      {
+        name: 'Unplug everything in the outlet',
+        text: 'Pull cords carefully. If the plug feels hot or will not release, leave it and skip to the breaker step.',
+      },
+      {
+        name: 'Turn off the breaker for that circuit',
+        text: 'If you do not know which breaker controls it, turn off the main breaker.',
+      },
+      {
+        name: 'Do not use water on the outlet',
+        text: 'Use a Class C electrical fire extinguisher only if something is smoking or glowing.',
+      },
+      {
+        name: 'Check for visible damage',
+        text: 'Look for brown or black scorch marks, melted plastic, or warmth at the cover plate.',
+      },
+      {
+        name: 'Leave the breaker off and call an electrician same-day',
+        text: 'Do not reset the breaker to test. Reach a licensed electrician within hours, not days.',
+      },
     ],
   },
   'automatic-transfer-switch-explained': {
     name: 'How an Automatic Transfer Switch Powers Your Home During an Outage',
-    description: 'The sequence an automatic transfer switch follows when utility power fails and your standby generator takes over.',
+    description:
+      'The sequence an automatic transfer switch follows when utility power fails and your standby generator takes over.',
     steps: [
-      { name: 'Detect the outage', text: 'The transfer switch senses utility voltage drop (typically with a 10-second debounce).' },
+      {
+        name: 'Detect the outage',
+        text: 'The transfer switch senses utility voltage drop (typically with a 10-second debounce).',
+      },
       { name: 'Signal the generator to start', text: 'A low-voltage start command is sent to the standby generator.' },
-      { name: 'Generator warm-up', text: 'The generator runs unloaded for 5–15 seconds to stabilize voltage and frequency.' },
-      { name: 'Transfer the load', text: 'The transfer switch opens utility contacts and closes generator contacts in a single mechanical action.' },
-      { name: 'Return to utility when grid is restored', text: 'After grid stability is confirmed (30 sec – 5 min), the transfer switch reconnects to utility and signals generator shutdown.' },
+      {
+        name: 'Generator warm-up',
+        text: 'The generator runs unloaded for 5–15 seconds to stabilize voltage and frequency.',
+      },
+      {
+        name: 'Transfer the load',
+        text: 'The transfer switch opens utility contacts and closes generator contacts in a single mechanical action.',
+      },
+      {
+        name: 'Return to utility when grid is restored',
+        text: 'After grid stability is confirmed (30 sec – 5 min), the transfer switch reconnects to utility and signals generator shutdown.',
+      },
     ],
   },
   'how-to-size-a-whole-home-generator': {
@@ -48,10 +76,22 @@ const HOWTO_BY_SLUG = {
       'The load calculation steps a licensed electrician uses to size a standby generator using NEC Article 220.',
     steps: [
       { name: 'Calculate lighting and general outlet load', text: 'Use 3 watts per heated square foot of the home.' },
-      { name: 'Add small appliance and laundry circuits', text: 'Two kitchen small-appliance circuits at 1500 W each, plus 1500 W laundry.' },
-      { name: 'Add nameplate ratings of specific appliances', text: 'Include range, dryer, water heater, AC, well pump, and any dedicated equipment.' },
-      { name: 'Apply NEC demand factors', text: 'Reduce the first 10,000 W of general load and apply 40 percent demand on the remainder.' },
-      { name: 'Add largest motor at 125 percent', text: 'Account for inrush current of the largest motor (usually the AC compressor) at 125 percent of starting amps.' },
+      {
+        name: 'Add small appliance and laundry circuits',
+        text: 'Two kitchen small-appliance circuits at 1500 W each, plus 1500 W laundry.',
+      },
+      {
+        name: 'Add nameplate ratings of specific appliances',
+        text: 'Include range, dryer, water heater, AC, well pump, and any dedicated equipment.',
+      },
+      {
+        name: 'Apply NEC demand factors',
+        text: 'Reduce the first 10,000 W of general load and apply 40 percent demand on the remainder.',
+      },
+      {
+        name: 'Add largest motor at 125 percent',
+        text: 'Account for inrush current of the largest motor (usually the AC compressor) at 125 percent of starting amps.',
+      },
     ],
   },
 };
@@ -75,7 +115,9 @@ function parseFrontmatter(mdx) {
 //   **Question text?**
 //   Answer paragraph (may span 1+ lines, ends at blank line or next **Q**).
 function extractFAQs(body) {
-  const sectionMatch = body.match(/##\s+FAQs?\s*\n([\s\S]*?)(?=\n##\s|\n\nReady |\n\nWant |\n\nSmelling |\n\nPlanning |\n\nWondering |\n\nSuspect |\n\nFlickering |\n\nNeed |\n\n\[|$)/);
+  const sectionMatch = body.match(
+    /##\s+FAQs?\s*\n([\s\S]*?)(?=\n##\s|\n\nReady |\n\nWant |\n\nSmelling |\n\nPlanning |\n\nWondering |\n\nSuspect |\n\nFlickering |\n\nNeed |\n\n\[|$)/
+  );
   if (!sectionMatch) return [];
   const section = sectionMatch[1];
   // Match **Q?** followed by answer until next **Q** or blank line + paragraph

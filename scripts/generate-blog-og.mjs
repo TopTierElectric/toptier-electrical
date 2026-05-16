@@ -48,7 +48,10 @@ function wrapTitle(title, maxChars = 22) {
   const lines = [];
   let cur = '';
   for (const w of words) {
-    if (!cur) { cur = w; continue; }
+    if (!cur) {
+      cur = w;
+      continue;
+    }
     if ((cur + ' ' + w).length > maxChars) {
       lines.push(cur);
       cur = w;
@@ -71,7 +74,7 @@ function svgFor(title) {
   const lineHeight = fontSize * 1.12;
   // Center the block vertically around y=315 (HEIGHT/2)
   const blockHeight = lines.length * lineHeight;
-  const startY = (HEIGHT / 2) - (blockHeight / 2) + fontSize * 0.85;
+  const startY = HEIGHT / 2 - blockHeight / 2 + fontSize * 0.85;
   const tspans = lines
     .map((ln, i) => `<tspan x="${PAD_X}" y="${startY + i * lineHeight}">${escXml(ln)}</tspan>`)
     .join('');
@@ -113,4 +116,6 @@ for (const file of files) {
   created++;
 }
 
-console.log(`\nGenerated ${created} new OG image${created === 1 ? '' : 's'} (${skipped} already existed, use --force to regenerate).`);
+console.log(
+  `\nGenerated ${created} new OG image${created === 1 ? '' : 's'} (${skipped} already existed, use --force to regenerate).`
+);

@@ -50,9 +50,7 @@ const relatedPostsData = (entry.relatedPosts ?? []).map((slug) => ({
   // crude humanization for the anchor — real titles live in MDX frontmatter
   title: slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
 }));
-const relatedTermsData = (entry.relatedTerms ?? [])
-  .map((slug) => glossaryBySlug[slug])
-  .filter(Boolean);
+const relatedTermsData = (entry.relatedTerms ?? []).map((slug) => glossaryBySlug[slug]).filter(Boolean);
 
 const paragraphs = entry.body.split(/\n\n+/);
 ---

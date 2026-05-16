@@ -100,7 +100,11 @@ ATS units come in several flavors: service-rated (replaces the main panel discon
 
 NEC 702.5 requires a transfer switch (automatic or manual) on every permanently-installed generator install. Backfeeding a generator through a wall outlet is illegal and dangerous.`,
     relatedTerms: ['service-entrance', 'load-calculation'],
-    relatedPosts: ['automatic-transfer-switch-explained', 'whole-home-vs-portable-generator', 'how-to-size-a-whole-home-generator'],
+    relatedPosts: [
+      'automatic-transfer-switch-explained',
+      'whole-home-vs-portable-generator',
+      'how-to-size-a-whole-home-generator',
+    ],
     relatedServices: [{ href: '/generators', label: 'Whole-home generator installation' }],
   },
   {

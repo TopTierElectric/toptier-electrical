@@ -25,14 +25,42 @@ const relatedServices = blogRelatedServices[post.slug] ?? [];
 // spoke explicitly belongs to a cluster in both the visible breadcrumb and
 // the BreadcrumbList JSON-LD. This signals topical taxonomy to Google.
 const CATEGORY_HUB: Record<string, { path: string; label: string; serviceId: string }> = {
-  'Panel Upgrades': { path: '/panel-upgrades', label: 'Panel Upgrades', serviceId: 'https://www.toptier-electrical.com/panel-upgrades#service' },
-  Generators: { path: '/generators', label: 'Generators', serviceId: 'https://www.toptier-electrical.com/generators#service' },
-  'EV Charging': { path: '/ev-chargers', label: 'EV Chargers', serviceId: 'https://www.toptier-electrical.com/ev-chargers#service' },
-  'Electrical Repairs': { path: '/electrical-repairs', label: 'Electrical Repairs', serviceId: 'https://www.toptier-electrical.com/electrical-repairs#service' },
+  'Panel Upgrades': {
+    path: '/panel-upgrades',
+    label: 'Panel Upgrades',
+    serviceId: 'https://www.toptier-electrical.com/panel-upgrades#service',
+  },
+  Generators: {
+    path: '/generators',
+    label: 'Generators',
+    serviceId: 'https://www.toptier-electrical.com/generators#service',
+  },
+  'EV Charging': {
+    path: '/ev-chargers',
+    label: 'EV Chargers',
+    serviceId: 'https://www.toptier-electrical.com/ev-chargers#service',
+  },
+  'Electrical Repairs': {
+    path: '/electrical-repairs',
+    label: 'Electrical Repairs',
+    serviceId: 'https://www.toptier-electrical.com/electrical-repairs#service',
+  },
   Lighting: { path: '/lighting', label: 'Lighting', serviceId: 'https://www.toptier-electrical.com/lighting#service' },
-  Commercial: { path: '/commercial', label: 'Commercial', serviceId: 'https://www.toptier-electrical.com/commercial#service' },
-  'Code Corrections': { path: '/code-corrections', label: 'Code Corrections', serviceId: 'https://www.toptier-electrical.com/code-corrections#service' },
-  'Electrical Tips': { path: '/services', label: 'Electrical Services', serviceId: 'https://www.toptier-electrical.com/services#service' },
+  Commercial: {
+    path: '/commercial',
+    label: 'Commercial',
+    serviceId: 'https://www.toptier-electrical.com/commercial#service',
+  },
+  'Code Corrections': {
+    path: '/code-corrections',
+    label: 'Code Corrections',
+    serviceId: 'https://www.toptier-electrical.com/code-corrections#service',
+  },
+  'Electrical Tips': {
+    path: '/services',
+    label: 'Electrical Services',
+    serviceId: 'https://www.toptier-electrical.com/services#service',
+  },
 };
 const categoryTitle = post.category?.title;
 const cluster = categoryTitle ? CATEGORY_HUB[categoryTitle] : undefined;
