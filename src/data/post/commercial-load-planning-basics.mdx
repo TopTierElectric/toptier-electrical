@@ -1,0 +1,195 @@
+---
+title: 'Commercial Load Planning: What an Electrician Actually Calculates'
+publishDate: 2026-09-09T00:00:00Z
+excerpt: 'Commercial load planning is more than adding wattages. Here is what NEC Article 220 requires, how demand factors work, and why quotes vary so widely.'
+image: '~/assets/images/Control Work.webp'
+category: 'Commercial'
+tags:
+  - commercial
+  - load calculation
+  - NEC
+  - electrical service
+  - planning
+author: 'Top Tier Electrical'
+metadata:
+  canonical: 'https://www.toptier-electrical.com/blog/commercial-load-planning-basics'
+---
+
+Commercial load planning looks simple from the outside — add up the wattages and pick a service. The reality is that NEC Article 220 has a dozen rules about demand factors, continuous vs non-continuous loads, motor starting current, and how to size feeders versus service. Get any of them wrong and you either pay for capacity you don't need or undersize a service that trips under realistic load. Here is what we actually calculate when we plan a commercial service.
+
+## Quick Answer
+
+- **Connected load** = sum of every nameplate rating on the panel.
+- **Demand load** = connected load with NEC Article 220 demand factors applied.
+- **Continuous loads** (3+ hours) calculate at **125%** of nameplate.
+- **The largest motor** gets a **25% adder** for inrush.
+- **Service is sized for demand load**, not connected load.
+
+## What "Load" Actually Means
+
+Three distinct numbers, often used interchangeably and incorrectly:
+
+1. **Connected load:** Total of every appliance and circuit nameplate, regardless of whether they ever run simultaneously.
+2. **Demand load:** Connected load reduced by NEC demand factors that account for diversity (not everything runs at once).
+3. **Peak demand:** Actual measured maximum load over a billing period.
+
+A 200-amp service may have 320 amps of connected load and still be properly sized — because demand factors reduce the calculated demand to under 200 amps. Building owners often see the "320 amp" number and panic. The calculation is what matters.
+
+## NEC Article 220: The Calculation Framework
+
+Article 220 of the NEC defines exactly how to calculate load for service sizing. The high-level structure:
+
+### Branch circuit loading
+
+- General lighting and receptacles: by square footage and use type (Table 220.12).
+- Specific loads (appliances, motors, signs): nameplate rating with code multipliers.
+
+### Feeder and service loading
+
+- Sum branch circuit loads.
+- Apply demand factors per occupancy type (Tables 220.42, 220.44, 220.56, 220.84 for residential).
+- Add largest motor at 125% of nameplate (430.24).
+- Apply continuous load multiplier (125%) for loads that run 3+ hours continuously.
+
+### Total service size
+
+Larger of:
+
+- Calculated demand load
+- Largest single appliance + 25%
+- A minimum based on occupancy type
+
+The math is mechanical but the bookkeeping matters. A missed continuous-load multiplier on a 50-amp circuit makes the difference between an adequate and an inadequate service.
+
+## Demand Factors That Matter Most
+
+### Lighting demand
+
+General lighting: 100% of first 12,500 VA, then **80%** of remainder for non-dwelling spaces (Table 220.42).
+
+In a 25,000 sq ft retail space with 30 VA/sq ft lighting (750,000 VA total — extreme example), demand drops to roughly 80% of that. Smaller spaces don't benefit much from this factor.
+
+### Receptacle demand
+
+Non-dwelling general receptacle load: 100% of first 10 kVA, **50%** of remainder (Table 220.44).
+
+This is significant in offices and retail where receptacle counts are high but coincident use is low.
+
+### Kitchen equipment demand
+
+Commercial kitchen demand factors (Table 220.56) heavily reduce calculated load for facilities with 3+ pieces of equipment: 90% for 3 units, 80% for 4, 65% for 5, 55% for 6+.
+
+This factor alone can drop a 250-amp connected kitchen to a 150-amp demand load. It's why restaurant load calculations look so different from "add it all up."
+
+### Motor demand
+
+Largest motor gets a 25% adder; all other motors at nameplate. The 25% accounts for starting inrush current (typically 4–6× running current for 3–10 seconds).
+
+## Continuous vs Non-Continuous Loads
+
+Per NEC 215.3 and 230.42, **continuous loads** (running 3 hours or more) must be calculated at **125%** of their full-load current for conductor and overcurrent device sizing.
+
+Examples of continuous loads:
+
+- Lighting (any commercial space lit 3+ hours/day)
+- Refrigeration motors
+- HVAC fans during occupied hours
+- Some IT/server loads
+
+Examples of non-continuous loads:
+
+- Coffee makers
+- Mixers
+- Most receptacle loads
+- Vehicle lifts
+
+This 125% multiplier is why a "20 amp" lighting circuit can only carry 16 amps of continuous load. Mis-applying this turns into trip-causing under-loading at design intent.
+
+## Motor Loads: The Easy-to-Miss Items
+
+Motors are the biggest source of underestimated load:
+
+- **Locked rotor current** (the inrush at startup) is 4–6× running current.
+- The **largest motor** in the system gets a 25% adder to feeder/service sizing.
+- **Motors above 1 HP** need their own disconnect within sight.
+- **VFDs** introduce different load characteristics — harmonic distortion can require oversized neutrals on 3-phase wye systems.
+
+In commercial kitchens, the largest motor is often the walk-in compressor or the dishwasher booster pump. In retail, it's the HVAC compressor. In light industrial, it's whatever production equipment is biggest.
+
+## Why Two Electricians Might Quote Different Service Sizes
+
+Two licensed electricians can review the same space and quote 200-amp and 400-amp services. Common reasons:
+
+1. **Different load assumptions for unspecified equipment.** "We're getting a 6-burner range" vs "we're getting a 10-burner griddle" changes the math.
+2. **Different demand factor application.** Some electricians apply only the explicit factors; others use Article 220 optional methods.
+3. **Future expansion margin.** One quote assumes today's load; the other adds 25–40% for foreseeable expansion.
+4. **Different interpretation of continuous load durations.** What's "3 hours continuous" in your operation?
+5. **Voltage drop considerations** for long feeder runs.
+
+A good load calculation is documented, line-by-line, and matches the equipment list you provide. We deliver this with every commercial quote — see our <a href="/services" data-ga-event="spoke_to_hub_click" data-ga-label="commercial-load-planning-basics__services" data-ga-destination="/services">our service catalog</a> for commercial work.
+
+## Planning for Future Loads
+
+A 200-amp service that's calculated at 180-amp demand has no room for additions. Common future loads that catch facilities off-guard:
+
+- **EV charging** for fleet or employees (often 40–80 amps per charger).
+- **Heat pump conversions** for HVAC.
+- **Server rooms or POS expansion.**
+- **Additional production equipment.**
+
+Sizing service with 20–30% headroom is the conventional approach for commercial work. The marginal cost of going from 200 to 300 amps at original install is far less than upgrading later — see <a href="/blog/200-amp-vs-400-amp-service" data-ga-event="spoke_to_spoke_click" data-ga-label="commercial-load-planning-basics__200-amp-vs-400-amp-service" data-ga-destination="/blog/200-amp-vs-400-amp-service">our 200 vs 400 amp service comparison</a> (residential context, same principles).
+
+## What an Electrician Hands Off to the AHJ
+
+A complete commercial load calculation package includes:
+
+1. **Single-line diagram** of service and feeders.
+2. **Panel schedule** with circuit assignments.
+3. **Load calculation** showing connected load and demand calculation method.
+4. **Voltage drop calculations** for long feeders.
+5. **Coordination study** for selective tripping (if required by AHJ).
+6. **Arc-flash analysis** with labels (NEC 130.5, where required).
+
+This is the same package we submit on every commercial permit. AHJs in West Michigan vary in what they require — Holland, Grand Rapids, and Hudsonville each have different documentation expectations.
+
+## Related Reading
+
+- [Restaurant electrical build-out: what to plan for](/blog/restaurant-electrical-buildout)
+- [Commercial LED retrofit ROI: payback math for West Michigan businesses](/blog/commercial-led-retrofit-roi)
+- [Annual commercial electrical maintenance checklist](/blog/commercial-electrical-maintenance-checklist)
+- [Zinsco and Federal Pacific panels: why they need to go](/blog/zinsco-fpe-panel-replacement)
+
+## FAQs
+
+**Why can't I just add up watts and divide by 240?**
+You can — but the result is connected load, not demand load. Service sizing is based on demand load with NEC factors applied. The difference is often 30–50%.
+
+**What's the most-overlooked load in commercial planning?**
+EV charging for employees and customers. A single Level 2 charger adds 40–48 amps. A 6-charger employee setup adds 200+ amps to service requirements.
+
+**Does the demand factor depend on building type?**
+Yes — Article 220 has different demand tables for dwellings, schools, hospitals, and commercial occupancies. Mixed-use buildings calculate each portion separately.
+
+**Should I plan for solar or storage in the load calc?**
+Yes if you have any plan to add either within 5 years. Solar reduces effective load on certain circuits; battery storage may require dedicated transfer switching.
+
+**How accurate is a load calculation vs actual measured peak demand?**
+Properly done, calculated demand is usually within 10–20% of measured peak. Calculations are intentionally conservative to handle worst-case coincident loading.
+
+Planning a new commercial service or major addition? [Get a clear estimate](/booking) — we'll deliver a documented Article 220 load calculation with the quote.
+
+{/* AUTO_SCHEMA_START — generated by scripts/inject-blog-schema.mjs */}
+
+<script type="application/ld+json">
+  {
+    '{"@context":"https://schema.org","@type":"FAQPage","@id":"https://www.toptier-electrical.com/blog/commercial-load-planning-basics#faq","mainEntity":[{"@type":"Question","name":"Why can\'t I just add up watts and divide by 240?","acceptedAnswer":{"@type":"Answer","text":"You can — but the result is connected load, not demand load. Service sizing is based on demand load with NEC factors applied. The difference is often 30–50%."}},{"@type":"Question","name":"What\'s the most-overlooked load in commercial planning?","acceptedAnswer":{"@type":"Answer","text":"EV charging for employees and customers. A single Level 2 charger adds 40–48 amps. A 6-charger employee setup adds 200+ amps to service requirements."}},{"@type":"Question","name":"Does the demand factor depend on building type?","acceptedAnswer":{"@type":"Answer","text":"Yes — Article 220 has different demand tables for dwellings, schools, hospitals, and commercial occupancies. Mixed-use buildings calculate each portion separately."}},{"@type":"Question","name":"Should I plan for solar or storage in the load calc?","acceptedAnswer":{"@type":"Answer","text":"Yes if you have any plan to add either within 5 years. Solar reduces effective load on certain circuits; battery storage may require dedicated transfer switching."}},{"@type":"Question","name":"How accurate is a load calculation vs actual measured peak demand?","acceptedAnswer":{"@type":"Answer","text":"Properly done, calculated demand is usually within 10–20% of measured peak. Calculations are intentionally conservative to handle worst-case coincident loading."}}]}'
+  }
+</script>
+
+<script type="application/ld+json">
+  {
+    '{"@context":"https://schema.org","@type":"WebPage","@id":"https://www.toptier-electrical.com/blog/commercial-load-planning-basics#speakable","speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".quick-answer","#quick-answer"]},"url":"https://www.toptier-electrical.com/blog/commercial-load-planning-basics"}'
+  }
+</script>
+
+{/* AUTO_SCHEMA_END */}

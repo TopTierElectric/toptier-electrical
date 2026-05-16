@@ -374,17 +374,14 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
     </header>
     {
       hasBreadcrumbs && (
-        <nav class="container mt-4" aria-label="Breadcrumb">
-          <ol class="flex flex-wrap gap-2 text-sm text-muted">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol>
             {resolvedBreadcrumbs.map((entry, index) => (
-              <li class="inline-flex items-center gap-2">
-                {index > 0 && <span aria-hidden="true">/</span>}
+              <li>
                 {index === resolvedBreadcrumbs.length - 1 ? (
                   <span aria-current="page">{entry.name}</span>
                 ) : (
-                  <a href={entry.item} class="underline-offset-4 hover:underline">
-                    {entry.name}
-                  </a>
+                  <a href={entry.item}>{entry.name}</a>
                 )}
               </li>
             ))}

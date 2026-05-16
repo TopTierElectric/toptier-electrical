@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import { buildSubjectOfArticles } from '~/data/blog-related-services';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -40,6 +41,7 @@ const jsonLd = [
     ],
     serviceType: 'Electrical Repair',
     url: 'https://www.toptier-electrical.com/electrical-repairs',
+    subjectOf: buildSubjectOfArticles('/electrical-repairs'),
   }),
   JSON.stringify({
     '@context': 'https://schema.org',
@@ -156,14 +158,155 @@ const jsonLd = [
         </p>
       </div>
     </section>
+    <section class="container section-pad pillar">
+      <h2>Complete Guide to Electrical Repairs in West Michigan</h2>
+      <p>
+        Electrical repair work covers everything from a flickering light fixture to a panel that's actively smoking. The
+        hardest part for most homeowners isn't the fix — it's knowing what's an inconvenience worth scheduling next week
+        versus a real safety issue that warrants a same-day call. This guide breaks down the warning signs and what each
+        of them usually means in West Michigan homes.
+      </p>
+
+      <h3>Emergency vs Same-Day vs Whenever</h3>
+      <p>Three triage categories cover almost every call we get:</p>
+      <ul>
+        <li>
+          <strong>Emergency (turn off main, call now):</strong> active smoke, visible flames or glowing inside an outlet
+          or panel, repeated sparking, or a burning smell that intensifies after you turn off the breaker. See
+          <a href="/blog/burning-smell-from-outlet">burning smell from an outlet: what to do in the next 5 minutes</a>.
+        </li>
+        <li>
+          <strong>Same-day:</strong> whole-house flickering that's getting worse, a burning smell that fades when you unplug
+          a specific appliance, brightening on one side of the house while dimming on the other (failing utility neutral),
+          or a breaker that won't reset. See
+          <a href="/blog/flickering-lights-when-to-worry">flickering lights: when it's annoying vs an emergency</a>.
+        </li>
+        <li>
+          <strong>This week:</strong> a single breaker that trips occasionally, one outlet that feels warm but works, a fixture
+          that flickers only with certain bulbs (dimmer compatibility), or AFCI breakers tripping on motor loads (vacuum,
+          treadmill). See
+          <a href="/blog/why-breakers-trip">why does my breaker keep tripping?</a>
+        </li>
+      </ul>
+
+      <h3>What an Electrician Actually Checks</h3>
+      <p>A diagnostic visit covers four standard measurements:</p>
+      <ol>
+        <li>
+          <strong>Voltage on both legs at the panel.</strong> Confirms utility-side balance. Severe imbalance signals a failing
+          utility neutral.
+        </li>
+        <li>
+          <strong>Voltage stability under load.</strong> Major appliances on and off, watching for sag or surge.
+        </li>
+        <li>
+          <strong>IR thermography on suspect connections.</strong> Hot spots in the panel are loose connections; they fail
+          catastrophically eventually.
+        </li>
+        <li>
+          <strong>Receptacle and circuit verification.</strong> Tester at representative outlets confirms grounding, polarity,
+          and wiring integrity.
+        </li>
+      </ol>
+
+      <h3>The Most Common Issues We See</h3>
+      <p>
+        Across hundreds of West Michigan service calls, the same handful of root causes accounts for the majority of
+        diagnostic work:
+      </p>
+      <ul>
+        <li>
+          <strong>Backstabbed connections.</strong> Cheap receptacles use spring-clip terminals on the back that loosen over
+          time. Arcing causes burning smell, flickering, and eventually outlet failure. The fix is re-terminating to side
+          screws or replacing with a quality device.
+        </li>
+        <li>
+          <strong>Overloaded circuits.</strong> Adding window AC, space heaters, or kitchen appliances to circuits not sized
+          for the load. Common in older homes that haven't seen circuit re-balancing in decades.
+        </li>
+        <li>
+          <strong>Aluminum branch wiring.</strong> Common in 1965–1973 homes. Connections at receptacles and switches loosen,
+          corrode, and overheat. See
+          <a href="/blog/aluminum-wiring-what-to-do">aluminum wiring: what to do if you have it</a>.
+        </li>
+        <li>
+          <strong>Federal Pacific and Zinsco panels.</strong> Documented failure-to-trip risk. Replace regardless of condition.
+          See <a href="/blog/zinsco-fpe-panel-replacement">why Zinsco and Federal Pacific panels need to go</a>.
+        </li>
+        <li>
+          <strong>Failing utility neutral.</strong> The most dangerous diagnostic finding. Causes one leg to drift high while
+          the other drops, frying electronics and creating fire risk. Call the utility's emergency line first; we confirm
+          with leg-to-neutral measurements.
+        </li>
+        <li>
+          <strong>Knob-and-tube wiring on overloaded circuits.</strong> Vintage wiring designed for 1920s loads is handling
+          modern appliances. See
+          <a href="/blog/knob-and-tube-wiring-what-to-do">knob-and-tube wiring: what to do if you still have it</a>.
+        </li>
+      </ul>
+
+      <h3>AFCI, GFCI, and Code-Driven Repairs</h3>
+      <p>
+        Modern code requires <a href="/glossary/afci">AFCI</a> protection in most living spaces and
+        <a href="/glossary/gfci">GFCI</a> protection in any wet location.
+        <a href="/glossary/nec-210-12">NEC 210.12</a> details the AFCI requirement. Repairs that open walls, add circuits,
+        or extend existing circuits typically require bringing affected portions up to current code. See
+        <a href="/blog/gfci-vs-afci-vs-dual-function">GFCI vs AFCI vs dual-function breakers</a>.
+      </p>
+
+      <h3>When a Repair Becomes a Bigger Project</h3>
+      <p>
+        Some repairs reveal underlying scope that's worth addressing while the panel or wall is open. The most common
+        scope expansions:
+      </p>
+      <ul>
+        <li>
+          A failing panel turns into a <a href="/panel-upgrades">panel upgrade</a> when the bus or breakers can't be safely
+          repaired piecemeal.
+        </li>
+        <li>
+          Aluminum wiring on multiple circuits turns into a <a href="/code-corrections">code-correction project</a> or insurance-required
+          remediation.
+        </li>
+        <li>
+          Repeated outages in lakeshore communities turn into a <a href="/generators">generator install</a>
+          conversation.
+        </li>
+      </ul>
+      <p>
+        We always flag this during the diagnostic — you get a same-day repair quote plus an honest read on whether the
+        bigger scope is worth doing now versus later.
+      </p>
+    </section>
     <section class="container section-pad">
       <h2>Related reading</h2>
       <ul>
+        <li>
+          <a href="/blog/burning-smell-from-outlet">Burning smell from an outlet: what to do in the next 5 minutes</a>
+        </li>
+        <li>
+          <a href="/blog/flickering-lights-when-to-worry"
+            >Flickering lights: when it's annoying vs when it's an emergency</a
+          >
+        </li>
         <li><a href="/blog/why-breakers-trip">Why does my breaker keep tripping?</a></li>
         <li><a href="/blog/gfci-vs-afci-vs-dual-function">GFCI vs AFCI vs dual-function breakers</a></li>
         <li><a href="/blog/aluminum-wiring-what-to-do">Aluminum wiring: what to do if you have it</a></li>
         <li><a href="/blog/blog-electrical-safety">Essential electrical safety tips for homeowners</a></li>
       </ul>
+      <aside
+        class="micro-cta"
+        style="margin-top: 1.25rem; padding: 0.9rem 1.1rem; border-left: 3px solid var(--brand-gold, #d4af37); background: rgba(212,175,55,0.06); border-radius: 6px;"
+      >
+        <strong>Got a problem now?</strong> Text a photo of the issue (panel, outlet, or fixture) to
+        <a
+          href="sms:+16163347159?body=Hi%20Carl%20-%20photo%20of%20my%20electrical%20issue%20for%20a%20quick%20diagnostic."
+          data-ga-event="text_panel_photo_click"
+          data-ga-label="electrical-repairs__sms"
+          data-ga-destination="sms:+16163347159"><strong>(616) 334-7159</strong></a
+        >
+        and we'll get back to you with next steps.
+      </aside>
     </section>
     <section class="container section-pad">
       <h2>Electrical Repairs by City</h2>

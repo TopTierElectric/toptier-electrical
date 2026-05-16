@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import { buildSubjectOfArticles } from '~/data/blog-related-services';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -40,6 +41,7 @@ const jsonLd = [
     ],
     serviceType: 'Generator Installation',
     url: 'https://www.toptier-electrical.com/generators',
+    subjectOf: buildSubjectOfArticles('/generators'),
   }),
   JSON.stringify({
     '@context': 'https://schema.org',
@@ -189,10 +191,128 @@ const jsonLd = [
         <p>Request a walkthrough to discuss generator options and get a clear quote without pressure.</p>
       </div>
     </section>
+    <section class="container section-pad pillar">
+      <h2>Complete Guide to Backup Generators in West Michigan</h2>
+      <p>
+        West Michigan loses power to wind, ice, and lake-effect storms more often than most U.S. regions — the lakeshore
+        from Holland through Grand Haven sees multi-hour outages multiple times each winter, and 24–72 hour outages
+        every few years during major ice events. A standby generator turns those outages from a crisis into an
+        inconvenience: the lights stay on, the sump pump runs, the furnace blower works, and the contents of the freezer
+        survive.
+      </p>
+      <p>
+        This guide covers everything a homeowner or facility manager needs to evaluate a generator install: sizing,
+        fuel, transfer switching, code, and the West Michigan specifics that drive most of the decision.
+      </p>
+
+      <h3>Whole-Home vs Portable: The First Decision</h3>
+      <p>
+        Whole-home (standby) generators run automatically, are fueled by propane or natural gas, and can power your
+        entire panel for days or weeks. Portable generators cost a fraction of the install price but require manual
+        setup every outage, run on gasoline with limited shelf life, and only cover selected essential circuits.
+      </p>
+      <p>
+        For most West Michigan homeowners with well pumps, sump pumps, home offices, or medical equipment, whole-home is
+        the right call. For homeowners with rare brief outages and minimal critical loads, portable plus an
+        <a href="/glossary/automatic-transfer-switch">interlock kit</a> is the cost-conscious legal option. See
+        <a href="/blog/whole-home-vs-portable-generator"
+          >whole-home vs portable generator: which makes sense in West Michigan</a
+        > for the full comparison.
+      </p>
+
+      <h3>Sizing: How Many kW You Actually Need</h3>
+      <p>
+        Generator capacity is rated in <a href="/glossary/kva-vs-kw">kilowatts (kW)</a>. Most 2,000 sq ft Michigan homes
+        need a 14–22 kW whole-home generator. A 3,000+ sq ft home with central AC, electric range, and an EV charger
+        typically needs 22–26 kW. The deciding factor is simultaneous load, not square footage — and the sizing decision
+        should follow a documented <a href="/glossary/load-calculation">NEC Article 220 load calculation</a>, not a
+        square-footage rule of thumb.
+      </p>
+      <p>
+        Common undersizing mistakes: ignoring well pumps and sump pumps (motor inrush is 6–8× running watts),
+        underestimating central AC startup, and forgetting future EV chargers. See
+        <a href="/blog/how-to-size-a-whole-home-generator">how to size a whole-home generator for a Michigan home</a>
+        for the exact math.
+      </p>
+
+      <h3>Transfer Switching: How the Generator Connects to Your House</h3>
+      <p>
+        You cannot legally or safely plug a generator into a wall outlet. Backfeeding power onto the utility grid can
+        kill the lineman trying to restore service, destroys your generator when utility power returns, and violates NEC
+        702.5. Every generator install requires one of:
+      </p>
+      <ul>
+        <li>
+          <strong>Automatic transfer switch (ATS)</strong> — the standard for whole-home installs. Senses outage, starts
+          the generator, switches the panel over, switches back when utility returns. See
+          <a href="/blog/automatic-transfer-switch-explained"
+            >what an automatic transfer switch does (and why you need one)</a
+          >.
+        </li>
+        <li>
+          <strong>Manual transfer switch</strong> — for portables. You flip selected circuits over by hand.
+        </li>
+        <li>
+          <strong>Generator interlock kit</strong> — code-approved sliding bracket on the panel. The cheapest legal option
+          for portable installs. Still requires a licensed electrician and a permit.
+        </li>
+      </ul>
+
+      <h3>Fuel: Natural Gas vs Propane vs Gasoline</h3>
+      <p>
+        Whole-home generators run on either natural gas (if the house is plumbed for it) or propane. Natural gas is the
+        best option — no tank, no refueling, indefinite runtime. Propane runs about 4 days at half load on a 500-gallon
+        tank for a 22 kW generator. Gasoline (portables only) becomes a logistics problem in multi-day events: stored
+        gas goes stale, station pumps lose power, and carrying cans gets old fast.
+      </p>
+
+      <h3>Sizing Up: Panel + Service Coordination</h3>
+      <p>
+        Many whole-home generator installs are paired with a <a href="/panel-upgrades">panel upgrade</a>, especially
+        when the existing service is 100 amp or shows wear. A 200 amp service-rated automatic transfer switch can double
+        as your main panel disconnect, giving you one cleaner integrated install rather than two parallel services.
+        Adding an EV charger? See
+        <a href="/blog/do-i-need-a-panel-upgrade-for-an-ev-charger">do I need a panel upgrade for an EV charger?</a>
+      </p>
+
+      <h3>Permits and Inspections in Michigan</h3>
+      <p>
+        Standby generator installs require an electrical permit (from your AHJ) and a mechanical or plumbing permit (for
+        the fuel line). Final inspection covers both the electrical tie-in and the fuel connection. We pull and close
+        out both permits as part of the install — no homeowner paperwork.
+      </p>
+
+      <h3>What Maintenance Actually Looks Like</h3>
+      <p>
+        Modern standby generators run a self-test once per week (under load for a brief window). Annual professional
+        service includes oil and filter change, spark plugs, air filter, battery test, and a load-bank test to verify
+        full output. Most units last 20–25 years with this routine. See
+        <a href="/blog/blog-generator-readiness">winter generator readiness: backup power tips</a> for the seasonal checklist.
+      </p>
+
+      <h3>West Michigan Specifics</h3>
+      <p>
+        Lakeshore communities (Holland, Grand Haven, Saugatuck) see more frequent and longer outages than inland areas
+        due to lake-effect wind. Generator install priority on the lakeshore is usually whole-home over portable for
+        that reason. Inland Hudsonville, Byron Center, and Ada see fewer outages but longer ice-storm events when they
+        do come. Permit timelines vary by AHJ from same-week to 2-week turnaround.
+      </p>
+    </section>
     <section class="container section-pad">
       <h2>Related reading</h2>
       <ul>
         <li><a href="/blog/blog-generator-readiness">Winter generator readiness: backup power tips</a></li>
+        <li>
+          <a href="/blog/how-to-size-a-whole-home-generator">How to size a whole-home generator for a Michigan home</a>
+        </li>
+        <li>
+          <a href="/blog/whole-home-vs-portable-generator">Whole-home vs portable generator: which makes sense?</a>
+        </li>
+        <li>
+          <a href="/blog/automatic-transfer-switch-explained"
+            >What an automatic transfer switch does (and why you need one)</a
+          >
+        </li>
         <li><a href="/blog/blog-surge-protection">Whole-home surge protection: why it matters</a></li>
       </ul>
     </section>
