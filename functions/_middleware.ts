@@ -20,7 +20,13 @@
 const CANONICAL_ORIGIN = 'https://www.toptier-electrical.com';
 const PRODUCTION_PAGES_HOST = 'toptier-electrical.pages.dev';
 
-export const onRequest: PagesFunction = async ({ request, next }) => {
+interface MiddlewareContext {
+  request: Request;
+  next: () => Promise<Response>;
+}
+
+export const onRequest = async (context: MiddlewareContext): Promise<Response> => {
+  const { request, next } = context;
   const url = new URL(request.url);
   const host = url.hostname.toLowerCase();
 
