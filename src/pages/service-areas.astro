@@ -1,122 +1,318 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import siteData from '~/data/site.json';
+import { cities } from '~/data/service-city-config';
+
+// Cities with dedicated landing pages (city × electrician hub).
+// Ordered by population / search volume / sales priority.
+const primaryCities = [
+  {
+    slug: 'electrician-holland-mi',
+    name: 'Holland, MI',
+    county: 'Ottawa County',
+    blurb:
+      'Older lakeshore homes with panels at end of life, knob-and-tube remnants, and aluminum branch wiring. Holland BPW customers qualify for a $1,000 panel rebate when paired with an EV charger or electrification.',
+  },
+  {
+    slug: 'electrician-grand-rapids-mi',
+    name: 'Grand Rapids, MI',
+    county: 'Kent County',
+    blurb:
+      'Heritage Hill and Eastown historic homes, downtown commercial spaces, three-phase distribution along the highway corridors. Common scope: panel modernization, code corrections, commercial LED retrofits.',
+  },
+  {
+    slug: 'electrician-hudsonville-mi',
+    name: 'Hudsonville, MI',
+    county: 'Ottawa County',
+    blurb:
+      'Newer subdivisions, working farms, and detached pole barns. Common scope: subpanels for outbuildings, dedicated shop circuits, EV charging for commuters, panel upgrades on growing electrical loads.',
+  },
+  {
+    slug: 'electrician-zeeland-mi',
+    name: 'Zeeland, MI',
+    county: 'Ottawa County',
+    blurb:
+      'Compact residential neighborhoods plus a strong agricultural and light-manufacturing base. Residential: panel upgrades and EV chargers. Commercial: dedicated circuits, motor controls, reliable lighting.',
+  },
+  {
+    slug: 'electrician-ada-mi',
+    name: 'Ada, MI',
+    county: 'Kent County',
+    blurb:
+      'Custom-home and equestrian properties — 400-amp services, decorative lighting, barn power, and outbuilding feeders are routine. New construction coordination with framing, finish, and mechanical trades.',
+  },
+  {
+    slug: 'electrician-allegan-mi',
+    name: 'Allegan, MI',
+    county: 'Allegan County',
+    blurb:
+      'Mix of rural homesteads, working farms, and town residential. Common scope: service entrance upgrades, generator installs, panel replacements on older homes, dedicated circuits for shops.',
+  },
+  {
+    slug: 'electrician-byron-center-mi',
+    name: 'Byron Center, MI',
+    county: 'Kent County',
+    blurb:
+      'Established neighborhoods plus newer development on the south end of the metro. Common scope: panel upgrades, EV charging, generator readiness, and lighting projects.',
+  },
+  {
+    slug: 'electrician-saugatuck-mi',
+    name: 'Saugatuck, MI',
+    county: 'Allegan County',
+    blurb:
+      'Lakeshore cottages and historic-district homes with restoration-grade electrical needs. Historic district fixture requirements coordinated during planning.',
+  },
+  {
+    slug: 'electrician-douglas-mi',
+    name: 'Douglas, MI',
+    county: 'Allegan County',
+    blurb:
+      'Residential lakeshore community adjacent to Saugatuck. Similar profile: older homes, occasional historic-district considerations, EV and generator interest.',
+  },
+  {
+    slug: 'electrician-jamestown-mi',
+    name: 'Jamestown, MI',
+    county: 'Ottawa County',
+    blurb: 'Rural and semi-rural homes. Common scope: panel upgrades, EV chargers, and general troubleshooting.',
+  },
+  {
+    slug: 'electrician-grand-haven',
+    name: 'Grand Haven, MI',
+    county: 'Ottawa County',
+    blurb: 'Lakeshore homes and commercial spaces. Common scope: panel upgrades, generators, and repairs.',
+  },
+  {
+    slug: 'electrician-muskegon',
+    name: 'Muskegon, MI',
+    county: 'Muskegon County',
+    blurb: 'Residential and small-commercial work across the Muskegon area. Panel upgrades, repairs, lighting.',
+  },
+];
+
+// Additional service-area cities (no dedicated city page yet but
+// fully covered for booking).
+const additionalAreas = siteData.serviceAreas.filter(
+  (a) => !primaryCities.some((c) => a.startsWith(c.name.replace(', MI', '')))
+);
+
+// Service schema for the page, with all 21 cities listed as areaServed.
+const serviceLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://www.toptier-electrical.com/service-areas#service',
+  name: 'Master Electrician — West Michigan Service Area',
+  description:
+    'Licensed master electrician (MI License #6220430) serving Holland, Grand Rapids, Hudsonville, Zeeland, Ada, Allegan, and 15 more West Michigan communities. Panel upgrades, EV chargers, generators, lighting, repairs.',
+  provider: { '@id': 'https://www.toptier-electrical.com/#localbusiness' },
+  serviceType: 'Electrician',
+  url: 'https://www.toptier-electrical.com/service-areas',
+  areaServed: Object.values(cities).map((c) => ({
+    '@type': 'City',
+    name: `${c.name}, MI`,
+    geo: { '@type': 'GeoCoordinates', latitude: c.geo.latitude, longitude: c.geo.longitude },
+  })),
+  hasMap: siteData.seo.googleBusinessProfileUrl,
+});
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.toptier-electrical.com/' },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Service Areas',
+      item: 'https://www.toptier-electrical.com/service-areas',
+    },
+  ],
+});
 ---
 
 <TTELayout
-  title="Service Areas | Top Tier Electrical West Michigan"
-  description="Top Tier Electrical serves Holland, Grand Rapids, Allegan, Zeeland, Saugatuck, Hudsonville, Byron Center, and 14 more West Michigan communities."
+  title="Master Electrician Near Me | West Michigan Service Areas"
+  description="Licensed master electrician (MI #6220430) serving Holland, Grand Rapids, Hudsonville, Zeeland, Ada & 17 more West MI cities. Same-week scheduling. (616) 334-7159."
   canonical="https://www.toptier-electrical.com/service-areas"
   ogImage="https://www.toptier-electrical.com/images/og/pages/service-areas.png"
+  jsonLd={[breadcrumbLd, serviceLd]}
 >
   <main id="main-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li aria-current="page">Service Areas</li>
+      </ol>
+    </nav>
     <section class="hero">
       <div class="hero-content">
-        <h1>Service Areas</h1>
-        <p>Serving West Michigan homeowners and businesses across the region.</p>
-        <a href="/contact" class="btn btn-primary">Check Your Area</a>
+        <h1>Licensed Master Electrician — West Michigan Service Areas</h1>
+        <p class="hero-sub">
+          One licensed master electrician (MI #6220430) serving 21 communities across Ottawa, Kent, Allegan, and
+          Muskegon counties. Same-week scheduling for most projects. Looking for a licensed electrician near you? Start
+          here.
+        </p>
+        <a
+          href="/booking"
+          class="btn btn-primary"
+          data-ga-event="clear_estimate_click"
+          data-ga-label="service-areas__hero">Get a Clear Estimate</a
+        >
       </div>
     </section>
     <div class="trust-strip">
       <div class="container">
         <div class="trust-badges">
-          <span class="badge">&#10004; Licensed &amp; Insured</span>
-          <span class="badge">MI License #6220430</span>
-          <span class="badge">&#127968; Local West Michigan</span>
+          <span class="badge">&#10004; Master Electrician (MI #6220430)</span>
+          <span class="badge">Licensed &amp; Insured</span>
+          <span class="badge">5.0 ★ ({siteData.seo.googleReviewCount} Google reviews)</span>
+          <span class="badge">Owner-Operated</span>
         </div>
       </div>
     </div>
+
     <section class="container section-pad">
-      <h2>Cities We Serve</h2>
-      <div class="service-cards">
-        <div class="service-card">
-          <h3><a href="/electrician-holland-mi">Holland, MI</a></h3><p>
-            Residential and commercial electrical services in Holland and the surrounding area.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-grand-rapids-mi">Grand Rapids, MI</a></h3><p>
-            Electrical service work throughout Grand Rapids and surrounding communities.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-byron-center-mi">Byron Center, MI</a></h3><p>
-            Home electrical upgrades and troubleshooting across Byron Center.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-zeeland-mi">Zeeland, MI</a></h3><p>
-            Panel upgrades, lighting, and electrical repairs in Zeeland.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-saugatuck-mi">Saugatuck, MI</a></h3><p>
-            Electrical service and upgrades throughout Saugatuck.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-douglas-mi">Douglas, MI</a></h3><p>
-            Electrical service and upgrades throughout Douglas.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-allegan-mi">Allegan, MI</a></h3><p>
-            Residential and commercial electrical in Allegan County.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-hudsonville-mi">Hudsonville, MI</a></h3><p>
-            Electrical service work in Hudsonville and nearby areas.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-ada-mi">Ada, MI</a></h3><p>
-            Residential and commercial electrical services in Ada.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-jamestown-mi">Jamestown, MI</a></h3><p>
-            Panel upgrades, EV chargers, and troubleshooting in Jamestown.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-grand-haven">Grand Haven, MI</a></h3><p>
-            Residential and commercial electrical work along the Grand Haven lakeshore.
-          </p>
-        </div>
-        <div class="service-card">
-          <h3><a href="/electrician-muskegon">Muskegon, MI</a></h3><p>
-            Panel upgrades, repairs, and commercial work for Muskegon-area homes and businesses.
-          </p>
-        </div>
-      </div>
-      <h2 class="mt-8">Full Coverage Area</h2>
+      <h2>Why a Licensed Master Electrician Matters</h2>
       <p>
-        We serve <strong
-          >Holland, Grand Rapids, Allegan, Zeeland, Saugatuck, Douglas, Hudsonville, Byron Center, Muskegon, Grand
-          Haven, Jamestown Township, Ada Township, Forest Hills, Caledonia, Wayland, Plainwell, Fennville, Jenison,
-          Hopkins, Alto, and Comstock Park</strong
-        >, and surrounding West Michigan communities.
+        Michigan licenses electricians at three tiers: apprentice, journeyman, and <strong>master electrician</strong>.
+        The master tier is the highest credential the state issues and is required for anyone designing, planning, or
+        independently contracting electrical work. Carl Nystrom holds Michigan Master Electrician License <strong
+          >#6220430</strong
+        >, verifiable on the <a
+          href="https://www.michigan.gov/lara"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-ga-event="external_link_click"
+          data-ga-label="service-areas__lara">LARA licensing portal</a
+        >.
       </p>
       <p>
-        If you're not sure whether we cover your location, call or text us at <a href="tel:+16163347159"
-          >(616) 334-7159</a
-        > and we'll confirm quickly.
+        Most "electrician near me" results in West Michigan are journeymen working under a master's license or
+        unlicensed handymen. When you book Top Tier Electrical, you get the master directly — for scope, for the
+        install, and for the inspection sign-off.
       </p>
     </section>
-    <section class="cta-section">
-      <h2>Confirm Your Area</h2>
+
+    <section class="container section-pad-tight">
+      <h2>Cities We Serve (with dedicated landing pages)</h2>
       <p>
-        Call <a href="tel:+16163347159">(616) 334-7159</a> or email <a href="mailto:info@toptier-electrical.com"
-          >info@toptier-electrical.com</a
-        > to confirm service availability.
+        Each city below has its own page with local context — common housing stock, typical scope, permit AHJ, and the
+        services we run there most often.
+      </p>
+      <div class="service-cards">
+        {
+          primaryCities.map((city) => (
+            <div class="service-card">
+              <h3>
+                <a href={`/${city.slug}`}>{city.name}</a>
+              </h3>
+              <p class="city-county">{city.county}</p>
+              <p>{city.blurb}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="container section-pad">
+      <h2>Full 21-City Coverage Area</h2>
+      <p>
+        Beyond the cities above with dedicated pages, we also serve these West Michigan communities for residential and
+        light-commercial electrical work. Same licensed master electrician, same workmanship guarantee:
+      </p>
+      <ul class="coverage-grid">
+        {additionalAreas.map((area) => <li>{area}</li>)}
+      </ul>
+      <p class="mt-4">
+        Not sure if your address is in our coverage area? Call or text <a
+          href="tel:+16163347159"
+          data-ga-event="phone_click"
+          data-ga-label="service-areas__coverage">(616) 334-7159</a
+        > and we'll confirm in under a minute.
+      </p>
+    </section>
+
+    <section class="container section-pad-tight">
+      <h2>Where We Are Based</h2>
+      <p>
+        Top Tier Electrical is based in Allegan, MI (Allegan County). The map below shows our base of operations and the
+        broader West Michigan service area we cover. Most communities are within a 45-minute drive.
+      </p>
+      <div class="map-embed">
+        <iframe
+          title="Top Tier Electrical service area — Allegan, MI base"
+          src="https://www.google.com/maps?q=Allegan,+MI&output=embed"
+          width="100%"
+          height="380"
+          style="border:0; border-radius: 8px;"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section class="container section-pad">
+      <h2>What "Master Electrician Near Me" Should Actually Mean</h2>
+      <p>The right local electrician for an in-home project meets all of these, not just one or two:</p>
+      <ul>
+        <li>
+          <strong>State-licensed at the master tier</strong> (Michigan Lic #6220430 in our case — ask for any contractor's
+          number)
+        </li>
+        <li><strong>Insured</strong> — general liability + workers' comp</li>
+        <li><strong>Permits work that requires permits</strong> — panels, services, new circuits</li>
+        <li><strong>Provides a written scope and estimate</strong> before any work starts</li>
+        <li><strong>Stands behind the install</strong> with a workmanship guarantee</li>
+        <li><strong>Verifiable reputation</strong> — public reviews tied to a real business profile</li>
+      </ul>
+      <p>
+        We meet all six. <a href="/reviews">Read our {siteData.seo.googleReviewCount} verified Google reviews</a> for examples
+        of recent West Michigan work — panel upgrades, EV charger installs, generator setups, troubleshooting calls.
+      </p>
+    </section>
+
+    <section class="cta-section">
+      <h2>Ready to Book?</h2>
+      <p>
+        Call or text <a href="tel:+16163347159" data-ga-event="phone_click" data-ga-label="service-areas__cta"
+          >(616) 334-7159</a
+        > to confirm coverage and get on the schedule. We respond to most West Michigan inquiries within one business day.
       </p>
       <a
         href="/booking"
         class="btn btn-primary"
         data-ga-event="clear_estimate_click"
-        data-ga-label="Get a Clear Estimate"
+        data-ga-label="service-areas__cta_bottom"
         data-ga-destination="/booking">Get a Clear Estimate</a
       >
     </section>
+
+    <style>
+      .city-county {
+        font-size: 13px;
+        color: rgba(0, 0, 0, 0.6);
+        margin: -8px 0 8px 0;
+      }
+      .coverage-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 6px 18px;
+        list-style: none;
+        padding: 0;
+        margin: 12px 0;
+      }
+      .coverage-grid li {
+        padding-left: 18px;
+        position: relative;
+      }
+      .coverage-grid li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: rgba(0, 0, 0, 0.6);
+      }
+      .map-embed {
+        margin: 16px 0;
+      }
+    </style>
   </main>
 </TTELayout>
