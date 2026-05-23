@@ -3,4 +3,28 @@ import ServiceCityPage from '~/components/pages/ServiceCityPage.astro';
 import { services, cities } from '~/data/service-city-config';
 ---
 
-<ServiceCityPage service={services['ev-chargers']} city={cities['holland-mi']} />
+<ServiceCityPage service={services['ev-chargers']} city={cities['holland-mi']}>
+  <section class="container section-pad">
+    <h2>Holland BPW $1,000 Rebate — When You Bundle EV Charger + Panel Upgrade</h2>
+    <p>
+      Holland BPW pays a <strong>$1,000 rebate</strong> when a residential panel upgrade to 200 amps is paired with a qualifying
+      EV charger installed within 12 months. If you're installing an EV charger and your existing panel is at or below 150
+      amps, upgrading to 200 amps at the same time captures both the rebate and the headroom your electrical system needs
+      anyway.
+    </p>
+    <p><strong>The combination that qualifies:</strong></p>
+    <ul>
+      <li>Holland BPW electric service (check your utility bill).</li>
+      <li>Panel upgrade to at least 200 amps.</li>
+      <li>Level 2 EV charger installed (NEMA 14-50 outlet or hardwired) within 12 months.</li>
+      <li>Licensed electrician with closed electrical permit.</li>
+      <li>Pre-approval recommended — call BPW at 616-355-1577 before starting.</li>
+    </ul>
+    <p>
+      You can also stack this with the federal IRA tax credit (30% up to $1,000 for the EV charger), Consumers Energy or
+      DTE rebates if you're outside BPW territory, or manufacturer rebates on specific Tesla, ChargePoint, or Wallbox
+      models. See our <a href="/blog/holland-bpw-panel-rebate-guide">full Holland BPW rebate guide</a> for documentation
+      and the application process.
+    </p>
+  </section>
+</ServiceCityPage>

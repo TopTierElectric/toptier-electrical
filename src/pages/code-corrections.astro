@@ -75,12 +75,58 @@ const jsonLd = [
       },
     ],
   }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Do I have to bring my whole house to current code?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Existing wiring is grandfathered to the code in effect when it was installed. You only have to meet current code when doing new work, modifying an existing circuit, or being flagged by an inspector for a specific safety issue.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What electrical code is Michigan currently on?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Michigan adopted the 2020 NEC with state amendments. Most West Michigan AHJs (Holland, Hudsonville, Grand Rapids, Allegan) enforce that edition with local amendments. New work has to meet current code; existing work is grandfathered.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'My insurance company is asking me to correct something. What do I do?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Get a written scope from a licensed electrician, correct the items, and submit a permit-closed inspection certificate or signed work statement to the insurer. We have done this many times for West Michigan policyholders.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need a permit for code-correction work?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'For most corrections involving the panel, service entrance, or new circuits — yes. For point repairs (replacing a single outlet, fixing a reverse-polarity receptacle), usually no. We pull permits when required.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What if my buyer inspector flagged many items?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Most are not dealbreakers. We triage: dealbreakers (Federal Pacific, K&T near insulation, ungrounded service) first; negotiable items (missing GFCIs, two-prong outlets) priced for a closing credit; live-with-it items documented but not addressed.',
+        },
+      },
+    ],
+  }),
 ];
 ---
 
 <TTELayout
-  title="Electrical Code Corrections | West MI Master Electrician"
-  description="NEC violations identified and corrected by a licensed master electrician in West Michigan. Inspection-ready repairs. Call (616) 334-7159."
+  title="Electrical Code Corrections Grand Rapids & Holland MI"
+  description="NEC violations identified and corrected by a licensed master electrician in Grand Rapids, Holland, Hudsonville. Inspection-ready repairs for sales and insurance. Call (616) 334-7159."
   canonical="https://www.toptier-electrical.com/code-corrections"
   ogImage="https://www.toptier-electrical.com/images/og/code-corrections.png"
   jsonLd={jsonLd}
@@ -299,6 +345,36 @@ const jsonLd = [
         data-ga-label="Get a Clear Estimate"
         data-ga-destination="/booking">Get a Clear Estimate</a
       >
+    </section>
+    <section class="container section-pad">
+      <h2>Code Correction FAQs</h2>
+      <p>
+        <strong>Do I have to bring my whole house to current code?</strong><br />No. Existing wiring is grandfathered to
+        the code in effect when it was installed. You only have to meet current code when (a) doing new work, (b)
+        modifying an existing circuit, or (c) being flagged by an inspector for a specific safety issue.
+      </p>
+      <p>
+        <strong>What code is Michigan currently on?</strong><br />Michigan adopted the 2020 NEC with state amendments.
+        Most West Michigan AHJs (Holland, Hudsonville, Grand Rapids, Allegan) enforce that edition with local
+        amendments. New work has to meet current code; existing work is grandfathered.
+      </p>
+      <p>
+        <strong>My insurance company is asking me to correct something — what do I do?</strong><br />Get a written scope
+        from a licensed electrician (with the line item the insurer flagged), correct the items, and submit a
+        permit-closed inspection certificate or signed work statement to the insurer. We've done this many times for
+        West Michigan policyholders.
+      </p>
+      <p>
+        <strong>Do I need a permit for code-correction work?</strong><br />For most corrections involving the panel,
+        service entrance, or new circuits — yes. For point repairs (replacing a single outlet, fixing a reverse-polarity
+        receptacle), usually no. We pull permits when required and coordinate with the local AHJ.
+      </p>
+      <p>
+        <strong>What if my buyer's inspector flagged dozens of items?</strong><br />Most aren't dealbreakers. We triage:
+        dealbreakers (Federal Pacific, K&T near insulation, ungrounded service) first; negotiable items (missing GFCIs,
+        two-prong outlets) priced for a closing credit; live-with-it items documented but not addressed. Cleaner than a
+        vague "fix the electrical" request.
+      </p>
     </section>
   </main>
 </TTELayout>

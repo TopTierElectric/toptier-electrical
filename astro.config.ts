@@ -54,6 +54,17 @@ export default defineConfig({
         if (page.endsWith('/decapcms') || page.includes('/decapcms/')) return false;
         return true;
       },
+      // Stamp every entry with a build-time lastmod. Without lastmod,
+      // Google has no freshness signal and falls back to its own crawl
+      // heuristics — slowing re-indexing after content updates. The
+      // build-time approach refreshes lastmod on every deploy (when
+      // content actually changes), which is a meaningful improvement
+      // over no signal at all. Per-URL granular dates would require
+      // reading each blog post's publishDate; that can come later.
+      serialize(item) {
+        item.lastmod = new Date().toISOString();
+        return item;
+      },
     }),
     mdx(),
     icon({

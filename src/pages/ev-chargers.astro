@@ -77,12 +77,58 @@ const jsonLd = [
       },
     ],
   }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Level 1 or Level 2 — which do I really need?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Level 1 (a standard 120V outlet) adds 3-5 miles of range per hour and works for short daily commutes. Level 2 (240V, hardwired) adds 25-40 miles per hour and is what most West Michigan EV owners actually install.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does my home electrical panel support a Level 2 charger?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'A Level 2 charger draws 16-48 amps continuous. A 100-amp service with central AC and an electric range can be tight; a 200-amp service is comfortable. We do a panel capacity check during the walkthrough.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do you handle the electrical permit?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. We coordinate permits and the final inspection with your local AHJ (Holland, Hudsonville, Grand Rapids) for every install.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Which EV charger brands do you install?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Tesla Wall Connector, ChargePoint Home Flex, Wallbox Pulsar Plus, Grizzl-E, Emporia, and any UL-listed Level 2 unit. Hardwired or NEMA 14-50 outlet.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Are there Michigan rebates for installing an EV charger?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: "Yes. Consumers Energy's PowerMIDrive program offers $500 cash back for a qualifying Level 2 home charger install (up to $1,000 for income-qualified customers). DTE Energy runs a similar program. Holland BPW pairs an EV charger with a 200-amp panel upgrade for a separate $1,000 panel rebate.",
+        },
+      },
+    ],
+  }),
 ];
 ---
 
 <TTELayout
-  title="EV Charger Installation | West MI Master Electrician"
-  description="Level 2 EV charger installs by a licensed master electrician in West Michigan. Capacity check, permit coordination, code-compliant. Call (616) 334-7159."
+  title="Level 2 EV Charger Install Grand Rapids & Holland MI"
+  description="Home Level 2 EV charger installation in Grand Rapids, Holland, Hudsonville. Panel capacity check, permit coordination, Tesla / ChargePoint / Wallbox compatible. Call (616) 334-7159."
   canonical="https://www.toptier-electrical.com/ev-chargers"
   ogImage="https://www.toptier-electrical.com/images/og/ev-chargers.png"
   jsonLd={jsonLd}
@@ -342,6 +388,34 @@ const jsonLd = [
         data-ga-label="Get a Clear Estimate"
         data-ga-destination="/booking">Get a Clear Estimate</a
       >
+    </section>
+    <section class="container section-pad">
+      <h2>EV Charger Installation FAQs</h2>
+      <p>
+        <strong>Level 1 or Level 2 — which do I really need?</strong><br />Level 1 (a standard 120V outlet) adds 3-5
+        miles of range per hour and works for short daily commutes. Level 2 (240V, hardwired) adds 25-40 miles per hour
+        and is what most West Michigan EV owners actually install.
+      </p>
+      <p>
+        <strong>Does my home's electrical panel support a Level 2 charger?</strong><br />A Level 2 charger draws 16-48
+        amps continuous. A 100-amp service with central AC and an electric range can be tight; a 200-amp service is
+        comfortable. We do a panel capacity check during the walkthrough.
+      </p>
+      <p>
+        <strong>Do you handle the electrical permit?</strong><br />Yes. We coordinate permits and the final inspection
+        with your local AHJ (Holland, Hudsonville, Grand Rapids, etc.) for every install.
+      </p>
+      <p>
+        <strong>Which brands do you install?</strong><br />Tesla Wall Connector, ChargePoint Home Flex, Wallbox Pulsar
+        Plus, Grizzl-E, Emporia, and any UL-listed Level 2 unit. Hardwired or NEMA 14-50 outlet, your call.
+      </p>
+      <p>
+        <strong>Are there Michigan rebates for installing an EV charger?</strong><br />Yes. Consumers Energy's
+        <strong>PowerMIDrive program</strong> offers $500 cash back for a qualifying Level 2 home charger install (up to
+        $1,000 for income-qualified customers). DTE Energy runs a similar program. Holland BPW pairs an EV charger with a
+        200-amp panel upgrade for a separate $1,000 panel rebate. We help you submit the paperwork on whichever program applies
+        to your address.
+      </p>
     </section>
   </main>
 </TTELayout>
