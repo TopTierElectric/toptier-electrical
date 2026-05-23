@@ -164,6 +164,13 @@ const electricianLd = JSON.stringify({
       closes: '13:00',
     },
   ],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: siteData.seo.googleReviewAverage.toFixed(1),
+    reviewCount: String(siteData.seo.googleReviewCount),
+    bestRating: '5',
+    worstRating: '1',
+  },
   sameAs: siteData.seo.socialProfiles,
 });
 
