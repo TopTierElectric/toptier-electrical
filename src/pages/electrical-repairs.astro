@@ -77,12 +77,58 @@ const jsonLd = [
       },
     ],
   }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How fast can you respond to an emergency?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'For active fire risk (burning smell, sparking, scorched outlet), call immediately — we triage same-day. Loss-of-power or partial-outage issues are usually next-day. Cosmetic or minor issues schedule into the week.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What does a diagnostic visit actually cover?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Voltage measurement at the panel and at the affected circuit, ground continuity check, breaker condition, and a load test on the suspect circuit. We identify root cause before recommending a fix.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: "What's the most common issue you see in West Michigan homes?",
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Loose connections at outlets and the panel — usually from heat cycling, aging back-stab terminations, or DIY work. They cause flickering, warm faceplates, and tripping breakers.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need AFCI or GFCI protection in an older home?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Older Michigan homes are not required to retroactively meet current code, but adding GFCI in kitchens, bathrooms, garages, and outdoors is the single biggest fire-safety upgrade most homeowners can make. AFCI is required by NEC for new circuits but not retroactive in Michigan for single-family.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can a small repair turn into a bigger project?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sometimes. Pulling a single outlet occasionally reveals a deeper issue — failing terminations across a circuit, a missing neutral, or evidence of past arcing. We walk you through scope changes before continuing.',
+        },
+      },
+    ],
+  }),
 ];
 ---
 
 <TTELayout
-  title="Electrical Repairs in West MI | Master Electrician"
-  description="Electrical repair and troubleshooting by a licensed master electrician in West Michigan. Outlets, breakers, GFCIs, panels. Call (616) 334-7159."
+  title="Electrical Repairs Grand Rapids & Holland MI | Same-Day"
+  description="Same-day electrical troubleshooting in Grand Rapids, Holland, Hudsonville. Outlets, breakers, GFCIs, panel diagnostics. Master electrician. Call (616) 334-7159."
   canonical="https://www.toptier-electrical.com/electrical-repairs"
   ogImage="https://www.toptier-electrical.com/images/og/electrical-repairs.png"
   jsonLd={jsonLd}
@@ -336,6 +382,35 @@ const jsonLd = [
         data-ga-label="Get a Clear Estimate"
         data-ga-destination="/booking">Get a Clear Estimate</a
       >
+    </section>
+    <section class="container section-pad">
+      <h2>Electrical Repair FAQs</h2>
+      <p>
+        <strong>How fast can you respond to an emergency?</strong><br />For active fire risk (burning smell, sparking,
+        scorched outlet), call immediately — we triage same-day. Loss-of-power or partial-outage issues are usually
+        next-day. Cosmetic or minor issues schedule into the week.
+      </p>
+      <p>
+        <strong>What does a diagnostic visit actually cover?</strong><br />Voltage measurement at the panel and at the
+        affected circuit, ground continuity check, breaker condition, and a load test on the suspect circuit. We
+        identify root cause before recommending a fix.
+      </p>
+      <p>
+        <strong>What's the most common issue you see in West Michigan homes?</strong><br />Loose connections at outlets
+        and the panel — usually from heat cycling, aging back-stab terminations, or DIY work. They cause flickering,
+        warm faceplates, and tripping breakers.
+      </p>
+      <p>
+        <strong>Do I need AFCI or GFCI protection in an older home?</strong><br />Older Michigan homes aren't required
+        to retroactively meet current code, but adding GFCI in kitchens, bathrooms, garages, and outdoors is the single
+        biggest fire-safety upgrade most homeowners can make. AFCI is required by NEC for new circuits but not
+        retroactive in Michigan for single-family.
+      </p>
+      <p>
+        <strong>Can a small repair turn into a bigger project?</strong><br />Sometimes. Pulling a single outlet
+        occasionally reveals a deeper issue — failing back-stab terminations across a circuit, a missing neutral, or
+        evidence of past arcing. We walk you through scope changes before continuing.
+      </p>
     </section>
   </main>
 </TTELayout>

@@ -3,4 +3,31 @@ import ServiceCityPage from '~/components/pages/ServiceCityPage.astro';
 import { services, cities } from '~/data/service-city-config';
 ---
 
-<ServiceCityPage service={services['panel-upgrades']} city={cities['holland-mi']} />
+<ServiceCityPage service={services['panel-upgrades']} city={cities['holland-mi']}>
+  <section class="container section-pad">
+    <h2>Holland BPW $1,000 Panel Rebate</h2>
+    <p>
+      Holland Board of Public Works (BPW) offers a <strong>$1,000 rebate</strong> for residential panel upgrades to a minimum
+      200-amp service when paired with an EV charger or a qualifying electric appliance installed within 12 months. If you
+      live in the BPW electric service area and are upgrading your panel anyway, this rebate substantially offsets the project
+      cost.
+    </p>
+    <p><strong>To qualify, you need:</strong></p>
+    <ul>
+      <li>Holland BPW as your electric provider (check your utility bill).</li>
+      <li>A panel upgrade to at least 200 amps (from 100, 125, or 150 amp service).</li>
+      <li>
+        An EV charger <em>or</em> a 240V electric appliance (electric range, dryer, water heater, heat pump, induction cooktop)
+        installed within 12 months of the panel upgrade.
+      </li>
+      <li>Licensed electrician with a closed electrical permit.</li>
+      <li>Pre-approval recommended — call BPW at 616-355-1577 before starting.</li>
+    </ul>
+    <p>
+      We handle the permit, the panel install, the EV charger (if you're bundling), and we provide the documentation
+      packet you need for the BPW application. See our <a href="/blog/holland-bpw-panel-rebate-guide"
+        >full Holland BPW rebate guide</a
+      > for the step-by-step process and what stacks with federal and manufacturer incentives.
+    </p>
+  </section>
+</ServiceCityPage>

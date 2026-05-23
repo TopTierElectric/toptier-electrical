@@ -77,12 +77,58 @@ const jsonLd = [
       },
     ],
   }),
+  JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How do I choose the right generator size?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We calculate load priorities and recommend a size based on what you want powered during an outage.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need a transfer switch?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Transfer equipment is required for safe, code-compliant backup power operation.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do you handle permits?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. We coordinate permit and inspection steps required for the electrical portion.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Will the generator run automatically?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'With the right setup, standby systems can start automatically when utility power drops.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I keep my current panel?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Often yes, but we verify panel condition and capacity during the walkthrough.',
+        },
+      },
+    ],
+  }),
 ];
 ---
 
 <TTELayout
-  title="Generator Installation | West MI Master Electrician"
-  description="Whole-home backup generators sized and installed by a licensed master electrician. Holland, Grand Rapids, Allegan & West MI. Call (616) 334-7159."
+  title="Whole-Home Generator Install Grand Rapids & Holland MI"
+  description="Whole-home backup generators sized and installed by a licensed master electrician. Load planning included. Grand Rapids, Holland. Call (616) 334-7159."
   canonical="https://www.toptier-electrical.com/generators"
   ogImage="https://www.toptier-electrical.com/images/og/generators.png"
   jsonLd={jsonLd}
