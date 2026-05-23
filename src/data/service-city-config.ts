@@ -19,6 +19,11 @@ export type CityConfig = {
   citySlug: string;
   county?: string;
   localContext: string;
+  // Geographic midpoint of the city. Used as `geoMidpoint` on the
+  // Service schema for service-city pages so Google has an explicit
+  // proximity anchor for every "near me" query. Coordinates are
+  // approximate municipal centers (publicly available, GeoNames-grade).
+  geo: { latitude: number; longitude: number };
 };
 
 export const services: Record<string, ServiceConfig> = {
@@ -187,6 +192,7 @@ export const cities: Record<string, CityConfig> = {
     county: 'Ottawa County',
     localContext:
       "Holland's housing stock is a mix of historic downtown homes, mid-century neighborhoods, and newer builds along the lakeshore — each with their own electrical considerations. Older panels, knob-and-tube remnants, and aluminum branch wiring are common in pre-1970s homes; newer construction tends to need EV charging, generator readiness, and smart-home wiring.",
+    geo: { latitude: 42.7875, longitude: -86.1089 },
   },
   'grand-rapids-mi': {
     slug: 'grand-rapids-mi',
@@ -195,6 +201,7 @@ export const cities: Record<string, CityConfig> = {
     county: 'Kent County',
     localContext:
       'Grand Rapids covers everything from older homes in Heritage Hill and Eastown to commercial and light-industrial spaces downtown and along the highways. Service work in older neighborhoods often involves panel modernization and circuit organization; commercial and shop work runs the gamut from LED retrofits to three-phase distribution.',
+    geo: { latitude: 42.9634, longitude: -85.6681 },
   },
   'zeeland-mi': {
     slug: 'zeeland-mi',
@@ -203,6 +210,7 @@ export const cities: Record<string, CityConfig> = {
     county: 'Ottawa County',
     localContext:
       'Zeeland blends compact residential neighborhoods with a strong agricultural and light-manufacturing base. Residential work often centers on panel upgrades and EV charging in established neighborhoods; commercial and ag work tends toward dedicated circuits, motor controls, and reliable lighting in working environments.',
+    geo: { latitude: 42.8125, longitude: -86.0181 },
   },
   'hudsonville-mi': {
     slug: 'hudsonville-mi',
@@ -211,6 +219,7 @@ export const cities: Record<string, CityConfig> = {
     county: 'Ottawa County',
     localContext:
       'Hudsonville is a mix of newer subdivisions, working farms, and pole barns / outbuildings — meaning a lot of variety in scope. Common projects include subpanels for detached buildings, dedicated circuits for shop equipment, EV charging for commuters, and panel upgrades on older homes that have grown into modern electrical loads.',
+    geo: { latitude: 42.8703, longitude: -85.8654 },
   },
   'ada-mi': {
     slug: 'ada-mi',
@@ -219,5 +228,6 @@ export const cities: Record<string, CityConfig> = {
     county: 'Kent County',
     localContext:
       'Ada has a strong custom-home and equestrian presence, which means electrical scope often goes beyond the standard residential package — 400A services, decorative lighting, barn power, and outbuilding feeders are routine here. New construction coordination with framing, finish, and mechanical trades is part of the job.',
+    geo: { latitude: 42.9617, longitude: -85.4936 },
   },
 };

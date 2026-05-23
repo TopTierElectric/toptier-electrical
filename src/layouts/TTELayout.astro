@@ -171,6 +171,11 @@ const electricianLd = JSON.stringify({
     bestRating: '5',
     worstRating: '1',
   },
+  // hasMap: explicit pointer at the Google Maps representation of the
+  // business. Pairs with the embedded map on /contact and the geo
+  // coordinates already declared above. All three signals — schema geo,
+  // hasMap link, and rendered map iframe — reinforce proximity ranking.
+  hasMap: siteData.seo.googleBusinessProfileUrl,
   sameAs: siteData.seo.socialProfiles,
 });
 
