@@ -137,6 +137,49 @@ const electricianLd = JSON.stringify({
     name: siteData.business.founder.name,
     jobTitle: siteData.business.founder.jobTitle,
     worksFor: { '@id': `${siteUrl}/#localbusiness` },
+    // Subject-matter expertise. Read by Google to associate Carl as
+    // a named entity with these domains — strengthens Knowledge Graph
+    // candidacy for "Carl Nystrom electrician" + "{specialty} West
+    // Michigan" type queries. Curated for breadth across the four
+    // service lanes Carl actually works in: residential, residential
+    // remodel, commercial new construction, commercial remodel.
+    knowsAbout: [
+      // Core residential
+      'Residential electrical panel upgrades',
+      '200-amp and 400-amp service installation',
+      'Federal Pacific and Zinsco panel replacement',
+      'Knob-and-tube wiring assessment and remediation',
+      'Aluminum branch wiring remediation',
+      'Residential rewires and code corrections',
+      // EV + electrification
+      'Level 2 EV charging station installation',
+      'Holland BPW $1,000 panel rebate process',
+      'Consumers Energy PowerMIDrive rebate program',
+      // Generators
+      'Whole-home standby generator installation',
+      'Automatic transfer switch installation',
+      'Portable generator interlock systems',
+      // Lighting
+      'LED retrofit and recessed lighting',
+      'Smart lighting controls and dimmer systems',
+      'Outdoor and security lighting design',
+      'Historic-district fixture compliance',
+      // Safety + diagnostics
+      'GFCI and AFCI protection',
+      'Whole-home surge protection',
+      'Electrical troubleshooting and load diagnostics',
+      'Pre-purchase home electrical inspections',
+      // Commercial
+      'Commercial tenant electrical buildouts',
+      'Three-phase commercial distribution',
+      'Commercial LED retrofit ROI',
+      'Restaurant and food-service electrical',
+      // Specialty / regulatory
+      'National Electrical Code (NEC) compliance',
+      'Michigan electrical code and AHJ permit processes',
+      'Electrical load calculations',
+      'Agricultural and equestrian property electrical',
+    ],
   },
   areaServed: siteData.serviceAreas.map((area) => ({ '@type': 'Place', name: area })),
   hasCredential: {
