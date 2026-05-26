@@ -225,9 +225,12 @@ const electricianLd = JSON.stringify({
   // stronger the Knowledge Graph signal. Order doesn't matter; filter
   // removes anything falsy so optional fields don't produce empty
   // strings in the JSON.
-  sameAs: [siteData.seo.googleBusinessProfileUrl, siteData.seo.appleMapsUrl, ...siteData.seo.socialProfiles].filter(
-    Boolean
-  ),
+  sameAs: [
+    siteData.seo.googleBusinessProfileUrl,
+    siteData.seo.appleMapsUrl,
+    siteData.seo.bingMapsUrl,
+    ...siteData.seo.socialProfiles,
+  ].filter(Boolean),
 });
 
 const organizationLd = JSON.stringify({
@@ -248,9 +251,12 @@ const organizationLd = JSON.stringify({
       availableLanguage: 'en',
     },
   ],
-  sameAs: [siteData.seo.googleBusinessProfileUrl, siteData.seo.appleMapsUrl, ...siteData.seo.socialProfiles].filter(
-    Boolean
-  ),
+  sameAs: [
+    siteData.seo.googleBusinessProfileUrl,
+    siteData.seo.appleMapsUrl,
+    siteData.seo.bingMapsUrl,
+    ...siteData.seo.socialProfiles,
+  ].filter(Boolean),
 });
 
 const websiteLd = JSON.stringify({
