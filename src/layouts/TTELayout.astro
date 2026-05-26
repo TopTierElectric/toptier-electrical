@@ -336,6 +336,7 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
     <meta name="geo.placename" content="West Michigan" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="en" href={canonicalUrl} />
+    <link rel="alternate" type="application/rss+xml" title="Top Tier Electrical Blog" href={`${siteUrl}/rss.xml`} />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin-wght-normal.woff2" crossorigin />
     {
       gaMeasurementId && (
@@ -433,6 +434,8 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
           <div class="nav-cta">
             <a
               href="tel:+16163347159"
+              data-ga-event="phone_click"
+              data-ga-label="TTELayout__phone"
               class="btn btn-ghost"
               data-ga-event="phone_click"
               data-ga-label="Header Call"
@@ -477,6 +480,8 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
       <a
         href="tel:+16163347159"
         data-ga-event="phone_click"
+        data-ga-label="TTELayout__phone"
+        data-ga-event="phone_click"
         data-ga-label="Sticky Call"
         data-ga-destination="tel:+16163347159"
       >
@@ -509,7 +514,9 @@ const jsonLdScripts = rawJsonLdScripts.filter((schema) => {
           </div>
           <div class="footer-col">
             <h3>Contact</h3>
-            <p><a href="tel:+16163347159">(616) 334-7159</a></p>
+            <p>
+              <a href="tel:+16163347159" data-ga-event="phone_click" data-ga-label="TTELayout__phone">(616) 334-7159</a>
+            </p>
             <p><a href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a></p>
             <p>Mon–Fri 8am–6pm · Sat 9am–1pm</p>
           </div>

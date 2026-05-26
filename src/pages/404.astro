@@ -16,17 +16,75 @@ import TTELayout from '~/layouts/TTELayout.astro';
       </div>
     </section>
     <section class="container section-pad text-center">
-      <h2>Looking for Something?</h2>
-      <p>Here are some helpful links:</p>
+      <h2>Search the Site</h2>
+      <form
+        action="https://www.google.com/search"
+        method="get"
+        class="search-form"
+        role="search"
+        aria-label="Search site via Google"
+      >
+        <input type="hidden" name="as_sitesearch" value="toptier-electrical.com" />
+        <label class="sr-only" for="not-found-search">Search</label>
+        <input
+          type="search"
+          id="not-found-search"
+          name="q"
+          placeholder="Search the site (e.g. panel upgrade, EV charger)"
+          required
+          aria-required="true"
+        />
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+      <p class="muted mt-4">Or jump to a popular page:</p>
       <ul class="list-none p-0 flex flex-wrap gap-4 justify-center">
         <li><a href="/services">Services</a></li>
-        <li><a href="/projects">Projects</a></li>
+        <li><a href="/panel-upgrades">Panel Upgrades</a></li>
+        <li><a href="/ev-chargers">EV Chargers</a></li>
+        <li><a href="/generators">Generators</a></li>
+        <li><a href="/electrical-repairs">Repairs</a></li>
+        <li><a href="/service-areas">Service Areas</a></li>
+        <li><a href="/reviews">Reviews</a></li>
         <li><a href="/blog">Blog</a></li>
-        <li><a href="/gallery">Gallery</a></li>
-        <li><a href="/faq">FAQ</a></li>
         <li><a href="/contact">Contact</a></li>
         <li><a href="/booking">Get a Clear Estimate</a></li>
       </ul>
+      <p class="mt-6">
+        Still can't find what you need? Call <a
+          href="tel:+16163347159"
+          data-ga-event="phone_click"
+          data-ga-label="404__cta">(616) 334-7159</a
+        > and we'll help.
+      </p>
     </section>
+    <style>
+      .search-form {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 560px;
+        margin: 12px auto 0;
+      }
+      .search-form input[type='search'] {
+        flex: 1;
+        min-width: 220px;
+        padding: 10px 14px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        font-size: 16px;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
   </main>
 </TTELayout>

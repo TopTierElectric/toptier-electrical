@@ -39,6 +39,27 @@ const speakableLd = `{
     "cssSelector": ["h1", ".hero-sub", ".trust-strip"]
   }
 }`;
+
+// HasOfferCatalog declares Carl's service catalog as a structured
+// list of Offer items, each pointing at its service hub. Helps
+// Google understand the full service surface and surface specific
+// services in queries like "panel upgrade near me" or "EV charger
+// installation Grand Rapids".
+const offerCatalogLd = `{
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  "@id": "https://www.toptier-electrical.com/#offer-catalog",
+  "name": "Top Tier Electrical — Services",
+  "itemListElement": [
+    {"@type": "Offer","name": "Electrical Panel Upgrade","url": "https://www.toptier-electrical.com/panel-upgrades","itemOffered": {"@type": "Service","name": "Electrical Panel Upgrade","provider": {"@id": "https://www.toptier-electrical.com/#localbusiness"}}},
+    {"@type": "Offer","name": "EV Charger Installation","url": "https://www.toptier-electrical.com/ev-chargers","itemOffered": {"@type": "Service","name": "Level 2 EV Charger Installation","provider": {"@id": "https://www.toptier-electrical.com/#localbusiness"}}},
+    {"@type": "Offer","name": "Whole-Home Generator Installation","url": "https://www.toptier-electrical.com/generators","itemOffered": {"@type": "Service","name": "Whole-Home Generator Installation","provider": {"@id": "https://www.toptier-electrical.com/#localbusiness"}}},
+    {"@type": "Offer","name": "Electrical Repairs","url": "https://www.toptier-electrical.com/electrical-repairs","itemOffered": {"@type": "Service","name": "Electrical Troubleshooting and Repair","provider": {"@id": "https://www.toptier-electrical.com/#localbusiness"}}},
+    {"@type": "Offer","name": "Lighting Installation","url": "https://www.toptier-electrical.com/lighting","itemOffered": {"@type": "Service","name": "LED and Recessed Lighting Installation","provider": {"@id": "https://www.toptier-electrical.com/#localbusiness"}}},
+    {"@type": "Offer","name": "Electrical Code Corrections","url": "https://www.toptier-electrical.com/code-corrections","itemOffered": {"@type": "Service","name": "NEC Code Corrections","provider": {"@id": "https://www.toptier-electrical.com/#localbusiness"}}},
+    {"@type": "Offer","name": "Commercial Electrical","url": "https://www.toptier-electrical.com/commercial","itemOffered": {"@type": "Service","name": "Commercial Electrical Services","provider": {"@id": "https://www.toptier-electrical.com/#localbusiness"}}}
+  ]
+}`;
 ---
 
 <TTELayout
@@ -46,7 +67,7 @@ const speakableLd = `{
   description="Licensed master electrician in Grand Rapids, Holland & Hudsonville MI. Panel upgrades, EV chargers, repairs. Same-week service. Call (616) 334-7159."
   canonical="https://www.toptier-electrical.com/"
   ogImage="https://www.toptier-electrical.com/images/og/pages/home.png"
-  jsonLd={[faqLd, speakableLd]}
+  jsonLd={[faqLd, speakableLd, offerCatalogLd]}
 >
   <link
     slot="head"
@@ -85,7 +106,9 @@ const speakableLd = `{
               data-ga-label="Get a Clear Estimate"
               data-ga-destination="/booking">Get a Clear Estimate</a
             >
-            <a href="tel:+16163347159" class="btn btn-ghost">Call (616) 334-7159</a>
+            <a href="tel:+16163347159" data-ga-event="phone_click" data-ga-label="index__phone" class="btn btn-ghost"
+              >Call (616) 334-7159</a
+            >
           </div>
           <ul class="hero-trust" aria-label="Credentials and trust signals">
             <li>
@@ -405,9 +428,8 @@ const speakableLd = `{
     <section class="cta-section">
       <h2>Ready to Get Started?</h2>
       <p>
-        Call <a href="tel:+16163347159">(616) 334-7159</a> or email <a href="mailto:info@toptier-electrical.com"
-          >info@toptier-electrical.com</a
-        > to confirm scope and scheduling.
+        Call <a href="tel:+16163347159" data-ga-event="phone_click" data-ga-label="index__phone">(616) 334-7159</a> or email
+        <a href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a> to confirm scope and scheduling.
       </p>
       <a
         href="/booking"
