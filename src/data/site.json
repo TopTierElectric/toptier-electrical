@@ -21,7 +21,8 @@
     },
     "founder": {
       "name": "Carl",
-      "jobTitle": "Master Electrician, Owner"
+      "jobTitle": "Master Electrician, Owner",
+      "sameAs": ["https://www.linkedin.com/in/carl-nystrom-93317011b/"]
     }
   },
   "site": {
