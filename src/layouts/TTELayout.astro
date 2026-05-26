@@ -137,6 +137,12 @@ const electricianLd = JSON.stringify({
     name: siteData.business.founder.name,
     jobTitle: siteData.business.founder.jobTitle,
     worksFor: { '@id': `${siteUrl}/#localbusiness` },
+    // Carl's personal verified profiles (currently just LinkedIn).
+    // Distinct from the Electrician/Organization sameAs above —
+    // those reference the business, this references the human
+    // entity. Pairs with knowsAbout below for full Knowledge Graph
+    // candidacy on "Carl Nystrom electrician" queries.
+    sameAs: siteData.business.founder.sameAs,
     // Subject-matter expertise. Read by Google to associate Carl as
     // a named entity with these domains — strengthens Knowledge Graph
     // candidacy for "Carl Nystrom electrician" + "{specialty} West
