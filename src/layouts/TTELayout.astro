@@ -219,7 +219,15 @@ const electricianLd = JSON.stringify({
   // coordinates already declared above. All three signals — schema geo,
   // hasMap link, and rendered map iframe — reinforce proximity ranking.
   hasMap: siteData.seo.googleBusinessProfileUrl,
-  sameAs: siteData.seo.socialProfiles,
+  // sameAs: every verified profile / map listing for the business.
+  // Google reads sameAs to cross-reference entity identity — the more
+  // authoritative sources that agree this is the same business, the
+  // stronger the Knowledge Graph signal. Order doesn't matter; filter
+  // removes anything falsy so optional fields don't produce empty
+  // strings in the JSON.
+  sameAs: [siteData.seo.googleBusinessProfileUrl, siteData.seo.appleMapsUrl, ...siteData.seo.socialProfiles].filter(
+    Boolean
+  ),
 });
 
 const organizationLd = JSON.stringify({
@@ -240,7 +248,9 @@ const organizationLd = JSON.stringify({
       availableLanguage: 'en',
     },
   ],
-  sameAs: siteData.seo.socialProfiles,
+  sameAs: [siteData.seo.googleBusinessProfileUrl, siteData.seo.appleMapsUrl, ...siteData.seo.socialProfiles].filter(
+    Boolean
+  ),
 });
 
 const websiteLd = JSON.stringify({
