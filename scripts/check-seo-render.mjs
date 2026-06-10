@@ -25,6 +25,16 @@ const warnings = [];
 const excludedRoutePrefixes = ['/tag/', '/category/', '/decapcms'];
 const excludedExactRoutes = ['/404'];
 
+const decodeEntities = (s) =>
+  s
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)));
+
 const getRoute = (file) => {
   const rel = path.relative(distDir, file).replace(/\\/g, '/');
   if (rel === 'index.html') return '/';
@@ -41,13 +51,13 @@ for (const file of htmlFiles) {
   if (isExcluded) continue;
 
   const titleMatch = html.match(/<title>([\s\S]*?)<\/title>/i);
-  const title = titleMatch?.[1]?.trim() ?? '';
+  const title = decodeEntities(titleMatch?.[1]?.trim() ?? '');
   if (!title) issues.push(`Missing <title>: ${route}`);
 
   const metaMatch =
     html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["'][^>]*>/i) ||
     html.match(/<meta[^>]*content=["']([^"']*)["'][^>]*name=["']description["'][^>]*>/i);
-  const meta = metaMatch?.[1]?.trim() ?? '';
+  const meta = decodeEntities(metaMatch?.[1]?.trim() ?? '');
   if (!meta) {
     if (route.startsWith('/blog/')) warnings.push(`Missing meta description: ${route}`);
     else issues.push(`Missing meta description: ${route}`);
