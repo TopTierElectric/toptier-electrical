@@ -98,6 +98,7 @@
     "fast-xml-parser": "^5.7.2",
     "picomatch": "^4.0.4",
     "yaml": "^2.8.3",
-    "svgo": "^4.0.1"
+    "svgo": "^4.0.1",
+    "esbuild": "^0.28.1"
   }
 }
