@@ -239,6 +239,216 @@ Confusing these is a common code-correction finding in older homes. Sub-panels w
     relatedPosts: ['aluminum-wiring-what-to-do', 'flickering-lights-when-to-worry'],
     relatedServices: [{ href: '/code-corrections', label: 'Electrical code corrections' }],
   },
+  {
+    slug: 'ampacity',
+    term: 'Ampacity',
+    shortDef:
+      'Ampacity is the maximum current, in amperes, a conductor can carry continuously without exceeding its temperature rating. Governed by NEC Article 310 and Table 310.16.',
+    body: `Ampacity is the safe continuous current-carrying capacity of a wire. Exceed it and the conductor overheats, degrades its insulation, and eventually becomes a fire risk — which is exactly what a correctly sized breaker is there to prevent.
+
+Ampacity depends on the conductor material (copper vs. aluminum), its cross-sectional area (AWG size), the insulation temperature rating (60°C, 75°C, or 90°C), and the installation conditions. NEC Table 310.16 is the reference chart electricians use; for example, 12 AWG copper at the 60°C column is rated 20 amps, which is why a standard 20-amp circuit uses 12-gauge wire.
+
+Two adjustments routinely reduce the usable ampacity below the table value: high ambient temperature and bundling more than three current-carrying conductors together. Both force a derate, which is why a wire that looks adequate on paper can be undersized in a hot attic or a packed conduit.
+
+Most residential overheating and nuisance-tripping problems trace back to a circuit being loaded near or beyond its conductor's ampacity. A proper load calculation prevents it.`,
+    relatedTerms: ['load-calculation', 'voltage-drop', 'wire-derating'],
+    relatedPosts: ['100-amp-vs-200-amp-panel', 'why-breakers-trip'],
+    relatedServices: [
+      { href: '/panel-upgrades', label: 'Electrical panel upgrades' },
+      { href: '/electrical-repairs', label: 'Electrical repairs and troubleshooting' },
+    ],
+  },
+  {
+    slug: 'wire-derating',
+    term: 'Wire Derating (Ampacity Adjustment)',
+    shortDef:
+      'Derating is the required reduction of a conductor’s rated ampacity to account for high ambient temperature or bundling. Specified in NEC 310.15.',
+    body: `Derating is the code-required step of reducing a wire's table ampacity when real-world conditions would make it run hotter than the table assumes. Skipping it is one of the more common — and least visible — code violations.
+
+NEC 310.15 covers two main adjustments. **Ambient temperature correction** applies when the wire runs through a space hotter than the 30°C (86°F) baseline — an uninsulated attic in summer can hit 50°C and knock 20–30% off a conductor's rating. **Conductor bundling adjustment** applies when more than three current-carrying conductors share a raceway or cable; packing in more wires traps heat, so ampacity is reduced on a sliding scale (e.g., 4–6 conductors derate to 80%).
+
+Both factors are multiplied together, and the result must still support the breaker protecting the circuit. This is why an electrician designing a new circuit doesn't just read the ampacity table — they confirm the install conditions first. It's also why DIY additions that cram extra cables into an existing conduit can quietly create an overheating hazard even though every individual wire "looks" the right gauge.`,
+    relatedTerms: ['ampacity', 'load-calculation'],
+    relatedPosts: ['why-breakers-trip', 'burning-smell-from-outlet'],
+    relatedServices: [{ href: '/code-corrections', label: 'Electrical code corrections' }],
+  },
+  {
+    slug: 'evse',
+    term: 'EVSE (Electric Vehicle Supply Equipment)',
+    abbreviation: 'EVSE',
+    shortDef:
+      'EVSE is the technical term for an EV "charger" — the equipment that safely delivers power to the vehicle. Installation is governed by NEC Article 625.',
+    body: `EVSE — Electric Vehicle Supply Equipment — is the proper name for what most people call an EV charger. The actual charger is inside the vehicle; the EVSE is the wall- or pedestal-mounted equipment that supplies and controls the power feeding it.
+
+EVSE comes in three levels. **Level 1** plugs into a standard 120V outlet and adds roughly 3–5 miles of range per hour. **Level 2** runs on a 240V circuit and adds 20–40 miles per hour — the practical choice for home charging. **Level 3 / DC fast charging** is commercial-grade and not a residential install.
+
+NEC Article 625 governs EVSE installation. Key requirements include a dedicated branch circuit, GFCI protection for receptacle-fed units, and accounting for the EVSE as a continuous load — meaning the circuit must be sized to 125% of the unit's rated current. That last rule is why a 48-amp EVSE needs a 60-amp circuit, and why a load calculation matters before adding one to an existing panel.
+
+Hardwired Level 2 EVSE generally allows higher current and a cleaner install than a plug-in (NEMA 14-50) unit, which trades some capacity for portability.`,
+    relatedTerms: ['load-calculation', 'demand-factor'],
+    relatedPosts: [
+      'level-1-vs-level-2-ev-charger',
+      'do-i-need-a-panel-upgrade-for-an-ev-charger',
+      'where-to-install-ev-charger',
+    ],
+    relatedServices: [
+      { href: '/ev-chargers', label: 'EV charger installation' },
+      { href: '/panel-upgrades', label: 'Electrical panel upgrades' },
+    ],
+  },
+  {
+    slug: 'sub-panel',
+    term: 'Sub-Panel (Subpanel)',
+    shortDef:
+      'A sub-panel is a secondary breaker panel fed from the main panel, used to distribute circuits to a remote area such as a garage, shop, or addition. Neutrals and grounds must be separated per NEC 250.24 and 408.40.',
+    body: `A sub-panel is a smaller breaker panel fed from the main service panel by a feeder. It extends capacity and circuit organization to a part of the property that would otherwise need long home runs — a detached garage, a pole barn, a finished basement, or an addition.
+
+The single most important — and most commonly botched — rule for sub-panels is that the **neutral (grounded) and ground (grounding) bus bars must be kept separate**. They are bonded together at exactly one place in the system: the main service equipment (the main bonding jumper). At a sub-panel, the neutral bus must "float" on insulated standoffs, and the equipment grounds land on a separate bus bonded to the enclosure. NEC 250.24 and 408.40 govern this.
+
+When a sub-panel's neutral and ground are improperly bonded together, normal neutral current flows on the grounding conductors and metal enclosures — energizing things that should never carry current and defeating the safety system. It's one of the most frequent findings in older homes and DIY outbuilding feeds we correct across West Michigan.
+
+A detached-building sub-panel also needs its own grounding electrode (ground rod) per NEC 250.32.`,
+    relatedTerms: ['bonding-vs-grounding', 'service-entrance', 'load-calculation'],
+    relatedPosts: ['aluminum-wiring-what-to-do'],
+    relatedServices: [
+      { href: '/code-corrections', label: 'Electrical code corrections' },
+      { href: '/dedicated-circuits', label: 'Dedicated circuits' },
+    ],
+  },
+  {
+    slug: 'double-tapped-breaker',
+    term: 'Double-Tapped Breaker',
+    shortDef:
+      'A double-tap is two wires landed under one breaker terminal that is only listed for one. A common code violation and home-inspection flag under NEC 110.14.',
+    body: `A double-tapped breaker is one where two conductors are clamped under a single breaker terminal that the manufacturer only listed for one wire. It's one of the most frequent items written up on home inspections, and for good reason.
+
+NEC 110.14 requires that conductors be terminated only in the manner the equipment is listed for. Most residential breakers are listed for a single conductor. When two are forced under one screw, neither is reliably clamped — one works loose over time, and a loose connection under load means heat, arcing, and eventually a burned bus or breaker. A few specific breaker models (certain Square D and others) are listed for two wires; most are not.
+
+The fix is straightforward: either add a breaker for the second circuit, or join the two conductors to a single "pigtail" with a listed connector and land the pigtail under the breaker. It's a small repair that resolves a real fire risk.
+
+Double-taps usually appear when someone added a circuit without room in the panel — which is often itself a sign the panel is full and a service or panel upgrade is the real answer.`,
+    relatedTerms: ['load-calculation', 'bonding-vs-grounding'],
+    relatedPosts: ['why-breakers-trip', 'burning-smell-from-outlet'],
+    relatedServices: [
+      { href: '/electrical-repairs', label: 'Electrical repairs and troubleshooting' },
+      { href: '/panel-upgrades', label: 'Electrical panel upgrades' },
+    ],
+  },
+  {
+    slug: 'back-feeding',
+    term: 'Back-Feeding',
+    shortDef:
+      'Back-feeding is pushing power from a generator into a home’s wiring without a transfer switch — illegal and lethal to utility workers. NEC 702 requires proper transfer equipment.',
+    body: `Back-feeding is the dangerous practice of energizing a home's wiring from a portable generator without proper transfer equipment — typically by means of a "suicide cord" with male plugs on both ends, or by improperly wiring a generator into the panel.
+
+It is lethal for two reasons. First, the home's main breaker is usually still closed, so the generator's power flows backward through the service and out onto the utility lines — where it can be stepped back up to thousands of volts by the distribution transformer and electrocute a lineworker who believes the line is dead. Second, when utility power returns, it collides with the running generator, destroying equipment and starting fires.
+
+NEC 702 (Optional Standby Systems) requires that any generator connection to a home's wiring go through listed transfer equipment — either an automatic transfer switch or, at minimum, a manual transfer switch or a panel interlock kit that makes it physically impossible for the generator and the utility to be connected at the same time.
+
+The takeaway: every safe, legal generator hookup includes transfer equipment. There is no acceptable shortcut.`,
+    relatedTerms: ['automatic-transfer-switch'],
+    relatedPosts: [
+      'automatic-transfer-switch-explained',
+      'whole-home-vs-portable-generator',
+      'how-to-size-a-whole-home-generator',
+    ],
+    relatedServices: [{ href: '/generators', label: 'Generator installation' }],
+  },
+  {
+    slug: 'surge-protective-device',
+    term: 'SPD (Surge-Protective Device)',
+    abbreviation: 'SPD',
+    shortDef:
+      'An SPD diverts voltage spikes away from a home’s wiring and electronics. The 2020 NEC (230.67) requires a Type 1 or Type 2 SPD on new and replacement dwelling services.',
+    body: `A Surge-Protective Device (SPD) clamps and diverts transient voltage spikes — from lightning, utility switching, and large motors cycling — before they reach the sensitive electronics throughout a home.
+
+There are three types by install location. **Type 1** installs on the line side of the main breaker (between the meter and panel) and handles the largest external surges, including nearby lightning. **Type 2** installs on the load side, inside or beside the panel, and is the most common whole-home choice. **Type 3** are point-of-use devices like plug-in strips, which only protect a single location and should never be the only layer.
+
+A significant code change: the 2020 NEC added 230.67, which **requires** a Type 1 or Type 2 SPD on the service equipment of new and replacement dwelling-unit services. So any panel upgrade done to current code now includes whole-home surge protection by default.
+
+Whole-home surge protection is inexpensive relative to what it protects — HVAC control boards, well pumps, appliances with electronics, computers, and the growing list of smart-home devices that are all vulnerable to a spike that a power strip won't stop.`,
+    relatedTerms: ['service-entrance', 'voltage-drop'],
+    relatedPosts: ['blog-surge-protection'],
+    relatedServices: [
+      { href: '/panel-upgrades', label: 'Electrical panel upgrades' },
+      { href: '/electrical-repairs', label: 'Electrical repairs and troubleshooting' },
+    ],
+  },
+  {
+    slug: 'nm-b-cable',
+    term: 'NM-B Cable (Romex)',
+    abbreviation: 'NM-B',
+    shortDef:
+      'NM-B is the standard nonmetallic-sheathed cable used for most residential branch circuits, commonly called by the brand name Romex. Governed by NEC Article 334.',
+    body: `NM-B is nonmetallic-sheathed cable — the flat plastic-jacketed wiring inside most residential walls. "Romex" is a brand name (Southwire) that became the common term for it, the way "Band-Aid" stands in for adhesive bandages.
+
+A typical NM-B run contains insulated current-carrying conductors plus a bare equipment grounding conductor, all in a single jacket. The jacket is color-coded by size for quick identification: white for 14 AWG (15-amp circuits), yellow for 12 AWG (20-amp), orange for 10 AWG (30-amp). The "B" designates the modern 90°C-rated insulation, though NM-B's ampacity must be used at the 60°C column per NEC 334.80 — a frequent source of confusion when sizing.
+
+NEC Article 334 governs where NM-B can and can't be used. It's fine in dry, protected interior locations but **not** permitted where exposed to physical damage, in wet or damp locations, or embedded in masonry — those call for conduit and individual conductors, or cable rated for the condition (like UF-B for direct burial).
+
+Knob-and-tube and old cloth-jacketed NM are the wiring types NM-B replaced; finding them is usually the start of a code-correction conversation.`,
+    relatedTerms: ['ampacity', 'wire-derating', 'knob-and-tube'],
+    relatedPosts: ['knob-and-tube-wiring-what-to-do', 'aluminum-wiring-what-to-do'],
+    relatedServices: [{ href: '/code-corrections', label: 'Electrical code corrections' }],
+  },
+  {
+    slug: 'service-disconnect',
+    term: 'Service Disconnect (Main Breaker)',
+    shortDef:
+      'The service disconnect is the single switch that cuts all power entering a building. NEC 230.70 requires it be readily accessible and clearly marked; the 2020 NEC added an outdoor-disconnect requirement.',
+    body: `The service disconnect — usually the main breaker at the top of the panel — is the one device that shuts off all power entering a building in a single motion. In an emergency, it's what a homeowner or a first responder reaches for.
+
+NEC 230.70 requires the service disconnect to be installed in a readily accessible location, either outside or inside nearest the point where the service conductors enter. It must be clearly marked as the service disconnect, and 230.71 limits how many disconnects can serve one service (the old "six-throw" rule was tightened in the 2020 NEC to require a single main disconnect for most new services).
+
+A significant recent change: the 2020 NEC introduced an **emergency disconnect** requirement (230.85) for one- and two-family dwellings, mandating a disconnect in a readily accessible outdoor location. This lets firefighters de-energize a home without entering it — which is why newer and upgraded services often have an exterior disconnect ahead of the meter or panel.
+
+If your panel has no main breaker, multiple disconnects, or an inaccessible shutoff, that's a code-correction item worth addressing at the next service upgrade.`,
+    relatedTerms: ['service-entrance', 'bonding-vs-grounding'],
+    relatedPosts: ['100-amp-vs-200-amp-panel', '200-amp-vs-400-amp-service'],
+    relatedServices: [
+      { href: '/panel-upgrades', label: 'Electrical panel upgrades' },
+      { href: '/code-corrections', label: 'Electrical code corrections' },
+    ],
+  },
+  {
+    slug: 'knob-and-tube',
+    term: 'Knob-and-Tube Wiring',
+    abbreviation: 'K&T',
+    shortDef:
+      'Knob-and-tube is an early-1900s wiring method using ceramic knobs and tubes to run ungrounded conductors. Not inherently unsafe, but it has no ground, can’t be buried in insulation, and is a frequent insurance and code concern.',
+    body: `Knob-and-tube (K&T) is the wiring method used in homes built roughly from 1900 to the 1940s. Individual conductors are run through the framing, supported by ceramic knobs and protected through joists by ceramic tubes, with the wires held away from surfaces to dissipate heat.
+
+K&T is not automatically dangerous — much of it has run safely for a century. But it has real limitations modern homes outgrow. It has **no equipment grounding conductor**, so it can't safely serve grounded receptacles or modern electronics. Its rubberized insulation becomes brittle with age and heat. Critically, K&T relies on open air for cooling, so it **cannot be buried in thermal insulation** — a major problem when an old home gets its attic and walls insulated, which traps heat and accelerates breakdown.
+
+Insurers increasingly refuse or surcharge policies on homes with active K&T, and any renovation that opens walls typically triggers a requirement to replace the affected runs. The usual remediation is a partial or full rewire to modern NM-B cable, often staged room by room.
+
+We assess K&T scope honestly — what's live, what's abandoned, and what actually needs to come out — before recommending a plan.`,
+    relatedTerms: ['nm-b-cable', 'bonding-vs-grounding', 'ampacity'],
+    relatedPosts: ['knob-and-tube-wiring-what-to-do', 'buying-house-electrical-concerns'],
+    relatedServices: [
+      { href: '/code-corrections', label: 'Electrical code corrections' },
+      { href: '/electrical-repairs', label: 'Electrical repairs and troubleshooting' },
+    ],
+  },
+  {
+    slug: 'aluminum-branch-wiring',
+    term: 'Aluminum Branch Wiring',
+    shortDef:
+      'Solid aluminum branch wiring, common in homes built 1965–1973, expands and oxidizes at connections, creating a fire risk. Remediated with listed AL/CU connectors (pigtailing) or COPALUM/AlumiConn.',
+    body: `Aluminum branch-circuit wiring was widely installed in homes built from about 1965 to 1973, when copper prices spiked. It's distinct from the aluminum service-entrance and feeder conductors still used safely today — the concern is specifically the small-gauge solid aluminum used for 15- and 20-amp branch circuits to receptacles and switches.
+
+The problem is at the connections, not the wire itself. Aluminum expands and contracts more than copper as it heats and cools under load, which slowly loosens terminations. It also oxidizes, and aluminum oxide is resistant — raising resistance, which raises heat, in a worsening cycle. The result is overheated outlets and switches, a documented fire risk the CPSC has studied extensively.
+
+Approved remediation does not necessarily mean a full rewire. The accepted methods are **pigtailing** with connectors specifically listed for aluminum-to-copper transitions (AlumiConn lugs or COPALUM crimps applied by a certified installer), or replacing devices with ones rated **CO/ALR**. What's *not* acceptable is ignoring it or using standard wire nuts and standard receptacles.
+
+Warning signs include warm cover plates, flickering, a faint burning smell, or outlets that have stopped working. Any of those on a 1965–1973 home warrants an assessment.`,
+    relatedTerms: ['bonding-vs-grounding', 'ampacity', 'nm-b-cable'],
+    relatedPosts: ['aluminum-wiring-what-to-do', 'buying-house-electrical-concerns', 'burning-smell-from-outlet'],
+    relatedServices: [
+      { href: '/code-corrections', label: 'Electrical code corrections' },
+      { href: '/electrical-repairs', label: 'Electrical repairs and troubleshooting' },
+    ],
+  },
 ];
 
 export const glossaryBySlug = Object.fromEntries(glossary.map((e) => [e.slug, e]));
