@@ -1,0 +1,23 @@
+---
+import ServiceCityPage from '~/components/pages/ServiceCityPage.astro';
+import { services, cities } from '~/data/service-city-config';
+---
+
+<ServiceCityPage service={services['generators']} city={cities['holland-mi']}>
+  <section class="container section-pad">
+    <h2>Why Holland Homes Add Standby Power</h2>
+    <p>
+      Lakeshore weather drives the demand here. Holland sits in the path of lake-effect storms and the high winds that
+      come off Lake Michigan, and the older overhead distribution in established neighborhoods is exactly what comes
+      down first. A standby generator keeps the furnace, sump, well, and fridge running through a multi-day outage
+      instead of leaving you racing to a hotel.
+    </p>
+    <p>
+      If your home is on Holland BPW, the same panel that qualifies for the <a
+        href="/blog/holland-bpw-panel-rebate-guide">$1,000 BPW rebate</a
+      > is often the right time to add the generator interconnect — both touch the service, so doing them together saves
+      a second mobilization. See our <a href="/panel-upgrades-holland-mi">Holland panel upgrade page</a> if your service
+      is also due.
+    </p>
+  </section>
+</ServiceCityPage>
