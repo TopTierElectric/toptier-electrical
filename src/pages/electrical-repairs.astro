@@ -1,6 +1,7 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
 import { buildSubjectOfArticles } from '~/data/blog-related-services';
+import siteData from '~/data/site.json';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -212,7 +213,7 @@ const jsonLd = [
           <figcaption>— Colten DeHaan · wiring, switches, panel repair</figcaption>
         </figure>
         <p class="muted">
-          See all <a href="/reviews">19 verified Google reviews</a> from West Michigan customers.
+          See all <a href="/reviews">{siteData.seo.googleReviewCount} verified Google reviews</a> from West Michigan customers.
         </p>
         <style>
           .hub-review {
