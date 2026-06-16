@@ -71,8 +71,8 @@ const personLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Person',
   '@id': 'https://www.toptier-electrical.com/#owner',
-  name: 'Carl, Top Tier Electrical',
-  jobTitle: 'Licensed Electrician (Owner-Operator)',
+  name: 'Carl Nystrom',
+  jobTitle: 'Master Electrician, Owner',
   worksFor: { '@id': 'https://www.toptier-electrical.com/#localbusiness' },
   hasCredential: {
     '@type': 'EducationalOccupationalCredential',
@@ -155,7 +155,7 @@ const breadcrumbItems = cluster
         {
           post.publishDate && (
             <p class="muted" style="font-size: 0.9rem; margin-top: 0.5rem;">
-              By <a href="/about">Carl, Top Tier Electrical</a> — Licensed Electrician (MI #6220430)
+              By <a href="/about">Carl Nystrom</a> — Master Electrician (MI #6220430)
               {' · '}
               <time datetime={new Date(post.publishDate).toISOString()}>
                 {new Date(post.publishDate).toLocaleDateString('en-US', {
