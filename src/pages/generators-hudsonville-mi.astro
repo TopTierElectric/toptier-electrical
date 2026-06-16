@@ -1,0 +1,22 @@
+---
+import ServiceCityPage from '~/components/pages/ServiceCityPage.astro';
+import { services, cities } from '~/data/service-city-config';
+---
+
+<ServiceCityPage service={services['generators']} city={cities['hudsonville-mi']}>
+  <section class="container section-pad">
+    <h2>Generators for Hudsonville Homes and Outbuildings</h2>
+    <p>
+      A lot of Hudsonville properties are not just a house — they're a house plus a pole barn, a shop, or a detached
+      garage on a subpanel. That changes the generator plan. You may want the home fully covered and the outbuilding on
+      essential circuits only, or a single larger unit feeding both. We map what actually needs to stay on before sizing
+      anything.
+    </p>
+    <p>
+      Rural and semi-rural service here also leans on well pumps, which carry a hard startup load that a too-small
+      generator will choke on. If your outbuilding feeders or subpanels need work as part of the project, that's covered
+      under <a href="/electrical-repairs-hudsonville-mi">electrical repairs in Hudsonville</a>, and
+      <a href="/panel-upgrades-hudsonville-mi">panel upgrades</a> if the main service is at its limit.
+    </p>
+  </section>
+</ServiceCityPage>

@@ -73,9 +73,9 @@ jobs:
       - name: Run e2e smoke checks
         run: npm run test:e2e:smoke
 
-      - name: Security audit (high+)
-        # Note: a moderate-severity Astro 5.x advisory (define:vars XSS)
-        # remains. Clearing it requires bumping to Astro 6.x — a major
-        # version bump tracked separately. --audit-level=high catches
-        # the rest.
-        run: npm audit --audit-level=high
+      - name: Security audit (high+ with documented allowlist)
+        # Fails on any high/critical advisory except the astro-core GHSAs
+        # that only apply to SSR/server-island/dev-server modes this static
+        # SSG never uses. See scripts/check-audit.mjs for the allowlist and
+        # the per-advisory reasons; remove entries when astro moves to 6.x.
+        run: node scripts/check-audit.mjs

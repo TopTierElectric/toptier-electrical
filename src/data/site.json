@@ -20,7 +20,7 @@
       "longitude": -85.8589
     },
     "founder": {
-      "name": "Carl",
+      "name": "Carl Nystrom",
       "jobTitle": "Master Electrician, Owner",
       "sameAs": ["https://www.linkedin.com/in/carl-nystrom-93317011b/"]
     }
@@ -36,7 +36,7 @@
   "seo": {
     "googleBusinessProfileUrl": "https://share.google/bPwVVHkWg7iCxIcKx",
     "googleReviewUrl": "https://g.page/r/CUr9o5vQ0M6nEAE/review",
-    "googleReviewCount": 19,
+    "googleReviewCount": 25,
     "googleReviewAverage": 5.0,
     "appleMapsUrl": "https://maps.apple/p/tG4_5ERepS51ho",
     "bingMapsUrl": "https://www.bing.com/maps?ypid=YN15067E61198A542E",
@@ -138,7 +138,12 @@
       "lighting-grand-rapids-mi",
       "lighting-zeeland-mi",
       "lighting-hudsonville-mi",
-      "lighting-ada-mi"
+      "lighting-ada-mi",
+      "generators-holland-mi",
+      "generators-grand-rapids-mi",
+      "generators-zeeland-mi",
+      "generators-hudsonville-mi",
+      "generators-ada-mi"
     ]
   }
 }

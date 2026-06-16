@@ -2,8 +2,10 @@
 import TTELayout from '~/layouts/TTELayout.astro';
 import siteData from '~/data/site.json';
 
-// All 19 verified Google reviews as of 2026-05. When new reviews land,
-// add a new entry at the top and bump site.json's googleReviewCount.
+// Curated selection of verified Google reviews. The aggregate count
+// (25 as of 2026-06) lives in site.json's googleReviewCount and drives
+// the AggregateRating; the list below is a representative subset. When
+// new reviews land, add a new entry at the top and bump the count.
 // Dates approximated from the relative timestamps shown on the GBP at
 // time of capture; if exact ISO dates are available later, swap them in.
 type Review = {
@@ -204,7 +206,7 @@ const aggregateRatingLd = JSON.stringify({
 
 <TTELayout
   title="Customer Reviews | Top Tier Electrical West Michigan"
-  description="19 verified 5-star Google reviews from Holland, Grand Rapids & West Michigan homeowners. Panel upgrades, EV chargers, generators, electrical repairs."
+  description={`${siteData.seo.googleReviewCount} verified 5-star Google reviews from Holland, Grand Rapids & West Michigan homeowners. Panel upgrades, EV chargers, generators, electrical repairs.`}
   canonical="https://www.toptier-electrical.com/reviews"
   ogImage="https://www.toptier-electrical.com/images/og/pages/reviews.png"
   jsonLd={[breadcrumbLd, aggregateRatingLd]}

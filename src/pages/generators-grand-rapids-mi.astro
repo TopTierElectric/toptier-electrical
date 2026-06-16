@@ -1,0 +1,22 @@
+---
+import ServiceCityPage from '~/components/pages/ServiceCityPage.astro';
+import { services, cities } from '~/data/service-city-config';
+---
+
+<ServiceCityPage service={services['generators']} city={cities['grand-rapids-mi']}>
+  <section class="container section-pad">
+    <h2>Generators for Grand Rapids Homes and Businesses</h2>
+    <p>
+      Grand Rapids outages tend to hit two very different buildings: older Heritage Hill and Eastown homes on aging
+      service, and commercial spaces where a few hours of downtime is real lost revenue. The sizing conversation is
+      different for each. A home wants heat, sump, and refrigeration covered; a business wants point-of-sale, walk-in
+      coolers, and critical equipment carried without a hiccup.
+    </p>
+    <p>
+      For older homes, the generator interconnect often surfaces a service that should be modernized first — we cover
+      that on our <a href="/panel-upgrades-grand-rapids-mi">Grand Rapids panel upgrade page</a>. For commercial standby,
+      the load calculation and transfer-switch selection are where the money is made or wasted; we walk the real loads
+      before quoting.
+    </p>
+  </section>
+</ServiceCityPage>

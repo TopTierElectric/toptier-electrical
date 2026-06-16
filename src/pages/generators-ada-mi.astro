@@ -1,0 +1,23 @@
+---
+import ServiceCityPage from '~/components/pages/ServiceCityPage.astro';
+import { services, cities } from '~/data/service-city-config';
+---
+
+<ServiceCityPage service={services['generators']} city={cities['ada-mi']}>
+  <section class="container section-pad">
+    <h2>Whole-Home Generators for Ada Properties</h2>
+    <p>
+      Ada's custom homes and equestrian properties are exactly the kind of build where standby power is non-negotiable:
+      large square footage, well and septic systems, sometimes barn power and outbuilding feeders all on the same
+      property. These homes usually run 400-amp services, and the generator has to be sized to match — a whole-home unit
+      with an automatic transfer switch, not an essential-circuits compromise.
+    </p>
+    <p>
+      Barn power, decorative lighting, and outbuilding loads all factor into the calculation. We coordinate the
+      generator with the rest of the electrical scope — see our <a href="/panel-upgrades-ada-mi"
+        >Ada panel upgrade page</a
+      >
+      for the service side, or browse <a href="/projects">recent projects</a> for examples of custom-home work in the area.
+    </p>
+  </section>
+</ServiceCityPage>

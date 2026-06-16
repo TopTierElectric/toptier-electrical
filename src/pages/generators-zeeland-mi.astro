@@ -1,0 +1,21 @@
+---
+import ServiceCityPage from '~/components/pages/ServiceCityPage.astro';
+import { services, cities } from '~/data/service-city-config';
+---
+
+<ServiceCityPage service={services['generators']} city={cities['zeeland-mi']}>
+  <section class="container section-pad">
+    <h2>Standby Power for Zeeland Homes, Farms, and Shops</h2>
+    <p>
+      Zeeland's mix of residential, agricultural, and light-manufacturing properties makes generator sizing a
+      case-by-case job. A farm or shop has well pumps, ventilation, and motor loads that draw heavy startup current — a
+      generator sized only for the running watts will stall the moment a motor kicks in. We account for those inrush
+      loads in the calculation, not just the steady-state total.
+    </p>
+    <p>
+      For working buildings, standby power is also tied to dedicated equipment circuits and reliable controls — see
+      <a href="/electrical-repairs-zeeland-mi">electrical repairs in Zeeland</a> if your existing system needs attention
+      first, or our <a href="/panel-upgrades-zeeland-mi">Zeeland panel upgrade page</a> if the service is undersized.
+    </p>
+  </section>
+</ServiceCityPage>

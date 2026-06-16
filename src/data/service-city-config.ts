@@ -182,6 +182,45 @@ export const services: Record<string, ServiceConfig> = {
       },
     ],
   },
+  generators: {
+    slug: 'generators',
+    name: 'Generator Installation',
+    nameLower: 'standby generator installation',
+    serviceType: 'Generator Installation',
+    h1Action: 'Standby Generator Installation',
+    intro:
+      'Whole-home and standby generators sized to your real loads, with the transfer switch, gas, and electrical tie-in done to code and verified under load.',
+    pricingFactors: [
+      'Generator size (kW) based on a real load calculation, not a guess',
+      'Automatic transfer switch type — whole-home vs. essential-circuits',
+      'Distance and route from the generator pad to the panel and meter',
+      'Gas supply: natural gas tie-in or propane, and line sizing for the load',
+      'Pad or mounting prep, permit, and utility/inspection coordination',
+    ],
+    relatedServices: [
+      { slug: 'panel-upgrades', name: 'Panel Upgrades' },
+      { slug: 'electrical-repairs', name: 'Electrical Repairs' },
+      { slug: 'ev-chargers', name: 'EV Chargers' },
+    ],
+    faqs: [
+      {
+        q: 'What size generator do I need?',
+        a: 'It depends on what you want to run during an outage. A whole-home unit powers everything; an essential-circuits setup covers heat, well, fridge, and a few rooms for less money. We run an actual load calculation before recommending a size — oversizing wastes money and undersizing nuisance-trips.',
+      },
+      {
+        q: 'Natural gas or propane?',
+        a: 'Both work. If you already have natural gas service, a tie-in is usually simplest and never needs refilling. Propane is the answer where gas is not available — it just needs a tank sized for the runtime you want. We size the gas line for the generator load either way.',
+      },
+      {
+        q: 'Do I need a transfer switch?',
+        a: 'Yes. A generator must never back-feed the grid — that endangers utility crews and your equipment. An automatic transfer switch isolates your home and starts the generator within seconds of an outage. It is not optional, and it is the part most DIY setups get dangerously wrong.',
+      },
+      {
+        q: 'Do you pull the permit and handle inspection?',
+        a: 'Yes. Generator installs involve electrical and often gas permits plus a final inspection. Coordinating all of it is part of the scope.',
+      },
+    ],
+  },
 };
 
 export const cities: Record<string, CityConfig> = {
