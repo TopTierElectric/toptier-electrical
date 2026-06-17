@@ -1,0 +1,23 @@
+---
+import ServiceCityPage from '~/components/pages/ServiceCityPage.astro';
+import { services, cities } from '~/data/service-city-config';
+---
+
+<ServiceCityPage service={services['code-corrections']} city={cities['grand-rapids-mi']}>
+  <section class="container section-pad">
+    <h2>Code Corrections in Heritage Hill, Eastown, and Beyond</h2>
+    <p>
+      Grand Rapids' oldest neighborhoods — Heritage Hill, Eastown, parts of the West Side — carry the full sweep of
+      legacy wiring issues: knob-and-tube under insulation, Federal Pacific Stab-Lok and Zinsco panels still in service,
+      ungrounded two-prong receptacles, and bonded sub-panels in basement additions. Every one of those shows up on a
+      Grand Rapids home-sale inspection, and most insurers will not write a new policy without remediation.
+    </p>
+    <p>
+      Commercial spaces have their own set: missing AFCI/GFCI in retail buildouts, open junction boxes above drop
+      ceilings, panel-cover damage, and labeling that no longer matches what's behind it. We bring the documentation
+      packet — written scope, closed permit, signed work statement — that AHJs and insurers accept without follow-ups.
+      Bundles cleanly with our <a href="/panel-upgrades-grand-rapids-mi">Grand Rapids panel upgrade</a> work when the service
+      is the root cause.
+    </p>
+  </section>
+</ServiceCityPage>

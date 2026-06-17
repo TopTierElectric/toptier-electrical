@@ -1,0 +1,22 @@
+---
+import ServiceCityPage from '~/components/pages/ServiceCityPage.astro';
+import { services, cities } from '~/data/service-city-config';
+---
+
+<ServiceCityPage service={services['code-corrections']} city={cities['hudsonville-mi']}>
+  <section class="container section-pad">
+    <h2>Code Corrections in Hudsonville — Houses, Pole Barns, and Outbuildings</h2>
+    <p>
+      A Hudsonville property is rarely just a house. It's often a house plus a pole barn, a shop, or a detached garage
+      on a feeder. That widens the code-correction conversation: detached-building sub-panels with neutrals improperly
+      bonded to ground, missing equipment-grounding electrodes at the outbuilding, exposed NM-B running across the barn
+      loft, and overloaded shop circuits without dedicated motor disconnects.
+    </p>
+    <p>
+      For older homes on the residential side, the recurring findings are Federal Pacific or Zinsco panels still in
+      service, ungrounded receptacles, and missing GFCI in basement and exterior locations. We document corrections in
+      the packet your insurer needs. Often pairs with a <a href="/panel-upgrades-hudsonville-mi">panel upgrade</a> or
+      <a href="/electrical-repairs-hudsonville-mi">broader repairs</a> when the underlying system is at its limit.
+    </p>
+  </section>
+</ServiceCityPage>

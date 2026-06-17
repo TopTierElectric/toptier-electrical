@@ -94,6 +94,306 @@ const HOWTO_BY_SLUG = {
       },
     ],
   },
+  'buying-house-electrical-concerns': {
+    name: "How to Vet the Electrical System on a House You're Buying",
+    description:
+      'The steps a buyer takes to assess electrical risk on a property before closing — what to flag, what to negotiate, and what to live with.',
+    steps: [
+      {
+        name: 'Read the home inspection report electrical section in detail',
+        text: 'Note every specific call-out: panel manufacturer, service amperage, grounding, GFCI/AFCI coverage, K&T, and aluminum wiring. Vague summaries are not enough — get to the specific findings.',
+      },
+      {
+        name: 'Flag the dealbreakers',
+        text: 'Federal Pacific Stab-Lok and Zinsco panels, knob-and-tube buried in insulation, ungrounded service, and major signs of overheating are dealbreaker items that affect insurance and safety. Get a written electrician scope before negotiating.',
+      },
+      {
+        name: 'Verify with the insurer before going under contract',
+        text: 'Call your prospective insurer with the specific findings. Some carriers refuse, surcharge, or require remediation timelines — this changes the negotiation and the budget.',
+      },
+      {
+        name: 'Negotiate a credit, a fix, or a walk',
+        text: 'For each dealbreaker, decide: seller fixes pre-close, seller provides a credit you use for the fix post-close, or you walk. Bundled credits often work better than itemized fixes the seller manages.',
+      },
+      {
+        name: 'Plan the post-close remediation order',
+        text: 'Address service-level items (panel, grounding) first; circuit-level (AFCI/GFCI, K&T removal) second; cosmetic (cover plates, fixtures) last. Document everything for the insurer.',
+      },
+    ],
+  },
+  'aluminum-wiring-what-to-do': {
+    name: 'How to Remediate Aluminum Branch Wiring in an Older Home',
+    description:
+      'The steps to assess and properly remediate solid aluminum branch wiring (common in 1965-1973 homes) using methods listed for aluminum-to-copper connections.',
+    steps: [
+      {
+        name: 'Confirm aluminum branch wiring is present',
+        text: 'Have a licensed electrician pull a few receptacles and the panel cover. Solid aluminum branch wire is silver-gray and stamped AL or ALUMINUM on the jacket. Do not rely on home age alone.',
+      },
+      {
+        name: 'Inspect every device for heat damage',
+        text: 'Look at every receptacle, switch, and panel termination for discoloration, scorch marks, melted plastic, or warmth. Damaged devices get prioritized in the remediation order.',
+      },
+      {
+        name: 'Choose the remediation method',
+        text: 'Pigtailing with AL/CU-listed connectors (AlumiConn or COPALUM crimps) is the accepted standard. CO/ALR-rated devices alone are no longer considered adequate. Full rewire is the gold standard but only justified for full-property remodels.',
+      },
+      {
+        name: 'Remediate every termination, not just the worst ones',
+        text: 'Every receptacle, switch, fixture splice, and panel termination must be addressed. Partial remediation leaves the same failure mode at the untouched devices.',
+      },
+      {
+        name: 'Document the work and notify insurance',
+        text: 'Save a written scope, the closed permit (where applicable), and after-photos. Most insurers accept completed remediation as resolving the underwriting concern.',
+      },
+    ],
+  },
+  'commercial-electrical-maintenance-checklist': {
+    name: 'How to Run an Annual NFPA 70B Electrical Maintenance Inspection',
+    description:
+      'The annual licensed-electrician checklist for commercial electrical maintenance, aligned with NFPA 70B requirements.',
+    steps: [
+      {
+        name: 'Infrared thermography of panels and switchgear',
+        text: 'Scan every panel and switchgear enclosure under normal load. Hot spots reveal loose terminations and degrading breakers before they fail.',
+      },
+      {
+        name: 'Torque-check connections',
+        text: 'Re-torque lugs, breaker terminations, and bus connections to manufacturer specification. Loose connections are the leading cause of preventable equipment fires.',
+      },
+      {
+        name: 'Exercise every breaker',
+        text: 'Cycle each breaker off and on. Breakers that have not been operated in years can seize and fail to trip when needed.',
+      },
+      {
+        name: 'Verify grounding and bonding',
+        text: 'Test the main bonding jumper, ground-electrode conductor continuity, and equipment grounding. A degraded ground path defeats every downstream protective device.',
+      },
+      {
+        name: 'Document findings and corrective actions',
+        text: 'Issue a written report listing each finding, severity, and corrective action. This packet protects the facility against insurance and liability disputes.',
+      },
+    ],
+  },
+  'commercial-led-retrofit-roi': {
+    name: 'How to Calculate the ROI of a Commercial LED Retrofit',
+    description:
+      'The payback formula a facility manager uses to evaluate a commercial LED retrofit, including utility rebates that shorten the timeline.',
+    steps: [
+      {
+        name: 'Inventory existing fixtures and wattages',
+        text: 'Count fixtures by type and record the wattage of each, including ballast losses. This is the baseline against which savings are measured.',
+      },
+      {
+        name: 'Calculate annual operating hours and demand',
+        text: 'Multiply fixture wattage by annual run hours. For most commercial spaces, this is 3,000-5,000 hours per year.',
+      },
+      {
+        name: 'Determine post-retrofit wattage and energy savings',
+        text: 'LED equivalents typically reduce wattage by 50-75 percent. Multiply the delta by annual run hours and the local kWh rate to get annual energy savings.',
+      },
+      {
+        name: 'Add maintenance and HVAC savings',
+        text: 'LED lamps last 10-25x longer than fluorescents and produce less heat, reducing both relamping labor and air-conditioning load. Include both in the savings line.',
+      },
+      {
+        name: 'Apply utility rebates and amortize the project cost',
+        text: 'Consumers Energy and DTE both offer commercial LED rebates that can offset 20-40 percent of project cost. Divide the net project cost by annual savings to get payback period.',
+      },
+    ],
+  },
+  'electrical-panel-upgrade-cost': {
+    name: 'How to Estimate the Cost of an Electrical Panel Upgrade',
+    description: 'The six factors a licensed electrician walks before quoting a residential panel upgrade.',
+    steps: [
+      {
+        name: 'Confirm the target service size',
+        text: 'A 100-to-200 amp upgrade costs less than a 100-to-400 amp service. The target should reflect actual present and planned loads (EV, generator, HVAC, electrification), not a round number.',
+      },
+      {
+        name: 'Assess existing panel and conductor condition',
+        text: 'Federal Pacific or Zinsco panels add scope. Aluminum service conductors that need replacement, corroded busbars, or damaged enclosures all add labor and material.',
+      },
+      {
+        name: 'Inspect the mast, meter base, and grounding electrode',
+        text: 'A service upgrade often requires a new meter base and mast. Verify the grounding electrode system meets current NEC (ground rods, bonded water pipe, Ufer) and budget for upgrade if not.',
+      },
+      {
+        name: 'Add permit, utility coordination, and inspection',
+        text: 'A service upgrade requires utility disconnect/reconnect coordination, a permit, and final inspection. Time and AHJ-specific fees vary.',
+      },
+      {
+        name: 'Account for drywall and finish work',
+        text: 'If the panel is moving, expect drywall repair, paint, and access for new circuit runs. This is often underestimated and accounts for surprise costs.',
+      },
+      {
+        name: 'Add code-required AFCI, GFCI, and SPD',
+        text: 'Current code (2020 NEC and later) requires AFCI/GFCI protection on most circuits and a Type 1 or 2 SPD on new and replacement services. Budget for these breakers and the SPD at the outset.',
+      },
+    ],
+  },
+  'flickering-lights-when-to-worry': {
+    name: 'How to Diagnose Flickering Lights in Your Home',
+    description:
+      'The diagnostic order a licensed electrician uses to find the cause of flickering lights — from harmless to emergency.',
+    steps: [
+      {
+        name: 'Try a different bulb first',
+        text: 'A loose or dying bulb is the most common cause. Tighten the existing bulb, then swap it. If the flicker stops, the diagnosis is done.',
+      },
+      {
+        name: 'Check for dimmer incompatibility',
+        text: 'LED bulbs on a legacy incandescent dimmer flicker by design. The fix is a dimmer rated for the LED driver in use.',
+      },
+      {
+        name: 'Look for whole-room or whole-home flicker',
+        text: 'If multiple fixtures or rooms flicker together, the cause is upstream of any one fixture — typically a loose connection in a switch, the panel, or the service entrance.',
+      },
+      {
+        name: 'Note correlation with large appliances',
+        text: 'Brief dimming when the AC, well pump, or furnace blower starts is a voltage sag, usually benign on a properly sized service. Persistent or worsening sag points to undersized service or a failing connection.',
+      },
+      {
+        name: 'Call same-day for warm devices, burning smells, or whole-home flicker',
+        text: 'A failing main breaker, panel busbar, or service neutral can cause whole-home flicker and is a fire risk. Stop using affected circuits and reach a licensed electrician within hours.',
+      },
+    ],
+  },
+  'holland-bpw-panel-rebate-guide': {
+    name: 'How to Qualify for and Claim the Holland BPW $1,000 Panel Rebate',
+    description:
+      'The step-by-step application process for the Holland Board of Public Works $1,000 residential panel upgrade rebate.',
+    steps: [
+      {
+        name: 'Confirm Holland BPW is your electric provider',
+        text: 'Check your utility bill. The rebate is only available to BPW electric service customers.',
+      },
+      {
+        name: 'Call BPW for pre-approval at 616-355-1577',
+        text: 'Pre-approval is the only way to lock in eligibility before committing to the project. Have your address and intended panel size ready.',
+      },
+      {
+        name: 'Complete the panel upgrade with a licensed electrician',
+        text: 'The upgrade must be to at least 200 amps and use a licensed electrician with a closed permit. Document the work with the closed permit and an invoice.',
+      },
+      {
+        name: 'Install the qualifying electrification within 12 months',
+        text: 'Pair the upgrade with an EV charger or a 240V appliance (range, dryer, water heater, heat pump, induction cooktop) installed within 12 months of panel inspection.',
+      },
+      {
+        name: 'Submit the application packet to BPW',
+        text: 'Submit the completed application, closed permit, invoice, and proof of the electrification within the rebate window. Approval typically takes 4-8 weeks.',
+      },
+    ],
+  },
+  'knob-and-tube-wiring-what-to-do': {
+    name: 'How to Handle Knob-and-Tube Wiring in an Older Home',
+    description:
+      'The steps a homeowner takes when they discover or suspect knob-and-tube (K&T) wiring is active in their property.',
+    steps: [
+      {
+        name: 'Confirm what is live vs. abandoned',
+        text: 'A licensed electrician traces every K&T run with a tester to determine which is energized and serving load vs. which was disconnected at a past renovation. The scope conversation depends on the answer.',
+      },
+      {
+        name: 'Inspect for insulation contact',
+        text: 'K&T cannot be buried in thermal insulation — it relies on air to dissipate heat. Any run buried in attic or wall insulation gets prioritized for replacement.',
+      },
+      {
+        name: 'Check insurer requirements',
+        text: 'Many insurers refuse or surcharge policies on active K&T. Get the written underwriting requirement before scoping work, so the remediation matches what the insurer will accept.',
+      },
+      {
+        name: 'Decide partial vs. full rewire',
+        text: 'Partial replacement targets only the insulated, damaged, or load-bearing K&T runs. Full rewire replaces everything. Cost-effectiveness depends on how much is actually live and accessible.',
+      },
+      {
+        name: 'Document the completed work',
+        text: 'Save the written scope, the closed permit, and after-photos. Submit them to the insurer to resolve the underwriting concern.',
+      },
+    ],
+  },
+  'michigan-ev-charger-rebates': {
+    name: 'How to Claim a Michigan EV Charger Rebate',
+    description:
+      'The application process for Consumers Energy, DTE, and federal EV-charger rebates available to Michigan homeowners.',
+    steps: [
+      {
+        name: 'Confirm which utility serves your address',
+        text: 'Consumers Energy customers use PowerMIDrive; DTE customers use Charging Forward. The two programs do not overlap and have different requirements.',
+      },
+      {
+        name: 'Choose a program-approved charger',
+        text: 'Each utility maintains a list of qualifying Level 2 chargers. Pick one before purchase — buying off-list disqualifies the rebate.',
+      },
+      {
+        name: 'Enroll BEFORE installation when required',
+        text: 'PowerMIDrive requires pre-enrollment. Charging Forward allows post-install claims. Read the program-specific timing rules before scheduling the install.',
+      },
+      {
+        name: 'Complete the install with a licensed electrician',
+        text: 'Use a licensed electrician, pull the required permit, and save the closed permit and invoice. These are required documentation for every Michigan utility rebate.',
+      },
+      {
+        name: 'Submit the rebate application and federal 30C tax credit',
+        text: 'Submit the utility rebate application within the program window. Separately claim the federal 30C tax credit (up to 30 percent of install cost) on your federal return.',
+      },
+    ],
+  },
+  'where-to-install-ev-charger': {
+    name: 'How to Plan the Location of Your Level 2 EV Charger',
+    description:
+      'The planning steps for placing a Level 2 EV charger in a garage so the install is clean, the cable reaches without strain, and the home stays future-proof.',
+    steps: [
+      {
+        name: "Find your vehicle's charge port",
+        text: 'Charge ports vary by manufacturer (Tesla front-left, Ford Mach-E front-left, most others rear-left or rear-right). Park where you usually park and mark the port location on the floor.',
+      },
+      {
+        name: 'Decide wall placement, height, and cable length',
+        text: 'Mount the charger 42-50 inches off the floor for comfortable handle access. Choose a cable length (typically 18-25 ft) that reaches the port with slack — never under tension.',
+      },
+      {
+        name: 'Plan the panel-to-charger run',
+        text: 'Walk the route from the electrical panel to the proposed charger location. Conduit through a finished wall is more invasive than a clean attic or basement run; factor accessibility into placement.',
+      },
+      {
+        name: "Account for the charger's own footprint",
+        text: 'Most chargers need 6 inches of clearance on all sides for cable management and heat dissipation. Avoid mounting near hot-water heaters, furnaces, or door swings.',
+      },
+      {
+        name: 'Future-proof for a second EV',
+        text: 'If a second EV is likely in the next 5-10 years, size the circuit and panel feed for two chargers now. Adding the second charger later costs significantly less when the conduit and capacity are already in place.',
+      },
+    ],
+  },
+  'zinsco-fpe-panel-replacement': {
+    name: 'How to Identify and Replace a Federal Pacific or Zinsco Panel',
+    description:
+      'The steps a homeowner takes when they suspect or confirm a Federal Pacific Stab-Lok or Zinsco panel — both of which have documented failure modes and are flagged by every inspector and insurer.',
+    steps: [
+      {
+        name: 'Identify the panel manufacturer',
+        text: 'Federal Pacific Stab-Lok panels are labeled "Federal Pacific Electric" or "Stab-Lok" on the deadfront. Zinsco panels are labeled "Zinsco" or "Sylvania-Zinsco" and often have multicolored breakers.',
+      },
+      {
+        name: 'Document insurer and inspector findings',
+        text: 'Save any home inspection report, insurance underwriting letter, or AHJ flag that names the panel. These drive the urgency and the documentation requirements for the replacement.',
+      },
+      {
+        name: 'Get a written panel replacement scope',
+        text: 'A licensed electrician walks the existing service, conductor condition, grounding, and mast or meter base. The written scope sets the price up front and identifies any bundled work (service upgrade, mast replacement, grounding correction).',
+      },
+      {
+        name: 'Replace the panel with proper service interruption',
+        text: 'The utility coordinates a planned disconnect; the old panel comes out; the new panel, breakers, and SPD are installed; conductors are landed and torqued to spec; the install is inspected and the utility reconnects.',
+      },
+      {
+        name: 'Document and notify insurance',
+        text: 'Save the closed permit, the invoice, and after-photos. Submit them to the insurer; in most cases the underwriting concern is resolved without further action.',
+      },
+    ],
+  },
 };
 
 function parseFrontmatter(mdx) {
