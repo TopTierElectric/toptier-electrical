@@ -221,6 +221,45 @@ export const services: Record<string, ServiceConfig> = {
       },
     ],
   },
+  'code-corrections': {
+    slug: 'code-corrections',
+    name: 'Electrical Code Corrections',
+    nameLower: 'electrical code corrections',
+    serviceType: 'Electrical Code Compliance',
+    h1Action: 'Electrical Code Corrections',
+    intro:
+      'Targeted fixes for the code violations that fail inspections, scare insurers, and end up flagged on a home-sale report — done to current NEC and properly documented.',
+    pricingFactors: [
+      'Number and type of corrections (point repair vs. circuit-level vs. service-level)',
+      'Whether the panel or service entrance is involved',
+      'Wall access and drywall finish work after corrections',
+      'Permit, inspection, and AHJ coordination',
+      'Whether corrections bundle with a panel upgrade, rewire, or remediation project',
+    ],
+    relatedServices: [
+      { slug: 'panel-upgrades', name: 'Panel Upgrades' },
+      { slug: 'electrical-repairs', name: 'Electrical Repairs' },
+      { slug: 'ev-chargers', name: 'EV Chargers' },
+    ],
+    faqs: [
+      {
+        q: 'My home inspection flagged a long list. Do I have to fix all of it?',
+        a: 'Not always. We triage: deal-breaker items (Federal Pacific or Zinsco panels, knob-and-tube near insulation, ungrounded service, double-tapped breakers under load) first; negotiable items (missing GFCI/AFCI, two-prong receptacles, open ground) priced for a closing credit; live-with items documented. You get a clear scope and price before anything is touched.',
+      },
+      {
+        q: 'Do code corrections require a permit?',
+        a: 'Most service- or panel-level work does. Point repairs (replacing a damaged receptacle, fixing reverse polarity) usually do not. We pull permits where required and coordinate the inspection.',
+      },
+      {
+        q: 'Will my insurance company accept the work?',
+        a: 'Yes — that is exactly what the documentation is for. We give you a written scope, the closed permit (where applicable), and a signed work statement you can submit to your insurer. We have done this many times for West Michigan policyholders flagged on aluminum wiring, K&T, FPE panels, and ungrounded outlets.',
+      },
+      {
+        q: 'What code edition does Michigan enforce?',
+        a: 'Michigan adopted the 2020 NEC with state amendments. Most West Michigan AHJs (Holland, Grand Rapids, Hudsonville, Zeeland, Ada, Allegan) enforce that edition with local amendments. New work has to meet current code; existing work is grandfathered unless it is being modified or has a specific safety issue.',
+      },
+    ],
+  },
 };
 
 export const cities: Record<string, CityConfig> = {

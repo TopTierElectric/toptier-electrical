@@ -143,7 +143,12 @@
       "generators-grand-rapids-mi",
       "generators-zeeland-mi",
       "generators-hudsonville-mi",
-      "generators-ada-mi"
+      "generators-ada-mi",
+      "code-corrections-holland-mi",
+      "code-corrections-grand-rapids-mi",
+      "code-corrections-zeeland-mi",
+      "code-corrections-hudsonville-mi",
+      "code-corrections-ada-mi"
     ]
   }
 }

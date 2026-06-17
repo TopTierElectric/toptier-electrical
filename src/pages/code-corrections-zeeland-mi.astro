@@ -1,0 +1,23 @@
+---
+import ServiceCityPage from '~/components/pages/ServiceCityPage.astro';
+import { services, cities } from '~/data/service-city-config';
+---
+
+<ServiceCityPage service={services['code-corrections']} city={cities['zeeland-mi']}>
+  <section class="container section-pad">
+    <h2>Code Corrections for Zeeland Homes, Farms, and Shops</h2>
+    <p>
+      Zeeland's mix of compact residential, working farms, and light-manufacturing means code findings span the gamut.
+      Residential corrections center on missing GFCI/AFCI in kitchens and laundry, ungrounded receptacles, and older
+      panels with no main disconnect to current standards. On the ag and shop side, the recurring issues are improperly
+      bonded sub-panels in outbuildings, exposed NM-B in wet locations, and motor-load circuits without proper
+      disconnects within sight.
+    </p>
+    <p>
+      We document everything so an insurer or AHJ sign-off goes through cleanly. If the panel itself is the root cause —
+      common in pre-1990 Zeeland homes — see our <a href="/panel-upgrades-zeeland-mi">Zeeland panel upgrade page</a>;
+      for buildings already on a working code-compliance plan, code corrections drop in alongside routine
+      <a href="/electrical-repairs-zeeland-mi">electrical repairs</a>.
+    </p>
+  </section>
+</ServiceCityPage>

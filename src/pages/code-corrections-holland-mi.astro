@@ -1,0 +1,24 @@
+---
+import ServiceCityPage from '~/components/pages/ServiceCityPage.astro';
+import { services, cities } from '~/data/service-city-config';
+---
+
+<ServiceCityPage service={services['code-corrections']} city={cities['holland-mi']}>
+  <section class="container section-pad">
+    <h2>The Code Issues We See Most in Holland Homes</h2>
+    <p>
+      Holland's older downtown and lakeshore housing stock shows the same recurring code findings: pre-1973 panels with
+      double-tapped breakers, knob-and-tube remnants in attic spaces that got insulated decades later, and aluminum
+      branch wiring in 1960s-70s subdivisions. None of those are inherently dangerous on day one, but inspectors and
+      insurers flag them — and they should.
+    </p>
+    <p>
+      If a Holland inspector or home-sale report has handed you a list, we'll walk it with you, separate the
+      deal-breakers from the negotiables, and document the work in a packet your insurer or buyer will accept. Common
+      code corrections in Holland often bundle with a <a href="/panel-upgrades-holland-mi">panel upgrade</a> — and if you're
+      on Holland BPW, the panel side can stack with the <a href="/blog/holland-bpw-panel-rebate-guide"
+        >$1,000 BPW rebate</a
+      > when paired with electrification.
+    </p>
+  </section>
+</ServiceCityPage>

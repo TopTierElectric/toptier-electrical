@@ -1,0 +1,23 @@
+---
+import ServiceCityPage from '~/components/pages/ServiceCityPage.astro';
+import { services, cities } from '~/data/service-city-config';
+---
+
+<ServiceCityPage service={services['code-corrections']} city={cities['ada-mi']}>
+  <section class="container section-pad">
+    <h2>Code Corrections for Ada Custom Homes and Equestrian Properties</h2>
+    <p>
+      Ada's custom-home and equestrian properties run 400-amp services, decorative lighting circuits, barn power,
+      outbuilding feeders, and sometimes hot tubs, pools, or generators — every one of which has its own NEC chapter.
+      Code findings here tend to be subtler than in older housing stock: improperly bonded sub-panels in outbuildings,
+      pool/spa equipotential bonding gaps, low-voltage landscape lighting that drifted out of compliance, or generator
+      transfer equipment that was never quite right.
+    </p>
+    <p>
+      We document corrections to the standard a buyer's inspector or a new insurer expects on a property at this price
+      point. Most Ada code-correction projects coordinate with the broader electrical scope — see our
+      <a href="/panel-upgrades-ada-mi">Ada panel upgrade page</a> for service-level work, or browse
+      <a href="/projects">recent projects</a> for examples of custom-home and barn coordination.
+    </p>
+  </section>
+</ServiceCityPage>
