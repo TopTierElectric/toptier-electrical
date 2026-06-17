@@ -51,6 +51,7 @@ export default defineConfig({
       filter: (page) => {
         if (page.endsWith('/thank-you')) return false;
         if (page.includes('/tag/')) return false; // noindex by design
+        if (page.includes('/category/')) return false; // noindex — thin auto-listings that compete with hubs
         if (page.endsWith('/decapcms') || page.includes('/decapcms/')) return false;
         return true;
       },
