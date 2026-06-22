@@ -1,0 +1,447 @@
+---
+import TTELayout from '~/layouts/TTELayout.astro';
+
+const canonical = 'https://www.toptier-electrical.com/tools/ev-charger-payback-calculator';
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.toptier-electrical.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Tools', item: 'https://www.toptier-electrical.com/tools' },
+    { '@type': 'ListItem', position: 3, name: 'EV Charger Payback Calculator', item: canonical },
+  ],
+});
+
+const appLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  '@id': `${canonical}#app`,
+  name: 'EV Charger Payback Calculator (Level 2 vs. Public DC Fast)',
+  description:
+    'Compares the cost per mile of home Level 2 charging on Consumers Energy or DTE against public DC fast charging, returning the break-even time on a typical residential Level 2 install.',
+  url: canonical,
+  applicationCategory: 'UtilityApplication',
+  operatingSystem: 'Any',
+  isAccessibleForFree: true,
+  creator: { '@id': 'https://www.toptier-electrical.com/#owner' },
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+});
+---
+
+<TTELayout
+  title="EV Charger Payback Calculator (Consumers / DTE) | Top Tier Electrical"
+  description="Free EV charger payback calculator. Miles per week + your Michigan utility → break-even months on a Level 2 install vs. public DC fast charging."
+  canonical={canonical}
+  ogImage="https://www.toptier-electrical.com/images/og/pages/tools-ev-charger-payback-calculator.png"
+  jsonLd={[breadcrumbLd, appLd]}
+>
+  <main id="main-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/tools">Tools</a></li>
+        <li aria-current="page">EV Charger Payback Calculator</li>
+      </ol>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>EV Charger Payback Calculator</h1>
+        <p>
+          A Level 2 home charger pays back faster than most people expect — especially against public DC fast charging.
+          Enter your miles per week and utility; the calculator compares cost per mile and returns the break-even time
+          on a typical residential install.
+        </p>
+      </div>
+    </section>
+
+    <section class="container section-pad">
+      <form id="ev-form" data-tool="ev-charger-payback-calculator" autocomplete="off">
+        <div class="ev-grid">
+          <div class="ev-field">
+            <label for="ev-miles"><strong>Average miles per week</strong></label>
+            <input
+              id="ev-miles"
+              name="miles"
+              type="number"
+              min="0"
+              max="1500"
+              step="10"
+              value="250"
+              inputmode="numeric"
+              required
+            />
+            <p class="ev-hint">Typical US driver: ~250 mi/week (12,000 mi/year).</p>
+          </div>
+
+          <div class="ev-field">
+            <label for="ev-efficiency"><strong>Vehicle efficiency (mi/kWh)</strong></label>
+            <input
+              id="ev-efficiency"
+              name="efficiency"
+              type="number"
+              min="1.5"
+              max="6"
+              step="0.1"
+              value="3.5"
+              inputmode="decimal"
+              required
+            />
+            <p class="ev-hint">
+              Tesla Model 3: ~4.0 · Ford Mach-E: ~3.0 · F-150 Lightning: ~2.0 · Rivian R1T: ~2.2. Check your trip
+              computer.
+            </p>
+          </div>
+
+          <div class="ev-field">
+            <label for="ev-utility"><strong>Home utility</strong></label>
+            <select id="ev-utility" name="utility" required>
+              <option value="consumers" selected>Consumers Energy (~$0.18 / kWh blended)</option>
+              <option value="dte">DTE Energy (~$0.20 / kWh blended)</option>
+              <option value="holland-bpw">Holland BPW (~$0.13 / kWh)</option>
+              <option value="custom">Other / enter custom rate</option>
+            </select>
+            <label for="ev-rate" class="ev-sublabel">Custom $/kWh (only if "Other")</label>
+            <input
+              id="ev-rate"
+              name="rate"
+              type="number"
+              min="0.05"
+              max="0.60"
+              step="0.01"
+              value="0.18"
+              inputmode="decimal"
+            />
+          </div>
+
+          <div class="ev-field">
+            <label for="ev-public-rate"><strong>Public DC fast rate ($/kWh)</strong></label>
+            <input
+              id="ev-public-rate"
+              name="publicRate"
+              type="number"
+              min="0.20"
+              max="0.80"
+              step="0.01"
+              value="0.43"
+              inputmode="decimal"
+              required
+            />
+            <p class="ev-hint">
+              Average US Electrify America / EVgo: $0.40-$0.48 / kWh. Tesla Supercharger varies $0.25-$0.50.
+            </p>
+          </div>
+
+          <div class="ev-field">
+            <label for="ev-install-cost"><strong>Estimated Level 2 install cost ($)</strong></label>
+            <input
+              id="ev-install-cost"
+              name="installCost"
+              type="number"
+              min="500"
+              max="10000"
+              step="50"
+              value="1800"
+              inputmode="numeric"
+              required
+            />
+            <p class="ev-hint">
+              Typical West MI install runs $1,400-$2,400 depending on panel-to-charger distance. Higher if a panel
+              upgrade is needed.
+            </p>
+          </div>
+
+          <div class="ev-field">
+            <label for="ev-rebate"><strong>Rebates / tax credits to apply ($)</strong></label>
+            <input
+              id="ev-rebate"
+              name="rebate"
+              type="number"
+              min="0"
+              max="2500"
+              step="50"
+              value="500"
+              inputmode="numeric"
+            />
+            <p class="ev-hint">
+              Federal 30C: up to $1,000 (30% of install). Consumers PowerMIDrive: $500. DTE Charging Forward: $500.
+              Holland BPW also stacks. See <a href="/blog/michigan-ev-charger-rebates">our MI rebate breakdown</a>.
+            </p>
+          </div>
+        </div>
+
+        <div class="ev-actions">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            data-ga-event="tool_calculate"
+            data-ga-label="ev-charger-payback-calculator"
+          >
+            Calculate Payback Period
+          </button>
+        </div>
+      </form>
+
+      <div id="ev-result" class="ev-result" hidden aria-live="polite"></div>
+    </section>
+
+    <section class="container section-pad-tight">
+      <h2>How the Math Works</h2>
+      <ol>
+        <li><strong>Energy needed per week:</strong> miles ÷ efficiency = kWh / week.</li>
+        <li>
+          <strong>Cost at home (Level 2):</strong> kWh × your utility rate. Plus ~10 % for AC-to-battery charging losses.
+        </li>
+        <li>
+          <strong>Cost on public DC fast:</strong> kWh × public rate (no charging-loss adder; the rate already includes them).
+        </li>
+        <li><strong>Monthly savings:</strong> (public cost − home cost) × 4.33 weeks/month.</li>
+        <li><strong>Payback:</strong> (install cost − rebates) ÷ monthly savings.</li>
+      </ol>
+      <p>
+        This is best-case for the home charger — it assumes you'd be paying for public DC fast otherwise. For most
+        people the comparison is closer to L1 (which the car comes with) vs. L2, and the deciding factor is charging
+        speed, not just cost. The calculator answers the cost question; the speed question is in our
+        <a href="/blog/level-1-vs-level-2-ev-charger">Level 1 vs Level 2 guide</a>.
+      </p>
+      <p>
+        Related reading:
+        <a href="/blog/michigan-ev-charger-rebates">Michigan EV charger rebates (2026 guide)</a> ·
+        <a href="/blog/where-to-install-ev-charger">Where to install your EV charger</a> ·
+        <a href="/blog/do-i-need-a-panel-upgrade-for-an-ev-charger">Do I need a panel upgrade for an EV charger?</a>
+      </p>
+      <p>
+        Glossary: <a href="/glossary/evse">EVSE</a> · <a href="/glossary/load-calculation">load calculation</a>.
+      </p>
+    </section>
+
+    <section class="cta-section">
+      <h2>Ready to Add a Level 2 Charger?</h2>
+      <p>
+        Call <a href="tel:+16163347159" data-ga-event="phone_click" data-ga-label="ev-charger-payback-calculator__phone"
+          >(616) 334-7159</a
+        > or get a clear estimate. We confirm panel capacity, run the conduit cleanly, pull the permit, and hand you the
+        documentation packet for the utility rebate.
+      </p>
+      <a
+        href="/booking"
+        class="btn btn-primary"
+        data-ga-event="clear_estimate_click"
+        data-ga-label="ev-charger-payback-calculator__cta_bottom"
+        data-ga-destination="/booking">Get a Clear Estimate</a
+      >
+    </section>
+  </main>
+</TTELayout>
+
+<style>
+  .ev-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  @media (min-width: 720px) {
+    .ev-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .ev-field {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-left: 4px solid var(--brand-gold);
+    background: #fff;
+    border-radius: 6px;
+    padding: 16px 20px;
+  }
+  .ev-field label {
+    display: block;
+  }
+  .ev-field input,
+  .ev-field select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 6px;
+  }
+  .ev-sublabel {
+    font-size: 14px;
+    color: var(--brand-slate);
+    margin-top: 8px;
+  }
+  .ev-hint {
+    color: var(--brand-slate);
+    font-size: 14px;
+    margin: 6px 0 0;
+  }
+  .ev-actions {
+    text-align: center;
+    margin-top: 24px;
+  }
+  .ev-result {
+    max-width: 760px;
+    margin: 32px auto 0;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.025);
+    border-left: 4px solid var(--brand-gold);
+    border-radius: 6px;
+  }
+  .ev-result h2 {
+    margin-top: 0;
+  }
+  .ev-result table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 15px;
+  }
+  .ev-result th,
+  .ev-result td {
+    text-align: left;
+    padding: 6px 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  .ev-result td {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .ev-payback {
+    font-size: 22px;
+    font-weight: 800;
+    margin-top: 16px;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const RATES = {
+      consumers: 0.18,
+      dte: 0.2,
+      'holland-bpw': 0.13,
+    };
+    const CHARGING_LOSS = 1.1; // ~10% AC-to-battery loss
+
+    const form = document.getElementById('ev-form');
+    const result = document.getElementById('ev-result');
+    const utilitySelect = document.getElementById('ev-utility');
+    const rateInput = document.getElementById('ev-rate');
+    if (!form || !result || !utilitySelect || !rateInput) return;
+
+    function syncRateFromUtility() {
+      const v = utilitySelect.value;
+      if (v in RATES) {
+        rateInput.value = RATES[v].toFixed(2);
+        rateInput.disabled = true;
+      } else {
+        rateInput.disabled = false;
+      }
+    }
+    utilitySelect.addEventListener('change', syncRateFromUtility);
+    syncRateFromUtility();
+
+    function fmt(n) {
+      return n.toLocaleString('en-US', { maximumFractionDigits: 2 });
+    }
+    function fmt0(n) {
+      return Math.round(n).toLocaleString('en-US');
+    }
+    function fmtMoney(n) {
+      return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const miles = Math.max(0, Number(form.miles.value) || 0);
+      const eff = Math.max(0.5, Number(form.efficiency.value) || 3.5);
+      const homeRate = Math.max(0.01, Number(form.rate.value) || 0.18);
+      const publicRate = Math.max(0.01, Number(form.publicRate.value) || 0.43);
+      const installCost = Math.max(0, Number(form.installCost.value) || 0);
+      const rebate = Math.max(0, Number(form.rebate.value) || 0);
+
+      const kWhPerWeek = miles / eff;
+      const homeCostPerWeek = kWhPerWeek * homeRate * CHARGING_LOSS;
+      const publicCostPerWeek = kWhPerWeek * publicRate;
+      const savingsPerWeek = publicCostPerWeek - homeCostPerWeek;
+      const monthlySavings = savingsPerWeek * 4.33;
+      const netCost = Math.max(0, installCost - rebate);
+
+      let payback;
+      let paybackLine;
+      if (savingsPerWeek <= 0) {
+        payback = Infinity;
+        paybackLine =
+          '<p class="ev-payback">→ Public DC fast is cheaper than your home rate at the values you entered. ' +
+          'The Level 2 cost case is about charging speed and convenience, not savings — see ' +
+          '<a href="/blog/level-1-vs-level-2-ev-charger">Level 1 vs Level 2</a>.</p>';
+      } else {
+        payback = netCost / monthlySavings;
+        paybackLine =
+          '<p class="ev-payback">→ Break-even in <strong>' +
+          payback.toFixed(1) +
+          ' months</strong> ' +
+          '(net install cost ' +
+          fmtMoney(netCost) +
+          ' ÷ ' +
+          fmtMoney(monthlySavings) +
+          ' / month savings).</p>';
+      }
+
+      // Cost-per-mile lines
+      const homeCpm = (homeCostPerWeek / miles) * 100;
+      const publicCpm = (publicCostPerWeek / miles) * 100;
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'tool_result', {
+          tool: 'ev-charger-payback-calculator',
+          payback_months: isFinite(payback) ? Math.round(payback * 10) / 10 : -1,
+          miles_per_week: miles,
+        });
+      }
+
+      result.innerHTML =
+        '<h2>Payback Estimate</h2>' +
+        '<table>' +
+        '<tr><th>Energy needed per week (' +
+        fmt(miles) +
+        ' mi ÷ ' +
+        fmt(eff) +
+        ' mi/kWh)</th><td>' +
+        fmt(kWhPerWeek) +
+        ' kWh</td></tr>' +
+        '<tr><th>Cost at home ' +
+        fmtMoney(homeRate) +
+        ' / kWh × 1.1 charging-loss</th><td>' +
+        fmtMoney(homeCostPerWeek) +
+        ' / week</td></tr>' +
+        '<tr><th>Cost on public DC fast ' +
+        fmtMoney(publicRate) +
+        ' / kWh</th><td>' +
+        fmtMoney(publicCostPerWeek) +
+        ' / week</td></tr>' +
+        '<tr><th>Cost per mile — home</th><td>' +
+        fmt(homeCpm) +
+        ' ¢/mi</td></tr>' +
+        '<tr><th>Cost per mile — public DC fast</th><td>' +
+        fmt(publicCpm) +
+        ' ¢/mi</td></tr>' +
+        '<tr><th>Estimated monthly savings (home vs. public)</th><td>' +
+        fmtMoney(monthlySavings) +
+        '</td></tr>' +
+        '<tr><th>Net install cost after rebates</th><td>' +
+        fmtMoney(netCost) +
+        '</td></tr>' +
+        '</table>' +
+        paybackLine +
+        '<p>Real installs vary by panel-to-charger distance, panel capacity, and which rebates you qualify for. ' +
+        '<a href="/booking" data-ga-event="clear_estimate_click" data-ga-label="ev-charger-payback-calculator__result_cta">Get a clear estimate</a> ' +
+        'and we will confirm the install cost and stack the rebates that apply.</p>';
+
+      result.hidden = false;
+      result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  })();
+</script>

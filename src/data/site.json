@@ -157,7 +157,11 @@
       "electrician-jenison-mi",
       "electrician-hopkins-mi",
       "electrician-alto-mi",
-      "electrician-comstock-park-mi"
+      "electrician-comstock-park-mi",
+      "tools",
+      "tools/panel-size-calculator",
+      "tools/generator-sizer",
+      "tools/ev-charger-payback-calculator"
     ]
   }
 }

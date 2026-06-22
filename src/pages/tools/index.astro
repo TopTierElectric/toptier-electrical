@@ -1,0 +1,121 @@
+---
+import TTELayout from '~/layouts/TTELayout.astro';
+
+const canonical = 'https://www.toptier-electrical.com/tools';
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.toptier-electrical.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Tools', item: canonical },
+  ],
+});
+
+const collectionLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': `${canonical}#collection`,
+  name: 'Electrical Calculators & Tools',
+  description:
+    'Free interactive tools for sizing electrical panels, whole-home generators, and EV charger payback — built on NEC Article 220 and current West Michigan utility rates.',
+  url: canonical,
+  isPartOf: { '@id': 'https://www.toptier-electrical.com/#website' },
+});
+---
+
+<TTELayout
+  title="Free Electrical Calculators & Tools | Top Tier Electrical"
+  description="Free interactive calculators: panel size (100/200/400 amp), whole-home generator sizing (NEC 220), and EV charger payback math for Consumers Energy and DTE."
+  canonical={canonical}
+  ogImage="https://www.toptier-electrical.com/images/og/pages/tools.png"
+  jsonLd={[breadcrumbLd, collectionLd]}
+>
+  <main id="main-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li aria-current="page">Tools</li>
+      </ol>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Free Electrical Calculators</h1>
+        <p>
+          Plain-English answers to three of the most common sizing questions West Michigan homeowners ask before they
+          call. Built on NEC Article 220 and current local utility rates — the same logic a licensed electrician walks
+          before quoting.
+        </p>
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div class="container">
+        <div class="trust-badges">
+          <span class="badge">&#10004; Built by a Master Electrician (MI #6220430)</span>
+          <span class="badge">NEC 220-aligned</span>
+          <span class="badge">No signup. No tracking past the page.</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="container section-pad">
+      <h2>The Three Calculators</h2>
+      <div class="service-cards">
+        <a
+          href="/tools/panel-size-calculator"
+          class="service-card"
+          data-ga-event="tool_open"
+          data-ga-label="panel-size-calculator"
+        >
+          <h3>Panel Size Calculator</h3>
+          <p>
+            Square footage plus a checklist of major appliances → a recommended 100, 200, or 400 amp service, with the
+            NEC 220 math shown. Best answer to "do I need a panel upgrade for an EV charger / addition / heat pump?"
+          </p>
+        </a>
+        <a href="/tools/generator-sizer" class="service-card" data-ga-event="tool_open" data-ga-label="generator-sizer">
+          <h3>Whole-Home Generator Sizer</h3>
+          <p>
+            Load checklist → recommended kW for a Michigan home, with a whole-home vs. essential-circuits split if a
+            smaller unit will work. Accounts for motor inrush, the most common sizing miss.
+          </p>
+        </a>
+        <a
+          href="/tools/ev-charger-payback-calculator"
+          class="service-card"
+          data-ga-event="tool_open"
+          data-ga-label="ev-charger-payback-calculator"
+        >
+          <h3>EV Charger Payback Calculator</h3>
+          <p>
+            Miles/week + your utility (Consumers Energy or DTE) + Level 2 vs. public DC fast → break-even months on a
+            Level 2 install. Useful for deciding if hardwired is worth it.
+          </p>
+        </a>
+      </div>
+
+      <p style="margin-top: 32px;">
+        These calculators give a fast answer, not a permitted scope. For a real install, every panel and generator
+        decision involves site walk, conductor inspection, and utility coordination that a calculator can't see. When
+        you're ready, <a href="/booking">get a clear estimate</a>.
+      </p>
+    </section>
+
+    <section class="cta-section">
+      <h2>Want a Real Walkthrough?</h2>
+      <p>
+        Call <a href="tel:+16163347159" data-ga-event="phone_click" data-ga-label="tools__phone">(616) 334-7159</a> or get
+        a clear estimate — we'll size it on the property and confirm what the utility can deliver.
+      </p>
+      <a
+        href="/booking"
+        class="btn btn-primary"
+        data-ga-event="clear_estimate_click"
+        data-ga-label="tools__cta_bottom"
+        data-ga-destination="/booking">Get a Clear Estimate</a
+      >
+    </section>
+  </main>
+</TTELayout>
