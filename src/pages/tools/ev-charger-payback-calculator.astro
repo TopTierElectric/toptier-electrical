@@ -345,9 +345,6 @@ const appLd = JSON.stringify({
     function fmt(n) {
       return n.toLocaleString('en-US', { maximumFractionDigits: 2 });
     }
-    function fmt0(n) {
-      return Math.round(n).toLocaleString('en-US');
-    }
     function fmtMoney(n) {
       return '$' + n.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
     }

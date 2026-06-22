@@ -335,13 +335,21 @@ const howToLd = JSON.stringify({
 
 <script is:inline>
   (function () {
-    const STANDARD_KW = [7, 10, 12, 14, 16, 18, 20, 22, 24, 26, 30, 36, 40, 48];
+    // Residential standby (Generac / Kohler / Cummins) tops out around 48 kW.
+    // The 60-150 kW tier is light-commercial: different gas-line sizing,
+    // different transfer-switch options, and a different conversation
+    // about scope. Beyond 150 kW we round to the next 25 kW and flag the
+    // result so the tool never silently under-recommends.
+    const RESIDENTIAL_CEILING_KW = 48;
+    const STANDARD_KW = [7, 10, 12, 14, 16, 18, 20, 22, 24, 26, 30, 36, 40, 48, 60, 80, 100, 125, 150];
 
     function roundUpToStandard(kw) {
       for (let i = 0; i < STANDARD_KW.length; i++) {
         if (STANDARD_KW[i] >= kw) return STANDARD_KW[i];
       }
-      return STANDARD_KW[STANDARD_KW.length - 1];
+      // Above the largest tracked standard size — round up to the next 25 kW
+      // increment so the recommendation always covers the computed demand.
+      return Math.ceil(kw / 25) * 25;
     }
 
     function fmt(n) {
@@ -428,10 +436,28 @@ const howToLd = JSON.stringify({
           '<p class="gs-alt">No essential-only items checked, so no smaller alternative is shown. Tick at least the furnace, sump, and well pump to see one.</p>';
       }
 
+      // Above residential standby ceiling: be honest that the math now points
+      // into light-commercial territory rather than silently returning a
+      // residential-sized recommendation that does not cover the demand.
+      let scaleAdvisory = '';
+      if (whole.recommendedKW > RESIDENTIAL_CEILING_KW) {
+        scaleAdvisory =
+          '<p class="gs-alt"><strong>Heads up:</strong> this recommendation is above typical residential standby ' +
+          '(≤ ' +
+          RESIDENTIAL_CEILING_KW +
+          ' kW). Generators in this range are light-commercial — they have different ' +
+          'gas-line sizing, different transfer-switch options, and different permit requirements than residential ' +
+          'standby. Most homes that land here are over-counting loads they want simultaneously on; the more common ' +
+          'fix is to drop a few non-essential loads or split into a smaller generator plus a manual load-shed. ' +
+          '<a href="tel:+16163347159" data-ga-event="phone_click" data-ga-label="generator-sizer__above-residential">Call ' +
+          '(616) 334-7159</a> and we will walk the real list with you.</p>';
+      }
+
       result.innerHTML =
         '<h2>Recommended whole-home: ' +
         whole.recommendedKW +
         ' kW</h2>' +
+        scaleAdvisory +
         '<p>Sum of running watts: <strong>' +
         fmt(Math.round(whole.running)) +
         ' W</strong>. ' +
