@@ -1,6 +1,7 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
 import { buildSubjectOfArticles } from '~/data/blog-related-services';
+import siteData from '~/data/site.json';
 
 const jsonLd = [
   JSON.stringify({
@@ -143,6 +144,11 @@ const jsonLd = [
       <div class="hero-content">
         <h1>Electrical Code Corrections</h1>
         <p>We identify violations, explain what's required, and bring your system up to current NEC standards.</p>
+        <a href="/reviews" class="hero-rating" data-ga-event="reviews_click" data-ga-label="hub-hero__reviews"
+          ><span class="stars" aria-hidden="true">★★★★★</span>
+          <strong>{siteData.seo.googleReviewAverage.toFixed(1)}</strong>
+          <span class="count">from {siteData.seo.googleReviewCount} Google reviews</span></a
+        >
         <a
           href="/booking"
           class="btn btn-primary"
@@ -150,6 +156,7 @@ const jsonLd = [
           data-ga-label="Get a Clear Estimate"
           data-ga-destination="/booking">Schedule Assessment</a
         >
+        <p class="cta-microcopy">Licensed &amp; insured (MI #6220430) · Most calls returned within 1 business day.</p>
       </div>
     </section>
     <div class="trust-strip">
@@ -359,6 +366,7 @@ const jsonLd = [
         data-ga-label="Get a Clear Estimate"
         data-ga-destination="/booking">Get a Clear Estimate</a
       >
+      <p class="cta-microcopy">Licensed &amp; insured (MI #6220430) · Most calls returned within 1 business day.</p>
     </section>
     <section class="container section-pad">
       <h2>Code Correction FAQs</h2>
