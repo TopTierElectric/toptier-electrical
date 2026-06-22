@@ -1,7 +1,7 @@
 {
   "name": "toptier-electrical",
   "version": "1.0.0-beta.52",
-  "description": "Business website for Top Tier Electrical \u2014 Licensed & insured electrician serving West Michigan. Built with Astro + Tailwind CSS.",
+  "description": "Business website for Top Tier Electrical — Licensed & insured electrician serving West Michigan. Built with Astro + Tailwind CSS.",
   "type": "module",
   "private": true,
   "engines": {
