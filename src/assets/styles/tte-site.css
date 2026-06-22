@@ -489,6 +489,76 @@ header nav a:focus {
   gap: 0.75rem;
 }
 
+/* Above-the-fold review rating — surfaces social proof on every service hub
+   before the visitor scrolls. Renders inline between hero copy and the
+   primary CTA so it is visible on the first viewport. */
+.hero-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--brand-black);
+  margin: 0.5rem 0 1rem;
+  text-decoration: none;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  line-height: 1;
+}
+.hero-rating:hover {
+  background: rgba(212, 175, 55, 0.12);
+  border-color: var(--brand-gold);
+}
+.hero-rating .stars {
+  color: var(--brand-gold);
+  letter-spacing: 0.1em;
+  font-size: 1rem;
+}
+.hero-rating .count {
+  color: var(--brand-slate);
+  font-weight: 500;
+}
+
+/* Trust microcopy under primary CTAs. Pairs with the existing
+   `.btn-primary` rhythm to add reassurance ("licensed & insured, calls
+   returned within 1 business day") without inflating the visual weight. */
+.cta-microcopy {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--brand-slate);
+  font-weight: 500;
+}
+.cta-microcopy strong {
+  color: var(--brand-black);
+}
+
+/* Booking-form helpers — surface the phone alternative above the
+   form, mark genuinely-required fields, and add subtle guidance under
+   optional fields so the homeowner does not abandon when they do not
+   know an exact date or service category. */
+.form-prefer-phone {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(212, 175, 55, 0.1);
+  border-left: 3px solid var(--brand-gold);
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+.form-prefer-phone a {
+  font-weight: 700;
+}
+.field-hint {
+  margin: -0.5rem 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--brand-slate);
+}
+.required-marker {
+  color: var(--brand-gold);
+  margin-left: 0.15rem;
+}
+
 .hero-form {
   display: flex;
   flex-wrap: wrap;

@@ -151,6 +151,11 @@ const jsonLd = [
       <div class="hero-content">
         <h1>Electrical Panel Upgrades &amp; Service Upgrades</h1>
         <p>Clean, code-compliant electrical panel work with clear scope and tidy installs.</p>
+        <a href="/reviews" class="hero-rating" data-ga-event="reviews_click" data-ga-label="hub-hero__reviews"
+          ><span class="stars" aria-hidden="true">★★★★★</span>
+          <strong>{siteData.seo.googleReviewAverage.toFixed(1)}</strong>
+          <span class="count">from {siteData.seo.googleReviewCount} Google reviews</span></a
+        >
         <a
           href="/booking"
           class="btn btn-primary"
@@ -158,6 +163,7 @@ const jsonLd = [
           data-ga-label="Get a Clear Estimate"
           data-ga-destination="/booking">Get a Clear Estimate</a
         >
+        <p class="cta-microcopy">Licensed &amp; insured (MI #6220430) · Most calls returned within 1 business day.</p>
       </div>
     </section>
     <section class="container">
@@ -495,6 +501,7 @@ const jsonLd = [
         data-ga-label="Get a Clear Estimate"
         data-ga-destination="/booking">Get a Clear Estimate</a
       >
+      <p class="cta-microcopy">Licensed &amp; insured (MI #6220430) · Most calls returned within 1 business day.</p>
     </section>
   </main>
 </TTELayout>
