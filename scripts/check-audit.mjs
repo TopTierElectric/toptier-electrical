@@ -47,6 +47,19 @@ try {
   process.exit(1);
 }
 
+// Fail closed on an unrecognized report shape. npm v7+ audit JSON always
+// carries both `vulnerabilities` (per-package detail) and a
+// `metadata.vulnerabilities` count summary. If the `vulnerabilities` map is
+// missing entirely, the format changed under us — do NOT pass vacuously.
+if (typeof data.vulnerabilities !== 'object' || data.vulnerabilities === null) {
+  console.error('check-audit: `npm audit --json` did not include a vulnerabilities map.');
+  console.error('The audit JSON format may have changed. Refusing to pass without a real check.');
+  process.exit(1);
+}
+
+const meta = data.metadata?.vulnerabilities ?? {};
+const reportedBlocking = (meta.high ?? 0) + (meta.critical ?? 0);
+
 const blocking = [];
 const allowed = [];
 
@@ -67,6 +80,16 @@ for (const [name, vuln] of Object.entries(data.vulnerabilities ?? {})) {
     // High/critical with no GHSA id surfaced (transitive-only): block to be safe.
     blocking.push(`${name} (${vuln.severity}): unidentified advisory — review manually`);
   }
+}
+
+// Cross-check: if npm's own summary reports high/critical advisories but our
+// per-package walk classified none of them (neither blocked nor allowlisted),
+// the parsing missed something — fail closed rather than pass silently.
+if (reportedBlocking > 0 && blocking.length === 0 && allowed.length === 0) {
+  console.error(
+    `check-audit: npm reports ${reportedBlocking} high/critical advisory(ies) but none were parsed. Failing closed.`
+  );
+  process.exit(1);
 }
 
 if (allowed.length) {

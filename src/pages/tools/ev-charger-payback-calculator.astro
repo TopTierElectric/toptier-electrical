@@ -108,7 +108,7 @@ const howToLd = JSON.stringify({
               id="ev-miles"
               name="miles"
               type="number"
-              min="0"
+              min="10"
               max="1500"
               step="10"
               value="250"
@@ -396,6 +396,12 @@ const howToLd = JSON.stringify({
       e.preventDefault();
 
       const miles = Math.max(0, Number(form.miles.value) || 0);
+      if (miles <= 0) {
+        result.innerHTML = '<p>Enter your average weekly miles (at least 1) to see a payback estimate.</p>';
+        result.hidden = false;
+        result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
       const eff = Math.max(0.5, Number(form.efficiency.value) || 3.5);
       const homeRate = Math.max(0.01, Number(form.rate.value) || 0.18);
       const publicRate = Math.max(0.01, Number(form.publicRate.value) || 0.43);
