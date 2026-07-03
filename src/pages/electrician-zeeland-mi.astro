@@ -1,5 +1,6 @@
 ---
 import LocationServicePage from '~/components/pages/LocationServicePage.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 ---
 
 <LocationServicePage city="Zeeland" slug="electrician-zeeland-mi" county="Ottawa County, MI">
@@ -32,5 +33,20 @@ import LocationServicePage from '~/components/pages/LocationServicePage.astro';
       <li><a href="/electrical-repairs-zeeland-mi">Electrical repairs in Zeeland, MI</a></li>
       <li><a href="/lighting-zeeland-mi">Lighting installation in Zeeland, MI</a></li>
     </ul>
+  </section>
+  <section class="container section-pad-tight">
+    <h2>Recent Work in Zeeland</h2>
+    <div class="proof-grid">
+      <figure class="proof-card">
+        <GalleryThumb
+          name="EMT Piping"
+          alt="Zeeland, MI commercial remodel EMT conduit installation"
+          sizes="(max-width: 600px) 95vw, 50vw"
+          width={400}
+          height={300}
+        />
+        <figcaption>Zeeland — commercial remodel EMT runs.</figcaption>
+      </figure>
+    </div>
   </section>
 </LocationServicePage>

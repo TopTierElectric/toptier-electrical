@@ -1,6 +1,23 @@
 ---
 import ServiceCityPage from '~/components/pages/ServiceCityPage.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 import { services, cities } from '~/data/service-city-config';
 ---
 
-<ServiceCityPage service={services['panel-upgrades']} city={cities['grand-rapids-mi']} />
+<ServiceCityPage service={services['panel-upgrades']} city={cities['grand-rapids-mi']}>
+  <section class="container section-pad-tight">
+    <h2>Recent Panel Work in Grand Rapids</h2>
+    <div class="proof-grid">
+      <figure class="proof-card">
+        <GalleryThumb
+          name="Electrical Panels"
+          alt="Grand Rapids, MI commercial 400 amp electrical service and subpanel installation"
+          sizes="(max-width: 600px) 95vw, 50vw"
+          width={400}
+          height={300}
+        />
+        <figcaption>Grand Rapids — 400 amp commercial service with subpanels.</figcaption>
+      </figure>
+    </div>
+  </section>
+</ServiceCityPage>

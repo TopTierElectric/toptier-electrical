@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 import { buildSubjectOfArticles } from '~/data/blog-related-services';
 import siteData from '~/data/site.json';
 
@@ -427,6 +428,21 @@ const jsonLd = [
       <p>
         <a href="/service-areas">View all service areas</a>
       </p>
+    </section>
+    <section class="container section-pad-tight">
+      <h2>Recent EV Charger Work</h2>
+      <div class="proof-grid">
+        <figure class="proof-card">
+          <GalleryThumb
+            name="EV Charger Install"
+            alt="ChargePoint Home Flex Level 2 EV charger, hardwired wall installation with clean conduit"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>ChargePoint Home Flex — clean hardwired Level 2 install.</figcaption>
+        </figure>
+      </div>
     </section>
     <section class="cta-section">
       <h2>Ready to Charge?</h2>
