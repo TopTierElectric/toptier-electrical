@@ -1,5 +1,6 @@
 ---
 import ServiceCityPage from '~/components/pages/ServiceCityPage.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 import { services, cities } from '~/data/service-city-config';
 ---
 
@@ -17,5 +18,20 @@ import { services, cities } from '~/data/service-city-config';
       <a href="/electrical-repairs-zeeland-mi">electrical repairs in Zeeland</a> if your existing system needs attention
       first, or our <a href="/panel-upgrades-zeeland-mi">Zeeland panel upgrade page</a> if the service is undersized.
     </p>
+  </section>
+  <section class="container section-pad-tight">
+    <h2>Recent Generator Work in Zeeland</h2>
+    <div class="proof-grid">
+      <figure class="proof-card">
+        <GalleryThumb
+          name="backup Generator"
+          alt="Zeeland, MI Generac 22 kW natural gas whole-home standby generator installation"
+          sizes="(max-width: 600px) 95vw, 50vw"
+          width={400}
+          height={300}
+        />
+        <figcaption>Zeeland — Generac 22 kW natural gas standby generator.</figcaption>
+      </figure>
+    </div>
   </section>
 </ServiceCityPage>

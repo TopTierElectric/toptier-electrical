@@ -1,5 +1,22 @@
 ---
 import LocationServicePage from '~/components/pages/LocationServicePage.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 ---
 
-<LocationServicePage city="Allegan" slug="electrician-allegan-mi" />
+<LocationServicePage city="Allegan" slug="electrician-allegan-mi">
+  <section class="container section-pad-tight">
+    <h2>Recent Work in Allegan</h2>
+    <div class="proof-grid">
+      <figure class="proof-card">
+        <GalleryThumb
+          name="Field Controls"
+          alt="Allegan, MI industrial controls panel and field instrument wiring"
+          sizes="(max-width: 600px) 95vw, 50vw"
+          width={400}
+          height={300}
+        />
+        <figcaption>Allegan — industrial controls and field wiring.</figcaption>
+      </figure>
+    </div>
+  </section>
+</LocationServicePage>

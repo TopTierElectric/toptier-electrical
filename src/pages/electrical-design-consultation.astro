@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -67,6 +68,21 @@ const breadcrumbLd = JSON.stringify({
         <li>Panel sizing recommendations</li>
         <li>Clear scope guidance for your electrical contractor</li>
       </ul>
+    </section>
+    <section class="container section-pad-tight">
+      <h2>Where Every Design Starts</h2>
+      <div class="proof-grid">
+        <figure class="proof-card">
+          <GalleryThumb
+            name="Service Sketch"
+            alt="Hand-drawn on-site electrical service field sketch with measurements"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>The on-site field sketch — measure first, design second.</figcaption>
+        </figure>
+      </div>
     </section>
     <section class="cta-section">
       <h2>Schedule Your Consultation</h2>
