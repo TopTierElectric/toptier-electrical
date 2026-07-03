@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 
 const jsonLd = [
   JSON.stringify({
@@ -169,6 +170,21 @@ const jsonLd = [
         </li>
         <li><a href="/blog/why-breakers-trip">Why does my breaker keep tripping?</a></li>
       </ul>
+    </section>
+    <section class="container section-pad-tight">
+      <h2>Dedicated Loads We Wire</h2>
+      <div class="proof-grid">
+        <figure class="proof-card">
+          <GalleryThumb
+            name="Air Compressor"
+            alt="Industrial blower motor on a dedicated circuit in a West Michigan facility"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>Industrial motor on its own dedicated circuit.</figcaption>
+        </figure>
+      </div>
     </section>
     <section class="cta-section">
       <h2>Need a Dedicated Circuit?</h2>

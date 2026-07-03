@@ -1,5 +1,6 @@
 ---
 import LocationServicePage from '~/components/pages/LocationServicePage.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 ---
 
 <LocationServicePage city="Holland" slug="electrician-holland-mi" county="Ottawa County, MI">
@@ -33,5 +34,20 @@ import LocationServicePage from '~/components/pages/LocationServicePage.astro';
       <li><a href="/electrical-repairs-holland-mi">Electrical repairs in Holland, MI</a></li>
       <li><a href="/lighting-holland-mi">Lighting installation in Holland, MI</a></li>
     </ul>
+  </section>
+  <section class="container section-pad-tight">
+    <h2>Recent Work in Holland</h2>
+    <div class="proof-grid">
+      <figure class="proof-card">
+        <GalleryThumb
+          name="Transformer"
+          alt="Holland, MI commercial 75 kVA step-down transformer installation"
+          sizes="(max-width: 600px) 95vw, 50vw"
+          width={400}
+          height={300}
+        />
+        <figcaption>Holland — 75 kVA step-down transformer install.</figcaption>
+      </figure>
+    </div>
   </section>
 </LocationServicePage>

@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 ---
 
 <TTELayout
@@ -48,6 +49,21 @@ import TTELayout from '~/layouts/TTELayout.astro';
       <h3>Industries We Serve</h3>
       <p>Retail, office, warehouse, agricultural, and light industrial facilities across West Michigan.</p>
       <p>See our <a href="/lighting">lighting services page</a> for residential lighting options.</p>
+    </section>
+    <section class="container section-pad-tight">
+      <h2>Recent Commercial LED Work</h2>
+      <div class="proof-grid">
+        <figure class="proof-card">
+          <GalleryThumb
+            name="Interior LED lighitng"
+            alt="New Buffalo, MI dispensary new-build interior LED lighting and tenant fit-out"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>New Buffalo — interior LED fit-out.</figcaption>
+        </figure>
+      </div>
     </section>
     <section class="cta-section">
       <h2>Discuss Your LED Retrofit</h2>

@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 ---
 
 <TTELayout
@@ -51,6 +52,21 @@ import TTELayout from '~/layouts/TTELayout.astro';
         Proactive electrical maintenance reduces emergency repair costs, prevents operational downtime, and ensures your
         facility passes inspections without surprises.
       </p>
+    </section>
+    <section class="container section-pad-tight">
+      <h2>Maintenance-Scope Equipment</h2>
+      <div class="proof-grid">
+        <figure class="proof-card">
+          <GalleryThumb
+            name="Blower Motor"
+            alt="Industrial blower motor staged for wiring and commissioning at a West Michigan facility"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>Industrial blower motor — wired, tested, and commissioned.</figcaption>
+        </figure>
+      </div>
     </section>
     <section class="cta-section">
       <h2>Schedule Commercial Maintenance</h2>
