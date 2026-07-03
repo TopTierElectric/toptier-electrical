@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 import { buildSubjectOfArticles } from '~/data/blog-related-services';
 import siteData from '~/data/site.json';
 
@@ -486,6 +487,31 @@ const jsonLd = [
       <p>
         <a href="/service-areas">View all service areas</a>
       </p>
+    </section>
+    <section class="container section-pad-tight">
+      <h2>Recent Panel Work</h2>
+      <div class="proof-grid">
+        <figure class="proof-card">
+          <GalleryThumb
+            name="Residential panel install"
+            alt="Dorr, MI new-build Square D Homeline 200 amp main panel installation"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>Dorr — Square D Homeline 200A new build.</figcaption>
+        </figure>
+        <figure class="proof-card">
+          <GalleryThumb
+            name="Electrical panel replacement"
+            alt="Rustline Towing in Zeeland, MI panel replacement: Square D QO to Homeline upgrade"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>Rustline Towing, Zeeland — QO to Homeline replacement.</figcaption>
+        </figure>
+      </div>
     </section>
     <section class="cta-section">
       <h2>Ready for an Upgrade?</h2>

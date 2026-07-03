@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 
 const breadcrumbLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -123,6 +124,31 @@ const breadcrumbLd = JSON.stringify({
           <a href="tel:+16163347159" data-ga-event="phone_click" data-ga-label="emergency__phone">(616) 334-7159</a>
         </p>
         <p class="mt-4">Have questions? See our <a href="/faq">FAQ page</a> for more information.</p>
+      </div>
+    </section>
+    <section class="container section-pad-tight">
+      <h2>When It Actually Goes Wrong</h2>
+      <div class="proof-grid">
+        <figure class="proof-card">
+          <GalleryThumb
+            name="Storm Response"
+            alt="Electrician working an outage call from the service truck at night in heavy snow"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>Storm response — working the outage, not waiting it out.</figcaption>
+        </figure>
+        <figure class="proof-card">
+          <GalleryThumb
+            name="Fire Response"
+            alt="Fire-damaged electrical panel with clamp meter during post-fire diagnostic"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>After an electrical fire — full diagnostics before any repair.</figcaption>
+        </figure>
       </div>
     </section>
     <section class="cta-section">

@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 import { buildSubjectOfArticles } from '~/data/blog-related-services';
 import siteData from '~/data/site.json';
 
@@ -417,6 +418,21 @@ const jsonLd = [
       <p>
         <a href="/service-areas">View all service areas</a>
       </p>
+    </section>
+    <section class="container section-pad-tight">
+      <h2>The Standard We Repair To</h2>
+      <div class="proof-grid">
+        <figure class="proof-card">
+          <GalleryThumb
+            name="Organized EMT"
+            alt="Organized parallel EMT conduit runs, strapped and supported to code"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>Conduit organized, strapped, and supported — the standard on every repair.</figcaption>
+        </figure>
+      </div>
     </section>
     <section class="cta-section">
       <h2>Need a Repair?</h2>

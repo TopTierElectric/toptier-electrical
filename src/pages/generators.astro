@@ -1,5 +1,6 @@
 ---
 import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
 import { buildSubjectOfArticles } from '~/data/blog-related-services';
 import siteData from '~/data/site.json';
 
@@ -447,6 +448,21 @@ const jsonLd = [
       <p>
         <a href="/service-areas">View all service areas</a>
       </p>
+    </section>
+    <section class="container section-pad-tight">
+      <h2>Recent Generator Work</h2>
+      <div class="proof-grid">
+        <figure class="proof-card">
+          <GalleryThumb
+            name="backup Generator"
+            alt="Zeeland, MI Generac 22 kW natural gas whole-home standby generator installation"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>Zeeland — Generac 22 kW natural gas standby generator.</figcaption>
+        </figure>
+      </div>
     </section>
     <section class="cta-section">
       <h2>Plan for Reliable Backup Power</h2>
