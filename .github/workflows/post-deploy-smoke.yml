@@ -15,6 +15,10 @@ jobs:
       RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
       RUNBOOK_URL: https://github.com/${{ github.repository }}/blob/main/docs/incident-runbook.md
       MAINTENANCE_MODE: ${{ vars.MAINTENANCE_MODE || 'false' }}
+      # Mapped into env because the `secrets` context is not available inside
+      # step-level `if:` expressions — referencing it there makes the whole
+      # workflow file invalid and it never runs.
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
       - uses: actions/checkout@v4
 
@@ -37,10 +41,10 @@ jobs:
           path: artifacts/monitoring-results.json
 
       - name: Alert on smoke failure
-        if: failure() && secrets.SLACK_WEBHOOK_URL != ''
+        if: failure() && env.SLACK_WEBHOOK_URL != ''
         run: |
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           curl --fail --silent --show-error --max-time 20 --retry 3 --retry-all-errors --retry-delay 2 \
             -H 'Content-Type: application/json' \
             -d "{\"text\":\"Post-deploy smoke failed. Run: ${RUN_URL} | Timestamp: ${TIMESTAMP} | Runbook: ${RUNBOOK_URL}\"}" \
-            '${{ secrets.SLACK_WEBHOOK_URL }}'
+            "$SLACK_WEBHOOK_URL"
