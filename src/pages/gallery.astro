@@ -44,6 +44,11 @@ const breadcrumbLd = JSON.stringify({
     <section class="container section-pad">
       <h2>Project Gallery</h2>
       <p>Clean installs, organized routing, and code-correct workmanship across residential and commercial projects.</p>
+      <p class="work-attribution-note">
+        All work shown was personally performed by Carl Nystrom. Some projects were completed during prior employment
+        with other licensed contractors and are shown to demonstrate individual workmanship, not company project
+        history.
+      </p>
       <div class="gallery-grid">
         <figure>
           <GalleryThumb
@@ -261,3 +266,13 @@ const breadcrumbLd = JSON.stringify({
     </section>
   </main>
 </TTELayout>
+
+<style>
+  .work-attribution-note {
+    font-size: 0.75rem;
+    color: var(--brand-slate);
+    max-width: 720px;
+    margin: 0.25rem 0 1.25rem;
+    line-height: 1.5;
+  }
+</style>
