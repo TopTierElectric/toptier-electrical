@@ -14,6 +14,13 @@ jobs:
       RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
       RUNBOOK_URL: https://github.com/${{ github.repository }}/blob/main/docs/incident-runbook.md
       MAINTENANCE_MODE: ${{ vars.MAINTENANCE_MODE || 'false' }}
+      # Secrets are mapped into env because the `secrets` context is not
+      # available inside step-level `if:` expressions — referencing it there
+      # makes the whole workflow file invalid and it never runs.
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      EMAIL_WEBHOOK_URL: ${{ secrets.EMAIL_WEBHOOK_URL }}
+      PAGERDUTY_EVENTS_URL: ${{ secrets.PAGERDUTY_EVENTS_URL }}
+      PAGERDUTY_ROUTING_KEY: ${{ secrets.PAGERDUTY_ROUTING_KEY }}
     steps:
       - uses: actions/checkout@v4
 
@@ -47,26 +54,26 @@ jobs:
           echo "json={\"text\":\"Uptime monitor failed. Run: ${RUN_URL} | Failed checks: ${FAILED_CHECKS} | Timestamp: ${TIMESTAMP} | Runbook: ${RUNBOOK_URL}\"}" >> "$GITHUB_OUTPUT"
 
       - name: Alert Slack
-        if: failure() && secrets.SLACK_WEBHOOK_URL != ''
+        if: failure() && env.SLACK_WEBHOOK_URL != ''
         run: |
           curl --fail --silent --show-error --max-time 20 --retry 3 --retry-all-errors --retry-delay 2 \
             -H 'Content-Type: application/json' \
             -d '${{ steps.payload.outputs.json }}' \
-            '${{ secrets.SLACK_WEBHOOK_URL }}'
+            "$SLACK_WEBHOOK_URL"
 
       - name: Alert email webhook
-        if: failure() && secrets.EMAIL_WEBHOOK_URL != ''
+        if: failure() && env.EMAIL_WEBHOOK_URL != ''
         run: |
           curl --fail --silent --show-error --max-time 20 --retry 3 --retry-all-errors --retry-delay 2 \
             -H 'Content-Type: application/json' \
             -d '${{ steps.payload.outputs.json }}' \
-            '${{ secrets.EMAIL_WEBHOOK_URL }}'
+            "$EMAIL_WEBHOOK_URL"
 
       - name: Alert PagerDuty Events API
-        if: failure() && secrets.PAGERDUTY_EVENTS_URL != '' && secrets.PAGERDUTY_ROUTING_KEY != ''
+        if: failure() && env.PAGERDUTY_EVENTS_URL != '' && env.PAGERDUTY_ROUTING_KEY != ''
         run: |
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           curl --fail --silent --show-error --max-time 20 --retry 3 --retry-all-errors --retry-delay 2 \
             -H 'Content-Type: application/json' \
-            -d "{\"routing_key\":\"${{ secrets.PAGERDUTY_ROUTING_KEY }}\",\"event_action\":\"trigger\",\"payload\":{\"summary\":\"Top Tier Electrical uptime failure\",\"severity\":\"critical\",\"source\":\"github-actions\",\"timestamp\":\"${TIMESTAMP}\",\"custom_details\":{\"run_url\":\"${RUN_URL}\",\"runbook_url\":\"${RUNBOOK_URL}\"}}}" \
-            '${{ secrets.PAGERDUTY_EVENTS_URL }}'
+            -d "{\"routing_key\":\"${PAGERDUTY_ROUTING_KEY}\",\"event_action\":\"trigger\",\"payload\":{\"summary\":\"Top Tier Electrical uptime failure\",\"severity\":\"critical\",\"source\":\"github-actions\",\"timestamp\":\"${TIMESTAMP}\",\"custom_details\":{\"run_url\":\"${RUN_URL}\",\"runbook_url\":\"${RUNBOOK_URL}\"}}}" \
+            "$PAGERDUTY_EVENTS_URL"
