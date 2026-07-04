@@ -49,7 +49,7 @@ jobs:
         if: failure()
         id: payload
         run: |
-          FAILED_CHECKS=$(node -e "const fs=require('fs');const p='artifacts/monitoring-results.json';if(!fs.existsSync(p)){console.log('unknown');process.exit(0)};const data=JSON.parse(fs.readFileSync(p,'utf8'));console.log((data.failedChecks||[]).map(c=>`${c.id} (${c.url})`).join('; ')||'unknown')")
+          FAILED_CHECKS=$(node -e 'const fs=require("fs");const p="artifacts/monitoring-results.json";if(!fs.existsSync(p)){console.log("unknown");process.exit(0)};const data=JSON.parse(fs.readFileSync(p,"utf8"));console.log((data.failedChecks||[]).map(c=>c.id+" ("+c.url+")").join("; ")||"unknown")')
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           echo "json={\"text\":\"Uptime monitor failed. Run: ${RUN_URL} | Failed checks: ${FAILED_CHECKS} | Timestamp: ${TIMESTAMP} | Runbook: ${RUNBOOK_URL}\"}" >> "$GITHUB_OUTPUT"
 

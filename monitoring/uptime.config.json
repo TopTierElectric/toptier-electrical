@@ -19,7 +19,7 @@
       "expectedStatus": [200],
       "markers": ["Contact", "Top Tier Electrical"],
       "fallbackMarkers": ["Call", "Email"],
-      "expectsFormAction": "https://formspree.io/f/"
+      "expectsFormAction": "action=\"/api/contact\""
     },
     {
       "id": "services",
