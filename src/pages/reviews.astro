@@ -3,7 +3,7 @@ import TTELayout from '~/layouts/TTELayout.astro';
 import siteData from '~/data/site.json';
 
 // Curated selection of verified Google reviews. The aggregate count
-// (25 as of 2026-06) lives in site.json's googleReviewCount and drives
+// (36 as of 2026-07) lives in site.json's googleReviewCount and drives
 // the AggregateRating; the list below is a representative subset. When
 // new reviews land, add a new entry at the top and bump the count.
 // Dates approximated from the relative timestamps shown on the GBP at
@@ -21,6 +21,122 @@ type Review = {
 };
 
 const reviews: Review[] = [
+  {
+    author: 'joe hall',
+    date: '2026-07-06',
+    body: 'Carl was great helping with our electrical issue, and is now my new electrician.',
+    amountChip: '$500–1,000',
+  },
+  {
+    author: 'Patrick Berends',
+    date: '2026-07-01',
+    body: 'My wife and I got several electrician quotes for a new-build Airbnb project for lighting and fan fixtures, and Carl from Top Tier Electrical had the most fair and reasonable quote. After talking with him he seemed extremely knowledgeable and smart, and you could tell he was very genuine and friendly and took pride in his work. After completing the project it was done to perfection, and he even went above and beyond helping us download the apps and train us on smart lighting, as well as sync with Alexa. Exceeded expectations in price, communication, customer service, and intelligence. We will be using him for the next project as well and recommending him to friends and family. Patrick and Lisa',
+    priceChip: 'Great price',
+    amountChip: '$2,500–3,000',
+  },
+  {
+    author: 'Keith Kellogg',
+    date: '2026-07-01',
+    body: "A++ service, couldn't ask for a more friendly and professional company. Would hire again and definitely recommend!",
+  },
+  {
+    author: 'Jon Tassell',
+    date: '2026-06-24',
+    body: 'Excellent workmanship from Top Tier, highly recommend!',
+  },
+  {
+    author: 'Deb Essling',
+    date: '2026-06-17',
+    body: 'Called Top Tier and Carl came out within a few hours and fixed a few outdoor outlets. Very pleased with his work and friendliness. Would highly recommend him!',
+    priceChip: 'Reasonable price',
+    ownerReply:
+      "Thanks Deb! After seeing that playground, if I know anybody looking for daycare I'm definitely going to give you that recommendation!",
+  },
+  {
+    author: 'Sarah Tenney',
+    date: '2026-06-17',
+    body: 'Carl is professional, efficient, and very honest about his work. I just had him help me out with replacing a dryer outlet, adding an air conditioning hookup, and a new oven cord. He quoted me and charged me what he quoted. 10/10 will use again.',
+    ownerReply: 'Always happy to help!',
+  },
+  {
+    author: 'Joe Lomasney',
+    date: '2026-06-17',
+    body: '',
+    priceChip: 'Great price',
+    amountChip: '$1,500–2,000',
+    ownerReply: 'Thanks Joe!',
+  },
+  {
+    author: 'Steve Thomas',
+    date: '2026-06-10',
+    body: 'Carl did an excellent job. Fast response. Knowledgeable. Did work without requiring follow-up repair work. Nice cleanup.',
+    ownerReply: 'Thank you Steve, both for the review and the great conversation!',
+  },
+  {
+    author: 'Hudson Liquor',
+    date: '2026-06-10',
+    body: 'I recently had 220-volt wiring installed. The work was done efficiently and professionally. I highly recommend this service.',
+    ownerReply: "Thanks Jay! Can't wait for the counter next — the store will look amazing!",
+  },
+  {
+    author: 'Royce L',
+    date: '2026-06-10',
+    body: "Carl is a great guy, a hard-working family man. Exactly who you'd want doing your electrical.",
+    ownerReply: "You're too kind!",
+  },
+  {
+    author: 'Terry Newell',
+    date: '2026-06-10',
+    body: 'Carl has done multiple jobs for us. He is very dedicated in providing exceptional service; he also finds time to answer any questions that you might have, as well as recommending possible solutions. Highly recommend!',
+    service: 'Remodeling',
+    priceChip: 'Reasonable price',
+    amountChip: '$1,000–1,500',
+    ownerReply: 'Thank you Terry!',
+  },
+  {
+    author: 'Danniel Schneider',
+    date: '2026-06-08',
+    body: 'All I can say is that Carl was very prompt and had the expertise and experience we needed to get our electrical system evaluated and give us the confidence that our home was safe after an electrical surge. Carl was very thorough, quick, and a pleasure to speak with as we walked through all of the testing. Thank you so much Carl, much appreciated! I would recommend him and his service to anyone who wants an accurate job done right the first time.',
+    priceChip: 'Great price',
+    amountChip: '$1–500',
+    ownerReply: 'Thanks Dan! Whatever you need I look forward to helping out!',
+  },
+  {
+    author: 'Jeff Gunnett',
+    date: '2026-06-08',
+    body: 'I texted Carl about our power outage Saturday afternoon expecting a call back on Monday. Carl responded in a few minutes and said he would be there as soon as he wrapped up another job. Carl showed up and figured out the issue in a few minutes and fixed the problem. Thank you Carl for helping us out on moving day!',
+    service: 'Electrical panel repair, Electrical power restoration',
+    priceChip: 'Reasonable price',
+  },
+  {
+    author: 'Sharyn Capobianco',
+    date: '2026-06-08',
+    body: 'Carl is a great communicator and juggled his schedule to make it work with my limited schedule! He did a great job installing a ceiling light/fan!',
+    ownerReply: 'Thanks Sharyn!',
+  },
+  {
+    author: 'Ricki Levine',
+    date: '2026-06-08',
+    body: 'Carl was energetic, thorough and knowledgeable.',
+    isLocalGuide: true,
+    priceChip: 'Not sure',
+    amountChip: '$500–1,000',
+  },
+  {
+    author: 'Justin Johnson',
+    date: '2026-06-08',
+    body: 'Carl was very knowledgeable and explained the plan to fix my issue. He talked to my HVAC repairman to troubleshoot the issue and coordinate repair efforts. He did the research to make sure everything would work and meet code, and he made time in his busy schedule to fit in my repair. Great guy to work with.',
+    service: 'Electrical wiring repair',
+    ownerReply: "Don't forget I saved you an entire panel upgrade! Lol. I'm always glad to help!",
+  },
+  {
+    author: 'Mary Ann Nagle',
+    date: '2026-06-08',
+    body: "Fabulous experience — the man is very knowledgeable, gets to work and finishes the job. He is personable, respectful, and a man I would trust and definitely hire again. You can't go wrong with Carl.",
+    service: 'Remodeling, Electrical wiring installation, Light fixture installation, Electrical wiring repair',
+    priceChip: 'Reasonable price',
+    amountChip: '$400–600',
+  },
   {
     author: 'Shubhamdeep Singh',
     date: '2026-04-04',
