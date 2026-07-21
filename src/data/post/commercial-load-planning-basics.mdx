@@ -1,6 +1,6 @@
 ---
 title: 'Commercial Load Planning: The Math'
-publishDate: 2026-09-09T00:00:00Z
+publishDate: 2026-07-20T07:00:00Z
 excerpt: 'Commercial load planning is more than adding wattages. Here is what NEC Article 220 requires, how demand factors work, and why quotes vary so widely.'
 image: '~/assets/images/Control Work.webp'
 category: 'Commercial'
@@ -41,13 +41,13 @@ Article 220 of the NEC defines exactly how to calculate load for service sizing.
 
 ### Branch circuit loading
 
-- General lighting and receptacles: by square footage and use type (Table 220.12).
+- General lighting: by square footage and occupancy type (Table 220.42).
 - Specific loads (appliances, motors, signs): nameplate rating with code multipliers.
 
 ### Feeder and service loading
 
 - Sum branch circuit loads.
-- Apply demand factors per occupancy type (Tables 220.42, 220.44, 220.56, 220.84 for residential).
+- Apply demand factors per occupancy type (Table 220.45 for lighting, 220.47 for receptacles, 220.56 for kitchen equipment; 220.84 for the optional multifamily-dwelling method).
 - Add largest motor at 125% of nameplate (430.24).
 - Apply continuous load multiplier (125%) for loads that run 3+ hours continuously.
 
@@ -65,19 +65,19 @@ The math is mechanical but the bookkeeping matters. A missed continuous-load mul
 
 ### Lighting demand
 
-General lighting: 100% of first 12,500 VA, then **80%** of remainder for non-dwelling spaces (Table 220.42).
+For most non-dwelling occupancies — stores, offices, restaurants — general lighting is calculated at **100%; there is no demand-factor reduction** (Table 220.45). The one common commercial exception is **warehouses (storage)**: 100% of the first 12,500 VA, then **50%** of the remainder.
 
-In a 25,000 sq ft retail space with 30 VA/sq ft lighting (750,000 VA total — extreme example), demand drops to roughly 80% of that. Smaller spaces don't benefit much from this factor.
+So a big warehouse with a lot of high-bay lighting gets a real break on the calculated lighting load, while a retail store of the same square footage does not. Assuming every commercial building gets a lighting demand factor — they don't — is a frequent source of under-sized calcs.
 
 ### Receptacle demand
 
-Non-dwelling general receptacle load: 100% of first 10 kVA, **50%** of remainder (Table 220.44).
+Non-dwelling general receptacle load: 100% of first 10 kVA, **50%** of remainder (Table 220.47).
 
 This is significant in offices and retail where receptacle counts are high but coincident use is low.
 
 ### Kitchen equipment demand
 
-Commercial kitchen demand factors (Table 220.56) heavily reduce calculated load for facilities with 3+ pieces of equipment: 90% for 3 units, 80% for 4, 65% for 5, 55% for 6+.
+Commercial kitchen demand factors (Table 220.56) heavily reduce calculated load for facilities with 3+ pieces of equipment: 90% for 3 units, 80% for 4, 70% for 5, and 65% for 6 or more.
 
 This factor alone can drop a 250-amp connected kitchen to a 150-amp demand load. It's why restaurant load calculations look so different from "add it all up."
 

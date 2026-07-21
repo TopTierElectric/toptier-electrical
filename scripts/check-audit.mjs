@@ -27,6 +27,18 @@ const ALLOWLIST = new Map([
   ['GHSA-8hv8-536x-4wqp', 'astro reflected XSS via slot name — no SSR and no user-controlled slot names'],
   ['GHSA-jrpj-wcv7-9fh9', 'astro XSS via spread-props attribute names — no user-controlled spread attribute names'],
   ['GHSA-2pvr-wf23-7pc7', 'astro host-header SSRF in prerendered error-page fetch — no server runtime to fetch'],
+  [
+    'GHSA-7pw4-f3q4-r2p2',
+    'astro XSS via transition:* directive values — site uses no view transitions/transition:* directives; static build, no user input',
+  ],
+  [
+    'GHSA-4g3v-8h47-v7g6',
+    'astro reflected XSS via View Transition animation properties — no ClientRouter/view transitions used; output:static, no server runtime',
+  ],
+  [
+    'GHSA-f48w-9m4c-m7f5',
+    'astro XSS via spread attribute names in renderHTMLElement — spread attribute names come only from author-trusted content, never user input; static build',
+  ],
 ]);
 
 const BLOCKING = new Set(['high', 'critical']);
