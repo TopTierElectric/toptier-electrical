@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
@@ -42,9 +42,6 @@ export default defineConfig({
     defaultStrategy: 'viewport',
   },
   integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
     sitemap({
       // Exclude noindex pages from the sitemap so we don't waste crawl
       // budget advertising pages we don't want indexed.
@@ -113,6 +110,7 @@ export default defineConfig({
   },
 
   vite: {
+    plugins: [tailwindcss()],
     resolve: {
       alias: {
         '~': path.resolve(__dirname, './src'),

@@ -6,40 +6,23 @@
 // from ones that only apply to runtime modes we don't use. This site is a
 // fully static, prerendered Astro SSG deployed to Cloudflare Pages — there
 // is no server runtime, no SSR, no server islands, and the dev server is
-// never exposed. Several astro-core advisories only apply to those modes,
-// yet npm audit reports them at HIGH against the pinned astro 5.x line,
-// where the only "fix" npm offers is a breaking major bump to astro 6.x.
+// never exposed.
 //
 // This gate fails on any HIGH or CRITICAL advisory EXCEPT the explicitly
 // allowlisted GHSA IDs below, each with the reason it does not apply here.
 // Anything not on the list — including any newly disclosed HIGH in any
-// other package — still fails the build. Re-evaluate the allowlist when
-// astro is upgraded to 6.x (tracked separately); these entries should be
-// removable then.
+// other package — still fails the build.
+//
+// The allowlist is currently EMPTY: the Astro 5 → 7 upgrade resolved every
+// astro-core advisory that previously required an entry here, and the tree
+// audits clean. Add an entry only when a real, non-applicable advisory
+// appears, with the reason it does not apply to this static build.
 
 import { execSync } from 'node:child_process';
 
 // GHSA IDs that are non-applicable to this static SSG build. Keep the
 // reason current — if a runtime assumption changes, remove the entry.
-const ALLOWLIST = new Map([
-  ['GHSA-j687-52p2-xcff', 'astro define:vars XSS — only static config values are passed to define:vars; no user input'],
-  ['GHSA-xr5h-phrj-8vxv', 'astro server-island encrypted-param replay — no server islands; fully static build'],
-  ['GHSA-8hv8-536x-4wqp', 'astro reflected XSS via slot name — no SSR and no user-controlled slot names'],
-  ['GHSA-jrpj-wcv7-9fh9', 'astro XSS via spread-props attribute names — no user-controlled spread attribute names'],
-  ['GHSA-2pvr-wf23-7pc7', 'astro host-header SSRF in prerendered error-page fetch — no server runtime to fetch'],
-  [
-    'GHSA-7pw4-f3q4-r2p2',
-    'astro XSS via transition:* directive values — site uses no view transitions/transition:* directives; static build, no user input',
-  ],
-  [
-    'GHSA-4g3v-8h47-v7g6',
-    'astro reflected XSS via View Transition animation properties — no ClientRouter/view transitions used; output:static, no server runtime',
-  ],
-  [
-    'GHSA-f48w-9m4c-m7f5',
-    'astro XSS via spread attribute names in renderHTMLElement — spread attribute names come only from author-trusted content, never user input; static build',
-  ],
-]);
+const ALLOWLIST = new Map([]);
 
 const BLOCKING = new Set(['high', 'critical']);
 
