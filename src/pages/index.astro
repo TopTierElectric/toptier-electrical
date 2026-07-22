@@ -2,16 +2,17 @@
 import TTELayout from '~/layouts/TTELayout.astro';
 import GalleryThumb from '~/components/GalleryThumb.astro';
 import { Picture, getImage } from 'astro:assets';
-import heroImage from '~/assets/images/Residential Panel.webp';
+import heroImage from '~/assets/images/Custom LED Fennville.webp';
 import siteData from '~/data/site.json';
 
 const heroPreload = await getImage({
   src: heroImage,
   format: 'avif',
   width: 800,
+  quality: 68,
 });
 
-const heroPreloadMobile = await getImage({ src: heroImage, format: 'avif', width: 480 });
+const heroPreloadMobile = await getImage({ src: heroImage, format: 'avif', width: 480, quality: 68 });
 
 const faqLd = `{
   "@context": "https://schema.org",
@@ -129,11 +130,12 @@ const offerCatalogLd = `{
           <Picture
             class="hero-picture"
             src={heroImage}
-            alt="Clean residential electrical panel installation by Top Tier Electrical in Holland MI"
+            alt="Custom kitchen lighting by Top Tier Electrical in Fennville, MI — island pendants and toe-kick LED accent lighting"
             widths={[480, 800, 1200]}
             sizes="(max-width: 768px) 100vw, 50vw"
             formats={['avif', 'webp']}
             fallbackFormat="webp"
+            quality={68}
             loading="eager"
             decoding="async"
             fetchpriority="high"

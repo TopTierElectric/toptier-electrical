@@ -66,7 +66,7 @@ if (!fs.existsSync(astroAssetsDir)) {
 } else {
   const heroWebpCandidates = fs
     .readdirSync(astroAssetsDir)
-    .filter((entry) => entry.startsWith('Residential Panel.') && entry.endsWith('.webp'))
+    .filter((entry) => entry.startsWith('Custom LED Fennville.') && entry.endsWith('.webp'))
     .map((entry) => ({
       file: path.join('dist/_astro', entry),
       bytes: fs.statSync(path.join(astroAssetsDir, entry)).size,
