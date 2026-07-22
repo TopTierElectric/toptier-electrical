@@ -1,4 +1,5 @@
 ---
+import fs from 'node:fs';
 import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
 import { blogCategoryRobots, getStaticPathsBlogCategory } from '~/utils/blog';
 
@@ -24,7 +25,13 @@ const robots = `${shouldIndex ? 'index' : 'noindex'}, ${shouldFollow ? 'follow' 
 
 const title = `Category '${category.title}'${currentPage > 1 ? ` — Page ${currentPage}` : ''} | Top Tier Electrical Blog`;
 const canonical = `https://www.toptier-electrical.com${Astro.url.pathname}`;
-const ogImage = `https://www.toptier-electrical.com/images/og/category/${category.slug}.png`;
+// Only a subset of categories has a bespoke OG image. Fall back to the
+// site's default OG logo for any category without one, so no category
+// page ever emits a 404 og:image/twitter:image (checked at build time,
+// so new categories degrade gracefully instead of breaking the preview).
+const ogImage = fs.existsSync(`public/images/og/category/${category.slug}.png`)
+  ? `https://www.toptier-electrical.com/images/og/category/${category.slug}.png`
+  : 'https://www.toptier-electrical.com/images/logos/TopTierElectrical_Primary_FlatGold_512.png';
 const description =
   currentPage > 1
     ? `Articles in the ${category.title} category — page ${currentPage}. Practical electrical guides from Top Tier Electrical for West Michigan homeowners and businesses.`
