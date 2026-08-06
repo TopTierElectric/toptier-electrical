@@ -96,12 +96,14 @@
     "unist-util-visit": "^5.0.0"
   },
   "overrides": {
-    "fast-uri": "^3.1.4",
+    "brace-expansion@1": "^1.1.18",
+    "brace-expansion@2": "^2.1.4",
+    "fast-uri": "^3.1.5",
     "fast-xml-parser": "^5.7.2",
     "picomatch": "^4.0.4",
     "sharp": "^0.35.3",
     "svgo": "^4.0.2",
-    "undici": "^7.28.0",
+    "undici": "^7.29.0",
     "yaml": "^2.8.3",
     "astro-compress": {
       "sharp": "^0.35.3",
