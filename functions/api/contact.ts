@@ -53,14 +53,17 @@ export const onRequestPost = async (context: PagesContext<Env>): Promise<Respons
 
   const name = str(data.get('name'));
   const email = str(data.get('email'));
+  const phone = str(data.get('phone'));
   const message = str(data.get('message') || data.get('notes'));
   const service = str(data.get('service') || data.get('service_type'));
   const formName = str(data.get('form_name')) || 'Contact form';
 
-  if (!name || !email) {
-    return errorResponse(request, 'Please fill in name and email.', 422);
+  // Ad landing pages submit name + phone + zip with no email field, so a
+  // phone number is accepted in place of email as the contact channel.
+  if (!name || (!email && !phone)) {
+    return errorResponse(request, 'Please fill in your name and a phone number or email.', 422);
   }
-  if (!isValidEmail(email)) {
+  if (email && !isValidEmail(email)) {
     return errorResponse(request, 'Please enter a valid email address.', 422);
   }
   if (!message && !service) {
@@ -94,7 +97,7 @@ export const onRequestPost = async (context: PagesContext<Env>): Promise<Respons
         body: JSON.stringify({
           from: `${FROM_NAME} <${FROM_ADDRESS}>`,
           to: [recipient],
-          reply_to: email,
+          ...(email ? { reply_to: email } : {}),
           subject,
           text: bodyLines.join('\n'),
         }),
@@ -114,7 +117,7 @@ export const onRequestPost = async (context: PagesContext<Env>): Promise<Respons
   // wrapped in waitUntil so the user gets the success response immediately
   // and these run in the background. Either failing only logs — it must not
   // turn a successful lead capture into a user-facing error.
-  waitUntil(sendOwnerSms(env, formName, name, email, str(data.get('phone')), service, message));
+  waitUntil(sendOwnerSms(env, formName, name, email, phone, service, message));
   waitUntil(sendCustomerConfirmation(env, name, email, formName, service));
 
   return successResponse(request, "Thanks — we'll respond within one business day.");
@@ -135,7 +138,7 @@ async function sendOwnerSms(
   const lines = [
     `New ${formName.toLowerCase()}: ${name}`,
     phone ? `Phone: ${phone}` : '',
-    `Email: ${email}`,
+    email ? `Email: ${email}` : '',
     service ? `Service: ${service}` : '',
     message ? `Note: ${truncate(message, 160)}` : '',
   ].filter(Boolean);
@@ -176,7 +179,7 @@ async function sendCustomerConfirmation(
   formName: string,
   service: string
 ): Promise<void> {
-  if (!env.RESEND_API_KEY || !env.SEND_CUSTOMER_CONFIRMATION) {
+  if (!email || !env.RESEND_API_KEY || !env.SEND_CUSTOMER_CONFIRMATION) {
     return;
   }
   const heading = formName.toLowerCase().includes('booking') ? 'booking request' : 'message';
