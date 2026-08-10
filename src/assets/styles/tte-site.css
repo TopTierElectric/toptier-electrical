@@ -2822,6 +2822,66 @@ body.menu-open {
 }
 
 /* Homepage service card corrections */
+/* Four-door intent grid (homepage) — the primary customer paths.
+   Full service-card grid remains below it for crawlability. */
+.intent-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+@media (min-width: 700px) {
+  .intent-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+.intent-card {
+  display: block;
+  background: white;
+  border-radius: 10px;
+  border-left: 4px solid var(--brand-gold);
+  padding: 1.5rem 1.6rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.intent-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+.intent-kicker {
+  margin: 0 0 0.3rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-gold-dark);
+}
+.intent-card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.2rem;
+}
+.intent-card p:not(.intent-kicker) {
+  margin: 0 0 0.6rem;
+  color: var(--brand-slate);
+  font-size: 0.95rem;
+}
+.intent-go {
+  font-weight: 700;
+  color: var(--brand-gold-dark);
+}
+.all-services-heading {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+  color: var(--brand-slate);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
 .service-cards {
   display: grid;
   grid-template-columns: 1fr;
