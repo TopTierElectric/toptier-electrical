@@ -1439,6 +1439,22 @@ footer p {
   text-align: center;
 }
 
+/* In-article conversion band (blog posts) */
+.post-cta-band {
+  background: var(--brand-ivory);
+  border: 1px solid var(--brand-gold);
+  border-left-width: 4px;
+  border-radius: 0 8px 8px 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1.75rem 0;
+}
+.post-cta-band p {
+  margin: 0 0 0.75rem;
+}
+.post-cta-band p:last-child {
+  margin-bottom: 0;
+}
+
 /* Blog listing styles */
 .blog-list {
   padding: 3rem 1rem;
