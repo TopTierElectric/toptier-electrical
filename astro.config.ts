@@ -51,6 +51,7 @@ export default defineConfig({
         if (page.includes('/category/')) return false; // noindex — thin auto-listings that compete with hubs
         if (page.endsWith('/decapcms') || page.includes('/decapcms/')) return false;
         if (page.endsWith('/panel-upgrade-quote')) return false; // noindex — paid-ads landing page
+        if (page.endsWith('/fast-estimate')) return false; // noindex — conversion funnel utility page
         return true;
       },
       // Stamp every entry with a build-time lastmod. Without lastmod,

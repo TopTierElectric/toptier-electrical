@@ -1,0 +1,250 @@
+---
+import TTELayout from '~/layouts/TTELayout.astro';
+import siteData from '~/data/site.json';
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.toptier-electrical.com/' },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Fast Estimate',
+      item: 'https://www.toptier-electrical.com/fast-estimate',
+    },
+  ],
+});
+---
+
+<TTELayout
+  title="Get a Fast Electrical Estimate | Top Tier Electrical"
+  description="30-second request: name, phone, zip — or text a photo of the problem. A licensed Michigan master electrician calls you back with a clear scope and price."
+  canonical="https://www.toptier-electrical.com/fast-estimate"
+  ogImage="https://www.toptier-electrical.com/images/og/pages/booking.png"
+  robots="noindex, follow"
+  jsonLd={[breadcrumbLd]}
+>
+  <main id="main-content">
+    <section class="hero lp-hero">
+      <div class="container lp-hero-grid">
+        <div class="lp-hero-copy">
+          <h1>Get a Fast Estimate</h1>
+          <p class="hero-sub">
+            Thirty seconds. A licensed Michigan master electrician — not a call center — reviews it and calls you back
+            with a clear scope and price, usually within one business day.
+          </p>
+          <div class="lp-trust-chips">
+            <span class="badge">&#10004; Licensed &amp; Insured</span>
+            <span class="badge">{siteData.business.license}</span>
+            <span class="badge"
+              >&#9733; {siteData.seo.googleReviewAverage.toFixed(1)} — {siteData.seo.googleReviewCount} Google reviews</span
+            >
+            <span class="badge">Owner-Operated Master Electrician</span>
+          </div>
+          <p class="lp-sms-lead">
+            <strong>Fastest of all:</strong> text a photo of the problem — panel, outlet, fixture, garage wall — to
+            <a
+              href="sms:+16163347159?body=Hi%20Carl%20-%20photo%20attached%20for%20a%20fast%20estimate."
+              data-ga-event="text_panel_photo_click"
+              data-ga-label="fast-estimate__sms">(616) 334-7159</a
+            > and I'll size it up from the picture.
+          </p>
+          <a
+            class="btn btn-primary lp-call-btn"
+            href="tel:+16163347159"
+            data-ga-event="phone_click"
+            data-ga-label="fast-estimate__hero-call"
+            data-ga-destination="tel:+16163347159"
+          >
+            &#128222; Tap to Call (616) 334-7159
+          </a>
+          <p class="cta-microcopy">Mon–Fri 8am–6pm · Sat 9am–1pm.</p>
+        </div>
+        <div class="lp-form-card">
+          <h2>Fast Estimate Request</h2>
+          <p class="lp-form-lede">No spam, no pressure — just a straight answer on scope and price.</p>
+          <form name="fast-estimate" method="POST" action="/api/contact" novalidate data-enhanced-form class="lp-form">
+            <input type="hidden" name="form_name" value="Fast Estimate Request" />
+            <input
+              class="form-honeypot"
+              type="text"
+              name="_gotcha"
+              aria-label="Leave this field blank"
+              tabindex="-1"
+              autocomplete="off"
+            />
+            <label for="fe-name">Name <span class="required-marker" aria-hidden="true">*</span></label>
+            <input type="text" id="fe-name" name="name" required autocomplete="name" />
+            <label for="fe-phone">Phone <span class="required-marker" aria-hidden="true">*</span></label>
+            <input type="tel" id="fe-phone" name="phone" required autocomplete="tel" inputmode="tel" />
+            <label for="fe-zip">Zip Code <span class="required-marker" aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="fe-zip"
+              name="zip"
+              required
+              autocomplete="postal-code"
+              inputmode="numeric"
+              pattern="[0-9]{5}"
+              maxlength="5"
+            />
+            <fieldset class="lp-service-choice">
+              <legend>What do you need help with?</legend>
+              <label
+                ><input type="radio" name="service" value="Electrical Repair / Troubleshooting" /> Something isn't working</label
+              >
+              <label
+                ><input type="radio" name="service" value="Panel / Service Upgrade" /> Panel or service upgrade</label
+              >
+              <label
+                ><input type="radio" name="service" value="EV Charger / New Circuit" /> EV charger or new circuit</label
+              >
+              <label
+                ><input type="radio" name="service" value="Fast Estimate — Other / Not Sure" checked /> Something else /
+                not sure</label
+              >
+            </fieldset>
+            <button type="submit" data-cta="fast-estimate" data-submit-label="Get My Fast Estimate">
+              Get My Fast Estimate
+            </button>
+            <p class="cta-microcopy">
+              Licensed &amp; insured ({siteData.business.license}) · We call you back — usually within one business day.
+            </p>
+            <p class="form-status" data-form-status aria-live="polite"></p>
+            <p class="form-fallback">
+              If the form does not load, call (616) 334-7159 or email info@toptier-electrical.com.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section-pad-tight">
+      <h2>Prefer to Pick a Date?</h2>
+      <p>
+        If you already know what you need and want to line up timing, use the
+        <a href="/booking" data-ga-event="clear_estimate_click" data-ga-label="fast-estimate__booking"
+          >service date request form</a
+        > instead — same electrician, same one-business-day confirmation.
+      </p>
+    </section>
+  </main>
+</TTELayout>
+
+<style>
+  .lp-hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .lp-hero-copy {
+    text-align: left;
+  }
+  .lp-sms-lead {
+    background: rgba(212, 175, 55, 0.14);
+    border-left: 3px solid var(--brand-gold);
+    border-radius: 0 6px 6px 0;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+  }
+  .lp-sms-lead a {
+    color: var(--brand-gold-light);
+    font-weight: 700;
+    text-decoration: underline;
+  }
+  .lp-form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  .lp-form label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--brand-black);
+    margin: 0.6rem 0 0.25rem;
+  }
+  .lp-form input[type='text'],
+  .lp-form input[type='tel'] {
+    padding: 0.65rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: var(--brand-black);
+    background: #fff;
+  }
+  .lp-form input:focus {
+    outline: 2px solid var(--brand-gold);
+    outline-offset: 1px;
+  }
+  .lp-form button[type='submit'] {
+    margin-top: 1rem;
+    padding: 0.85rem 1.25rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--brand-black);
+    background: var(--brand-gold);
+    border: 1px solid var(--brand-gold-dark);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .lp-form button[type='submit']:hover {
+    background: var(--brand-gold-light);
+  }
+  .lp-form .cta-microcopy,
+  .lp-form .form-fallback {
+    color: var(--brand-slate);
+  }
+  .lp-trust-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  .lp-call-btn {
+    font-size: 1.15rem;
+    margin-top: 0.5rem;
+  }
+  .lp-form-card {
+    background: #fff;
+    color: var(--brand-black);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    box-shadow: var(--brand-shadow);
+  }
+  .lp-form-card h2 {
+    margin: 0 0 0.25rem;
+  }
+  .lp-form-lede {
+    color: var(--brand-slate);
+    font-size: 0.9rem;
+    margin: 0 0 1rem;
+  }
+  .lp-service-choice {
+    border: none;
+    padding: 0;
+    margin: 0.75rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .lp-service-choice legend {
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+  .lp-service-choice label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.92rem;
+  }
+  @media (max-width: 900px) {
+    .lp-hero-grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+  }
+</style>

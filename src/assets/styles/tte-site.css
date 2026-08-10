@@ -524,6 +524,17 @@ header nav a:focus {
 /* Trust microcopy under primary CTAs. Pairs with the existing
    `.btn-primary` rhythm to add reassurance ("licensed & insured, calls
    returned within 1 business day") without inflating the visual weight. */
+.hero-alt-cta {
+  margin: 0.75rem auto 0;
+  max-width: 560px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+.hero-alt-cta a {
+  color: var(--brand-gold-light);
+  font-weight: 700;
+  text-decoration: underline;
+}
 .cta-microcopy {
   margin-top: 0.5rem;
   font-size: 0.85rem;

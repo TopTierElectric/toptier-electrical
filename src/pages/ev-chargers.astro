@@ -153,12 +153,20 @@ const jsonLd = [
           <span class="count">from {siteData.seo.googleReviewCount} Google reviews</span></a
         >
         <a
-          href="/booking"
+          href="/fast-estimate"
           class="btn btn-primary"
           data-ga-event="clear_estimate_click"
-          data-ga-label="Get a Clear Estimate"
-          data-ga-destination="/booking">Get a Clear Estimate</a
+          data-ga-label="ev-chargers__fast-estimate"
+          data-ga-destination="/fast-estimate">Get a Fast Estimate</a
         >
+        <p class="hero-alt-cta">
+          Fastest quote: <a
+            href="sms:+16163347159?body=Hi%20Carl%20-%20photos%20of%20my%20panel%20and%20garage%20for%20an%20EV%20charger%20estimate."
+            data-ga-event="text_panel_photo_click"
+            data-ga-label="ev-chargers__hero-sms"
+            data-ga-destination="sms:+16163347159">text me photos of your panel and garage wall</a
+          > — or <a href="/booking">request a service date</a>.
+        </p>
         <p class="cta-microcopy">Licensed &amp; insured (MI #6220430) · Most calls returned within 1 business day.</p>
       </div>
     </section>
@@ -360,6 +368,20 @@ const jsonLd = [
         <a href="/blog/michigan-ev-charger-rebates">Michigan EV charger rebates & utility programs (2026)</a> for the current
         programs, eligibility, and the documentation we hand over at job close.
       </p>
+      <aside
+        class="micro-cta"
+        style="margin-top: 1.25rem; padding: 0.9rem 1.1rem; border-left: 3px solid var(--brand-gold, #d4af37); background: rgba(212,175,55,0.06); border-radius: 6px;"
+      >
+        <strong>Want a number without a site visit?</strong> Text photos of your panel and the garage wall where the charger
+        goes to
+        <a
+          href="sms:+16163347159?body=Hi%20Carl%20-%20photos%20of%20my%20panel%20and%20garage%20for%20an%20EV%20charger%20estimate."
+          data-ga-event="text_panel_photo_click"
+          data-ga-label="ev-chargers__sms"
+          data-ga-destination="sms:+16163347159"><strong>(616) 334-7159</strong></a
+        >
+        and we'll send back a fast estimate.
+      </aside>
 
       <h3>The Install Itself</h3>
       <p>A typical Level 2 install in West Michigan runs 4–6 hours and includes:</p>
