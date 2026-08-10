@@ -256,7 +256,7 @@ export const services: Record<string, ServiceConfig> = {
       },
       {
         q: 'What code edition does Michigan enforce?',
-        a: 'Michigan adopted the 2020 NEC with state amendments. Most West Michigan AHJs (Holland, Grand Rapids, Hudsonville, Zeeland, Ada, Allegan) enforce that edition with local amendments. New work has to meet current code; existing work is grandfathered unless it is being modified or has a specific safety issue.',
+        a: 'Michigan adopted the 2023 NEC with state amendments, effective March 12, 2024. Most West Michigan AHJs (Holland, Grand Rapids, Hudsonville, Zeeland, Ada, Allegan) enforce that edition with local amendments. New work has to meet current code; existing work is grandfathered unless it is being modified or has a specific safety issue.',
       },
     ],
   },

@@ -77,7 +77,7 @@ GFCIs do age out: pressing the TEST button is the way to verify the protection s
 
 This list captures virtually every habitable space in a typical home. Exceptions exist for bathrooms (handled by GFCI under 210.8), garages, outdoor areas, and certain dedicated-equipment circuits.
 
-Michigan adopted the 2020 NEC, with local amendments. Older homes are grandfathered, but any circuit modified during a remodel typically must meet current code. Inspectors flag missing AFCI protection during permitted work.
+Michigan adopted the 2023 NEC (effective March 12, 2024), with state amendments. Older homes are grandfathered, but any circuit modified during a remodel typically must meet current code. Inspectors flag missing AFCI protection during permitted work.
 
 Protection can be provided via AFCI breakers, AFCI/GFCI Dual-Function breakers, or (rarely) outlet-branch-circuit (OBC) AFCI receptacles. The breaker option is by far the most common in new installs.`,
     relatedTerms: ['afci', 'gfci'],
