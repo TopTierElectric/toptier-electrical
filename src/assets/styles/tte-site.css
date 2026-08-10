@@ -12,6 +12,9 @@
 :root {
   --brand-gold: #d4af37;
   --brand-gold-dark: #bf9f3f;
+  /* Text-safe gold for small text on white: 6.4:1 contrast (WCAG AA).
+     brand-gold-dark is only ~2.55:1 on white — decorative use only. */
+  --brand-gold-ink: #7a5a06;
   --brand-gold-light: #e6cc72;
   --brand-black: #111111;
   --brand-charcoal: #181818;
@@ -2859,7 +2862,7 @@ body.menu-open {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--brand-gold-dark);
+  color: var(--brand-gold-ink);
 }
 .intent-card h3 {
   margin: 0 0 0.4rem;
@@ -2872,7 +2875,18 @@ body.menu-open {
 }
 .intent-go {
   font-weight: 700;
-  color: var(--brand-gold-dark);
+  color: var(--brand-gold-ink);
+}
+.intent-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin-top: 0.25rem;
+}
+.intent-links a {
+  font-weight: 700;
+  color: var(--brand-gold-ink);
+  text-decoration: underline;
 }
 .all-services-heading {
   margin: 0 0 1rem;
