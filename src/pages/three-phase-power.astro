@@ -1,0 +1,261 @@
+---
+import TTELayout from '~/layouts/TTELayout.astro';
+import GalleryThumb from '~/components/GalleryThumb.astro';
+import siteData from '~/data/site.json';
+
+const breadcrumbLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.toptier-electrical.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Commercial', item: 'https://www.toptier-electrical.com/commercial' },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: 'Three-Phase Power & Motor Controls',
+      item: 'https://www.toptier-electrical.com/three-phase-power',
+    },
+  ],
+});
+
+const serviceLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://www.toptier-electrical.com/three-phase-power#service',
+  name: 'Three-Phase Power, 480V Distribution & Motor Controls',
+  description:
+    'Commercial and industrial three-phase electrical work in West Michigan: service and distribution upgrades, 480V switchgear, transformers, motor controls, and equipment power.',
+  provider: { '@id': 'https://www.toptier-electrical.com/#localbusiness' },
+  areaServed: [
+    { '@type': 'City', name: 'Grand Rapids, MI' },
+    { '@type': 'City', name: 'Holland, MI' },
+    { '@type': 'City', name: 'Zeeland, MI' },
+    { '@type': 'City', name: 'Allegan, MI' },
+    { '@type': 'City', name: 'Wyoming, MI' },
+  ],
+  serviceType: 'Commercial and Industrial Electrical',
+  url: 'https://www.toptier-electrical.com/three-phase-power',
+});
+---
+
+<TTELayout
+  title="Three-Phase Power, 480V & Motor Controls | West MI"
+  description="480V three-phase distribution, switchgear, transformers, and motor controls for West Michigan facilities — sized from real load studies by a master electrician."
+  canonical="https://www.toptier-electrical.com/three-phase-power"
+  ogImage="https://www.toptier-electrical.com/images/og/pages/commercial.png"
+  jsonLd={[breadcrumbLd, serviceLd]}
+>
+  <main id="main-content">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/commercial">Commercial</a></li>
+        <li aria-current="page">Three-Phase Power &amp; Motor Controls</li>
+      </ol>
+    </nav>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Three-Phase Power, 480V Distribution &amp; Motor Controls</h1>
+        <p>
+          Service upgrades, switchgear, transformers, and equipment power for West Michigan facilities — sized from real
+          load studies, not guesswork.
+        </p>
+        <a
+          href="/fast-estimate"
+          class="btn btn-primary"
+          data-ga-event="clear_estimate_click"
+          data-ga-label="three-phase-power__fast-estimate"
+          data-ga-destination="/fast-estimate">Get a Fast Estimate</a
+        >
+        <p class="hero-alt-cta">
+          Facility managers: <a
+            href="sms:+16163347159?body=Hi%20Carl%20-%20photos%20of%20our%20gear%20and%20equipment%20nameplates%20for%20a%20project%20estimate."
+            data-ga-event="text_panel_photo_click"
+            data-ga-label="three-phase-power__hero-sms"
+            data-ga-destination="sms:+16163347159">text photos of your gear and equipment nameplates</a
+          > for a fast read on scope.
+        </p>
+        <p class="cta-microcopy">Licensed &amp; insured (MI #6220430) · Master electrician on every project.</p>
+      </div>
+    </section>
+    <div class="trust-strip">
+      <div class="container">
+        <div class="trust-badges">
+          <span class="badge">&#10004; Licensed &amp; Insured</span>
+          <span class="badge">MI License #6220430</span>
+          <span class="badge">480V Three-Phase Experience</span>
+          <span class="badge">Permits &amp; Inspection Included</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="container section-pad">
+      <h2>What We Build and Maintain</h2>
+      <ul>
+        <li>
+          <strong>Service &amp; distribution upgrades.</strong> Commercial services from 400A up through 1200A+ branch distribution,
+          CT metering, and utility coordination with Consumers Energy, DTE, and municipal utilities.
+        </li>
+        <li>
+          <strong>480V three-phase &amp; switchgear.</strong> Switchgear installation and distribution layout with the supports,
+          clearances, and labeling that pass inspection and stay serviceable.
+        </li>
+        <li>
+          <strong>Transformers.</strong> Step-down transformer installation with primary and secondary terminations — like
+          the 75 kVA commercial unit pictured below in Holland.
+        </li>
+        <li>
+          <strong>Motor controls &amp; equipment power.</strong> Motor and blower circuits, starters and disconnects, control
+          cabinets, and field controls for process equipment — from dust collection systems to agricultural motors.
+        </li>
+        <li>
+          <strong>Troubleshooting &amp; downtime response.</strong> Diagnostic-first service calls — like the commercial
+          contactor diagnosis and replacement at the Speedway station in Wyoming, MI — scheduled around your operating hours.
+        </li>
+      </ul>
+    </section>
+
+    <section class="container section-pad-tight">
+      <h2>Case Study: Steeltech 80×120 Shop Addition — Grand Rapids</h2>
+      <ul>
+        <li>
+          <strong>Problem:</strong> a steel fabricator expanding into a new 9,600 sq ft addition with a large Donaldson Torit
+          dust collection system — heavy 480V three-phase loads, multiple trades on one schedule.
+        </li>
+        <li>
+          <strong>Design decision:</strong> a 1200A 480V three-phase branch circuit feeding the addition, with switchgear,
+          a purpose-built control cabinet, and motor/blower circuits planned before conduit was routed.
+        </li>
+        <li>
+          <strong>Installation:</strong> switchgear and distribution, dust-collector motor and blower wiring with proper
+          protection and disconnects, field controls for daily operation, organized and labeled conduit runs, lighting and
+          general-purpose feeders.
+        </li>
+        <li>
+          <strong>Result:</strong> passed inspection; the dust collection system runs as designed, and the control layout
+          is organized for daily use and future service. Completed 2025.
+        </li>
+      </ul>
+      <p>
+        <a href="/projects/steeltech-shop-addition-dust-collection">Read the full Steeltech project write-up →</a>
+      </p>
+    </section>
+
+    <section class="container section-pad-tight">
+      <h2>Case Study: The $100,000 Upgrade We Advised Against</h2>
+      <p>
+        A multi-site manufacturer asked us to execute a plan already on the table: upgrade their service from 400 amps
+        to 2,000+ amps — roughly a $100,000 project. Before quoting, we checked what the utility could physically
+        deliver (1,600 amps at that site) and walked the floor: the real equipment list included roughly 25 more pieces
+        of process equipment nobody had counted. The honest answer was neither the 2,000-amp plan nor a 1,600-amp
+        stopgap they'd outgrow — it was <strong>primary power and owning their own transformer</strong>: a one-time
+        capital investment good for 10–20+ years in a facility they'll never leave.
+      </p>
+      <p>
+        That's the difference between selling a service upgrade and engineering one.
+        <a href="/about">More on how we work →</a>
+      </p>
+    </section>
+
+    <section class="container section-pad-tight">
+      <h2>Real Installations</h2>
+      <div class="proof-grid">
+        <figure class="proof-card">
+          <GalleryThumb
+            name="Switch Gear"
+            alt="Commercial 480V three-phase Eaton switchgear installation in West Michigan facility"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>Commercial 480V Eaton switchgear.</figcaption>
+        </figure>
+        <figure class="proof-card">
+          <GalleryThumb
+            name="Transformer"
+            alt="Holland, MI commercial 75 kVA step-down transformer installation with primary and secondary terminations"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>Holland — 75 kVA step-down transformer install.</figcaption>
+        </figure>
+        <figure class="proof-card">
+          <GalleryThumb
+            name="Control Cabinet"
+            alt="Grand Rapids manufacturing plant dust collection system control cabinet wiring"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>Grand Rapids — dust collection control cabinet.</figcaption>
+        </figure>
+        <figure class="proof-card">
+          <GalleryThumb
+            name="Field Controls"
+            alt="Allegan, MI industrial controls panel and field instrument wiring"
+            sizes="(max-width: 600px) 95vw, 50vw"
+            width={400}
+            height={300}
+          />
+          <figcaption>Allegan — industrial controls and field wiring.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="container section-pad-tight">
+      <h2>Straight Answers</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Do you handle 480V three-phase work?</summary>
+          <p>
+            Yes. 480V three-phase distribution, motor controls, and dedicated circuits for industrial and
+            light-manufacturing equipment. The Steeltech 1200A 480V shop addition is one example.
+          </p>
+        </details>
+        <details>
+          <summary>Can you work around our production schedule?</summary>
+          <p>
+            Yes. We schedule work to minimize downtime — after hours, weekends, or in phases for active operations. We
+            confirm the schedule before the job starts.
+          </p>
+        </details>
+        <details>
+          <summary>How do you size a service or feeder for new equipment?</summary>
+          <p>
+            A real load study: nameplate data from the actual equipment, demand factors, planned additions, and what the
+            utility can physically deliver at your site. That last check matters — it's how we caught a $100K plan that
+            specified more capacity than the utility could supply.
+          </p>
+        </details>
+        <details>
+          <summary>Do you coordinate permits and inspection?</summary>
+          <p>
+            Yes — permit pulling, inspection coordination, and scheduling alongside your other trades is part of the
+            scope.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>Planning Facility Power?</h2>
+      <p>
+        You're not calling a sales department. Call <a
+          href="tel:+16163347159"
+          data-ga-event="phone_click"
+          data-ga-label="three-phase-power__phone">(616) 334-7159</a
+        > and the master electrician who will design and build the work answers — or email
+        <a href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a> with your plans.
+      </p>
+      <a
+        href="/fast-estimate"
+        class="btn btn-primary"
+        data-ga-event="clear_estimate_click"
+        data-ga-label="three-phase-power__footer-estimate"
+        data-ga-destination="/fast-estimate">Get a Fast Estimate</a
+      >
+      <p class="cta-microcopy">Licensed &amp; insured ({siteData.business.license}) · Owner-operated.</p>
+    </section>
+  </main>
+</TTELayout>
