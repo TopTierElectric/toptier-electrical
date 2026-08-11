@@ -11,8 +11,11 @@ const { city, slug, county = `${city}, MI` } = Astro.props;
 const canonical = `https://www.toptier-electrical.com/${slug}`;
 const ogImage = `https://www.toptier-electrical.com/images/og/locations/${slug}.png`;
 const hasDistinctCounty = county !== `${city}, MI`;
+// Strip the trailing ", MI" from county for display so copy never
+// renders the doubled state ("Zeeland, MI (Ottawa County, MI)").
+const countyDisplay = county.replace(/, MI$/, '');
 const description = hasDistinctCounty
-  ? `Licensed master electrician in ${city}, MI (${county}). Panel upgrades, EV chargers, lighting, repairs. Call (616) 334-7159.`
+  ? `Licensed master electrician in ${city}, MI (${countyDisplay}). Panel upgrades, EV chargers, lighting, repairs. Call (616) 334-7159.`
   : `Licensed master electrician for ${city}, MI homes and businesses. Panel upgrades, EV chargers, lighting, repairs. Call (616) 334-7159.`;
 const nearbyAreas = [
   { city: 'Holland', href: '/electrician-holland-mi' },
@@ -36,7 +39,7 @@ const breadcrumbItems = [
 ---
 
 <TTELayout
-  title={`${city}, MI Master Electrician | Top Tier Electrical`}
+  title={`Electrician in ${city}, MI | Top Tier Electrical`}
   {description}
   canonical={canonical}
   {ogImage}
@@ -55,12 +58,21 @@ const breadcrumbItems = [
         <h1>Master Electrician in {city}, MI</h1>
         <p>Licensed master electrician serving {city} homes and commercial spaces. MI License #6220430.</p>
         <a
-          href="/booking"
+          href="tel:+16163347159"
           class="btn btn-primary"
-          data-ga-event="clear_estimate_click"
-          data-ga-label="Get a Clear Estimate"
-          data-ga-destination="/booking">Get a Clear Estimate</a
+          data-ga-event="phone_click"
+          data-ga-label={`${slug}__hero-phone`}
+          data-ga-destination="tel:+16163347159">&#128222; Call (616) 334-7159</a
         >
+        <p class="hero-alt-cta">
+          Or <a href="/fast-estimate" data-ga-event="clear_estimate_click" data-ga-label={`${slug}__hero-fast-estimate`}
+            >get a fast estimate</a
+          > (30-second form) — or <a
+            href="sms:+16163347159?body=Hi%20Carl%20-%20photo%20attached%20for%20a%20fast%20estimate."
+            data-ga-event="text_panel_photo_click"
+            data-ga-label={`${slug}__hero-sms`}>text a photo of the job</a
+          >.
+        </p>
       </div>
     </section>
     <div class="trust-strip">
@@ -76,7 +88,7 @@ const breadcrumbItems = [
       <div class="container">
         <h2>{city} Service Coverage</h2>
         <p>
-          Panel upgrades, EV charger installations, lighting projects, and electrical repairs for {county} and surrounding
+          Panel upgrades, EV charger installations, lighting projects, and electrical repairs for {countyDisplay} and surrounding
           areas.
         </p>
         <h3>Services Available in {city}</h3>

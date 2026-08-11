@@ -30,8 +30,23 @@ export const onRequest = async (context: MiddlewareContext): Promise<Response> =
   const url = new URL(request.url);
   const host = url.hostname.toLowerCase();
 
-  // Canonical hosts: serve normally.
-  if (host === 'www.toptier-electrical.com' || host === 'toptier-electrical.com') {
+  // Apex host or plain-http on the www host: 308 to the canonical
+  // https://www origin, preserving path and query. GSC showed both
+  // http://www.toptier-electrical.com/ (450 impressions) and apex
+  // variants indexed as separate URLs splitting signals.
+  const proto = (request.headers.get('x-forwarded-proto') || url.protocol.replace(':', '')).toLowerCase();
+  if (host === 'toptier-electrical.com' || (host === 'www.toptier-electrical.com' && proto === 'http')) {
+    return new Response(null, {
+      status: 308,
+      headers: {
+        location: CANONICAL_ORIGIN + url.pathname + url.search,
+        'cache-control': 'public, max-age=3600',
+      },
+    });
+  }
+
+  // Canonical host over https: serve normally.
+  if (host === 'www.toptier-electrical.com') {
     return next();
   }
 
