@@ -157,12 +157,23 @@ const ogImage = `https://www.toptier-electrical.com/images/og/service-city/${slu
           Licensed, insured {service.nameLower} for {city.name} homes and businesses. {service.intro}
         </p>
         <a
-          href="/booking"
+          href="tel:+16163347159"
           class="btn btn-primary"
-          data-ga-event="clear_estimate_click"
-          data-ga-label="Get a Clear Estimate"
-          data-ga-destination="/booking">Get a Clear Estimate</a
+          data-ga-event="phone_click"
+          data-ga-label={`${service.slug}-${city.slug}__hero-phone`}
+          data-ga-destination="tel:+16163347159">&#128222; Call (616) 334-7159</a
         >
+        <p class="hero-alt-cta">
+          Or <a
+            href="/fast-estimate"
+            data-ga-event="clear_estimate_click"
+            data-ga-label={`${service.slug}-${city.slug}__hero-fast-estimate`}>get a fast estimate</a
+          > (30-second form) — or <a
+            href="sms:+16163347159?body=Hi%20Carl%20-%20photo%20attached%20for%20a%20fast%20estimate."
+            data-ga-event="text_panel_photo_click"
+            data-ga-label={`${service.slug}-${city.slug}__hero-sms`}>text a photo of the job</a
+          >.
+        </p>
       </div>
     </section>
 
