@@ -17,14 +17,60 @@ const countyDisplay = county.replace(/, MI$/, '');
 const description = hasDistinctCounty
   ? `Licensed master electrician in ${city}, MI (${countyDisplay}). Panel upgrades, EV chargers, lighting, repairs. Call (616) 334-7159.`
   : `Licensed master electrician for ${city}, MI homes and businesses. Panel upgrades, EV chargers, lighting, repairs. Call (616) 334-7159.`;
-const nearbyAreas = [
-  { city: 'Holland', href: '/electrician-holland-mi' },
-  { city: 'Grand Rapids', href: '/electrician-grand-rapids-mi' },
-  { city: 'Allegan', href: '/electrician-allegan-mi' },
-  { city: 'Zeeland', href: '/electrician-zeeland-mi' },
-  { city: 'Hudsonville', href: '/electrician-hudsonville-mi' },
-  { city: 'Ada', href: '/electrician-ada-mi' },
-].filter((area) => area.city !== city);
+// Proximity-based nearby-city links. Every city page links 5 real
+// neighbors, which also guarantees every city page (including the
+// newer ones) has inbound internal links — GSC showed 12 pages stuck
+// in "Discovered/Crawled — currently not indexed", matching the 9
+// pages that previously had zero internal links anywhere.
+const CITY_SLUGS: Record<string, string> = {
+  Holland: '/electrician-holland-mi',
+  'Grand Rapids': '/electrician-grand-rapids-mi',
+  Allegan: '/electrician-allegan-mi',
+  Zeeland: '/electrician-zeeland-mi',
+  Hudsonville: '/electrician-hudsonville-mi',
+  Ada: '/electrician-ada-mi',
+  'Byron Center': '/electrician-byron-center-mi',
+  Saugatuck: '/electrician-saugatuck-mi',
+  Douglas: '/electrician-douglas-mi',
+  Jamestown: '/electrician-jamestown-mi',
+  'Grand Haven': '/electrician-grand-haven',
+  Muskegon: '/electrician-muskegon',
+  Plainwell: '/electrician-plainwell-mi',
+  Caledonia: '/electrician-caledonia-mi',
+  Wayland: '/electrician-wayland-mi',
+  Fennville: '/electrician-fennville-mi',
+  Hopkins: '/electrician-hopkins-mi',
+  Jenison: '/electrician-jenison-mi',
+  Alto: '/electrician-alto-mi',
+  'Comstock Park': '/electrician-comstock-park-mi',
+  'Forest Hills': '/electrician-forest-hills-mi',
+};
+const NEARBY: Record<string, string[]> = {
+  Allegan: ['Plainwell', 'Wayland', 'Hopkins', 'Fennville', 'Holland'],
+  Holland: ['Zeeland', 'Fennville', 'Saugatuck', 'Hudsonville', 'Grand Haven'],
+  Zeeland: ['Holland', 'Hudsonville', 'Jenison', 'Byron Center', 'Allegan'],
+  'Grand Rapids': ['Forest Hills', 'Comstock Park', 'Jenison', 'Byron Center', 'Ada'],
+  Hudsonville: ['Jenison', 'Zeeland', 'Byron Center', 'Jamestown', 'Grand Rapids'],
+  Ada: ['Forest Hills', 'Grand Rapids', 'Caledonia', 'Alto', 'Comstock Park'],
+  'Byron Center': ['Caledonia', 'Grand Rapids', 'Hudsonville', 'Jenison', 'Wayland'],
+  Saugatuck: ['Douglas', 'Fennville', 'Holland', 'Allegan', 'Zeeland'],
+  Douglas: ['Saugatuck', 'Fennville', 'Holland', 'Allegan', 'Zeeland'],
+  Jamestown: ['Hudsonville', 'Jenison', 'Zeeland', 'Byron Center', 'Grand Rapids'],
+  'Grand Haven': ['Muskegon', 'Holland', 'Zeeland', 'Hudsonville', 'Grand Rapids'],
+  Muskegon: ['Grand Haven', 'Holland', 'Grand Rapids', 'Zeeland', 'Hudsonville'],
+  Fennville: ['Saugatuck', 'Douglas', 'Allegan', 'Holland', 'Hopkins'],
+  Hopkins: ['Wayland', 'Allegan', 'Plainwell', 'Byron Center', 'Caledonia'],
+  Wayland: ['Hopkins', 'Caledonia', 'Byron Center', 'Allegan', 'Plainwell'],
+  Plainwell: ['Allegan', 'Wayland', 'Hopkins', 'Fennville', 'Caledonia'],
+  Alto: ['Caledonia', 'Ada', 'Forest Hills', 'Byron Center', 'Grand Rapids'],
+  Caledonia: ['Alto', 'Byron Center', 'Ada', 'Wayland', 'Grand Rapids'],
+  'Comstock Park': ['Grand Rapids', 'Forest Hills', 'Ada', 'Jenison', 'Byron Center'],
+  'Forest Hills': ['Ada', 'Grand Rapids', 'Alto', 'Caledonia', 'Comstock Park'],
+  Jenison: ['Hudsonville', 'Grand Rapids', 'Zeeland', 'Comstock Park', 'Byron Center'],
+};
+const nearbyAreas = (NEARBY[city] ?? ['Holland', 'Grand Rapids', 'Allegan', 'Zeeland', 'Hudsonville'])
+  .filter((c) => c !== city && CITY_SLUGS[c])
+  .map((c) => ({ city: c, href: CITY_SLUGS[c] }));
 
 // Explicit 3-level BreadcrumbList: Home → Service Areas → {City}.
 // Without this, TTELayout's auto-generated breadcrumb falls back to

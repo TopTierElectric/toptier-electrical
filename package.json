@@ -110,6 +110,8 @@
     "astro-compress": {
       "sharp": "^0.35.3",
       "svgo": "^4.0.2"
-    }
+    },
+    "tar": "^7.5.22",
+    "deepmerge-ts": "^8.0.2"
   }
 }
