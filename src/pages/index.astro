@@ -5,14 +5,19 @@ import { Picture, getImage } from 'astro:assets';
 import heroImage from '~/assets/images/Custom LED Fennville.webp';
 import siteData from '~/data/site.json';
 
+// Single 800w hero preload for all viewports. The old pair of
+// media-scoped preloads (480w mobile / 800w desktop) double-fetched on
+// modern phones: at DPR >= 2 the hero image's srcset math selects the
+// 800w candidate while the preload had already pulled the 480w —
+// Lighthouse showed both AVIFs downloading. One 800w preload matches
+// the srcset choice on desktop (50vw ≈ 720px) and on 2x mobile
+// (~100vw ≈ 820px), so the preloaded bytes are the render bytes.
 const heroPreload = await getImage({
   src: heroImage,
   format: 'avif',
   width: 800,
   quality: 68,
 });
-
-const heroPreloadMobile = await getImage({ src: heroImage, format: 'avif', width: 480, quality: 68 });
 
 const faqLd = `{
   "@context": "https://schema.org",
@@ -70,24 +75,7 @@ const offerCatalogLd = `{
   ogImage="https://www.toptier-electrical.com/images/og/pages/home.png"
   jsonLd={[faqLd, speakableLd, offerCatalogLd]}
 >
-  <link
-    slot="head"
-    rel="preload"
-    as="image"
-    href={heroPreload.src}
-    type="image/avif"
-    fetchpriority="high"
-    media="(min-width: 769px)"
-  />
-  <link
-    slot="head"
-    rel="preload"
-    as="image"
-    href={heroPreloadMobile.src}
-    type="image/avif"
-    fetchpriority="high"
-    media="(max-width: 768px)"
-  />
+  <link slot="head" rel="preload" as="image" href={heroPreload.src} type="image/avif" fetchpriority="high" />
   <main id="main-content">
     <section class="hero">
       <div class="container hero-layout">

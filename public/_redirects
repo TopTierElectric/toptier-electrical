@@ -18,6 +18,22 @@
 # 308 rule above.
 
 # Legacy entry aliases (keep minimal)
+# Trailing-slash canonicalization. build.format:'file' emits only the
+# no-slash form, but GSC shows 27 legacy trailing-slash URLs still
+# indexed (e.g. /commercial/ with 263 impressions) that currently 404.
+# 301 them to the canonical form so equity consolidates instead of
+# evaporating. Placeholders match a single path segment; deeper paths
+# get their own rules. First match wins.
+/blog/:slug/ /blog/:slug 301
+/projects/:slug/ /projects/:slug 301
+/glossary/:slug/ /glossary/:slug 301
+/tools/:slug/ /tools/:slug 301
+/category/:slug/:page/ /category/:slug/:page 301
+/category/:slug/ /category/:slug 301
+/tag/:slug/:page/ /tag/:slug/:page 301
+/tag/:slug/ /tag/:slug 301
+/:page/ /:page 301
+
 /index / 301
 /index.html / 301
 /home / 301

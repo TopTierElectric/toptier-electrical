@@ -22,7 +22,17 @@ import { execSync } from 'node:child_process';
 
 // GHSA IDs that are non-applicable to this static SSG build. Keep the
 // reason current — if a runtime assumption changes, remove the entry.
-const ALLOWLIST = new Map([]);
+const ALLOWLIST = new Map([
+  [
+    'GHSA-jmr9-qjv8-65gv',
+    'extract-zip <=2.0.1 (no patched release exists upstream). Build-time only: ' +
+      'pulled by astro-icon -> @iconify/tools, whose zip handling would only run ' +
+      'when downloading remote icon archives. This build loads icons exclusively ' +
+      'from local @iconify-json packages; no untrusted archive is ever extracted ' +
+      'in CI or at runtime (static SSG output ships no JS from this chain). ' +
+      'Remove this entry when extract-zip publishes a fixed version.',
+  ],
+]);
 
 const BLOCKING = new Set(['high', 'critical']);
 
@@ -58,21 +68,47 @@ const reportedBlocking = (meta.high ?? 0) + (meta.critical ?? 0);
 const blocking = [];
 const allowed = [];
 
-for (const [name, vuln] of Object.entries(data.vulnerabilities ?? {})) {
+// Resolve each flagged package's full advisory set, following chain
+// references (npm lists a parent's `via` as bare package-name strings
+// when the advisory belongs to a transitive dependency). A parent is
+// only as clean as every leaf it chains to; unresolvable or cyclic
+// chains fail closed as before.
+const vulns = data.vulnerabilities ?? {};
+const resolveGhsaIds = (name, seen = new Set()) => {
+  if (seen.has(name)) return { ids: [], unresolved: false };
+  seen.add(name);
+  const vuln = vulns[name];
+  if (!vuln) return { ids: [], unresolved: true };
+  let ids = [];
+  let unresolved = false;
+  for (const v of vuln.via ?? []) {
+    if (typeof v === 'object' && v.url) {
+      const id = v.url.match(/GHSA-[\w-]+/)?.[0];
+      if (id) ids.push(id);
+      else unresolved = true;
+    } else if (typeof v === 'string') {
+      const child = resolveGhsaIds(v, seen);
+      ids = ids.concat(child.ids);
+      unresolved = unresolved || child.unresolved;
+    } else {
+      unresolved = true;
+    }
+  }
+  return { ids, unresolved };
+};
+
+for (const [name, vuln] of Object.entries(vulns)) {
   if (!BLOCKING.has(vuln.severity)) continue;
-  // Collect the GHSA IDs backing this package's advisory chain.
-  const ghsaIds = (vuln.via ?? [])
-    .filter((v) => typeof v === 'object' && v.url)
-    .map((v) => v.url.match(/GHSA-[\w-]+/)?.[0])
-    .filter(Boolean);
+  const { ids: ghsaIds, unresolved } = resolveGhsaIds(name);
 
   const directIds = ghsaIds.filter((id) => !ALLOWLIST.has(id));
-  if (ghsaIds.length > 0 && directIds.length === 0) {
-    allowed.push(`${name} (${vuln.severity}): ${ghsaIds.join(', ')}`);
-  } else if (directIds.length > 0) {
+  if (directIds.length > 0) {
     blocking.push(`${name} (${vuln.severity}): ${directIds.join(', ')}`);
+  } else if (ghsaIds.length > 0 && !unresolved) {
+    allowed.push(`${name} (${vuln.severity}): ${ghsaIds.join(', ')} (via chain)`);
   } else {
-    // High/critical with no GHSA id surfaced (transitive-only): block to be safe.
+    // High/critical with no GHSA id surfaced anywhere in the chain:
+    // block to be safe.
     blocking.push(`${name} (${vuln.severity}): unidentified advisory — review manually`);
   }
 }
