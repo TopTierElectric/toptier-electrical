@@ -18,6 +18,10 @@
   --brand-gold-light: #e6cc72;
   --brand-black: #111111;
   --brand-charcoal: #181818;
+  /* Single section-dark for hero, dark content bands, and CTA bands.
+     Chrome (header/footer/sticky bar) uses brand-black; everything else
+     dark uses this token — no third or fourth dark. */
+  --brand-navy: #0f172a;
   --brand-ivory: #fafafa;
   --brand-slate: #6b7280;
   --brand-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
@@ -161,9 +165,17 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Fixed logo box: the header is a crowded flex row, and without an
+   explicit width the logo anchor gets flex-squeezed and the emblem
+   distorts. 52x50 matches the 180x172 intrinsic aspect. */
+header .logo {
+  flex: 0 0 auto;
+}
+
 header .logo img {
   height: 50px;
-  width: auto;
+  width: 52px;
+  object-fit: contain;
   display: block;
 }
 
@@ -176,7 +188,7 @@ header nav ul {
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 header nav {
@@ -193,6 +205,12 @@ header nav .nav-cta {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+/* Header CTAs stay single-line pills on desktop; the mobile menu
+   media query below re-allows wrapping inside the drawer. */
+header nav .nav-cta .btn {
+  white-space: nowrap;
 }
 
 header nav a {
@@ -237,9 +255,10 @@ header nav a:focus {
   transition: all 0.3s ease;
 }
 
-/* Display a mobile menu on narrower viewports. We increase the breakpoint
-   to 1000px to accommodate additional navigation links without truncation. */
-@media (max-width: 1200px) {
+/* Display a mobile menu on narrower viewports. The breakpoint sits at
+   1280px: below it the full nav plus both header CTAs cannot fit a
+   1200px container without squeezing the logo or wrapping the buttons. */
+@media (max-width: 1280px) {
   header nav {
     position: absolute;
     top: calc(100% + 0.4rem);
@@ -288,38 +307,6 @@ header nav a:focus {
   }
 }
 
-/* Testimonials section */
-.testimonials {
-  padding: 3rem 0;
-  background: var(--light-bg);
-}
-.testimonials h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  color: var(--primary);
-}
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-.testimonial-card {
-  background: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  text-align: center;
-}
-.testimonial-quote {
-  font-size: 1rem;
-  color: var(--primary);
-  margin-bottom: 1rem;
-}
-.testimonial-meta {
-  font-size: 0.9rem;
-  color: var(--muted);
-}
 .reviews-summary {
   padding: 3rem 0 1rem;
   background: #fff;
@@ -344,7 +331,7 @@ header nav a:focus {
   color: var(--primary);
 }
 .reviews-score .stars {
-  color: #f5b301;
+  color: var(--brand-gold);
   font-size: 1.25rem;
   display: block;
 }
@@ -377,16 +364,6 @@ header nav a:focus {
   margin-top: 2.5rem;
   text-align: center;
 }
-.testimonial-card p {
-  font-size: 0.95rem;
-  color: var(--muted);
-  margin-bottom: 1rem;
-}
-.testimonial-card .author {
-  font-weight: bold;
-  color: var(--primary);
-}
-
 /* Info section (financing, emergency, faq) */
 .info-section {
   padding: 3rem 0;
@@ -451,7 +428,7 @@ header nav a:focus {
 /* Hero section */
 .hero {
   position: relative;
-  background: #0f172a;
+  background: var(--brand-navy);
   color: #ffffff;
   text-align: center;
   padding: 4rem 0;
@@ -573,36 +550,6 @@ header nav a:focus {
   margin-left: 0.15rem;
 }
 
-.hero-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.hero-form .form-group {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 150px;
-}
-
-.hero-form label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-  color: var(--text-light);
-}
-
-.hero-form input {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.hero-form button {
-  flex: 0 0 auto;
-}
-
 .trust-bar {
   display: flex;
   flex-wrap: wrap;
@@ -697,75 +644,9 @@ header nav a:focus {
   font-size: 0.95rem;
 }
 
-.btn-primary {
-  display: inline-block;
-  background: #ffffff;
-  color: var(--primary);
-  padding: 0.75rem 1.5rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-  background: #e2e8f0;
-  transform: translateY(-2px);
-}
-
-/* Value propositions */
-.values {
-  background: var(--light-bg);
-  padding: 3rem 0;
-}
-
-.values h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  color: var(--primary);
-}
-
-.values .value-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-}
-
-.values .value-item {
-  background: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.values .value-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.07);
-}
-
-.values .icon {
-  font-size: 2.5rem;
-  color: var(--primary);
-  margin-bottom: 0.5rem;
-}
-
-.values h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.values p {
-  font-size: 0.95rem;
-  color: var(--muted);
-}
+/* .btn-primary is defined once, in the brand-button block further down:
+   gold background, black text. The legacy white variant was removed so a
+   white-on-white primary button can never render. */
 
 .service-categories {
   padding: 3rem 0;
@@ -1337,18 +1218,21 @@ header nav a:focus {
 
 .contact-form button {
   align-self: flex-start;
-  background: #ffffff;
-  color: var(--primary);
-  border: none;
+  background: var(--brand-gold);
+  color: var(--brand-black);
+  border: 1px solid var(--brand-gold-dark);
   padding: 0.75rem 1.5rem;
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .contact-form button:hover {
-  background: #e2e8f0;
+  transform: translateY(-1px);
+  box-shadow: var(--brand-shadow);
 }
 
 /* Footer */
@@ -1368,44 +1252,6 @@ footer p {
   width: 120px;
   height: auto;
   margin-bottom: 1rem;
-}
-
-/* Header contact bar and small button */
-.header-contact {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-left: auto;
-  font-size: 0.875rem;
-}
-
-.header-contact a.phone {
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.header-contact a.phone:hover,
-.header-contact a.phone:focus {
-  text-decoration: underline;
-}
-
-/* Small button variant for header call-to-action */
-.btn-small {
-  display: inline-block;
-  background: #ffffff;
-  color: var(--primary);
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 600;
-  transition: background 0.2s ease;
-}
-
-.btn-small:hover,
-.btn-small:focus {
-  background: #e2e8f0;
 }
 
 /* Trust signals section */
@@ -1447,7 +1293,7 @@ footer p {
 
 /* Call-to-action section */
 .cta-section {
-  background: #0f172a;
+  background: var(--brand-navy);
   color: #ffffff;
   padding: 3rem 1rem;
   text-align: center;
@@ -1603,22 +1449,7 @@ footer p {
   color: var(--text-light);
   text-decoration: underline;
 }
-.cta-section a.btn-primary {
-  background: #ffffff;
-  color: var(--primary);
-  padding: 0.75rem 1.5rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
-}
-.cta-section a.btn-primary:hover,
-.cta-section a.btn-primary:focus {
-  background: #e2e8f0;
-  transform: translateY(-2px);
-} /* Sticky mobile call-to-action bar */
+/* Sticky mobile call-to-action bar */
 .sticky-bar {
   position: fixed;
   bottom: 0;
@@ -1643,71 +1474,6 @@ footer p {
 }
 
 /* ===== UX/UI IMPROVEMENTS ===== */
-
-/* Quick Actions Bar (Home Page) */
-.quick-actions {
-  background: #f1f5f9;
-  padding: 1rem 0;
-  border-bottom: 1px solid #e2e8f0;
-}
-.quick-actions .container {
-  display: flex;
-  justify-content: center;
-}
-.action-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  max-width: 600px;
-  width: 100%;
-}
-.action-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  background: white;
-  border-radius: 8px;
-  text-decoration: none;
-  color: var(--text-dark);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-.action-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.action-icon {
-  font-size: 1.5rem;
-  margin-bottom: 0.25rem;
-}
-.action-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-.action-emergency {
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-}
-.action-emergency:hover {
-  background: #fee2e2;
-}
-
-.action-link-text {
-  grid-column: 1 / -1;
-  text-align: center;
-  color: #b91c1c;
-  text-decoration: underline;
-  font-weight: 600;
-}
-@media (max-width: 480px) {
-  .action-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 
 /* Trust Strip (Compact badge bar) */
 .trust-strip {
@@ -1829,9 +1595,9 @@ footer p {
   color: var(--text-light);
 }
 
-/* Star Ratings */
+/* Star Ratings — always brand gold, never the amber warning color */
 .stars {
-  color: var(--warning);
+  color: var(--brand-gold);
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
   letter-spacing: 2px;
@@ -1984,14 +1750,16 @@ footer p {
   height: 280px;
 }
 
-/* Financing Timeline */
-.financing-timeline {
+/* Numbered-step timeline (homepage scheduling steps, financing page) */
+.financing-timeline,
+.process-timeline {
   display: flex;
   justify-content: space-between;
   margin: 2rem 0;
   position: relative;
 }
-.financing-timeline::before {
+.financing-timeline::before,
+.process-timeline::before {
   content: '';
   position: absolute;
   top: 24px;
@@ -2009,7 +1777,7 @@ footer p {
 .step-number {
   width: 48px;
   height: 48px;
-  background: var(--secondary);
+  background: var(--brand-navy);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -2032,11 +1800,13 @@ footer p {
   margin: 0;
 }
 @media (max-width: 768px) {
-  .financing-timeline {
+  .financing-timeline,
+  .process-timeline {
     flex-direction: column;
     gap: 1.5rem;
   }
-  .financing-timeline::before {
+  .financing-timeline::before,
+  .process-timeline::before {
     display: none;
   }
   .timeline-step {
@@ -2392,13 +2162,6 @@ header nav .btn-ghost:focus {
   background: var(--brand-black);
 }
 
-.action-link-text {
-  grid-column: 1 / -1;
-  text-align: center;
-  color: var(--secondary);
-  text-decoration: underline;
-  font-weight: 600;
-}
 .site-header {
   position: sticky;
   top: 0;
@@ -2462,15 +2225,26 @@ header nav .btn-ghost:focus {
   box-shadow: var(--brand-shadow);
 }
 
+/* Ghost buttons default to text-safe gold ink: raw brand gold is only
+   ~2.55:1 on white and fails WCAG AA. Dark contexts override below. */
 .btn-ghost {
   background: transparent;
-  color: var(--brand-gold);
-  border-color: var(--brand-gold);
+  color: var(--brand-gold-ink);
+  border-color: var(--brand-gold-ink);
 }
 
 .btn-ghost:hover,
 .btn-ghost:focus {
   background: rgba(212, 175, 55, 0.1);
+}
+
+.hero .btn-ghost,
+.cta-section .btn-ghost,
+#about .btn-ghost,
+#faq .btn-ghost,
+.site-footer .btn-ghost {
+  color: var(--brand-gold);
+  border-color: var(--brand-gold);
 }
 
 .form-honeypot {
@@ -2482,14 +2256,14 @@ header nav .btn-ghost:focus {
 }
 
 .site-footer {
-  background: #0f172a;
+  background: var(--brand-black);
   color: #ffffff;
   border-top: 2px solid var(--brand-gold);
   padding: 2.5rem 0;
 }
 
 .site-footer a {
-  color: #c9a24d;
+  color: var(--brand-gold-light);
 }
 
 .card,
@@ -2504,13 +2278,21 @@ header nav .btn-ghost:focus {
 #services,
 #areas,
 #about,
-#faq {
+#faq,
+#gallery,
+#reviews-preview,
+#process,
+#blog-spotlight {
   position: relative;
   padding: 3rem 1rem;
 }
 
+/* Alternating band rhythm: white / body-gray / navy. #process gets a
+   white band so reviews → process → blog does not run three flat gray
+   sections in a row. */
 #services,
-#areas {
+#areas,
+#process {
   background: #ffffff;
   box-shadow: 0 0 0 100vmax #ffffff;
   clip-path: inset(0 -100vmax);
@@ -2518,9 +2300,15 @@ header nav .btn-ghost:focus {
 
 #about,
 #faq {
-  background: #334155;
-  box-shadow: 0 0 0 100vmax #334155;
+  background: var(--brand-navy);
+  box-shadow: 0 0 0 100vmax var(--brand-navy);
   clip-path: inset(0 -100vmax);
+}
+
+/* Homepage: left-align the trust-section heading to match the other
+   section headings; the about page keeps the centered variant. */
+#about.trust-section h2 {
+  text-align: left;
 }
 
 #about,
@@ -2539,10 +2327,6 @@ header nav .btn-ghost:focus {
 #about a:not(.btn),
 #faq a:not(.btn) {
   color: #e6cc72;
-}
-
-#faq .faq-list a:not(.btn) {
-  color: #8a6d20;
 }
 
 #faq .faq-list details {
@@ -2679,7 +2463,7 @@ body.menu-open {
   gap: 1rem;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1280px) {
   #main-nav {
     position: absolute;
     top: calc(100% + 0.5rem);
@@ -2711,7 +2495,7 @@ body.menu-open {
 .hero {
   width: 100%;
   overflow: hidden;
-  background: #0f172a;
+  background: var(--brand-navy);
   color: #ffffff;
   padding: 4rem 0;
 }
@@ -2732,6 +2516,15 @@ body.menu-open {
 .hero-text {
   min-width: 0;
   text-align: center;
+}
+
+.hero-label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brand-gold-light);
+  margin-bottom: 0.6rem;
 }
 
 .hero-text h1 {
@@ -2773,6 +2566,11 @@ body.menu-open {
   color: var(--brand-gold);
   font-weight: 700;
   margin-right: 0.4rem;
+}
+
+.hero-trust a {
+  color: var(--brand-gold-light);
+  text-decoration: underline;
 }
 
 .hero-image {
@@ -2979,6 +2777,62 @@ body.menu-open {
 @media (min-width: 1000px) {
   #gallery .gallery-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Section "see more" links — text links, not buttons. Gold buttons are
+   reserved for conversion actions (call / estimate); browse links use
+   text-safe gold ink so primaries keep their visual weight. */
+.section-more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  margin-top: 1.5rem;
+}
+.section-more a:not(.btn) {
+  font-weight: 700;
+  color: var(--brand-gold-ink);
+  text-decoration: none;
+}
+.section-more a:not(.btn):hover,
+.section-more a:not(.btn):focus {
+  text-decoration: underline;
+}
+
+/* Service-area chip links (homepage) */
+.area-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1rem 0 0.5rem;
+}
+.area-chips a {
+  display: inline-block;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+.area-chips a:hover,
+.area-chips a:focus {
+  border-color: var(--brand-gold);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+/* Left-hero variant: the alt-CTA line follows the text column's left
+   edge on desktop instead of centering under it. */
+@media (min-width: 900px) {
+  .hero-layout .hero-alt-cta {
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 

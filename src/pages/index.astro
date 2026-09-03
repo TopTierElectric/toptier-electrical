@@ -80,25 +80,35 @@ const offerCatalogLd = `{
     <section class="hero">
       <div class="container hero-layout">
         <div class="hero-text">
-          <div class="hero-label">Serving West Michigan</div>
-          <h1>Licensed Master Electrician in Grand Rapids &amp; Holland, MI</h1>
+          <div class="hero-label">Owner-Operated · Based in Allegan, MI</div>
+          <h1>Licensed Master Electrician in Allegan, Grand Rapids &amp; West Michigan</h1>
           <p class="hero-sub">
-            Clean electrical work, clear communication. I focus on scope clarity, clean installs, and realistic
-            timelines so you can make confident decisions about your electrical project.
+            Clean electrical work, clear communication, realistic timelines. The master electrician who scopes your job
+            is the same one who shows up and does it.
           </p>
           <div class="hero-cta">
             <a
-              href="/booking"
+              href="tel:+16163347159"
               class="btn btn-primary"
-              data-cta="hero-request-scheduling"
-              data-ga-event="clear_estimate_click"
-              data-ga-label="Get a Clear Estimate"
-              data-ga-destination="/booking">Get a Clear Estimate</a
-            >
-            <a href="tel:+16163347159" data-ga-event="phone_click" data-ga-label="index__phone" class="btn btn-ghost"
-              >Call (616) 334-7159</a
+              data-cta="hero-call"
+              data-ga-event="phone_click"
+              data-ga-label="index__hero-phone"
+              data-ga-destination="tel:+16163347159">&#128222; Call (616) 334-7159</a
             >
           </div>
+          <p class="hero-alt-cta">
+            Or <a
+              href="/fast-estimate"
+              data-ga-event="clear_estimate_click"
+              data-ga-label="index__hero-fast-estimate"
+              data-ga-destination="/fast-estimate">get a fast estimate</a
+            > (30-second form) — or <a
+              href="sms:+16163347159?body=Hi%20Carl%20-%20photo%20attached%20for%20a%20fast%20estimate."
+              data-ga-event="text_panel_photo_click"
+              data-ga-label="index__hero-sms"
+              data-ga-destination="sms:+16163347159">text a photo of the job</a
+            >.
+          </p>
           <ul class="hero-trust" aria-label="Credentials and trust signals">
             <li>
               <a
@@ -217,8 +227,8 @@ const offerCatalogLd = `{
           <p>Scheduled maintenance that keeps commercial systems running.</p>
         </a>
       </div>
-      <p class="text-center mt-6">
-        <a href="/services" class="btn btn-primary">See all West Michigan electrical services</a>
+      <p class="section-more">
+        <a href="/services">See all West Michigan electrical services →</a>
       </p>
     </section>
 
@@ -280,8 +290,8 @@ const offerCatalogLd = `{
           />
         </figure>
       </div>
-      <p class="text-center mt-6">
-        <a href="/gallery" class="btn btn-primary">See more West Michigan electrical projects</a>
+      <p class="section-more">
+        <a href="/gallery">See more West Michigan electrical projects →</a>
       </p>
     </section>
 
@@ -320,7 +330,7 @@ const offerCatalogLd = `{
       </p>
       <div class="service-cards">
         <article class="service-card">
-          <h3>“This is by far the best we ever felt with.”</h3>
+          <h3>“By far the best we ever felt with”</h3>
           <p>
             “We've had 5 new builds and 2 remodels — this is by far the best we ever felt with. Very engaged, very
             friendly. You can't find a better person more focused, more in line with your desires on your build. Won't
@@ -329,7 +339,7 @@ const offerCatalogLd = `{
           <p class="muted m-0"><strong>Thomas Farrell</strong> · ★★★★★ Google review · Local Guide</p>
         </article>
         <article class="service-card">
-          <h3>“Pricing was very fair and communication was excellent.”</h3>
+          <h3>“Pricing was very fair”</h3>
           <p>
             “After speaking with 2 electricians before him that fell through, we were nervous. Carl came over right away
             to give us a quote, kept us updated the entire time, and made sure our power was turned back on same day.
@@ -340,14 +350,14 @@ const offerCatalogLd = `{
           </p>
         </article>
         <article class="service-card">
-          <h3>“I am a contractor and I use him on all of my projects.”</h3>
+          <h3>“I use him on all of my projects”</h3>
           <p>“Really nice young man! I am a contractor and I use him on all of my projects.”</p>
           <p class="muted m-0">
             <strong>Christopher Keeler</strong> · ★★★★★ Google review · West Michigan contractor
           </p>
         </article>
         <article class="service-card">
-          <h3>“Could not be happier with the service provided.”</h3>
+          <h3>“Could not be happier with the service”</h3>
           <p>
             “Used Top Tier Electrical to install a level 2 Tesla Charger for my house and could not be happier with the
             service provided. Carl was extremely easy to work with and has a lot of knowledge that he shared with me
@@ -356,8 +366,8 @@ const offerCatalogLd = `{
           <p class="muted m-0"><strong>Mitchell Evenhouse</strong> · ★★★★★ Google review · EV Charger Installation</p>
         </article>
       </div>
-      <p class="text-center mt-6">
-        <a href="/reviews" class="btn btn-primary">Read More Reviews</a>
+      <p class="section-more">
+        <a href="/reviews">Read all {siteData.seo.googleReviewCount} five-star reviews →</a>
         <a href={siteData.seo.googleReviewUrl} class="btn btn-secondary" target="_blank" rel="noopener noreferrer"
           >Leave a Google Review</a
         >
@@ -366,11 +376,29 @@ const offerCatalogLd = `{
 
     <section class="container" id="process">
       <h2>How Scheduling Works</h2>
-      <ol>
-        <li><strong>Share your project:</strong> call, text, or submit your request with photos if available.</li>
-        <li><strong>Get a clear plan:</strong> we confirm scope, code considerations, and timeline options.</li>
-        <li><strong>Approve and schedule:</strong> lock in your date and receive written next steps.</li>
-      </ol>
+      <div class="process-timeline">
+        <div class="timeline-step">
+          <div class="step-number" aria-hidden="true">1</div>
+          <div class="step-content">
+            <h4>Share your project</h4>
+            <p>Call, text a photo, or submit the 30-second fast-estimate form.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-number" aria-hidden="true">2</div>
+          <div class="step-content">
+            <h4>Get a clear plan</h4>
+            <p>We confirm scope, code considerations, and timeline options.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-number" aria-hidden="true">3</div>
+          <div class="step-content">
+            <h4>Approve and schedule</h4>
+            <p>Lock in your date and receive written next steps.</p>
+          </div>
+        </div>
+      </div>
       <p>Need help planning a larger upgrade? We can walk scope and phased options before you schedule.</p>
     </section>
 
@@ -399,15 +427,24 @@ const offerCatalogLd = `{
           <a href="/blog/zinsco-fpe-panel-replacement">Zinsco and Federal Pacific panels: why they need to go</a>
         </li>
       </ul>
-      <p><a href="/blog">See all electrical guides →</a></p>
+      <p class="section-more"><a href="/blog">See all electrical guides →</a></p>
     </section>
 
     <section class="container" id="areas">
       <h2>Service Areas</h2>
-      <p>
-        We serve West Michigan including Holland, Grand Rapids, Allegan, Zeeland, Saugatuck, Hudsonville, Byron Center,
-        Muskegon, and Grand Haven. <a href="/service-areas">See all service areas</a>.
-      </p>
+      <p>Based in Allegan, serving homes and businesses across West Michigan:</p>
+      <div class="area-chips">
+        <a href="/electrician-allegan-mi">Allegan</a>
+        <a href="/electrician-grand-rapids-mi">Grand Rapids</a>
+        <a href="/electrician-holland-mi">Holland</a>
+        <a href="/electrician-zeeland-mi">Zeeland</a>
+        <a href="/electrician-saugatuck-mi">Saugatuck</a>
+        <a href="/electrician-hudsonville-mi">Hudsonville</a>
+        <a href="/electrician-byron-center-mi">Byron Center</a>
+        <a href="/electrician-muskegon">Muskegon</a>
+        <a href="/electrician-grand-haven">Grand Haven</a>
+      </div>
+      <p class="section-more"><a href="/service-areas">See all service areas →</a></p>
     </section>
 
     <section class="container" id="faq">
@@ -445,15 +482,23 @@ const offerCatalogLd = `{
     <section class="cta-section">
       <h2>Ready to Get Started?</h2>
       <p>
-        Call <a href="tel:+16163347159" data-ga-event="phone_click" data-ga-label="index__phone">(616) 334-7159</a> or email
+        Call <a href="tel:+16163347159" data-ga-event="phone_click" data-ga-label="index__phone">(616) 334-7159</a> or{
+          ' '
+        }
+        <a
+          href="sms:+16163347159?body=Hi%20Carl%20-%20photo%20attached%20for%20a%20fast%20estimate."
+          data-ga-event="text_panel_photo_click"
+          data-ga-label="index__cta-sms"
+          data-ga-destination="sms:+16163347159">text a photo of the job</a
+        > to the same number — or email{' '}
         <a href="mailto:info@toptier-electrical.com">info@toptier-electrical.com</a> to confirm scope and scheduling.
       </p>
       <a
-        href="/booking"
+        href="/fast-estimate"
         class="btn btn-primary"
         data-ga-event="clear_estimate_click"
-        data-ga-label="Get a Clear Estimate"
-        data-ga-destination="/booking">Get a Clear Estimate</a
+        data-ga-label="Get a Fast Estimate"
+        data-ga-destination="/fast-estimate">Get a Fast Estimate</a
       >
     </section>
   </main>
