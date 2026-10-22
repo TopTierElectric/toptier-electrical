@@ -24,13 +24,14 @@ import { execSync } from 'node:child_process';
 // reason current — if a runtime assumption changes, remove the entry.
 const ALLOWLIST = new Map([
   [
-    'GHSA-jmr9-qjv8-65gv',
-    'extract-zip <=2.0.1 (no patched release exists upstream). Build-time only: ' +
-      'pulled by astro-icon -> @iconify/tools, whose zip handling would only run ' +
-      'when downloading remote icon archives. This build loads icons exclusively ' +
-      'from local @iconify-json packages; no untrusted archive is ever extracted ' +
-      'in CI or at runtime (static SSG output ships no JS from this chain). ' +
-      'Remove this entry when extract-zip publishes a fixed version.',
+    'GHSA-vfj7-8cjw-p6xm',
+    'braces <=3.0.3 stack-exhaustion DoS (no patched release exists upstream; ' +
+      '3.0.3 is the latest). Build-time only: braces sits under micromatch / ' +
+      'fast-glob glob expansion used by eslint, astro-compress, and @playform ' +
+      'pipe tooling. Every glob pattern it expands comes from this repository ' +
+      'checked-in config, never from user input, and the static SSG output ' +
+      'ships no JS from this chain. Remove this entry when braces publishes a ' +
+      'fixed version.',
   ],
 ]);
 
