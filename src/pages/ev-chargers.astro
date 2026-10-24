@@ -391,12 +391,23 @@ const jsonLd = [
       <p>A typical Level 2 install in West Michigan runs 4–6 hours and includes:</p>
       <ol>
         <li>Panel evaluation and load calculation.</li>
-        <li>New 40 or 50 amp double-pole breaker.</li>
-        <li>6 AWG copper feed from panel to charger location.</li>
+        <li>
+          New dedicated 240V circuit sized to your charger's output — typically a 40A breaker for 32A charging, 50A for
+          40A, or 60A for 48A. EV charging is a continuous load, so the circuit is rated 125% of the charging output.
+        </li>
+        <li>
+          Conductors sized to the actual circuit, wiring method, and run length — wire size is designed per
+          installation, not pulled from a universal chart.
+        </li>
         <li>NEMA 14-50 outlet (plug-in) or hardwired connection (allows full 48A continuous).</li>
         <li>Charger mounting and commissioning.</li>
         <li>Permit and inspection.</li>
       </ol>
+      <p>
+        Not sure which charging output fits your vehicle, driving, and panel? Our{' '}
+        <a href="/blog/level-2-ev-charger-amperage-guide">24A vs 32A vs 40A vs 48A amperage guide</a> walks the decision
+        step by step.
+      </p>
       <p>
         Installs that include panel upgrades or runs to detached garages take longer and cost more. We quote both
         scenarios clearly during the site visit.
@@ -423,6 +434,9 @@ const jsonLd = [
     <section class="container section-pad">
       <h2>Related reading</h2>
       <ul>
+        <li>
+          <a href="/blog/level-2-ev-charger-amperage-guide">24A vs 32A vs 40A vs 48A: what size charger do you need?</a>
+        </li>
         <li><a href="/blog/blog-ev-charging">Complete guide to home EV charger installation</a></li>
         <li>
           <a href="/blog/level-1-vs-level-2-ev-charger">Level 1 vs Level 2 EV charger: which should you install?</a>

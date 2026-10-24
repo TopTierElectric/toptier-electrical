@@ -182,16 +182,17 @@ const howToLd = JSON.stringify({
               id="ev-install-cost"
               name="installCost"
               type="number"
-              min="500"
-              max="10000"
+              min="0"
+              max="20000"
               step="50"
-              value="1800"
               inputmode="numeric"
+              placeholder="From your installation quote"
               required
             />
             <p class="ev-hint">
-              Typical West MI install runs $1,400-$2,400 depending on panel-to-charger distance. Higher if a panel
-              upgrade is needed.
+              Enter the amount from your written installation quote. Panel-to-charger distance, charging amperage, and
+              any panel work drive the number, so quotes vary per home —
+              <a href="/fast-estimate">get a fast estimate</a> if you don't have one yet.
             </p>
           </div>
 
